@@ -1,5 +1,8 @@
-
-rdf4j/edgar_wisdom.txt
-rdf4j/links.txt
+# ignore programs
 rdf4j/programs/apache-tomcat-9.0.22
 rdf4j/programs/eclipse-rdf4j-2.5.3
+
+# temporary ignores
+rdf4j/edgar_wisdom.txt
+rdf4j/links.txt
+testing/
