@@ -1,0 +1,646 @@
+[INFO ] 2019-08-08 11:46:01,820 [main] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 11:46:03,234 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 11:46:03,234 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 11:46:03,310 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 11:46:03,382 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 11:46:07,381 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 11:46:07,592 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 11:46:07,767 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 11:46:07,784 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 11:46:07,785 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 11:46:07,785 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 11:46:07,796 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 11:46:07,808 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 11:46:07,809 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 11:46:07,810 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 11:46:07,810 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 11:46:07,814 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 11:46:07,815 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 11:46:07,815 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 11:46:08,519 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 12956 ms
+[INFO ] 2019-08-08 11:46:49,643 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-08 11:46:53,029 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,575 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,580 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,581 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,575 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,577 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,576 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,575 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,584 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:07:07,586 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:09:23,812 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:09:33,087 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:09:54,717 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:09:57,008 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:09:57,658 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:12:26,654 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:13:02,722 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:13:03,186 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:13:03,635 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:14:26,693 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:14:31,910 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:16:28,667 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:22:12,559 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:22:20,888 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:22:22,478 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:22:23,331 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:35:41,414 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-08-08 12:42:47,564 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 11:45:56 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 12:43:20,439 [main] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 12:43:21,077 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 12:43:21,077 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:43:21,104 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 12:43:21,131 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 12:43:23,144 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 12:43:23,232 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 12:43:23,313 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 12:43:23,320 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 12:43:23,320 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 12:43:23,321 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 12:43:23,326 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 12:43:23,332 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 12:43:23,332 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 12:43:23,333 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 12:43:23,333 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 12:43:23,334 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 12:43:23,335 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:43:23,335 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:43:23,806 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 6506 ms
+[INFO ] 2019-08-08 12:44:17,610 [Catalina-utility-2] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 12:43:17 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 12:44:40,795 [Catalina-utility-2] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 12:44:41,354 [Catalina-utility-2] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 12:44:41,355 [Catalina-utility-2] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:44:41,381 [Catalina-utility-2] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 12:44:41,407 [Catalina-utility-2] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 12:44:43,077 [Catalina-utility-2] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 12:44:43,178 [Catalina-utility-2] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 12:44:43,254 [Catalina-utility-2] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 12:44:43,262 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 12:44:43,263 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 12:44:43,263 [Catalina-utility-2] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 12:44:43,269 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 12:44:43,275 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 12:44:43,276 [Catalina-utility-2] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 12:44:43,276 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 12:44:43,276 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 12:44:43,278 [Catalina-utility-2] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 12:44:43,279 [Catalina-utility-2] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:44:43,279 [Catalina-utility-2] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:44:43,655 [Catalina-utility-2] FrameworkServlet 'rdf4j-http-server': initialization completed in 5784 ms
+[INFO ] 2019-08-08 12:48:22,375 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 12:44:38 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 12:48:52,679 [main] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 12:48:53,364 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 12:48:53,364 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:48:53,392 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 12:48:53,420 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 12:48:55,348 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 12:48:55,444 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 12:48:55,544 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 12:48:55,563 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 12:48:55,564 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 12:48:55,565 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 12:48:55,578 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 12:48:55,594 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 12:48:55,594 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 12:48:55,595 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 12:48:55,595 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 12:48:55,599 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 12:48:55,602 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:48:55,603 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 12:48:56,193 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 6779 ms
+[INFO ] 2019-08-08 12:56:25,538 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 12:48:49 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 15:34:52,174 [main] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 15:34:52,868 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 15:34:52,868 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:34:52,888 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 15:34:52,908 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 15:34:54,004 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 15:34:54,066 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 15:34:54,113 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 15:34:54,118 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 15:34:54,118 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 15:34:54,119 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:34:54,122 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 15:34:54,125 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 15:34:54,125 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 15:34:54,126 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 15:34:54,126 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:34:54,127 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 15:34:54,128 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:34:54,128 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:34:54,322 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 4278 ms
+[INFO ] 2019-08-08 15:35:16,438 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:35:17,216 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:41:39,261 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 15:34:50 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 15:44:43,281 [main] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 15:44:43,869 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 15:44:43,869 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:44:43,887 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 15:44:43,905 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 15:44:44,759 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 15:44:44,804 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 15:44:44,846 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 15:44:44,850 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 15:44:44,851 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 15:44:44,851 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:44:44,854 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 15:44:44,857 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 15:44:44,857 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 15:44:44,858 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 15:44:44,858 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:44:44,861 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 15:44:44,862 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:44:44,863 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:44:45,055 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 3877 ms
+[INFO ] 2019-08-08 15:44:59,327 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:45:04,623 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:45:20,728 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 15:44:41 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 15:46:43,050 [Catalina-utility-2] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 15:46:43,362 [Catalina-utility-2] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 15:46:43,362 [Catalina-utility-2] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:46:43,375 [Catalina-utility-2] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 15:46:43,388 [Catalina-utility-2] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 15:46:44,152 [Catalina-utility-2] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 15:46:44,205 [Catalina-utility-2] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 15:46:44,250 [Catalina-utility-2] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 15:46:44,255 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 15:46:44,256 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 15:46:44,256 [Catalina-utility-2] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:46:44,260 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 15:46:44,263 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 15:46:44,264 [Catalina-utility-2] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 15:46:44,264 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 15:46:44,264 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:46:44,266 [Catalina-utility-2] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 15:46:44,267 [Catalina-utility-2] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:46:44,267 [Catalina-utility-2] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:46:44,446 [Catalina-utility-2] FrameworkServlet 'rdf4j-http-server': initialization completed in 2752 ms
+[INFO ] 2019-08-08 15:46:51,124 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 15:46:41 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 15:48:03,215 [Catalina-utility-2] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 15:48:03,524 [Catalina-utility-2] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 15:48:03,524 [Catalina-utility-2] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:48:03,536 [Catalina-utility-2] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 15:48:03,548 [Catalina-utility-2] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 15:48:04,609 [Catalina-utility-2] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 15:48:04,655 [Catalina-utility-2] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 15:48:04,697 [Catalina-utility-2] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 15:48:04,702 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 15:48:04,703 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 15:48:04,703 [Catalina-utility-2] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:48:04,706 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 15:48:04,709 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 15:48:04,710 [Catalina-utility-2] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 15:48:04,710 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 15:48:04,710 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:48:04,712 [Catalina-utility-2] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 15:48:04,713 [Catalina-utility-2] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:48:04,713 [Catalina-utility-2] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:48:04,907 [Catalina-utility-2] FrameworkServlet 'rdf4j-http-server': initialization completed in 3363 ms
+[INFO ] 2019-08-08 15:48:18,222 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:51:08,470 [http-nio-8080-exec-13] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:51:09,308 [http-nio-8080-exec-14] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:52:01,951 [Catalina-utility-1] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 15:48:01 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 15:53:14,909 [Catalina-utility-2] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 15:53:15,180 [Catalina-utility-2] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 15:53:15,180 [Catalina-utility-2] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:53:15,192 [Catalina-utility-2] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 15:53:15,204 [Catalina-utility-2] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 15:53:15,903 [Catalina-utility-2] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 15:53:15,944 [Catalina-utility-2] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 15:53:15,980 [Catalina-utility-2] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 15:53:15,984 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 15:53:15,985 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 15:53:15,985 [Catalina-utility-2] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:53:15,988 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 15:53:15,991 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 15:53:15,991 [Catalina-utility-2] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 15:53:15,992 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 15:53:15,992 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:53:15,993 [Catalina-utility-2] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 15:53:15,994 [Catalina-utility-2] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:53:15,994 [Catalina-utility-2] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:53:16,139 [Catalina-utility-2] FrameworkServlet 'rdf4j-http-server': initialization completed in 2422 ms
+[INFO ] 2019-08-08 15:57:22,054 [Catalina-utility-2] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 15:53:13 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 15:57:31,562 [Catalina-utility-2] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 15:57:31,840 [Catalina-utility-2] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 15:57:31,840 [Catalina-utility-2] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:57:31,852 [Catalina-utility-2] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 15:57:31,865 [Catalina-utility-2] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 15:57:32,668 [Catalina-utility-2] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 15:57:32,710 [Catalina-utility-2] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 15:57:32,745 [Catalina-utility-2] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 15:57:32,750 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 15:57:32,750 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 15:57:32,751 [Catalina-utility-2] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:57:32,755 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 15:57:32,758 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 15:57:32,759 [Catalina-utility-2] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 15:57:32,759 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 15:57:32,759 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 15:57:32,760 [Catalina-utility-2] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 15:57:32,761 [Catalina-utility-2] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:57:32,761 [Catalina-utility-2] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 15:57:32,917 [Catalina-utility-2] FrameworkServlet 'rdf4j-http-server': initialization completed in 2614 ms
+[INFO ] 2019-08-08 15:58:00,254 [http-nio-8080-exec-31] Request for query 3392903 is finished
+[INFO ] 2019-08-08 15:59:08,882 [Catalina-utility-1] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 15:57:30 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 16:01:41,070 [Catalina-utility-2] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 16:01:41,328 [Catalina-utility-2] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 16:01:41,329 [Catalina-utility-2] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 16:01:41,341 [Catalina-utility-2] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 16:01:41,352 [Catalina-utility-2] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 16:01:42,207 [Catalina-utility-2] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 16:01:42,258 [Catalina-utility-2] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 16:01:42,298 [Catalina-utility-2] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 16:01:42,303 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 16:01:42,304 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 16:01:42,305 [Catalina-utility-2] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 16:01:42,307 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 16:01:42,310 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 16:01:42,310 [Catalina-utility-2] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 16:01:42,311 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 16:01:42,311 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 16:01:42,312 [Catalina-utility-2] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 16:01:42,312 [Catalina-utility-2] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 16:01:42,312 [Catalina-utility-2] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 16:01:42,474 [Catalina-utility-2] FrameworkServlet 'rdf4j-http-server': initialization completed in 2621 ms
+[INFO ] 2019-08-08 16:01:52,169 [http-nio-8080-exec-46] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:01:54,939 [http-nio-8080-exec-48] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:01:59,002 [http-nio-8080-exec-37] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:02:52,831 [http-nio-8080-exec-45] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:03:27,823 [http-nio-8080-exec-48] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:03:57,128 [http-nio-8080-exec-47] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:04:20,631 [http-nio-8080-exec-44] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:08:10,108 [http-nio-8080-exec-45] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:08:17,645 [http-nio-8080-exec-51] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:13:03,866 [http-nio-8080-exec-48] Client sent bad request ( 406)
+org.eclipse.rdf4j.http.server.ClientHTTPException: No acceptable file format found.
+	at org.eclipse.rdf4j.http.server.ProtocolUtil.getAcceptableService(ProtocolUtil.java:178)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryListController.handleRequestInternal(RepositoryListController.java:92)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-08 16:13:44,175 [http-nio-8080-exec-47] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:13:53,082 [http-nio-8080-exec-50] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:14:22,650 [http-nio-8080-exec-51] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:14:23,472 [http-nio-8080-exec-46] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:14:33,095 [http-nio-8080-exec-43] Client sent bad request ( 406)
+org.eclipse.rdf4j.http.server.ClientHTTPException: No acceptable file format found.
+	at org.eclipse.rdf4j.http.server.ProtocolUtil.getAcceptableService(ProtocolUtil.java:178)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryListController.handleRequestInternal(RepositoryListController.java:92)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-08 16:15:29,334 [http-nio-8080-exec-45] Client sent bad request ( 406)
+org.eclipse.rdf4j.http.server.ClientHTTPException: No acceptable file format found.
+	at org.eclipse.rdf4j.http.server.ProtocolUtil.getAcceptableService(ProtocolUtil.java:178)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryListController.handleRequestInternal(RepositoryListController.java:92)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-08 16:17:02,252 [http-nio-8080-exec-52] Client sent bad request ( 406)
+org.eclipse.rdf4j.http.server.ClientHTTPException: No acceptable file format found.
+	at org.eclipse.rdf4j.http.server.ProtocolUtil.getAcceptableService(ProtocolUtil.java:178)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryListController.handleRequestInternal(RepositoryListController.java:92)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-08 16:17:29,482 [http-nio-8080-exec-44] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:18:05,912 [http-nio-8080-exec-47] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:18:35,389 [http-nio-8080-exec-51] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:18:39,686 [http-nio-8080-exec-46] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:19:35,881 [http-nio-8080-exec-43] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:20:47,324 [http-nio-8080-exec-44] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:21:07,740 [http-nio-8080-exec-50] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:21:27,842 [http-nio-8080-exec-46] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:21:33,133 [http-nio-8080-exec-45] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:21:58,035 [http-nio-8080-exec-48] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:23:03,142 [http-nio-8080-exec-49] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:23:44,262 [http-nio-8080-exec-51] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:24:29,291 [http-nio-8080-exec-45] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:24:38,703 [http-nio-8080-exec-43] Client sent bad request ( 406)
+org.eclipse.rdf4j.http.server.ClientHTTPException: No acceptable file format found.
+	at org.eclipse.rdf4j.http.server.ProtocolUtil.getAcceptableService(ProtocolUtil.java:178)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryListController.handleRequestInternal(RepositoryListController.java:92)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-08 16:25:52,036 [http-nio-8080-exec-48] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:26:08,506 [http-nio-8080-exec-44] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:26:45,542 [http-nio-8080-exec-47] Client sent bad request ( 406)
+org.eclipse.rdf4j.http.server.ClientHTTPException: No acceptable file format found.
+	at org.eclipse.rdf4j.http.server.ProtocolUtil.getAcceptableService(ProtocolUtil.java:178)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryListController.handleRequestInternal(RepositoryListController.java:92)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-08 16:27:03,697 [http-nio-8080-exec-50] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:27:56,559 [http-nio-8080-exec-46] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:27:59,421 [http-nio-8080-exec-45] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:00,614 [http-nio-8080-exec-43] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:07,571 [http-nio-8080-exec-52] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:17,697 [http-nio-8080-exec-48] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:18,895 [http-nio-8080-exec-44] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:19,984 [http-nio-8080-exec-49] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:20,501 [http-nio-8080-exec-47] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:29,642 [http-nio-8080-exec-50] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:32,486 [http-nio-8080-exec-51] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:35,264 [http-nio-8080-exec-46] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:35,848 [http-nio-8080-exec-45] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:28:36,579 [http-nio-8080-exec-43] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:29:20,230 [Catalina-utility-2] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 16:01:39 GMT 2019]; root of context hierarchy
+[INFO ] 2019-08-08 16:29:31,361 [Catalina-utility-2] Logback logging API implementation is configured.
+[INFO ] 2019-08-08 16:29:31,695 [Catalina-utility-2] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-08 16:29:31,695 [Catalina-utility-2] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 16:29:31,707 [Catalina-utility-2] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-08 16:29:31,717 [Catalina-utility-2] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-08 16:29:32,597 [Catalina-utility-2] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-08 16:29:32,663 [Catalina-utility-2] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-08 16:29:32,703 [Catalina-utility-2] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-08 16:29:32,709 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-08 16:29:32,710 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-08 16:29:32,710 [Catalina-utility-2] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 16:29:32,713 [Catalina-utility-2] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-08 16:29:32,716 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-08 16:29:32,717 [Catalina-utility-2] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-08 16:29:32,717 [Catalina-utility-2] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-08 16:29:32,717 [Catalina-utility-2] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-08 16:29:32,719 [Catalina-utility-2] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-08 16:29:32,719 [Catalina-utility-2] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 16:29:32,719 [Catalina-utility-2] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-08 16:29:32,900 [Catalina-utility-2] FrameworkServlet 'rdf4j-http-server': initialization completed in 3019 ms
+[INFO ] 2019-08-08 16:39:15,945 [http-nio-8080-exec-53] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:39:23,159 [http-nio-8080-exec-54] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:39:47,841 [http-nio-8080-exec-56] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:39:51,865 [http-nio-8080-exec-57] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:41:03,692 [http-nio-8080-exec-59] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:41:19,762 [http-nio-8080-exec-60] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:44:20,634 [http-nio-8080-exec-53] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:44:32,912 [http-nio-8080-exec-54] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:44:55,031 [http-nio-8080-exec-55] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:45:47,897 [http-nio-8080-exec-57] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:53:22,256 [http-nio-8080-exec-59] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:54:10,941 [repositories/myanime] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: myanime
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$cf1a965.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-08 16:54:23,735 [repositories/anime] GET namespace list
+[INFO ] 2019-08-08 16:54:23,884 [repositories/anime] Request for query 3392903 is finished
+[INFO ] 2019-08-08 16:56:11,347 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Aug 08 16:29:30 GMT 2019]; root of context hierarchy

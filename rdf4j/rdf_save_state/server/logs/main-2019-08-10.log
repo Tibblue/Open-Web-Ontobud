@@ -1,0 +1,1067 @@
+[INFO ] 2019-08-10 18:29:19,469 [main] Logback logging API implementation is configured.
+[INFO ] 2019-08-10 18:29:19,973 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-08-10 18:29:19,973 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-10 18:29:19,991 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-08-10 18:29:20,006 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-08-10 18:29:21,145 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-08-10 18:29:21,223 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-08-10 18:29:21,296 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-08-10 18:29:21,304 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-08-10 18:29:21,305 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-08-10 18:29:21,305 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-10 18:29:21,309 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-08-10 18:29:21,313 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-08-10 18:29:21,314 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-08-10 18:29:21,314 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-08-10 18:29:21,315 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-08-10 18:29:21,320 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-08-10 18:29:21,321 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-10 18:29:21,322 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-08-10 18:29:21,595 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 4388 ms
+[INFO ] 2019-08-10 18:29:47,237 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:29:47,520 [repositories/anime] GET namespace list
+[INFO ] 2019-08-10 18:29:47,998 [repositories/anime] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:29:48,719 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:32:57,943 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:34:57,491 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:34:57,512 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:34:57,637 [repositories/anime] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:34:57,799 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:34:59,451 [repositories/anime] GET statements
+[INFO ] 2019-08-10 18:35:00,649 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:06,073 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:07,565 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:07,570 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:08,504 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:08,622 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:10,059 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:35:10,139 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:42,881 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:35:42,882 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:42,959 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:35:42,974 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:35:42,975 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:36:03,358 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:36:03,360 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:36:03,422 [repositories/test] POST query -50314184
+[INFO ] 2019-08-10 18:36:04,877 [repositories/test] Request for query -50314184 is finished
+[INFO ] 2019-08-10 18:36:05,060 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:36:25,789 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:36:25,790 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:36:25,884 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:36:25,907 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:36:25,908 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:36:36,970 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:37:15,683 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:37:15,684 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:37:15,689 [repositories/test] POST query -50314184
+[INFO ] 2019-08-10 18:37:15,910 [repositories/test] Request for query -50314184 is finished
+[INFO ] 2019-08-10 18:37:16,124 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:37:21,114 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:37:21,116 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:37:21,119 [repositories/test] POST query -50314184
+[INFO ] 2019-08-10 18:37:21,190 [repositories/test] Request for query -50314184 is finished
+[INFO ] 2019-08-10 18:37:31,700 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:37:55,180 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:37:55,181 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:37:55,209 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:37:55,214 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:37:55,361 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:04,616 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:38:04,616 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:04,619 [repositories/test] POST query -50314184
+[INFO ] 2019-08-10 18:38:04,687 [repositories/test] Request for query -50314184 is finished
+[INFO ] 2019-08-10 18:38:04,790 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:05,590 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:38:05,591 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:05,654 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:05,672 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:38:05,673 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:26,146 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:38:26,147 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:26,150 [repositories/test] POST query -1805077465
+[INFO ] 2019-08-10 18:38:26,203 [repositories/test] Request for query -1805077465 is finished
+[INFO ] 2019-08-10 18:38:26,298 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:38,440 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:38:38,441 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:38,510 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:38,526 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:38:38,527 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:38:47,793 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:39:23,932 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:39:23,933 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:23,936 [repositories/test] POST query 143423301
+[INFO ] 2019-08-10 18:39:23,937 [repositories/test] Request for query 143423301 is finished
+[INFO ] 2019-08-10 18:39:24,022 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:26,696 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:39:26,696 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:26,751 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:26,763 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:39:26,764 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:41,626 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:39:41,626 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:41,628 [repositories/test] POST query 401827103
+[INFO ] 2019-08-10 18:39:41,629 [repositories/test] Request for query 401827103 is finished
+[INFO ] 2019-08-10 18:39:41,699 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:42,943 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:39:42,944 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:42,999 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:43,014 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:39:43,014 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:55,235 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:39:55,397 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:57,095 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:39:57,096 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:39:57,098 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:39:58,319 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:40:04,172 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:40:17,513 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:40:57,933 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:40:58,006 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:00,788 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:41:00,790 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:00,794 [repositories/test] POST query -926851765
+[INFO ] 2019-08-10 18:41:00,883 [repositories/test] Request for query -926851765 is finished
+[INFO ] 2019-08-10 18:41:00,970 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:10,814 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:41:10,815 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:10,872 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:10,900 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:41:10,901 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:17,685 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:41:17,686 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:17,688 [repositories/test] POST query -1805077465
+[INFO ] 2019-08-10 18:41:17,689 [repositories/test] Request for query -1805077465 is finished
+[INFO ] 2019-08-10 18:41:17,772 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:41:39,524 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:42:14,978 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:42:14,979 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:42:14,982 [repositories/test] POST query -1598642565
+[INFO ] 2019-08-10 18:42:15,013 [repositories/test] Request for query -1598642565 is finished
+[INFO ] 2019-08-10 18:42:15,115 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:42:18,196 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:42:18,263 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[WARN ] 2019-08-10 18:42:50,307 [http-nio-8080-exec-9] No mapping found for HTTP request with URI [/rdf4j-server/repositories/test/saved-queries] in DispatcherServlet with name 'rdf4j-http-server'
+[WARN ] 2019-08-10 18:43:17,712 [http-nio-8080-exec-10] No mapping found for HTTP request with URI [/rdf4j-server/repositories/test/] in DispatcherServlet with name 'rdf4j-http-server'
+[INFO ] 2019-08-10 18:43:18,877 [repositories/test] GET query 3392903
+[INFO ] 2019-08-10 18:43:18,919 [repositories/test] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Missing parameter: query
+	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:248)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[WARN ] 2019-08-10 18:43:33,455 [http-nio-8080-exec-8] No mapping found for HTTP request with URI [/rdf4j-server/repositories/test/saved-queries/] in DispatcherServlet with name 'rdf4j-http-server'
+[WARN ] 2019-08-10 18:43:35,200 [http-nio-8080-exec-7] No mapping found for HTTP request with URI [/rdf4j-server/repositories/test/saved-queries] in DispatcherServlet with name 'rdf4j-http-server'
+[INFO ] 2019-08-10 18:43:58,832 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:44:05,110 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:44:07,231 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:44:07,309 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:44:08,404 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:44:08,466 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:44:19,775 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:44:30,190 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:44:30,258 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[ERROR] 2019-08-10 18:49:18,168 [protocol] Error while handling request
+org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported
+	at org.springframework.web.servlet.support.WebContentGenerator.checkRequest(WebContentGenerator.java:378)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:160)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[ERROR] 2019-08-10 18:49:21,598 [protocol] Error while handling request
+org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' not supported
+	at org.springframework.web.servlet.support.WebContentGenerator.checkRequest(WebContentGenerator.java:378)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:160)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:50:45,199 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:50:45,303 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:51:08,430 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:51:34,102 [repositories/test] GET query 3392903
+[INFO ] 2019-08-10 18:51:34,102 [repositories/test] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Missing parameter: query
+	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:248)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:51:39,887 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:51:45,598 [repositories/test] GET statements
+[INFO ] 2019-08-10 18:52:05,254 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:52:33,709 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:52:33,709 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:52:39,598 [repositories/test] GET namespace for prefix owl
+[INFO ] 2019-08-10 18:52:42,660 [repositories/test] GET namespace for prefix 
+[INFO ] 2019-08-10 18:52:44,917 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 18:52:44,918 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:52:54,804 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:55:51,085 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:55:56,131 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:56:00,298 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:56:04,005 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:56:08,704 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:56:30,480 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:56:37,132 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:56:43,871 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:56:43,962 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:58:15,136 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:58:22,825 [repositories/test] POST data to repository
+[INFO ] 2019-08-10 18:58:22,829 [repositories/test] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-08-10 18:58:36,063 [repositories/test2] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: test2
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
+	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
+	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$3fdd2420.preHandle(<generated>)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 18:58:46,524 [repositories/test] PUT data in repository
+[INFO ] 2019-08-10 18:58:46,524 [repositories/test] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-08-10 18:58:53,459 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:58:53,552 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:59:42,840 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 18:59:54,624 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:00:10,714 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:09,467 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:12,000 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:47,143 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:54,373 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:54,397 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-08-10 19:04:54,507 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:54,516 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:54,660 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:04:54,755 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:05:06,463 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:05:06,565 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:05:12,118 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:05:15,450 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:06:41,165 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:06:41,279 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:06:45,003 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:06:45,089 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:06:47,307 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:08:05,834 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:08:05,837 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-08-10 19:08:05,876 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:08:05,884 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:08:05,987 [repositories/memory] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:08:16,575 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:24,382 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:24,388 [repositories/memory] DELETE request invoked for repository 'memory'
+[INFO ] 2019-08-10 19:09:24,405 [repositories/memory] DELETE request successfully completed
+[INFO ] 2019-08-10 19:09:24,407 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-08-10 19:09:24,442 [repositories/memory] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:28,787 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:33,185 [repositories/memory] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:33,248 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:37,984 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:38,065 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:45,841 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:45,843 [repositories/SYSTEM] GET statements
+[INFO ] 2019-08-10 19:09:45,873 [repositories/SYSTEM] GET statements
+[INFO ] 2019-08-10 19:09:45,882 [repositories/SYSTEM] GET statements
+[INFO ] 2019-08-10 19:09:45,893 [repositories/SYSTEM] GET statements
+[INFO ] 2019-08-10 19:09:45,940 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:45,944 [repositories/memory] DELETE request invoked for repository 'memory'
+[INFO ] 2019-08-10 19:09:45,948 [repositories/memory] DELETE request successfully completed
+[INFO ] 2019-08-10 19:09:45,983 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:50,612 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:50,615 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-08-10 19:09:50,646 [repositories/memory] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:09:52,706 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:10:50,414 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:10:50,416 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-08-10 19:10:50,459 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:10:50,465 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:10:50,575 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:10:53,999 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:15:21,762 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:15:57,603 [repositories/memory] DELETE request invoked for repository 'memory'
+[INFO ] 2019-08-10 19:15:57,608 [repositories/memory] DELETE request successfully completed
+[INFO ] 2019-08-10 19:15:59,353 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:16:04,708 [repositories/test2] DELETE request invoked for repository 'test2'
+[INFO ] 2019-08-10 19:16:04,713 [repositories/test2] DELETE request successfully completed
+[INFO ] 2019-08-10 19:16:08,650 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:29,272 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:29,426 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:30,708 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:28:30,838 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:33,993 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:34,079 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:35,084 [repositories/anime] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:35,200 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:35,904 [repositories/anime] GET statements
+[INFO ] 2019-08-10 19:28:35,975 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:40,292 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:40,374 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:41,321 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:41,396 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:45,458 [repositories/ola] GET namespace list
+[INFO ] 2019-08-10 19:28:45,459 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:45,542 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:51,010 [repositories/ola] GET namespace list
+[INFO ] 2019-08-10 19:28:51,010 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:53,955 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:57,179 [repositories/ola] GET namespace list
+[INFO ] 2019-08-10 19:28:57,180 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:28:57,297 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:01,819 [repositories/ola] GET namespace list
+[INFO ] 2019-08-10 19:29:01,820 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:01,821 [repositories/ola] GET namespace for prefix 
+[INFO ] 2019-08-10 19:29:01,822 [repositories/ola] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Undefined prefix: 
+	at org.eclipse.rdf4j.http.server.repository.namespaces.NamespaceController.getExportNamespaceResult(NamespaceController.java:85)
+	at org.eclipse.rdf4j.http.server.repository.namespaces.NamespaceController.handleRequestInternal(NamespaceController.java:65)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-08-10 19:29:01,897 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:09,061 [repositories/ola] GET namespace list
+[INFO ] 2019-08-10 19:29:09,061 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:09,147 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:13,867 [repositories/ola] GET namespace list
+[INFO ] 2019-08-10 19:29:13,868 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:13,869 [repositories/ola] POST query -1598642565
+[INFO ] 2019-08-10 19:29:13,872 [repositories/ola] Request for query -1598642565 is finished
+[INFO ] 2019-08-10 19:29:13,969 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:18,635 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:18,723 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:19,986 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:20,054 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:21,132 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:29:21,132 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:21,134 [repositories/test] POST query -1598642565
+[INFO ] 2019-08-10 19:29:21,135 [repositories/test] Request for query -1598642565 is finished
+[INFO ] 2019-08-10 19:29:21,212 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:23,356 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:29:23,356 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:23,360 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:23,439 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:24,558 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:29:24,558 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:24,716 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:27,807 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:29:27,808 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:27,896 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:30,765 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:29:30,766 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:30,866 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:32,819 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:29:32,820 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:32,900 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:29:56,578 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:29:56,681 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:30:08,168 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:30:41,228 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:31:02,616 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:32:15,312 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:32:15,344 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:32:15,345 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:32:27,663 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:32:29,471 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:32:29,571 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:32:39,355 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:34:13,684 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:34:19,172 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:34:19,296 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:34:44,324 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:34:44,425 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:35:31,276 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:35:36,119 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:35:36,244 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:35:37,307 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:35:37,420 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:36:15,119 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:36:15,145 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:36:15,145 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:36:17,202 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:36:17,283 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:37:54,114 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:37:56,074 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:37:56,191 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:38:00,919 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:38:01,253 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:38:02,846 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:38:02,952 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:41:09,778 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:41:09,778 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:41:09,877 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:41:09,897 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:41:09,897 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:42:22,879 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:42:22,879 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:42:23,000 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:42:23,017 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:42:23,018 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:42:31,304 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:42:34,125 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:43:14,845 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:45:38,771 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:45:38,772 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:45:38,886 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:45:38,938 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:45:38,943 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:45:40,317 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:45:40,404 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:49:25,804 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:49:34,089 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:49:34,190 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:50:19,877 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:50:32,190 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:50:37,483 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:50:37,573 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:50:48,557 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:52:18,250 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:52:57,770 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:52:57,822 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:52:59,344 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:52:59,429 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:53:34,259 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:53:38,187 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:53:38,258 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:55:17,579 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:55:17,674 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:55:20,628 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:55:20,670 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:55:20,743 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:55:24,506 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:55:34,167 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:55:34,239 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:56:15,313 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:56:15,357 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:56:15,415 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:56:21,125 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:56:21,125 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:56:21,127 [repositories/test] POST query -1544177674
+[INFO ] 2019-08-10 19:56:21,131 [repositories/test] Request for query -1544177674 is finished
+[INFO ] 2019-08-10 19:56:23,361 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:56:27,077 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:56:27,151 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:56:57,864 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:57:00,662 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:57:00,786 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:57:05,888 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:57:05,903 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:57:05,904 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:57:08,192 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:57:08,249 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:58:35,802 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:58:48,583 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:58:48,600 [repositories/test] GET namespace list
+[INFO ] 2019-08-10 19:58:48,600 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:59:03,240 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:59:03,307 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 19:59:07,721 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:59:10,627 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:59:15,582 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:59:18,310 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:59:24,406 [repositories/test] GET statements
+[INFO ] 2019-08-10 19:59:24,474 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:00:14,887 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:00:17,597 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:00:17,672 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:00:19,512 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:00:19,560 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:00:19,643 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:00:21,923 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:00:25,806 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:00:25,872 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:01:16,037 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:01:43,700 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:01:43,740 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:01:43,805 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:01:45,545 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:01:45,605 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:01:47,724 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:01:48,777 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:01:48,856 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:02:59,181 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:02:59,252 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:03:01,416 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:03:01,457 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:03:01,521 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:03:02,229 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:03:02,301 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:03:04,353 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:03:06,509 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:03:06,596 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:04:09,124 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:04:09,163 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:04:09,227 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:04:10,665 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:04:10,735 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:04:12,854 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:04:14,093 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:04:14,179 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:06:50,010 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:06:50,051 [repositories/test] GET statements
+[INFO ] 2019-08-10 20:06:50,108 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:07:39,989 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:07:40,061 [repositories/test2] Request for query 3392903 is finished
+[INFO ] 2019-08-10 20:07:44,500 [repositories/ola] GET statements
+[INFO ] 2019-08-10 20:07:48,813 [repositories/test] GET statements
+[INFO ] 2019-08-10 23:20:19,840 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Sat Aug 10 18:29:17 GMT 2019]; root of context hierarchy
