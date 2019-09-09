@@ -1,0 +1,48 @@
+[INFO ] 2019-09-05 14:16:25,782 [main] Logback logging API implementation is configured.
+[INFO ] 2019-09-05 14:16:26,100 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-09-05 14:16:26,100 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-05 14:16:26,113 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-09-05 14:16:26,125 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-09-05 14:16:26,627 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-09-05 14:16:26,656 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-09-05 14:16:26,684 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-09-05 14:16:26,689 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-09-05 14:16:26,690 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-09-05 14:16:26,690 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-05 14:16:26,693 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-09-05 14:16:26,696 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-09-05 14:16:26,696 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-09-05 14:16:26,697 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-09-05 14:16:26,697 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-05 14:16:26,699 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-09-05 14:16:26,700 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-05 14:16:26,700 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-05 14:16:26,855 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 2333 ms
+[INFO ] 2019-09-05 14:17:08,317 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-05 14:17:09,348 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-09-05 14:17:43,207 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-09-05 14:20:31,133 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-05 15:30:38,980 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Sep 05 14:16:24 WEST 2019]; root of context hierarchy
+[INFO ] 2019-09-05 17:48:02,676 [main] Logback logging API implementation is configured.
+[INFO ] 2019-09-05 17:48:02,987 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-09-05 17:48:02,987 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-05 17:48:02,998 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-09-05 17:48:03,011 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-09-05 17:48:03,650 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-09-05 17:48:03,685 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-09-05 17:48:03,717 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-09-05 17:48:03,721 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-09-05 17:48:03,722 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-09-05 17:48:03,723 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-05 17:48:03,726 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-09-05 17:48:03,729 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-09-05 17:48:03,730 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-09-05 17:48:03,730 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-09-05 17:48:03,730 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-05 17:48:03,732 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-09-05 17:48:03,733 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-05 17:48:03,733 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-05 17:48:03,895 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 2624 ms
+[INFO ] 2019-09-05 17:49:27,915 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-05 17:49:28,766 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-05 22:12:02,748 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Thu Sep 05 17:48:01 WEST 2019]; root of context hierarchy

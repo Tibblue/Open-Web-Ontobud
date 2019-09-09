@@ -1,0 +1,67 @@
+[INFO ] 2019-09-04 17:12:39,588 [main] Logback logging API implementation is configured.
+[INFO ] 2019-09-04 17:12:39,927 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-09-04 17:12:39,927 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-04 17:12:39,937 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-09-04 17:12:39,948 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-09-04 17:12:40,598 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-09-04 17:12:40,640 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-09-04 17:12:40,676 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-09-04 17:12:40,681 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-09-04 17:12:40,682 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-09-04 17:12:40,682 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-04 17:12:40,686 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-09-04 17:12:40,691 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-09-04 17:12:40,691 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-09-04 17:12:40,692 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-09-04 17:12:40,692 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-04 17:12:40,694 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-09-04 17:12:40,695 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-04 17:12:40,695 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-04 17:12:40,884 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 3058 ms
+[INFO ] 2019-09-04 17:14:40,961 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:14:41,194 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:14:42,081 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:14:42,338 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:16:55,113 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:16:55,257 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:17:01,575 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:17:02,498 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:17:02,703 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:17:02,836 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:30,894 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:52,929 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:54,737 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:54,982 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:55,197 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:55,607 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:55,987 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:56,639 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:32:57,145 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:00,378 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:31,624 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:35,067 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:37,211 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:37,521 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:37,726 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-09-04 17:33:37,937 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:37,954 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:38,442 [repositories/wqeqewqe] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:38,533 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:40,628 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:40,726 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:44,984 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:48,140 [repositories/wqeqewqe] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:48,252 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:49,216 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:49,320 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:52,238 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:52,241 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-04 17:33:52,282 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-04 17:33:52,297 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-04 17:33:52,314 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-04 17:33:52,358 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:52,366 [repositories/wqeqewqe] DELETE request invoked for repository 'wqeqewqe'
+[INFO ] 2019-09-04 17:33:52,377 [repositories/wqeqewqe] DELETE request successfully completed
+[INFO ] 2019-09-04 17:33:52,408 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:52,592 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-04 17:33:54,884 [http-nio-8080-exec-3] Request for query 3392903 is finished
