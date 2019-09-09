@@ -29,6 +29,18 @@
           <v-btn flat @click="getRepositories()">
             <h3>Get Repositories</h3>
           </v-btn>
+          <v-flex xs12 pa-2>
+            <v-textarea
+              readonly
+              v-model="this.repoList"
+              outlined
+              auto-grow
+              rows="2"
+              row-height="16"
+              label="Repositories List"
+              placeholder="Run Get Repositories"
+            ></v-textarea>
+          </v-flex>
         </v-layout>
         <!-- <v-layout wrap>
           <v-flex xs4>
@@ -55,7 +67,8 @@
   export default {
     data: () => ({
       // top5: []
-      text: ""
+      text: "",
+      repoList: "",
     }),
     mounted: async function (){
       // try{
@@ -72,8 +85,6 @@
         this.$router.push('/animes/'+id)
       },
       getRepositories: function () {
-        // var response = await axios.get(lhost+'/rdf4j-server/repositories');
-        // this.text = response
         axios.get(lhost+'/rdf4j-server/repositories')
           .then(response => {
             // this.alert = response.data // debug
@@ -85,13 +96,12 @@
             repoList.forEach(elem => {
               repoListText += elem.id.value + ": " + elem.title.value + "\n"
             });
-
             console.log(response.data)
-            this.text = repoListText
+            this.repoList = repoListText
           })
           .catch(alert => {
             // this.alert = error // debug
-            this.text = "PEDIDO FALHOU!!! " + alert
+            this.repoList = "PEDIDO FALHOU!!! " + alert
           })
       },
       // simplifyRepos: function (repo) {
