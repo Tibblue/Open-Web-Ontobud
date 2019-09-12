@@ -1,38 +1,37 @@
 <template>
   <v-container>
-    <!-- <h2>{{this.top5}}</h2> -->
-    <!-- <h2>{{this.top5[0]}}</h2> -->
-
-    <!-- <v-img src="https://scontent.flis7-1.fna.fbcdn.net/v/t1.15752-9/64254159_1160771190768776_3881768412510158848_n.png?_nc_cat=111&_nc_ht=scontent.flis7-1.fna&oh=4a72fae691d351ca18f02e05904afbc3&oe=5D969ABD"></v-img> -->
     <v-toolbar dark color="indigo darken-2" flat>
-      <v-flex text-xs-center><h1>Top 5 Anime</h1></v-flex>
+      <v-flex text-xs-center><h1>Temporary</h1></v-flex>
     </v-toolbar>
 
 
     <v-layout>
       <v-flex xs6 pa-2>
+        <v-btn @click="runQuery()">
+          Run Query
+        </v-btn>
         <v-textarea
-          v-model="this.text"
+          v-model="text"
           outlined
           auto-grow
           rows="10"
           row-height="16"
           label="Last request response"
-          placeholder="Run something"
-          hint="HINT: Run something"
+          placeholder="Run Query"
+          hint="HINT: Run Query"
           :persistent-hint="false"
         ></v-textarea>
       </v-flex>
 
       <v-flex xs6 pa-2>
         <v-layout wrap>
-          <v-btn flat @click="getRepositories()">
-            <h3>Get Repositories</h3>
+          <v-btn @click="getRepositories()">
+            Get Repositories
           </v-btn>
           <v-flex xs12 pa-2>
             <v-textarea
               readonly
-              v-model="this.repoList"
+              v-model="repoList"
               outlined
               auto-grow
               rows="2"
@@ -42,18 +41,30 @@
             ></v-textarea>
           </v-flex>
         </v-layout>
-        <!-- <v-layout wrap>
-          <v-flex xs4>
-            <v-btn flat @click="newRepo()">
-              <h3>Create Repo (TODO)</h3>
+        <v-layout wrap>
+          <v-layout>
+            <v-btn @click="newRepo(newRepoID, newRepoName)">
+              Create Repo
             </v-btn>
-          </v-flex>
-          <v-flex xs8>
             <v-text-field
+              readonly
+              v-model="newRepoResponse"
+              label="Response"
+            ></v-text-field>
+          </v-layout>
+          <v-flex px-3>
+            <v-text-field
+              v-model="newRepoID"
+              label="New Repo ID"
+            ></v-text-field>
+          </v-flex>
+          <v-flex px-3>
+            <v-text-field
+              v-model="newRepoName"
               label="New Repo Name"
             ></v-text-field>
           </v-flex>
-        </v-layout> -->
+        </v-layout>
       </v-flex>
     </v-layout>
 
@@ -62,18 +73,22 @@
 
 <script>
   import axios from 'axios'
-  const lhost = "http://localhost:8080"
+  const rdf4j_port = "http://localhost:8080"
 
   export default {
     data: () => ({
-      // top5: []
       text: "",
       repoList: "",
+      newRepoID: "",
+      newRepoName: "",
+      newRepoResponse: "",
+      deleteRepoID: "",
+      deleteRepoResponse: "",
     }),
     mounted: async function (){
       // try{
       //   // // top5 list
-      //   var response = await axios.get(lhost+'/rdf4j-server/repositories');
+      //   var response = await axios.get(rdf4j_port+'/rdf4j-server/repositories');
       //   this.top5 = response.data.results.bindings
       // }
       // catch(e){
@@ -85,23 +100,49 @@
         this.$router.push('/animes/'+id)
       },
       getRepositories: function () {
-        axios.get(lhost+'/rdf4j-server/repositories')
+        axios.get(rdf4j_port+'/rdf4j-server/repositories')
           .then(response => {
             // this.alert = response.data // debug
-            // var responseHead = response.data.head
-            // console.log(responseHead)
+            // console.log(response.data.head)
 
             var repoList = response.data.results.bindings
             var repoListText = "Lista de Repositorios: \n(ID: Name)\n"
             repoList.forEach(elem => {
               repoListText += elem.id.value + ": " + elem.title.value + "\n"
             });
-            console.log(response.data)
+            // console.log(response.data) // debug
             this.repoList = repoListText
           })
           .catch(alert => {
             // this.alert = error // debug
             this.repoList = "PEDIDO FALHOU!!! " + alert
+          })
+      },
+      newRepo: function (repoID, repoName) {
+        const formData = new FormData();
+        formData.append('type', "memory");
+        formData.append('Repository ID', repoID);
+        formData.append('Repository title', repoName);
+
+        axios.post(rdf4j_port+'/rdf4j-workbench/repositories/NONE/create', formData)
+          .then(response => {
+            // console.log(response.data)
+            this.newRepoResponse = "Created " + repoName + " with SUCCESS \n" + response.data
+          })
+          .catch(alert => {
+            // this.alert = error // debug
+            this.newRepoResponse = "Criação FALHOU!!!\n" + alert
+          })
+      },
+      deleteRepo: function (repoID) {
+        axios.delete(rdf4j_port+'/rdf4j-server/repositories/'+repoID)
+          .then(response => {
+            // console.log(response.data)
+            this.deleteRepoResponse = "Deleted " + repoID + " with SUCCESS" + response.data
+          })
+          .catch(alert => {
+            // this.alert = error // debug
+            this.deleteRepoResponse = "Remoção FALHOU!!! " + alert
           })
       },
       // simplifyRepos: function (repo) {
