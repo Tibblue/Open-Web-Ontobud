@@ -65,6 +65,24 @@
             ></v-text-field>
           </v-flex>
         </v-layout>
+        <v-layout wrap>
+          <v-layout>
+            <v-btn @click="deleteRepo(deleteRepoID)">
+              Delete Repo
+            </v-btn>
+            <v-text-field
+              readonly
+              v-model="deleteRepoResponse"
+              label="Response"
+            ></v-text-field>
+          </v-layout>
+          <v-layout>
+            <v-text-field
+              v-model="deleteRepoID"
+              label="Repo ID"
+            ></v-text-field>
+          </v-layout>
+        </v-layout>
       </v-flex>
     </v-layout>
 
@@ -96,9 +114,9 @@
       // }
     },
     methods: {
-      cardClicked: function (id) {
-        this.$router.push('/animes/'+id)
-      },
+      // cardClicked: function (id) {
+      //   this.$router.push('/animes/'+id)
+      // },
       getRepositories: function () {
         axios.get(rdf4j_port+'/rdf4j-server/repositories')
           .then(response => {
@@ -137,11 +155,9 @@
       deleteRepo: function (repoID) {
         axios.delete(rdf4j_port+'/rdf4j-server/repositories/'+repoID)
           .then(response => {
-            // console.log(response.data)
             this.deleteRepoResponse = "Deleted " + repoID + " with SUCCESS" + response.data
           })
           .catch(alert => {
-            // this.alert = error // debug
             this.deleteRepoResponse = "Remoção FALHOU!!! " + alert
           })
       },
