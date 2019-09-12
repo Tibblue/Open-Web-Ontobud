@@ -1,0 +1,91 @@
+[INFO ] 2019-09-10 10:50:34,409 [main] Logback logging API implementation is configured.
+[INFO ] 2019-09-10 10:50:34,845 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-09-10 10:50:34,845 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-10 10:50:34,870 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-09-10 10:50:34,885 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-09-10 10:50:35,669 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-09-10 10:50:35,719 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-09-10 10:50:35,760 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-09-10 10:50:35,767 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-09-10 10:50:35,768 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-09-10 10:50:35,768 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-10 10:50:35,771 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-09-10 10:50:35,774 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-09-10 10:50:35,774 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-09-10 10:50:35,775 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-09-10 10:50:35,775 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-10 10:50:35,777 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-09-10 10:50:35,778 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-10 10:50:35,778 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-10 10:50:35,954 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 3403 ms
+[INFO ] 2019-09-10 10:58:33,456 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Tue Sep 10 10:50:32 WEST 2019]; root of context hierarchy
+[INFO ] 2019-09-10 15:32:12,914 [main] Logback logging API implementation is configured.
+[INFO ] 2019-09-10 15:32:13,265 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-09-10 15:32:13,266 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-10 15:32:13,280 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-09-10 15:32:13,295 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-09-10 15:32:14,005 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-09-10 15:32:14,062 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-09-10 15:32:14,129 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-09-10 15:32:14,137 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-09-10 15:32:14,138 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-09-10 15:32:14,140 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-10 15:32:14,149 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-09-10 15:32:14,155 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-09-10 15:32:14,158 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-09-10 15:32:14,161 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-09-10 15:32:14,161 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-09-10 15:32:14,164 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-09-10 15:32:14,166 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-10 15:32:14,166 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-09-10 15:32:14,506 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 3099 ms
+[INFO ] 2019-09-10 15:32:26,931 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-10 15:32:27,070 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-10 15:32:28,440 [repositories/test] GET statements
+[INFO ] 2019-09-10 15:34:17,499 [repositories/anime] GET query -50314184
+[INFO ] 2019-09-10 15:34:18,603 [repositories/anime] Request for query -50314184 is finished
+[INFO ] 2019-09-10 17:30:25,473 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-10 17:30:42,329 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-10 17:31:00,980 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-10 17:40:04,254 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:21:18,569 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:21:26,838 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:21:26,892 [repositories/ola] DELETE request invoked for repository 'ola'
+[INFO ] 2019-09-10 19:21:26,990 [repositories/ola] DELETE request successfully completed
+[INFO ] 2019-09-10 19:21:27,022 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-09-10 19:21:27,255 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:21:27,265 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:21:27,494 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:21:39,209 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:22:07,567 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:22:08,627 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:24:08,489 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:24:50,981 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:36,915 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:36,930 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-09-10 19:33:37,008 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:37,028 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:37,224 [repositories/memory] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:45,222 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:50,930 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:50,935 [repositories/memory] DELETE request invoked for repository 'memory'
+[INFO ] 2019-09-10 19:33:50,943 [repositories/memory] DELETE request successfully completed
+[INFO ] 2019-09-10 19:33:50,948 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-09-10 19:33:51,009 [repositories/memory] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:33:54,094 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:05,284 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:09,801 [repositories/memory] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:09,898 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:13,399 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:13,675 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:19,442 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:19,456 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-10 19:34:19,513 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-10 19:34:19,527 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-10 19:34:19,550 [repositories/SYSTEM] GET statements
+[INFO ] 2019-09-10 19:34:19,588 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:19,593 [repositories/memory] DELETE request invoked for repository 'memory'
+[INFO ] 2019-09-10 19:34:19,603 [repositories/memory] DELETE request successfully completed
+[INFO ] 2019-09-10 19:34:19,648 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:36,294 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-09-10 19:34:55,267 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Tue Sep 10 15:32:11 WEST 2019]; root of context hierarchy
