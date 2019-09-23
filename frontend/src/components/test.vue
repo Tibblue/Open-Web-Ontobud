@@ -4,21 +4,29 @@
       <v-flex text-xs-center><h1>Temporary</h1></v-flex>
     </v-toolbar>
 
-
     <v-layout>
       <v-flex xs6 pa-2>
-        <v-btn @click="runQuery()">
+        <v-btn @click="runQuery(queryInput)">
           Run Query
         </v-btn>
         <v-textarea
-          v-model="text"
+          v-model="queryInput"
           outlined
           auto-grow
-          rows="10"
+          rows="8"
           row-height="16"
-          label="Last request response"
-          placeholder="Run Query"
-          hint="HINT: Run Query"
+          label="Query"
+          placeholder="Place query and Execute"
+        ></v-textarea>
+        <v-textarea
+          v-model="queryResponse"
+          outlined
+          auto-grow
+          rows="4"
+          row-height="16"
+          label="Last query response"
+          placeholder="Query response"
+          hint="HINT: Run a Query"
           :persistent-hint="false"
         ></v-textarea>
       </v-flex>
@@ -28,7 +36,7 @@
           <v-btn @click="getRepositories()">
             Get Repositories
           </v-btn>
-          <v-flex xs12 pa-2>
+          <v-flex xs12 px-2>
             <v-textarea
               readonly
               v-model="repoList"
@@ -50,15 +58,17 @@
               readonly
               v-model="newRepoResponse"
               label="Response"
+              placeholder="Response to the request"
+              outlined
             ></v-text-field>
           </v-layout>
-          <v-flex px-3>
+          <v-flex xs12 px-2>
             <v-text-field
               v-model="newRepoID"
               label="New Repo ID"
             ></v-text-field>
           </v-flex>
-          <v-flex px-3>
+          <v-flex xs12 px-2>
             <v-text-field
               v-model="newRepoName"
               label="New Repo Name"
@@ -74,14 +84,16 @@
               readonly
               v-model="deleteRepoResponse"
               label="Response"
+              placeholder="Response to the request"
+              outlined
             ></v-text-field>
           </v-layout>
-          <v-layout>
+          <v-flex xs12 px-2>
             <v-text-field
               v-model="deleteRepoID"
               label="Repo ID"
             ></v-text-field>
-          </v-layout>
+          </v-flex>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -95,7 +107,8 @@
 
   export default {
     data: () => ({
-      text: "",
+      queryInput: "",
+      queryResponse: "",
       repoList: "",
       newRepoID: "",
       newRepoName: "",
@@ -114,9 +127,6 @@
       // }
     },
     methods: {
-      // cardClicked: function (id) {
-      //   this.$router.push('/animes/'+id)
-      // },
       getRepositories: function () {
         axios.get(rdf4j_port+'/rdf4j-server/repositories')
           .then(response => {
@@ -148,7 +158,6 @@
             this.newRepoResponse = "Created " + repoName + " with SUCCESS \n" + response.data
           })
           .catch(alert => {
-            // this.alert = error // debug
             this.newRepoResponse = "Criação FALHOU!!!\n" + alert
           })
       },
@@ -160,6 +169,31 @@
           .catch(alert => {
             this.deleteRepoResponse = "Remoção FALHOU!!! " + alert
           })
+      },
+      runQuery: function (query) {
+        var queryEncoded = encodeURIComponent(query)
+        axios.get(rdf4j_port+'/rdf4j-server/repositories/anime?query='+queryEncoded)
+          .then(response => {
+            console.log(response.data)
+            var columnsVars = response.data.head.vars
+            var resultsData = response.data.results.bindings
+            resultsData = resultsData.slice(0,100)
+            this.queryResponse = "Query SUCCESS \n" + columnsVars + "\n" + resultsData
+          })
+          .catch(alert => {
+            this.queryResponse = "Query FALHOU!!!\n" + alert
+          })
+        // axios.post(rdf4j_port+'/rdf4j-server/repositories/anime', query,
+        //   {headers: {"Content-Type": "application/sparql-query"}})
+        //   .then(response => {
+        //     console.log(response.data)
+        //     var columnsVars = response.data.head.vars
+        //     var resultsData = response.data.results.bindings
+        //     this.queryResponse = "Query SUCCESS \n" + columnsVars + "\n" + resultsData
+        //   })
+        //   .catch(alert => {
+        //     this.queryResponse = "Query FALHOU!!!\n" + alert
+        //   })
       },
       // simplifyRepos: function (repo) {
       //   return {

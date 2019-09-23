@@ -24,7 +24,7 @@
             </v-btn>
             <v-divider></v-divider>
             <v-card-text>
-              2019 — <strong>Francisco Oliveira</strong> —
+              2019/2020 — <strong>Francisco Oliveira</strong> —
               DIssertação em MIEI, Universidade do Minho
             </v-card-text>
           </v-card-text>

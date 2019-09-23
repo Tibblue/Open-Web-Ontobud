@@ -10,27 +10,22 @@
         <v-icon v-if="!sidebar_mini">chevron_left</v-icon>
         <v-icon v-else>chevron_right</v-icon>
       </v-btn>
-      <!-- <v-btn @click="goToHome()"
-        block depressed flat
-        color="indigo darken-2">
-        <h2>Home</h2>
-      </v-btn> -->
-      <v-btn @click="goTo()"
-        block flat>
+      <v-btn @click="goTo('/')" block color="indigo darken-2">
         <h2>Home</h2>
       </v-btn>
-
       <v-divider/>
-
       <v-list nav dense>
-        <v-btn @click="goTo()"
-          block flat>
+        <v-btn @click="goTo('/')" block color="indigo darken-2">
           <v-icon>home</v-icon>
           <h2 v-if="!sidebar_mini">Home BTN</h2>
         </v-btn>
       </v-list>
+      <v-divider/>
+      <v-btn class="ma-2" outlined color="indigo">
+        Outlined Button
+      </v-btn>
 
-      <v-divider></v-divider>
+      <v-divider/>
 
       <v-item-group>
         <v-item
