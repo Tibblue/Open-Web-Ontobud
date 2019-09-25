@@ -5,4 +5,5 @@ rdf4j/programs/eclipse-rdf4j-2.5.3
 # temporary ignores
 rdf4j/edgar_wisdom.txt
 rdf4j/links.txt
+frontend v1.5/
 testing/

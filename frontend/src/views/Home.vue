@@ -1,13 +1,13 @@
 <template>
-  <Index/>
+  <Footer />
 </template>
 
 <script>
-  import Index from '@/components/Index'
+import Footer from '../components/Footer';
 
-  export default {
-    components: {
-      Index
-    }
-  }
+export default {
+  components: {
+    Footer,
+  },
+};
 </script>

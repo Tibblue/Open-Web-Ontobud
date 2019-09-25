@@ -1,83 +1,77 @@
 <template>
   <v-container>
-    <v-toolbar dark color="indigo darken-2" flat>
-      <v-flex text-xs-center><h1>Temporary</h1></v-flex>
-    </v-toolbar>
-
-    <v-layout>
-      <v-flex xs6 pa-2>
-        <v-btn @click="runQuery(queryInput)">
-          Run Query
-        </v-btn>
-        <v-textarea
+    <v-row>
+      <v-col cols="6">
+        <v-textarea readonly outlined auto-grow
           v-model="queryInput"
-          outlined
-          auto-grow
-          rows="8"
+          rows="6"
           row-height="16"
           label="Query"
           placeholder="Place query and Execute"
         ></v-textarea>
-        <v-textarea
+        <v-btn color="primary" @click="runQuery(queryInput)">
+          Run Query
+        </v-btn>
+        <v-textarea outlined auto-grow
           v-model="queryResponse"
-          outlined
-          auto-grow
           rows="4"
           row-height="16"
           label="Last query response"
           placeholder="Query response"
-          hint="HINT: Run a Query"
-          :persistent-hint="false"
         ></v-textarea>
-      </v-flex>
-
-      <v-flex xs6 pa-2>
-        <v-layout wrap>
-          <v-btn @click="getRepositories()">
+      </v-col>
+      <v-col cols="6">
+        <v-row>
+          <v-btn color="primary" @click="getRepositories()" class="mx-3">
             Get Repositories
           </v-btn>
-          <v-flex xs12 px-2>
-            <v-textarea
-              readonly
+          <v-col cols="12">
+            <v-textarea readonly outlined auto-grow
               v-model="repoList"
-              outlined
-              auto-grow
               rows="2"
               row-height="16"
               label="Repositories List"
               placeholder="Run Get Repositories"
             ></v-textarea>
-          </v-flex>
-        </v-layout>
-        <v-layout wrap>
-          <v-layout>
-            <v-btn @click="newRepo(newRepoID, newRepoName)">
-              Create Repo
-            </v-btn>
-            <v-text-field
-              readonly
-              v-model="newRepoResponse"
-              label="Response"
-              placeholder="Response to the request"
-              outlined
-            ></v-text-field>
-          </v-layout>
-          <v-flex xs12 px-2>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col cols="12">
             <v-text-field
               v-model="newRepoID"
               label="New Repo ID"
             ></v-text-field>
-          </v-flex>
-          <v-flex xs12 px-2>
+          </v-col>
+          <v-col cols="12">
             <v-text-field
               v-model="newRepoName"
               label="New Repo Name"
             ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout wrap>
-          <v-layout>
-            <v-btn @click="deleteRepo(deleteRepoID)">
+          </v-col>
+          <v-col cols="4">
+            <v-btn color="primary" @click="newRepo(newRepoID, newRepoName)" class="mx-3">
+              Create Repo
+            </v-btn>
+          </v-col>
+          <v-col cols="8">
+            <v-text-field readonly outlined
+              v-model="newRepoResponse"
+              label="Response"
+              placeholder="Response to the request"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-divider class="my-2"></v-divider>
+        <v-row>
+          <v-col cols="12" px-2>
+            <v-text-field
+              v-model="deleteRepoID"
+              label="Repo ID"
+            ></v-text-field>
+          </v-col>
+          <v-row>
+            <v-btn color="warning" @click="deleteRepo(deleteRepoID)">
               Delete Repo
             </v-btn>
             <v-text-field
@@ -87,16 +81,10 @@
               placeholder="Response to the request"
               outlined
             ></v-text-field>
-          </v-layout>
-          <v-flex xs12 px-2>
-            <v-text-field
-              v-model="deleteRepoID"
-              label="Repo ID"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
+          </v-row>
+        </v-row>
+      </v-col>
+    </v-row>
 
   </v-container>
 </template>
