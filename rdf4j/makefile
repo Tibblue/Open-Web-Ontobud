@@ -9,4 +9,3 @@ startup:
 shutdown:
 	cd programs/apache-tomcat-9.0.22/bin/ && \
 	./shutdown.sh
-

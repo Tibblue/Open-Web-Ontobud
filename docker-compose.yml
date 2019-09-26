@@ -1,0 +1,21 @@
+version: '3'
+services:
+  rdf4j:
+    image: tibblue/tese-rdf4j:v0.1
+    build:
+      context: ./rdf4j
+      dockerfile: Dockerfile
+    restart: on-failure
+    # expose:
+    #   - "8080"
+    ports:
+      - "8080:8080"
+  frontend:
+    image: tibblue/tese-frontend:v0.1
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    links:
+      - rdf4j
+    ports:
+      - "8000:8000"
