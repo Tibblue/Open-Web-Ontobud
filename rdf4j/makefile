@@ -1,3 +1,11 @@
+runCatalina:
+	export JAVA_OPTS='-Dorg.eclipse.rdf4j.appdata.basedir=/home/kiko/Desktop/git/Master-s-Dissertation/rdf4j/rdf_save_state' && \
+#	export JAVA_OPTS='-Dorg.eclipse.rdf4j.appdata.basedir=/mnt/c/Users/KIKO/Desktop/GIT/TESE/rdf4j/rdf_save_state' && \
+#	echo $$JAVA_OPTS && \
+	cd programs/apache-tomcat-9.0.22/bin/ && \
+	./catalina.sh run
+
+
 startup:
 	export JAVA_OPTS='-Dorg.eclipse.rdf4j.appdata.basedir=/mnt/c/Users/KIKO/Desktop/GIT/TESE/rdf4j/rdf_save_state' && \
 # 	echo $$JAVA_OPTS && \

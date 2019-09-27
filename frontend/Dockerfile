@@ -1,8 +1,8 @@
 FROM node:latest
 EXPOSE 8000
 
-COPY . /home/app
+COPY . /home/app/frontend
 
-WORKDIR /home/app
+WORKDIR /home/app/frontend
 RUN npm install
 CMD npm run serve
