@@ -3,9 +3,7 @@ build:
 	docker build -t tibblue/tese-frontend:latest ./frontend
 
 upload:
-	# docker commit minesweeper tibblue/tese-rdf4j:latest
 	docker push tibblue/tese-rdf4j:latest
-	# docker commit minesweeper tibblue/tese-frontend:latest
 	docker push tibblue/tese-frontend:latest
 
 runCompose:
