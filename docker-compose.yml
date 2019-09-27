@@ -5,9 +5,9 @@ services:
     build:
       context: ./rdf4j
       dockerfile: Dockerfile
+    environment:
+      - RDF4J_DATA=/root/.RDF4J
     restart: on-failure
-    # expose:
-    #   - "8080"
     ports:
       - "8080:8080"
   frontend:
