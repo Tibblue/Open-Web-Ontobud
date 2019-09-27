@@ -1,4 +1,3 @@
-
 startup:
 	export JAVA_OPTS='-Dorg.eclipse.rdf4j.appdata.basedir=/mnt/c/Users/KIKO/Desktop/GIT/TESE/rdf4j/rdf_save_state' && \
 # 	echo $$JAVA_OPTS && \

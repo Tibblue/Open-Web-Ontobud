@@ -1,7 +1,7 @@
 version: '3'
 services:
   rdf4j:
-    image: tibblue/tese-rdf4j:v0.1
+    image: tibblue/tese-rdf4j:latest
     build:
       context: ./rdf4j
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
     ports:
       - "8080:8080"
   frontend:
-    image: tibblue/tese-frontend:v0.1
+    image: tibblue/tese-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
