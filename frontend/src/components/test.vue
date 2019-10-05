@@ -22,21 +22,6 @@
       </v-col>
       <v-col cols="6">
         <v-row>
-          <v-btn color="primary" @click="getRepositories()" class="mx-3">
-            Get Repositories
-          </v-btn>
-          <v-col cols="12">
-            <v-textarea readonly outlined auto-grow
-              v-model="repoList"
-              rows="2"
-              row-height="16"
-              label="Repositories List"
-              placeholder="Run Get Repositories"
-            ></v-textarea>
-          </v-col>
-        </v-row>
-        <v-divider></v-divider>
-        <v-row>
           <v-col cols="12">
             <v-text-field
               v-model="newRepoID"
@@ -91,13 +76,15 @@
 
 <script>
   import axios from 'axios'
-  const rdf4j_port = "http://localhost:8080"
+  const rdf4j_port = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
   export default {
     data: () => ({
+      selectedRepo: "Loading Repositories",
+      repoSearch: "",
+      repoList: undefined,
       queryInput: "",
       queryResponse: "",
-      repoList: "",
       newRepoID: "",
       newRepoName: "",
       newRepoResponse: "",
@@ -106,15 +93,17 @@
     }),
     mounted: async function (){
       // try{
-      //   // // top5 list
-      //   var response = await axios.get(rdf4j_port+'/rdf4j-server/repositories');
-      //   this.top5 = response.data.results.bindings
+      //   // var response = await axios.get(rdf4j_port+'/rdf4j-server/repositories');
+      //   // this.top5 = response.data.results.bindings
       // }
       // catch(e){
-      //   return(e);
+      //   this.repoList = "PEDIDO FALHOU!!! " + alert
       // }
     },
     methods: {
+      replaceURL(repo) {
+        this.$router.replace({ query: { repo: repo } })
+      },
       getRepositories: function () {
         axios.get(rdf4j_port+'/rdf4j-server/repositories')
           .then(response => {
@@ -122,16 +111,18 @@
             // console.log(response.data.head)
 
             var repoList = response.data.results.bindings
-            var repoListText = "Lista de Repositorios: \n(ID: Name)\n"
+            console.log(response.data.results.bindings)
+            var repoListText = []
             repoList.forEach(elem => {
-              repoListText += elem.id.value + ": " + elem.title.value + "\n"
+              repoListText.push(elem.title.value)
             });
             // console.log(response.data) // debug
             this.repoList = repoListText
           })
           .catch(alert => {
             // this.alert = error // debug
-            this.repoList = "PEDIDO FALHOU!!! " + alert
+            this.selectedRepo = "No Repositories available"
+            // this.repoList = "PEDIDO FALHOU!!! " + alert
           })
       },
       newRepo: function (repoID, repoName) {

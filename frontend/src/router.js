@@ -10,12 +10,14 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import('./views/Test.vue')
+      component: () => import('./views/Test.vue'),
+      props: true,
     },
     {
       path: '/home',
       name: 'home',
-      component: () => import('./views/Home.vue')
+      component: () => import('./views/Home.vue'),
+      props: true,
     },
   ]
 })
