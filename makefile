@@ -7,10 +7,10 @@ upload:
 	docker push tibblue/tese-frontend:latest
 
 runCompose:
-	docker-compose up
+	docker-compose --project-directory ./frontend up
 
 debugRunRDF: #just a note
-	docker run -it --rm -p 8080:8080 -e RDF4J_DATA=/root/.RDF4J tibblue/tese-rdf4j:latest
+	docker run -it --rm -p 8080:8080 tibblue/tese-rdf4j:latest
 
 debugRunFrontend: #just a note
 	docker run -it --rm -p 8000:8000 tibblue/tese-frontend:latest
