@@ -1,857 +1,260 @@
-[INFO ] 2019-09-23 14:51:20,068 [main] Logback logging API implementation is configured.
-[INFO ] 2019-09-23 14:51:20,473 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
-[INFO ] 2019-09-23 14:51:20,473 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
-[INFO ] 2019-09-23 14:51:20,487 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
-[INFO ] 2019-09-23 14:51:20,501 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
-[INFO ] 2019-09-23 14:51:21,386 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
-[INFO ] 2019-09-23 14:51:21,438 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
-[INFO ] 2019-09-23 14:51:21,488 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
-[INFO ] 2019-09-23 14:51:21,494 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
-[INFO ] 2019-09-23 14:51:21,495 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
-[INFO ] 2019-09-23 14:51:21,496 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-09-23 14:51:21,501 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
-[INFO ] 2019-09-23 14:51:21,507 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
-[INFO ] 2019-09-23 14:51:21,508 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
-[INFO ] 2019-09-23 14:51:21,509 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
-[INFO ] 2019-09-23 14:51:21,509 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-09-23 14:51:21,512 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
-[INFO ] 2019-09-23 14:51:21,514 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-09-23 14:51:21,515 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-09-23 14:51:21,801 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 3361 ms
-[INFO ] 2019-09-23 14:52:30,696 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 14:52:32,231 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 14:53:56,080 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-09-23 14:53:57,178 [http-nio-8080-exec-2] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:13:47,554 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:27:33,839 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:27:53,115 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 15:27:53,296 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 15:31:35,335 [repositories/anime] POST query 3392903
-[INFO ] 2019-09-23 15:31:35,343 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Missing parameter: query
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:248)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:31:46,676 [repositories/anime] POST query 3392903
-[INFO ] 2019-09-23 15:31:46,676 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Missing parameter: query
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:248)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:31:52,616 [repositories/anime] POST query 3392903
-[INFO ] 2019-09-23 15:31:52,617 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Missing parameter: query
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:248)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:32:24,662 [repositories/anime] GET query -1115256837
-[INFO ] 2019-09-23 15:32:24,687 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: Encountered " "<" "< "" at line 1, column 10.
-Was expecting:
-    <Q_IRI_REF> ...
-    
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:32:29,322 [repositories/anime] GET query -1115256837
-[INFO ] 2019-09-23 15:32:29,322 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: Encountered " "<" "< "" at line 1, column 10.
-Was expecting:
-    <Q_IRI_REF> ...
-    
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:33:25,537 [repositories/anime] POST query 60054074
-[INFO ] 2019-09-23 15:33:25,870 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:33:42,762 [repositories/anime] GET query -1115256837
-[INFO ] 2019-09-23 15:33:42,767 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: Encountered " "<" "< "" at line 1, column 10.
-Was expecting:
-    <Q_IRI_REF> ...
-    
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:33:46,278 [repositories/anime] GET query -1115256837
-[INFO ] 2019-09-23 15:33:46,283 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: Encountered " "<" "< "" at line 1, column 10.
-Was expecting:
-    <Q_IRI_REF> ...
-    
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:35:32,383 [repositories/anime] POST query 3392903
-[INFO ] 2019-09-23 15:35:32,383 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Missing parameter: query
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:248)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:36:29,102 [repositories/anime] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: null
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:106)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:37:26,217 [repositories/anime] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/json
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:106)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:38:08,492 [repositories/anime] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/json
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:106)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:38:55,437 [repositories/anime] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/json
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:106)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:41:32,614 [repositories/anime] POST query 3392903
-[INFO ] 2019-09-23 15:41:32,614 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Missing parameter: query
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:248)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:43:32,958 [repositories/anime] POST query -289160321
-[INFO ] 2019-09-23 15:43:33,322 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:44:38,299 [repositories/anime] POST query -289160321
-[INFO ] 2019-09-23 15:44:38,404 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:44:51,074 [repositories/anime] POST query 60054074
-[INFO ] 2019-09-23 15:44:51,242 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:45:48,292 [repositories/anime] POST query -289160321
-[INFO ] 2019-09-23 15:45:48,414 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:48:50,831 [repositories/anime] POST query -289160321
-[INFO ] 2019-09-23 15:48:50,953 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:50:14,871 [repositories/anime] POST query -289160321
-[INFO ] 2019-09-23 15:50:14,973 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 15:53:56,265 [repositories/anime] GET query -1115256837
-[INFO ] 2019-09-23 15:53:56,266 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: Encountered " "<" "< "" at line 1, column 10.
-Was expecting:
-    <Q_IRI_REF> ...
-    
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:53:59,420 [repositories/anime] GET query -1115256837
-[INFO ] 2019-09-23 15:53:59,420 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: Encountered " "<" "< "" at line 1, column 10.
-Was expecting:
-    <Q_IRI_REF> ...
-    
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 15:57:18,859 [repositories/anime] GET query 1965616659
-[INFO ] 2019-09-23 15:57:18,865 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: org.eclipse.rdf4j.query.parser.sparql.ast.VisitorException: QName ':Anime' uses an undefined prefix
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 16:01:48,124 [repositories/anime] POST query 431105405
-[INFO ] 2019-09-23 16:01:48,125 [repositories/anime] Client sent bad request ( 400)
-org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED QUERY: Encountered " "*" "* "" at line 2, column 19.
-Was expecting one of:
-    "(" ...
-    "{" ...
-    "from" ...
-    "where" ...
-    <VAR1> ...
-    <VAR2> ...
-    
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.getQuery(RepositoryController.java:341)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:172)
-	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
-	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-09-23 16:01:57,340 [repositories/anime] POST query -1447045517
-[INFO ] 2019-09-23 16:01:57,531 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 16:04:10,875 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 16:04:10,943 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 16:05:37,660 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 16:05:37,746 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 16:07:31,635 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 16:07:31,718 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 16:11:16,898 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 16:11:16,977 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 16:11:33,679 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 16:11:33,793 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 16:36:30,252 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Mon Sep 23 14:51:18 WEST 2019]; root of context hierarchy
-[INFO ] 2019-09-23 16:44:05,511 [main] Logback logging API implementation is configured.
-[INFO ] 2019-09-23 16:44:05,874 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
-[INFO ] 2019-09-23 16:44:05,874 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
-[INFO ] 2019-09-23 16:44:05,890 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
-[INFO ] 2019-09-23 16:44:05,902 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
-[INFO ] 2019-09-23 16:44:06,452 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
-[INFO ] 2019-09-23 16:44:06,487 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
-[INFO ] 2019-09-23 16:44:06,516 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
-[INFO ] 2019-09-23 16:44:06,522 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
-[INFO ] 2019-09-23 16:44:06,523 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
-[INFO ] 2019-09-23 16:44:06,523 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-09-23 16:44:06,527 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
-[INFO ] 2019-09-23 16:44:06,531 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
-[INFO ] 2019-09-23 16:44:06,531 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
-[INFO ] 2019-09-23 16:44:06,532 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
-[INFO ] 2019-09-23 16:44:06,532 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-09-23 16:44:06,535 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
-[INFO ] 2019-09-23 16:44:06,536 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-09-23 16:44:06,536 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-09-23 16:44:06,659 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 2497 ms
-[INFO ] 2019-09-23 16:50:39,881 [http-nio-8080-exec-7] Request for query 3392903 is finished
-[INFO ] 2019-09-23 16:50:41,079 [http-nio-8080-exec-8] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:02:47,853 [http-nio-8080-exec-7] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:02:52,890 [http-nio-8080-exec-4] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:19,295 [http-nio-8080-exec-1] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:31,187 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:31,210 [http-nio-8080-exec-5] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:33,629 [repositories/SYSTEM] POST data to repository
-[INFO ] 2019-09-23 17:03:33,629 [repositories/SYSTEM] POST data to repository
-[INFO ] 2019-09-23 17:03:34,056 [http-nio-8080-exec-2] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:34,084 [http-nio-8080-exec-1] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:34,095 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:34,864 [repositories/ola1] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:34,864 [repositories/ola1] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:44,416 [http-nio-8080-exec-9] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:03:50,558 [repositories/ola1] DELETE request invoked for repository 'ola1'
-[INFO ] 2019-09-23 17:03:50,609 [repositories/ola1] DELETE request successfully completed
-[INFO ] 2019-09-23 17:03:52,736 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:12:25,621 [repositories/anime] POST query -1447045517
-[INFO ] 2019-09-23 17:12:27,048 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:13:52,957 [http-nio-8080-exec-6] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:13:52,969 [http-nio-8080-exec-4] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:13:53,253 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:13:53,542 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:13:57,800 [http-nio-8080-exec-2] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:13:57,976 [http-nio-8080-exec-5] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:14:01,914 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:14:02,149 [http-nio-8080-exec-9] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:14:05,559 [repositories/anime] GET namespace list
-[INFO ] 2019-09-23 17:14:05,562 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:14:05,760 [http-nio-8080-exec-4] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:14:05,810 [repositories/anime] GET namespace list
-[INFO ] 2019-09-23 17:14:05,812 [repositories/anime] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:14:06,990 [repositories/anime] GET statements
-[INFO ] 2019-09-23 17:14:09,095 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-09-23 17:15:22,652 [repositories/anime] GET query -50314184
-[INFO ] 2019-09-23 17:15:22,975 [repositories/anime] Request for query -50314184 is finished
-[INFO ] 2019-09-23 17:29:38,563 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Mon Sep 23 16:44:04 WEST 2019]; root of context hierarchy
+[INFO ] 2019-10-05 11:25:08,248 [main] Logback logging API implementation is configured.
+[INFO ] 2019-10-05 11:25:08,698 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-10-05 11:25:08,698 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-10-05 11:25:08,714 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-10-05 11:25:08,729 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-10-05 11:25:10,150 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-10-05 11:25:10,289 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-10-05 11:25:10,379 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-10-05 11:25:10,388 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-10-05 11:25:10,389 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-10-05 11:25:10,391 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-10-05 11:25:10,396 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-10-05 11:25:10,402 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-10-05 11:25:10,402 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-10-05 11:25:10,403 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-10-05 11:25:10,404 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-10-05 11:25:10,408 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-10-05 11:25:10,410 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-10-05 11:25:10,410 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-10-05 11:25:10,775 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 4606 ms
+[INFO ] 2019-10-05 11:37:36,982 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:37:37,015 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:39:12,038 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:39:12,339 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:40:18,406 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:40:18,817 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:41:26,966 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:42:14,595 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:42:36,135 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:42:36,513 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:43:16,854 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:43:19,292 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:43:19,686 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:44:16,012 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:44:16,513 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:44:27,047 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:44:27,065 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:45:07,918 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:45:08,294 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:47:16,317 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:47:21,713 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:47:22,018 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:47:24,134 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:54:43,622 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:54:43,636 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:09,853 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:09,866 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:21,711 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:21,726 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:37,580 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:37,601 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:49,148 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:55:49,160 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 11:58:24,249 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:06:22,570 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:06:22,809 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:06:26,669 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:06:28,147 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:12:03,844 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:12:03,987 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:12:28,382 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:12:28,586 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:12:37,167 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:12:37,322 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:17:32,058 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:17:32,213 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:18:07,452 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:18:07,594 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:18:28,912 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:18:29,184 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:18:31,227 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:18:31,385 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:19:00,047 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:19:00,195 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:20:32,184 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:21:11,414 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:21:34,243 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:21:59,157 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:22:42,917 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:22:44,173 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:22:57,709 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:23:22,422 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:23:22,670 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:23:42,234 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:23:42,386 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:23:51,557 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:23:51,564 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:24:16,597 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:24:16,606 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:35:19,579 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:35:19,764 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:48:56,174 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:49:16,219 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:49:20,395 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:49:20,609 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:50:47,577 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:50:47,737 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:55:52,794 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:55:53,253 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:59:46,287 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 12:59:46,855 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:02:33,821 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:02:34,570 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:03:01,013 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:03:01,625 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:03:34,529 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:03:34,961 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:03:43,924 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:05:53,373 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:06:33,810 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:06:39,422 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:06:39,828 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:07:07,770 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:07:11,887 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:07:12,305 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:07:42,693 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:07:45,230 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:07:45,608 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:08:30,467 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:21:35,701 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:21:36,124 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:22:40,287 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:27:05,230 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:27:05,617 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:29:04,831 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:29:05,371 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:00,729 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:06,044 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:06,759 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:18,026 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:18,513 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:25,939 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:25,951 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:30,085 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:30,933 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:48,406 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:48,419 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:51,551 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:51,562 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:54,025 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:31:54,477 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:33:37,631 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:33:41,711 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:33:59,581 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:34:15,430 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:34:15,854 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:35:08,369 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:35:08,763 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:35:20,121 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:35:20,134 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:35:38,763 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:35:43,792 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:35:44,172 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:37:14,245 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:37:14,616 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:39:20,357 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:39:23,299 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:39:23,661 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:39:45,721 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:39:51,780 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:39:52,154 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:40:46,058 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:40:46,519 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:41:24,773 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:41:25,170 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:42:42,889 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:42:43,288 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:43:30,761 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 13:44:05,128 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 14:30:41,744 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 14:31:01,535 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 14:33:38,411 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 14:33:55,880 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 14:34:25,327 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:48:19,674 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:51:07,389 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:51:07,949 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:51:09,525 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:53:17,305 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:53:31,986 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:55:31,492 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:56:02,829 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:57:32,214 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:57:42,719 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 15:57:43,208 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:57:43,297 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:57:44,593 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:57:44,733 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:57:44,756 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 15:57:44,777 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 15:57:44,793 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 15:57:44,904 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 15:59:59,914 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:00:20,926 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:00:48,487 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:00:48,495 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:00:48,506 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:00:48,515 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:00:48,645 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:00:48,705 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:00:48,709 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:00:48,715 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:00:48,722 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:00:48,826 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:12,493 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:12,503 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:02:12,514 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:02:12,521 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:02:12,620 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:20,006 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:20,013 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:02:20,020 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:02:20,028 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:02:20,139 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:37,949 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:37,968 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:02:37,978 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:02:38,002 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:02:38,126 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:38,205 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:02:38,212 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:02:38,223 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:02:38,233 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:02:38,332 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:06:44,438 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:06:44,449 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:06:44,463 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:06:44,479 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:06:44,690 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:06:44,818 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:06:44,823 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:06:44,832 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:06:44,841 [repositories/SYSTEM] POST data to repository
+[INFO ] 2019-10-05 16:06:44,993 [repositories/undefined] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:11:21,016 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:11:56,969 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:12:16,960 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:12:20,970 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:12:23,679 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:12:23,684 [repositories/SYSTEM] GET statements
+[INFO ] 2019-10-05 16:12:23,837 [repositories/SYSTEM] GET statements
+[INFO ] 2019-10-05 16:12:23,867 [repositories/SYSTEM] GET statements
+[INFO ] 2019-10-05 16:12:23,898 [repositories/SYSTEM] GET statements
+[INFO ] 2019-10-05 16:12:23,945 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:12:23,949 [repositories/undefined] DELETE request invoked for repository 'undefined'
+[INFO ] 2019-10-05 16:12:23,960 [repositories/undefined] DELETE request successfully completed
+[INFO ] 2019-10-05 16:12:24,013 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:12:29,467 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:15:47,972 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:18:27,482 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:18:35,618 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:18:38,354 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:21:46,295 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:27:30,392 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:30:39,903 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:30:54,587 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:31:12,492 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:32:15,557 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:32:18,444 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-05 16:32:57,634 [http-nio-8080-exec-2] Request for query 3392903 is finished
