@@ -90,18 +90,18 @@
         // var queryEncoded = encodeURIComponent(query)
         const formData = new FormData();
         formData.append('action', 'save');
-        formData.append('query-name', name);
-        formData.append('query', query);
+        formData.append('query-name', "name");
+        formData.append('query', "query");
         // formData.append('query', queryFile);
-        // formData.append('queryLn', language);
+        var language = "SPARQL"
+        formData.append('queryLn', language);
         // formData.append('limit_query', limit);
 
-        axios.post(rdf4j_url+'/rdf4j-server/repositories/test', formData,
-          {headers: {"Accept": "application/json", "Content-Type": "application/x-www-form-urlencoded"}})
+        axios.post(rdf4j_url+'/rdf4j-workbench/repositories/test/query', formData)
           .then(response => {
             console.log(response.data)
             var response = response.data
-            this.queryResponse = "Query SUCCESS \n" + response
+            this.queryResponse = "Query SUCCESS \n" + JSON.stringify(response)
           })
           .catch(alert => {
             this.queryResponse = "Query FALHOU!!!\n" + alert
