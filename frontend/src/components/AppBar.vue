@@ -1,61 +1,52 @@
 <template>
-  <v-app-bar app
-    color="primary"
-  >
+  <v-app-bar app color="primary">
+    <v-btn icon @click="getRepositories()">
+      <v-icon>fas fa-sync</v-icon>
+    </v-btn>
     <v-toolbar-title v-bind:selectedRepo.sync="selectedRepo">
       {{selectedRepo}}
     </v-toolbar-title>
 
     <div class="flex-grow-1"></div>
+      <v-combobox
+        v-model="selectedRepo"
+        no-data-text="No Repositories available"
+        :items="repoList"
+        label="Selected Repositoy"
+        v-on:change="repoChange(selectedRepo,'ola')"
+      >
+      </v-combobox>
+      <!-- <v-btn color="primary" @click="getRepositories()" class="mx-3">
+        Refresh Repositories
+      </v-btn> -->
 
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-
-        <v-row>
-          <v-combobox
-            v-model="selectedRepo"
-            no-data-text="No Repositories available"
-            :items="repoList"
-            :search-input.sync="repoSearch"
-            label="Selected Repositoy"
-            v-on:change="repoChange(selectedRepo)"
-          >
-            <template v-slot:no-data>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    No results matching "<strong>{{ repoSearch }}</strong>"
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </template>
-          </v-combobox>
-          <v-btn color="primary" @click="getRepositories()" class="mx-3">
-            Refresh Repositories
-          </v-btn>
-        </v-row>
-
-    <v-menu
-      left
-      bottom
-    >
+    <!-- <v-menu left>
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
-          <v-icon>mdi-dots-vertical</v-icon>
+          <v-icon>fas fa-wifi</v-icon>
         </v-btn>
       </template>
 
       <v-list>
         <v-list-item
-          v-for="n in 5"
+          v-for="n in 3"
           :key="n"
           @click="() => {}"
         >
           <v-list-item-title>Option {{ n }}</v-list-item-title>
         </v-list-item>
       </v-list>
-    </v-menu>
+    </v-menu> -->
+
+    <!--
+    <v-toolbar-title class="headline text-uppercase">
+      <span>Temporary</span>
+      <span class="font-weight-light">stuff</span>
+    </v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-btn color="primary" @click="goToHome()">
+      <h2>Home</h2>
+      -->
   </v-app-bar>
 </template>
 
@@ -65,20 +56,25 @@ const rdf4j_port = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
   data: () => ({
-    selectedRepo: "No Repository Selected",
-    repoSearch: "",
+    selectedRepo: "Loading Repositories",
     repoList: undefined,
   }),
   mounted: async function (){
-    console.log(process.env)
+    // console.log(process.env) # debug
     this.getRepositories()
   },
   methods: {
-    repoChange(repo) {
-      this.$emit('repoChanged',repo)
-      this.$router.replace({ query: { repo: repo } })
+    repoChange(name, id) {
+      // this.$emit('repoChanged',name) # NOTE: isto funcionou
+      this.$router.replace({
+        query: {
+          repoID: id,
+          repoName: name,
+        }
+      })
     },
     getRepositories: function () {
+      this.selectedRepo = "Loading Repositories"
       axios.get(rdf4j_port+'/rdf4j-server/repositories')
         .then(response => {
           // this.alert = response.data // debug
@@ -91,7 +87,7 @@ export default {
             repoListText.push(elem.title.value)
           });
           // console.log(response.data) // debug
-          this.selectedRepo = "Selected Repositry"
+          this.selectedRepo = "Select a Repository"
           this.repoList = repoListText
         })
         .catch(alert => {

@@ -14,9 +14,9 @@ export default new Router({
       props: true,
     },
     {
-      path: '/home',
-      name: 'home',
-      component: () => import('./views/Home.vue'),
+      path: '/sparql',
+      name: 'sparql',
+      component: () => import('./views/Sparql.vue'),
       props: true,
     },
   ]
