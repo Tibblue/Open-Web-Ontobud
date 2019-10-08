@@ -8,51 +8,20 @@
     </v-toolbar-title>
 
     <div class="flex-grow-1"></div>
-      <v-combobox
-        v-model="selectedRepo"
-        no-data-text="No Repositories available"
-        :items="repoList"
-        label="Selected Repositoy"
-        v-on:change="repoChange(selectedRepo,'ola')"
-      >
-      </v-combobox>
-      <!-- <v-btn color="primary" @click="getRepositories()" class="mx-3">
-        Refresh Repositories
-      </v-btn> -->
-
-    <!-- <v-menu left>
-      <template v-slot:activator="{ on }">
-        <v-btn icon v-on="on">
-          <v-icon>fas fa-wifi</v-icon>
-        </v-btn>
-      </template>
-
-      <v-list>
-        <v-list-item
-          v-for="n in 3"
-          :key="n"
-          @click="() => {}"
-        >
-          <v-list-item-title>Option {{ n }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu> -->
-
-    <!--
-    <v-toolbar-title class="headline text-uppercase">
-      <span>Temporary</span>
-      <span class="font-weight-light">stuff</span>
-    </v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-btn color="primary" @click="goToHome()">
-      <h2>Home</h2>
-      -->
+    <v-combobox
+      v-model="selectedRepo"
+      no-data-text="No Repositories available"
+      :items="repoList"
+      label="Selected Repositoy"
+      v-on:change="repoChange(getRepoName(selectedRepo),getRepoID(selectedRepo))"
+    >
+    </v-combobox>
   </v-app-bar>
 </template>
 
 <script>
 import axios from 'axios'
-const rdf4j_port = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
   data: () => ({
@@ -65,44 +34,52 @@ export default {
   },
   methods: {
     repoChange(name, id) {
+      this.$session.set("repoName",name)
+      this.$session.set("repoID",id)
       // this.$emit('repoChanged',name) # NOTE: isto funcionou
-      this.$router.replace({
-        query: {
-          repoID: id,
-          repoName: name,
-        }
-      })
+      // this.$router.replace({
+      //   query: {
+      //     repoID: id,
+      //     repoName: name,
+      //   }
+      // })
+      // location.reload()
     },
-    getRepositories: function () {
-      this.selectedRepo = "Loading Repositories"
-      axios.get(rdf4j_port+'/rdf4j-server/repositories')
+    getRepositories() {
+      // TODO: Consider adding a loading bar on Repo Reload
+      axios.get(rdf4j_url+'/rdf4j-server/repositories')
         .then(response => {
           // this.alert = response.data // debug
-          // console.log(response.data.head)
-
+          // console.log(response.data.head) // debug column names
+          // console.log(response.data.results.bindings) // debug results
           var repoList = response.data.results.bindings
-          console.log(response.data.results.bindings)
           var repoListText = []
           repoList.forEach(elem => {
-            repoListText.push(elem.title.value)
+            repoListText.push(elem.title.value+" ID:"+elem.id.value)
           });
           // console.log(response.data) // debug
-          this.selectedRepo = "Select a Repository"
           this.repoList = repoListText
+          if(this.$session.has("repoName"))
+            this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
+          if(this.selectedRepo==="Loading Repositories")
+            this.selectedRepo = repoListText[0]
         })
         .catch(alert => {
           // this.alert = error // debug
+          // this.selectedRepo = "PEDIDO FALHOU!!! " + alert
           this.selectedRepo = "No Repositories available"
-          // this.repoList = "PEDIDO FALHOU!!! " + alert
         })
     },
-    goTo: function (link) {
-      // window.location = link; // opens in same tab
-      window.open(link); // opens another tab
+    getRepoName(string) {
+      return string.split(" ID:")[0]
     },
-    goToHome: function () {
-      this.$router.push('/')
+    getRepoID(string) {
+      return string.split(" ID:")[1]
     },
-  }
+    // goTo: function (link) {
+    //   // window.location = link; // opens in same tab
+    //   window.open(link); // opens another tab
+    // },
+  },
 };
 </script>

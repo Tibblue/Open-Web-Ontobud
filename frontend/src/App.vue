@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <AppBar @repoChanged="selectedRepo=$event"/>
+    <AppBar/>
 
     <Sidebar/>
 
     <v-content>
-      <router-view selectedRepo="selectedRepo"/>
+      <router-view />
     </v-content>
 
     <Footer/>
@@ -25,7 +25,8 @@ export default {
     Footer,
   },
   data: () => ({
-    selectedRepo: "a",
+    // selectedRepo: "hi",
+    // update: null,
     footer_icons: [
       // ['home','http://localhost:8080'],
       ['fab fa-github','http://www.github.com/Tibblue'],
@@ -38,9 +39,11 @@ export default {
       // window.location = link; // opens in same tab
       window.open(link); // opens another tab
     },
-    goToHome: function () {
-      this.$router.push('/')
-    },
-  }
+    updateRepos() {
+      // this.$refs.appBar.getRepositories()
+      this.update = ["updateRepos"]
+      console.log("emit is gud")
+    }
+  },
 };
 </script>

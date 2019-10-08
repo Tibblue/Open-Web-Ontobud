@@ -9,10 +9,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
+      name: 'homepage',
       component: () => import('./views/Home.vue'),
       props: true,
     },
+    // {
+    //   path: '/import',
+    //   name: 'import',
+    //   component: () => import('./views/Import.vue'),
+    //   props: true,
+    // },
     {
       path: '/sparql',
       name: 'sparql',

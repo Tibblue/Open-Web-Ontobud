@@ -130,31 +130,31 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      model: 1,
-      sidebar_mini: false,
-      sidebar_items: [
-        { text: 'Home', icon: 'fas fa-home', link: '/'},
-        { text: 'Import', icon: 'fas fa-file-import', link: '/import'},
-        { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
-        { text: 'Settings', icon: 'fas fa-cog', link: '/settings' ,
-          subgroup: [
-            { text: 'Repositories', icon: 'fas fa-chevron_right', link: '/testing/button1/repos'},
-            { text: 'My Settings', icon: 'fas fa-chevron_right', link: '/testing/button2/settings'}
-          ]
-        },
-      ],
-    }),
-    methods: {
-      goTo: function (id) {
-        this.$router.push(id)
+export default {
+  data: () => ({
+    model: 1,
+    sidebar_mini: false,
+    sidebar_items: [
+      { text: 'Home', icon: 'fas fa-home', link: '/'},
+      { text: 'Import', icon: 'fas fa-file-import', link: '/import'},
+      { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
+      { text: 'Settings', icon: 'fas fa-cog', link: '/settings' ,
+        subgroup: [
+          { text: 'Repositories', icon: 'fas fa-chevron_right', link: '/testing/button1/repos'},
+          { text: 'My Settings', icon: 'fas fa-chevron_right', link: '/testing/button2/settings'}
+        ]
       },
-      swapDarkMode: function () {
-        this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      },
-    }
+    ],
+  }),
+  methods: {
+    goTo: function (id) {
+      this.$router.push(id)
+    },
+    swapDarkMode: function () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+    },
   }
+}
 </script>
 
 <style>

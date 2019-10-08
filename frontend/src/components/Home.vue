@@ -1,11 +1,16 @@
 <template>
   <v-container>
-        <!-- <v-btn color="primary" >
-          {{this.$props}}
-        </v-btn> -->
-        <v-btn color="primary">
-          {{this.$route.query}}
-        </v-btn>
+        <div class="text-center">
+          <v-btn color="info" @click="snackbar=true">
+            Confirm current repo (DEBUG)
+          </v-btn>
+          <v-snackbar top v-model="snackbar">
+            {{ this.$session.get("repoName") }} - {{ this.$session.get("repoID") }}
+            <v-btn color="blue" text @click="snackbar=false">
+              Close
+            </v-btn>
+          </v-snackbar>
+        </div>
     <v-row>
       <v-col cols="6">
         <v-row>
@@ -34,7 +39,8 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-divider class="my-2"></v-divider>
+      </v-col>
+      <v-col cols="6">
         <v-row>
           <v-col cols="12" px-2>
             <v-text-field
@@ -42,12 +48,48 @@
               label="Repo ID"
             ></v-text-field>
           </v-col>
-          <v-col cols="3">
+          <v-col cols="12">
             <v-btn color="warning" @click="deleteRepo(deleteRepoID)">
               Delete Repo
             </v-btn>
           </v-col>
-          <v-col cols="9">
+          <v-divider class="ma-2"></v-divider>
+          <v-col cols="12">
+            <v-dialog v-model="dialogDeleteRepo" max-width="600px">
+              <template v-slot:activator="{ on }">
+                <v-btn block color="warning" dark v-on="on">
+                  Delete Repo
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="headline">
+                    Please type the repository name below
+                  </span>
+                </v-card-title>
+                <v-card-text>
+                  <v-text-field
+                    v-model="deleteRepoIDConfirm"
+                    label="Type Repository Name"
+                    :placeholder="this.$session.get('repoName')"
+                  ></v-text-field>
+                </v-card-text>
+                <v-card-actions>
+                  <v-col class="grow">
+                    <v-btn block color="success" @click="deleteRepo(deleteRepoID);dialogDeleteRepo=false">
+                      Confirm
+                    </v-btn>
+                  </v-col>
+                  <v-col class="grow">
+                    <v-btn block color="error" @click="dialogDeleteRepo=false">
+                      Cancel
+                    </v-btn>
+                  </v-col>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-col>
+          <v-col cols="12">
             <v-text-field
               readonly
               v-model="deleteRepoResponse"
@@ -78,24 +120,19 @@
       newRepoResponse: "",
       deleteRepoID: "",
       deleteRepoResponse: "",
+      deleteRepoIDConfirm: "",
+      snackbar: false,
+      deleteRepoConfirm: false,
+      dialogDeleteRepo: false,
     }),
-    mounted: async function (){
-      // console.log(this.$props)
-      // console.log(process.env)
-      // try{
-      //   // var response = await axios.get(rdf4j_url+'/rdf4j-server/repositories');
-      //   // this.top5 = response.data.results.bindings
-      // }
-      // catch(e){
-      //   this.repoList = "PEDIDO FALHOU!!! " + alert
-      // }
-    },
+    // mounted: async function (){
+    //   console.log(this.$props)
+    //   console.log(process.env)
+    // },
     methods: {
-      replaceURL(repo) {
-        // console.log(this.$route)
-        // this.$router.replace('?repo='+repo)
-        this.$router.replace({ query: { repo: repo } })
-      },
+      // replaceURL(repo) {
+      //   this.$router.replace({ query: { repo: repo } })
+      // },
       newRepo: function (repoID, repoName) {
         const formData = new FormData();
         formData.append('type', "memory");
@@ -106,6 +143,7 @@
           .then(response => {
             // console.log(response.data)
             this.newRepoResponse = "Created " + repoName + " with SUCCESS \n" + response.data
+            this.$emit('updateRepos',repoID) // NOTE: isto funcionou
           })
           .catch(alert => {
             this.newRepoResponse = "Criação FALHOU!!!\n" + alert
