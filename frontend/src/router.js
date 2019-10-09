@@ -14,9 +14,9 @@ export default new Router({
       props: true,
     },
     // {
-    //   path: '/import',
-    //   name: 'import',
-    //   component: () => import('./views/Import.vue'),
+    //   path: '/repo',
+    //   name: 'repoInfo',
+    //   component: () => import('./views/Repo.vue'),
     //   props: true,
     // },
     {

@@ -39,18 +39,11 @@ import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
-  // props: ["repo"],
   data: () => ({
-    selectedRepo: "Loading Repositories",
-    queryInput: "",
+    queryInput: "select * where { ?s ?p ?o }\nlimit 20",
     queryResponse: "",
   }),
   methods: {
-    replaceURL(repo) {
-      // console.log(this.$route)
-      // this.$router.replace('?repo='+repo)
-      this.$router.replace({ query: { repo: repo } })
-    },
     runQuery: function (query) {
       var repoID = this.$session.get("repoID")
       // var queryEncoded = encodeURIComponent(query)
@@ -70,7 +63,9 @@ export default {
       axios.post(url, query,
         {headers: {"Content-Type": "application/sparql-query"}})
         .then(response => {
-          console.log(response.data)
+          // console.log(response.data) // debug
+          // console.log(response.data.head.vars) // debug Nome de Colunas
+          // console.log(response.data.results.bindings) // debug resultados
           var columnsVars = response.data.head.vars
           var resultsData = response.data.results.bindings
           this.queryResponse = "Query SUCCESS \n" + columnsVars + "\n" + resultsData
@@ -85,14 +80,13 @@ export default {
       formData.append('action', 'save');
       formData.append('query-name', "name");
       formData.append('query', "query");
-      // formData.append('query', queryFile);
       var language = "SPARQL"
       formData.append('queryLn', language);
       // formData.append('limit_query', limit);
       var url = rdf4j_url+'/rdf4j-workbench/repositories/'+this.$session.get("repoID")+'/query'
       axios.post(url, formData)
         .then(response => {
-          console.log(response.data)
+          console.log(response.data) // debug
           var response = response.data
           this.queryResponse = "Query SUCCESS \n" + JSON.stringify(response)
         })
