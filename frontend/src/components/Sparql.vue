@@ -1,11 +1,5 @@
 <template>
   <v-container>
-        <!-- <v-btn color="primary">
-          {{this.$props}}
-        </v-btn> -->
-        <v-btn color="primary">
-          {{this.$route.query}}
-        </v-btn>
     <v-row>
       <v-col cols="2">
         <v-row
