@@ -1,20 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="2">
-        <v-row
-          align-content="space-between"
-          justify="space-between"
-        >
-          <v-btn block color="primary" @click="runQuery(queryInput)">
-            Run Query
-          </v-btn>
-          <v-btn block color="primary" @click="saveQuery('meh',queryInput)">
-            Save Query (NOT WORKING)
-          </v-btn>
-        </v-row>
-      </v-col>
-      <v-col>
+      <v-col class="grow">
         <v-textarea outlined auto-grow
           v-model="queryInput"
           rows="6"
@@ -22,6 +9,46 @@
           label="Query"
           placeholder="Place query and Execute"
         ></v-textarea>
+        <v-row>
+          <v-col cols="12">
+            <v-btn block color="primary" @click="runQuery(queryInput)">
+              Run Query
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col cols="12" md="6">
+            <!-- TODO: alterar para um dialog box,
+                    com a query escrita por default e
+                    opçao para query global ao nao, etc -->
+            <v-btn block color="primary" @click="saveQuery('meh',queryInput)">
+              Save Query (NOT WORKING)
+            </v-btn>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field dense hide-details
+              class="mt-0 py-0"
+              v-model="newSavedQueryName"
+              label="Query name"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col cols="12">
+            <v-btn block color="primary" @click="savedQueriesExpand=!savedQueriesExpand">
+              <div v-if="savedQueriesExpand==true">
+                <span>Hide Saved Queries (TODO)</span>
+                <v-icon right>fas fa-chevron-right</v-icon>
+              </div>
+              <div v-else>
+                <span>Show Saved Queries (TODO)</span>
+                <v-icon right>fas fa-chevron-left</v-icon>
+              </div>
+            </v-btn>
+          </v-col>
+        </v-row>
         <v-textarea outlined auto-grow readonly class="mt-3"
           v-model="queryResponse"
           rows="4"
@@ -30,6 +57,26 @@
           placeholder="Query response"
         ></v-textarea>
       </v-col>
+      <v-expand-x-transition>
+        <!-- TODO: ver se consigo alterar a width pra algo melhor -->
+        <v-card flat color="transparent" class="ma-3"
+          v-show="savedQueriesExpand"
+          width="300"
+        >
+          <v-row>
+            <v-col cols="12">
+              <v-btn block color="primary">
+                Filler
+              </v-btn>
+            </v-col>
+            <v-col cols="12">
+              <v-btn block color="primary">
+                Filler x2
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-expand-x-transition>
     </v-row>
   </v-container>
 </template>
@@ -42,9 +89,11 @@ export default {
   data: () => ({
     queryInput: "select * where { ?s ?p ?o }\nlimit 20",
     queryResponse: "",
+    newSavedQueryName: "",
+    savedQueriesExpand: true,
   }),
   methods: {
-    runQuery: function (query) {
+    runQuery(query) {
       var repoID = this.$session.get("repoID")
       // var queryEncoded = encodeURIComponent(query)
       // var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
@@ -68,13 +117,16 @@ export default {
           // console.log(response.data.results.bindings) // debug resultados
           var columnsVars = response.data.head.vars
           var resultsData = response.data.results.bindings
-          this.queryResponse = "Query SUCCESS \n" + columnsVars + "\n" + resultsData
+          this.queryResponse = "Query SUCCESS \n" + columnsVars + "\n"
+          resultsData.forEach(element => {
+            this.queryResponse += JSON.stringify(element) + '\n'
+          });
         })
         .catch(alert => {
           this.queryResponse = "Query FALHOU!!!\n" + alert
         })
     },
-    saveQuery: function (name, query) {
+    saveQuery(name, query) {
       // var queryEncoded = encodeURIComponent(query)
       const formData = new FormData();
       formData.append('action', 'save');
