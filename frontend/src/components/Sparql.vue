@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col class="grow">
-        <v-textarea outlined auto-grow
+        <v-textarea outlined auto-grow hide-details
           v-model="queryInput"
           rows="6"
           row-height="16"
@@ -39,17 +39,17 @@
           <v-col cols="12">
             <v-btn block color="primary" @click="savedQueriesExpand=!savedQueriesExpand">
               <div v-if="savedQueriesExpand==true">
-                <span>Hide Saved Queries (TODO)</span>
+                <span>Hide Saved Queries</span>
                 <v-icon right>fas fa-chevron-right</v-icon>
               </div>
               <div v-else>
-                <span>Show Saved Queries (TODO)</span>
+                <span>Show Saved Queries</span>
                 <v-icon right>fas fa-chevron-left</v-icon>
               </div>
             </v-btn>
           </v-col>
         </v-row>
-        <v-textarea outlined auto-grow readonly class="mt-3"
+        <v-textarea outlined auto-grow readonly hide-details class="mt-3"
           v-model="queryResponse"
           rows="4"
           row-height="16"
@@ -74,23 +74,38 @@
               <v-col
                 v-for="savedQuery in savedQueries"
                 :key="savedQuery.name"
-                :cols="savedQuery.flex"
               >
                 <v-card flat>
                   <v-card-title
                     class="fill-height align-end"
                     v-text="savedQuery.name"
                   ></v-card-title>
-                  <v-card-text>
-                    <span>{{savedQuery.query}}</span>
+                  <v-card-text v-if="savedQueryExpandedList.includes(savedQuery.name)">
+                    <span v-if="!savedQuery.edited">{{savedQuery.query}}</span>
+                    <v-textarea v-else outlined auto-grow hide-details
+                      v-model="savedQuery.edited"
+                      rows="6"
+                      row-height="16"
+                      label="Edited Query"
+                    ></v-textarea>
                   </v-card-text>
                   <v-card-actions>
+                    <v-btn icon @click="savedQueryExpand(savedQuery.name)">
+                      <v-icon left v-if="savedQueryExpandedList.includes(savedQuery.name)">fas fa-chevron-up</v-icon>
+                      <v-icon left v-else>fas fa-chevron-down</v-icon>
+                    </v-btn>
+                    <v-btn icon @click="runQuery(savedQuery.query)">
+                      <v-icon>fas fa-copy</v-icon>
+                    </v-btn>
                     <div class="flex-grow-1"></div>
                     <v-btn icon @click="runQuery(savedQuery.query)">
                       <v-icon>fas fa-play</v-icon>
                     </v-btn>
-                    <v-btn icon>
+                    <v-btn icon v-if="!savedQuery.edited" @click="editSavedQuery(savedQuery.name,savedQuery.edited)">
                       <v-icon>fas fa-edit</v-icon>
+                    </v-btn>
+                    <v-btn icon v-else @click="editSavedQuery(savedQuery.name,savedQuery.edited)">
+                      <v-icon>fas fa-save</v-icon>
                     </v-btn>
                     <v-btn icon @click="deleteSavedQuery(savedQuery.name)">
                       <v-icon>fas fa-trash</v-icon>
@@ -117,12 +132,13 @@ export default {
     newSavedQueryName: "",
     savedQueriesExpand: true,
     savedQueries: [ // temporary visual debug
-      { name: 'Select All', flex: 12, query: 'select * where { ?s ?p ?o }\nlimit 20' },
-      { name: 'Get classes', flex: 6, query: 'SELECT DISTINCT ?type WHERE {\n ?s a ?type.\n}' },
-      { name: 'Get classes only', flex: 6, query: 'SELECT DISTINCT ?s WHERE {\n ?s a owl:Class.\n}' },
-      { name: 'Get #classes', flex: 6, query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE {\n ?class a owl:Class.\n}' },
-      { name: 'Get #elements per class', flex: 6, query: 'SELECT ?class (COUNT(?class) as ?count) WHERE {\n ?elem a ?class.\n ?class a owl:Class. }\nGROUP BY ?class' },
+      { name: 'Select All', query: 'select * where { ?s ?p ?o }\nlimit 20' },
+      { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE {\n ?s a ?type.\n}' },
+      { name: 'Get classes only', query: 'SELECT DISTINCT ?s WHERE {\n ?s a owl:Class.\n}' },
+      { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE {\n ?class a owl:Class.\n}' },
+      { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE {\n ?elem a ?class.\n ?class a owl:Class. }\nGROUP BY ?class' },
     ],
+    savedQueryExpandedList: [],
   }),
   methods: {
     runQuery(query) {
@@ -178,8 +194,45 @@ export default {
           this.queryResponse = "Query FALHOU!!!\n" + alert
         })
     },
-    deleteSavedQuery(name) { // TODO
-      console.log("TODO deleteSavedQuery()")
+    savedQueryExpand(name) {
+      if(this.savedQueryExpandedList.includes(name)){
+        let index = this.savedQueryExpandedList.indexOf(name)
+        this.savedQueryExpandedList.splice(index,1)
+      }
+      else
+        this.savedQueryExpandedList.push(name)
+    },
+    editSavedQuery(name,newQuery) { // TODO
+      for (let index = 0; index < this.savedQueries.length; index++) {
+        if(this.savedQueries[index].name===name){
+          // if(newQuery){
+          if(this.savedQueries[index].edited){
+            this.savedQueries[index].query = this.savedQueries[index].edited
+            delete this.savedQueries[index].edited
+          }
+          else{
+            this.savedQueries[index].edited = this.savedQueries[index].query
+          }
+          return index
+        }
+      }
+      // NOTE:
+      // -mudar de span para textbox para editar
+      // -mudar icon de edit para save
+      // -carregar no icon de save guarda a query (atualiza no mongo e depois
+      //    mete de volta o span)
+
+      console.log("TODO editSavedQuery()")
+    },
+    deleteSavedQuery(name) { // FIXME
+      // TODO add dialog for confirmation
+      for (let index = 0; index < this.savedQueries.length; index++) {
+        if(this.savedQueries[index].name===name){
+          this.savedQueries.splice(index,1)
+          return index
+        }
+      }
+      console.log("TODO update when mongo is done, to delete the query in the database")
     },
   }
 }
