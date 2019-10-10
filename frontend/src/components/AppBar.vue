@@ -8,7 +8,7 @@
     </v-toolbar-title>
 
     <div class="flex-grow-1"></div>
-    <v-combobox
+    <v-combobox dense hide-details
       v-model="selectedRepo"
       no-data-text="No Repositories available"
       :items="repoList"

@@ -58,23 +58,48 @@
         ></v-textarea>
       </v-col>
       <v-expand-x-transition>
-        <!-- TODO: ver se consigo alterar a width pra algo melhor -->
         <v-card flat color="transparent" class="ma-3"
           v-show="savedQueriesExpand"
-          width="300"
+          width="30%"
         >
-          <v-row>
-            <v-col cols="12">
-              <v-btn block color="primary">
-                Filler
-              </v-btn>
-            </v-col>
-            <v-col cols="12">
-              <v-btn block color="primary">
-                Filler x2
-              </v-btn>
-            </v-col>
-          </v-row>
+          <v-container fluid class="pa-0">
+            <v-row>
+              <v-col cols="12">
+                <v-card flat color="primary">
+                  <v-card-title class="display-1 align-center justify-center pt-2">
+                    Saved Queries
+                  </v-card-title>
+                </v-card>
+              </v-col>
+              <v-col
+                v-for="savedQuery in savedQueries"
+                :key="savedQuery.name"
+                :cols="savedQuery.flex"
+              >
+                <v-card flat>
+                  <v-card-title
+                    class="fill-height align-end"
+                    v-text="savedQuery.name"
+                  ></v-card-title>
+                  <v-card-text>
+                    <span>{{savedQuery.query}}</span>
+                  </v-card-text>
+                  <v-card-actions>
+                    <div class="flex-grow-1"></div>
+                    <v-btn icon @click="runQuery(savedQuery.query)">
+                      <v-icon>fas fa-play</v-icon>
+                    </v-btn>
+                    <v-btn icon>
+                      <v-icon>fas fa-edit</v-icon>
+                    </v-btn>
+                    <v-btn icon @click="deleteSavedQuery(savedQuery.name)">
+                      <v-icon>fas fa-trash</v-icon>
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card>
       </v-expand-x-transition>
     </v-row>
@@ -91,6 +116,13 @@ export default {
     queryResponse: "",
     newSavedQueryName: "",
     savedQueriesExpand: true,
+    savedQueries: [ // temporary visual debug
+      { name: 'Select All', flex: 12, query: 'select * where { ?s ?p ?o }\nlimit 20' },
+      { name: 'Get classes', flex: 6, query: 'SELECT DISTINCT ?type WHERE {\n ?s a ?type.\n}' },
+      { name: 'Get classes only', flex: 6, query: 'SELECT DISTINCT ?s WHERE {\n ?s a owl:Class.\n}' },
+      { name: 'Get #classes', flex: 6, query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE {\n ?class a owl:Class.\n}' },
+      { name: 'Get #elements per class', flex: 6, query: 'SELECT ?class (COUNT(?class) as ?count) WHERE {\n ?elem a ?class.\n ?class a owl:Class. }\nGROUP BY ?class' },
+    ],
   }),
   methods: {
     runQuery(query) {
@@ -145,6 +177,9 @@ export default {
         .catch(alert => {
           this.queryResponse = "Query FALHOU!!!\n" + alert
         })
+    },
+    deleteSavedQuery(name) { // TODO
+      console.log("TODO deleteSavedQuery()")
     },
   }
 }
