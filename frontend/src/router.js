@@ -20,6 +20,12 @@ export default new Router({
       props: true,
     },
     {
+      path: '/info',
+      name: 'repoInfo',
+      component: () => import('./views/Info.vue'),
+      props: true,
+    },
+    {
       path: '/sparql',
       name: 'sparql',
       component: () => import('./views/Sparql.vue'),
