@@ -13,12 +13,12 @@ export default new Router({
       component: () => import('./views/Home.vue'),
       props: true,
     },
-    // {
-    //   path: '/repo',
-    //   name: 'repoInfo',
-    //   component: () => import('./views/Repo.vue'),
-    //   props: true,
-    // },
+    {
+      path: '/manage',
+      name: 'manageRepo',
+      component: () => import('./views/Manage.vue'),
+      props: true,
+    },
     {
       path: '/sparql',
       name: 'sparql',

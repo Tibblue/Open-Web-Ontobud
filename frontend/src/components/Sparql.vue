@@ -71,7 +71,7 @@
                   </v-card-title>
                 </v-card>
               </v-col>
-              <v-col
+              <v-col cols="12"
                 v-for="savedQuery in savedQueries"
                 :key="savedQuery.name"
               >

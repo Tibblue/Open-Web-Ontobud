@@ -71,7 +71,7 @@ export default {
     sidebar_items: [
       { text: 'Home', icon: 'fas fa-home', link: '/'},
       { text: 'Manage Repository', icon: 'fas fa-archive', link: '/manage'},
-      { text: 'TODO Repository Info', icon: 'fas fa-info-circle', link: '/repo'},
+      { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},
       // { text: 'Import', icon: 'fas fa-file-import', link: '/import'},
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
       { text: 'TODO All Repositories', icon: 'fas fa-boxes', link: '/management'},
