@@ -27,18 +27,8 @@ export default {
   data: () => ({
     // selectedRepo: "hi",
     // update: null,
-    footer_icons: [
-      // ['home','http://localhost:8080'],
-      ['fab fa-github','http://www.github.com/Tibblue'],
-      ['fab fa-linkedin','https://www.linkedin.com/in/kiko-oliveira/'],
-      ['fas fa-university','https://www.uminho.pt'],
-    ]
   }),
   methods: {
-    goTo: function (link) {
-      // window.location = link; // opens in same tab
-      window.open(link); // opens another tab
-    },
     updateRepos() {
       // this.$refs.appBar.getRepositories()
       this.update = ["updateRepos"]

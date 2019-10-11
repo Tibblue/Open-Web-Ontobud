@@ -76,10 +76,6 @@ export default {
     getRepoID(string) {
       return string.split(" ID:")[1]
     },
-    // goTo: function (link) {
-    //   // window.location = link; // opens in same tab
-    //   window.open(link); // opens another tab
-    // },
   },
 };
 </script>
