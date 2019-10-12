@@ -1,13 +1,13 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <v-text-field
+      <v-text-field hide-details class="mt-0 pt-0"
         v-model="newRepoID"
         label="New Repo ID"
       ></v-text-field>
     </v-col>
     <v-col cols="12">
-      <v-text-field
+      <v-text-field hide-details class="mt-0 pt-0"
         v-model="newRepoName"
         label="New Repo Name"
       ></v-text-field>
@@ -18,7 +18,7 @@
       </v-btn>
     </v-col>
     <v-col cols="9">
-      <v-text-field readonly outlined
+      <v-text-field readonly outlined hide-details
         v-model="newRepoResponse"
         label="Response"
         placeholder="Response to the request"

@@ -11,28 +11,28 @@
         </div>
     <v-row>
       <v-col cols="6">
-        <createRepo/>
+        <!-- <createRepo/> -->
       </v-col>
       <v-col cols="6">
-        <deleteCurrentRepo/>
+        <clearRepoStatements/>
         <v-divider class="ma-1"></v-divider>
-        <deleteRepo/>
+        <deleteCurrentRepo/>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import createRepo from '@/components/createRepo'
-import deleteRepo from '@/components/deleteRepo'
+// // import createRepo from '@/components/createRepo'
+import clearRepoStatements from '@/components/clearRepoStatements'
 import deleteCurrentRepo from '@/components/deleteCurrentRepo'
 import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
   components: {
-    createRepo,
-    deleteRepo,
+    // createRepo,
+    clearRepoStatements,
     deleteCurrentRepo,
   },
   data: () => ({

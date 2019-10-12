@@ -31,5 +31,11 @@ export default new Router({
       component: () => import('./views/Sparql.vue'),
       props: true,
     },
+    {
+      path: '/repositories',
+      name: 'repositories',
+      component: () => import('./views/Repositories.vue'),
+      props: true,
+    },
   ]
 })
