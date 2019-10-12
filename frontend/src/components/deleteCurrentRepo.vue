@@ -1,0 +1,92 @@
+<template>
+  <v-row>
+    <v-col cols="12">
+      <!-- <span>wow {{this.$session.get('repoID')}}</span> -->
+      <v-dialog v-model="dialogDeleteRepo" max-width="600px">
+        <template v-slot:activator="{ on }">
+          <v-btn block color="warning" v-on="on">
+            Delete Current Repo
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">
+              Please type the repository name below
+            </span>
+          </v-card-title>
+          <v-card-text>
+            <v-text-field
+              v-model="deleteRepoIDConfirm"
+              :rules="[deleteConfirm]"
+              label="Type Repository Name"
+              :placeholder="this.$session.get('repoID')"
+            ></v-text-field>
+          </v-card-text>
+          <v-card-actions>
+            <v-col class="grow">
+              <v-btn block color="success"
+                :disabled="disableDialogConfirmDelete"
+                @click="deleteCurrentRepo(deleteRepoIDConfirm);dialogDeleteRepo=false"
+              >
+                Confirm
+              </v-btn>
+            </v-col>
+            <v-col class="grow">
+              <v-btn block color="error" @click="dialogDeleteRepo=false">
+                Cancel
+              </v-btn>
+            </v-col>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-alert text dismissible type="success" :value="alertDeleteSuccess">
+        {{ this.$session.get("repoName") }} was deleted with Success!!!
+      </v-alert>
+      <v-alert text dismissible type="error" :value="alertDeleteFail">
+        Failed to delete {{ this.$session.get("repoName") }} ...
+      </v-alert>
+    </v-col>
+  </v-row>
+</template>
+
+<script>
+import axios from 'axios'
+const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+
+export default {
+  data: () => ({
+    deleteRepoIDConfirm: "",
+    disableDialogConfirmDelete: true,
+    alertDeleteSuccess: false,
+    alertDeleteFail: false,
+    dialogDeleteRepo: false,
+  }),
+  mounted: async function (){
+    // console.log(process.env) # debug
+    // this.getRepositories()
+  },
+  methods: {
+    deleteCurrentRepo(repoID) {
+      axios.delete(rdf4j_url+'/rdf4j-server/repositories/'+repoID)
+        .then(response => {
+          this.alertDeleteSuccess = true
+          this.alertDeleteFail = false
+        })
+        .catch(alert => {
+          this.alertDeleteFail = true
+          this.alertDeleteSuccess = false
+        })
+    },
+    deleteConfirm(value) {
+      if(value===this.$session.get("repoID")){
+        this.disableDialogConfirmDelete=false
+        return true
+      }
+      else {
+        this.disableDialogConfirmDelete=true
+        return 'ID must be the same'
+      }
+    },
+  },
+};
+</script>

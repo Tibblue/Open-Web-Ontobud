@@ -24,6 +24,7 @@ import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
+  // props: ['update'],
   data: () => ({
     selectedRepo: "Loading Repositories",
     repoList: undefined,
@@ -77,5 +78,12 @@ export default {
       return string.split(" ID:")[1]
     },
   },
+  // watch: { // FIXME: nao consigo chamar o getRepositories direito...
+  //   'update': function(event) {
+  //     console.log(event[0]);
+  //     if(event[0]==="updateRepos")
+  //       getRepositories()
+  //   }
+  // }
 };
 </script>

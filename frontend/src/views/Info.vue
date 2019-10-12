@@ -37,7 +37,7 @@ const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
   data: () => ({
-    statementNumber: "",
+    statementNumber: "Loading info...",
     snackbarDEBUG: false,
   }),
   mounted: async function (){
@@ -53,7 +53,7 @@ export default {
           this.statementNumber = response.data
         })
         .catch(alert => {
-          this.statementNumber = "FALHA!!!\n" + alert
+          this.statementNumber = "Servidor indisponivel...\n" + alert
         })
     },
   }
