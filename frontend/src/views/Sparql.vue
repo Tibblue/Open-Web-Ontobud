@@ -10,31 +10,37 @@
           placeholder="Place query and Execute"
         ></v-textarea>
         <v-row>
-          <v-col cols="12">
+          <v-col cols="6">
             <v-btn block color="primary" @click="runQuery(queryInput)">
               Run Query
             </v-btn>
           </v-col>
-        </v-row>
-        <v-divider></v-divider>
-        <v-row>
-          <v-col cols="12" md="6">
+          <v-col cols="6" md="6">
             <!-- TODO: alterar para um dialog box,
                     com a query escrita por default e
-                    opçao para query global ao nao, etc -->
+                    opçao para query global ou nao, etc -->
             <v-btn block color="primary" @click="saveQuery('meh',queryInput)">
               Save Query (NOT WORKING)
             </v-btn>
           </v-col>
-          <v-col cols="12" md="6">
+          <!-- <v-col cols="12" md="6">
             <v-text-field dense hide-details
               class="mt-0 py-0"
               v-model="newSavedQueryName"
               label="Query name"
             ></v-text-field>
-          </v-col>
+          </v-col> -->
         </v-row>
-        <v-divider></v-divider>
+        <v-textarea outlined auto-grow readonly hide-details class="mt-3"
+          v-model="queryResponse"
+          rows="4"
+          row-height="16"
+          label="Last query response"
+          placeholder="Query response"
+        ></v-textarea>
+        <v-row>
+          <v-divider class="ma-3"></v-divider>
+        </v-row>
         <v-row>
           <v-col cols="12">
             <v-btn block color="primary" @click="savedQueriesExpand=!savedQueriesExpand">
@@ -49,13 +55,6 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-textarea outlined auto-grow readonly hide-details class="mt-3"
-          v-model="queryResponse"
-          rows="4"
-          row-height="16"
-          label="Last query response"
-          placeholder="Query response"
-        ></v-textarea>
       </v-col>
       <v-expand-x-transition>
         <v-card flat color="transparent" class="ma-3"
@@ -65,17 +64,15 @@
           <v-container fluid class="pa-0">
             <v-row>
               <v-col cols="12">
-                <v-card flat color="primary">
+                <v-card flat color="primary mb-3">
                   <v-card-title class="display-1 align-center justify-center pt-2">
                     Saved Queries
                   </v-card-title>
                 </v-card>
-              </v-col>
-              <v-col cols="12"
-                v-for="savedQuery in savedQueries"
-                :key="savedQuery.name"
-              >
-                <v-card flat>
+                <v-card flat color="my-2"
+                  v-for="savedQuery in savedQueries"
+                  :key="savedQuery.name"
+                >
                   <v-card-title
                     class="fill-height align-end"
                     v-text="savedQuery.name"

@@ -72,7 +72,6 @@ export default {
       { text: 'Home', icon: 'fas fa-home', link: '/'},
       { text: 'Manage Repository', icon: 'fas fa-archive', link: '/manage'},
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},
-      // { text: 'Import', icon: 'fas fa-file-import', link: '/import'},
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
       { text: 'All Repositories', icon: 'fas fa-boxes', link: '/repositories'},
       // { text: 'Management', icon: 'fas fa-tasks', link: '/management'},
