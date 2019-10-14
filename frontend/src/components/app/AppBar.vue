@@ -13,13 +13,14 @@
       no-data-text="No Repositories available"
       :items="repoList"
       label="Selected Repositoy"
-      v-on:change="repoChange(getRepoName(selectedRepo),getRepoID(selectedRepo))"
+      v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
     >
     </v-combobox>
   </v-app-bar>
 </template>
 
 <script>
+import Vuex from 'vuex'
 import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
@@ -30,43 +31,30 @@ export default {
     repoList: undefined,
   }),
   mounted: async function (){
-    // console.log(process.env) # debug
+    // console.log(process.env) // debug
     this.getRepositories()
   },
-  // computed: {
-  //   $color: {
-  //     get: Vuex.mapState(['$color']).$color,
-  //     set: Vuex.mapMutations(['update$color']).update$color
-  //   }
-  // },
   computed: {
-    $repo: function() {
-      return this.$store.state.$repo
-    }
+    $repo: {
+      get: Vuex.mapState(['$repo']).$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo,
+    },
   },
   methods: {
-    update$repo: function(newRepo) {
-      return this.$store.commit('update$repo', newRepo);
-    },
-    repoChange(name, id) {
-      this.update$repo({id: id, name: name})
-      console.log(this.$store.state.$repo) // debug
-      this.$session.set("repoName",name)
+    repoChange(id, name) {
+      this.$repo = {id: id, name: name}
+      // this.$repo.id = id
+      // this.$repo.name = name
+      // console.log(this.$store.state.$repo) // debug
       this.$session.set("repoID",id)
+      this.$session.set("repoName",name)
       // this.$emit('repoChanged',name) # NOTE: isto funcionou
-      // this.$router.replace({
-      //   query: {
-      //     repoID: id,
-      //     repoName: name,
-      //   }
-      // })
       // location.reload()
     },
     getRepositories() {
       // TODO: Consider adding a loading bar on Repo Reload
       axios.get(rdf4j_url+'/rdf4j-server/repositories')
         .then(response => {
-          // this.alert = response.data // debug
           // console.log(response.data.head) // debug column names
           // console.log(response.data.results.bindings) // debug results
           var repoList = response.data.results.bindings
@@ -76,15 +64,24 @@ export default {
           });
           // console.log(response.data) // debug
           this.repoList = repoListText
-          if(this.$session.has("repoName"))
+          if(this.$session.has("repoName")){
             this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
-          if(this.selectedRepo==="Loading Repositories")
+            this.$repo = {
+              id: this.$session.get("repoID"),
+              name: this.$session.get("repoName"),
+            }
+          }
+          if(this.selectedRepo==="Loading Repositories"){
             this.selectedRepo = repoListText[0]
+            this.$repo = {
+              id: this.getRepoID(repoListText[0]),
+              name: this.getRepoName(repoListText[0]),
+            }
+          }
         })
         .catch(alert => {
           // this.alert = error // debug
-          // this.selectedRepo = "PEDIDO FALHOU!!! " + alert
-          this.selectedRepo = "No Repositories available"
+          this.selectedRepo = "No Repositories available" + alert
         })
     },
     getRepoName(string) {
@@ -94,12 +91,5 @@ export default {
       return string.split(" ID:")[1]
     },
   },
-  // watch: { // FIXME: nao consigo chamar o getRepositories direito...
-  //   'update': function(event) {
-  //     console.log(event[0]);
-  //     if(event[0]==="updateRepos")
-  //       getRepositories()
-  //   }
-  // }
 };
 </script>

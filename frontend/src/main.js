@@ -20,12 +20,6 @@ const store = new Vuex.Store({
     update$repo: function(state, newRepo) {
       state.$repo = newRepo;
     },
-    update$repoID: function (state, newRepoID) {
-      state.$repo.id = newRepoID;
-    },
-    update$repoName: function (state, newRepoName) {
-      state.$repoName = newRepoName;
-    },
   }
 });
 

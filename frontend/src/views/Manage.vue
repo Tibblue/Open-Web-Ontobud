@@ -1,14 +1,6 @@
 <template>
   <v-container>
-        <div class="text-center"> <!-- DEBUG -->
-          <v-btn color="info" @click="snackbarDEBUG=true">
-            Confirm current repo (DEBUG)
-          </v-btn>
-          <v-snackbar top v-model="snackbarDEBUG">
-            {{ this.$session.get("repoName") }} - {{ this.$session.get("repoID") }}
-            <v-btn @click="snackbarDEBUG=false">Close</v-btn>
-          </v-snackbar>
-        </div>
+    <debug/>
     <v-row>
       <v-col cols="6">
         <!-- <createRepo/> -->
@@ -24,6 +16,7 @@
 
 <script>
 // // import createRepo from '@/components/createRepo'
+import debug from '@/components/debug'
 import clearRepoStatements from '@/components/clearRepoStatements'
 import deleteCurrentRepo from '@/components/deleteCurrentRepo'
 import axios from 'axios'
@@ -32,6 +25,7 @@ const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 export default {
   components: {
     // createRepo,
+    debug,
     clearRepoStatements,
     deleteCurrentRepo,
   },
