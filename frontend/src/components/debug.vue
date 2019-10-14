@@ -16,6 +16,8 @@
     <br/>
     <span>{{this.$session.get("repoName")}}</span>
     <span>{{this.$session.get("repoID")}}</span>
+    <br/>
+    <v-divider></v-divider>
   </div>
 </template>
 

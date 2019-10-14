@@ -3,7 +3,7 @@
     <debug/>
     <v-row>
       <v-col cols="6">
-        <!-- <createRepo/> -->
+        <exportRepo/>
       </v-col>
       <v-col cols="6">
         <clearRepoStatements/>
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-// // import createRepo from '@/components/createRepo'
 import debug from '@/components/debug'
+import exportRepo from '@/components/exportRepo'
 import clearRepoStatements from '@/components/clearRepoStatements'
 import deleteCurrentRepo from '@/components/deleteCurrentRepo'
 import axios from 'axios'
@@ -24,8 +24,8 @@ const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
   components: {
-    // createRepo,
     debug,
+    exportRepo,
     clearRepoStatements,
     deleteCurrentRepo,
   },

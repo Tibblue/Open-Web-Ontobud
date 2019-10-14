@@ -8,14 +8,15 @@
     </v-toolbar-title>
 
     <div class="flex-grow-1"></div>
-    <v-combobox dense hide-details
-      v-model="selectedRepo"
-      no-data-text="No Repositories available"
-      :items="repoList"
-      label="Selected Repositoy"
-      v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
-    >
-    </v-combobox>
+    <v-col cols="4">
+      <v-combobox dense hide-details
+        v-model="selectedRepo"
+        no-data-text="No Repositories available"
+        :items="repoList"
+        label="Selected Repositoy"
+        v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
+      ></v-combobox>
+    </v-col>
   </v-app-bar>
 </template>
 

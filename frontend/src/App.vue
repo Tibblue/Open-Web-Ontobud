@@ -30,7 +30,6 @@ export default {
   }),
   methods: {
     updateRepos() {
-      // this.$refs.appBar.getRepositories()
       this.update = ["updateRepos"]
       console.log("emit is gud")
     }
