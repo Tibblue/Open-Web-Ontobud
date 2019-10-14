@@ -33,8 +33,24 @@ export default {
     // console.log(process.env) # debug
     this.getRepositories()
   },
+  // computed: {
+  //   $color: {
+  //     get: Vuex.mapState(['$color']).$color,
+  //     set: Vuex.mapMutations(['update$color']).update$color
+  //   }
+  // },
+  computed: {
+    $repo: function() {
+      return this.$store.state.$repo
+    }
+  },
   methods: {
+    update$repo: function(newRepo) {
+      return this.$store.commit('update$repo', newRepo);
+    },
     repoChange(name, id) {
+      this.update$repo({id: id, name: name})
+      console.log(this.$store.state.$repo) // debug
       this.$session.set("repoName",name)
       this.$session.set("repoID",id)
       // this.$emit('repoChanged',name) # NOTE: isto funcionou
