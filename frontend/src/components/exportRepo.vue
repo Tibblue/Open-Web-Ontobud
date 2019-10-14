@@ -1,20 +1,31 @@
 <template>
   <v-row>
-    <v-col cols="12" md="6">
-      <v-btn block color="success" @click="exportRepo($repo.id,'ttl','download')">
+    <v-col cols="12">
+      <v-radio-group hide-details v-model="fileTypeSelected">
+        <v-radio
+          v-for="type in fileTypes"
+          :key="type.value"
+          :label="type.text"
+          :value="type.value"
+          color="success"
+        ></v-radio>
+      </v-radio-group>
+    </v-col>
+    <v-col cols="12" xl="6">
+      <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'download')">
         Export Repo (Download File)
       </v-btn>
     </v-col>
-    <v-col cols="12" md="6">
-      <v-btn block color="success" @click="exportRepo($repo.id,'ttl','tab')">
+    <v-col cols="12" xl="6">
+      <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'tab')">
         Export Repo (InScreen Text)
       </v-btn>
     </v-col>
     <v-col cols="12">
       <v-textarea outlined auto-grow readonly hide-details class="mt-3"
         v-model="exportResponse"
-        label="Response"
-        placeholder="Response to the request"
+        label="InScreen Text"
+        placeholder="InScreen Text"
         ></v-textarea>
     </v-col>
   </v-row>
@@ -28,6 +39,12 @@ const FileDownload = require('js-file-download')
 
 export default {
   data: () => ({
+    fileTypeSelected: "ttl",
+    fileTypes: [ // TODO: add more
+      { text: 'Turtle', value: 'ttl' },
+      { text: 'RDF/XML', value: 'rdf-xml' },
+      { text: 'Plain Text', value: 'txt' },
+    ],
     exportResponse: "",
   }),
   mounted: async function (){
@@ -46,11 +63,6 @@ export default {
       var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
       var headers = { 'headers' :{}}
       switch(fileType){
-        case 'txt':
-          headers = { 'headers' :{
-            Accept: "text/plain"
-          }}
-          break;
         case 'ttl':
           headers = { 'headers' :{
             Accept: "text/turtle"
@@ -58,6 +70,11 @@ export default {
           break;
         case 'rdf-xml':
           fileType = "xml"
+          break;
+        case 'txt':
+          headers = { 'headers' :{
+            Accept: "text/plain"
+          }}
           break;
         default:
       }
