@@ -1,44 +1,75 @@
-[INFO ] 2019-10-09 09:39:06,330 [main] Logback logging API implementation is configured.
-[INFO ] 2019-10-09 09:39:06,686 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
-[INFO ] 2019-10-09 09:39:06,687 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
-[INFO ] 2019-10-09 09:39:06,701 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
-[INFO ] 2019-10-09 09:39:06,716 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
-[INFO ] 2019-10-09 09:39:07,443 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
-[INFO ] 2019-10-09 09:39:07,497 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
-[INFO ] 2019-10-09 09:39:07,550 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
-[INFO ] 2019-10-09 09:39:07,558 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
-[INFO ] 2019-10-09 09:39:07,559 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
-[INFO ] 2019-10-09 09:39:07,560 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-10-09 09:39:07,565 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
-[INFO ] 2019-10-09 09:39:07,570 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
-[INFO ] 2019-10-09 09:39:07,571 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
-[INFO ] 2019-10-09 09:39:07,572 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
-[INFO ] 2019-10-09 09:39:07,572 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-10-09 09:39:07,575 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
-[INFO ] 2019-10-09 09:39:07,577 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-10-09 09:39:07,577 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-10-09 09:39:07,837 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 3139 ms
-[INFO ] 2019-10-09 09:49:38,236 [http-nio-8080-exec-1] Request for query 3392903 is finished
-[INFO ] 2019-10-09 09:53:34,520 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:11:22,909 [repositories] DELETE request invoked for repository 'null'
-[ERROR] 2019-10-09 10:11:22,928 [repositories] Error while handling request
-java.lang.NullPointerException: null
-	at java.io.File.<init>(File.java:360)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryDir(LocalRepositoryManager.java:237)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryConfig(LocalRepositoryManager.java:308)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryInfo(LocalRepositoryManager.java:337)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.hasRepositoryConfig(RepositoryManager.java:228)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.removeRepository(RepositoryManager.java:339)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:429)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:425)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:135)
+[INFO ] 2019-10-16 16:00:22,926 [main] Logback logging API implementation is configured.
+[INFO ] 2019-10-16 16:00:23,339 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-10-16 16:00:23,339 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-10-16 16:00:23,352 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-10-16 16:00:23,364 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-10-16 16:00:23,967 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-10-16 16:00:24,012 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-10-16 16:00:24,047 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-10-16 16:00:24,052 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-10-16 16:00:24,052 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-10-16 16:00:24,052 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-10-16 16:00:24,055 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-10-16 16:00:24,058 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-10-16 16:00:24,059 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-10-16 16:00:24,061 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-10-16 16:00:24,061 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-10-16 16:00:24,063 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-10-16 16:00:24,064 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-10-16 16:00:24,064 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-10-16 16:00:24,267 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 2799 ms
+[INFO ] 2019-10-16 16:01:55,969 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:01:56,306 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:01:58,610 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:01:58,927 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:16:20,893 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:16:21,790 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:16:25,148 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 16:16:32,192 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 16:16:32,195 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:23:19,824 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:23:31,605 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 16:23:31,605 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:23:40,059 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 16:23:47,538 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 16:23:47,539 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:24:50,563 [repositories/fam] PUT data in repository
+[INFO ] 2019-10-16 16:24:50,564 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:31:32,909 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 16:31:36,732 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 16:31:36,735 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:31:42,721 [repositories/fam] GET statements
+[INFO ] 2019-10-16 16:31:46,729 [repositories/fam] GET statements
+[INFO ] 2019-10-16 16:31:52,001 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 16:32:11,572 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 16:32:11,572 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:32:23,811 [repositories/fam] POST query 1044088069
+[INFO ] 2019-10-16 16:32:24,877 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:32:32,881 [repositories/fam] POST query -1558871678
+[INFO ] 2019-10-16 16:32:32,925 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:33:29,435 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 16:33:38,843 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 16:33:38,843 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:33:41,666 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 16:33:44,905 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 16:33:44,906 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 16:40:38,453 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2019-10-16 16:41:33,834 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-10-16 17:18:46,323 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 17:18:53,820 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:19:00,720 [repositories/fam] Client sent bad request ( 415)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
+	at java.util.Optional.orElseThrow(Optional.java:290)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -70,33 +101,24 @@ java.lang.NullPointerException: null
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-09 10:11:26,702 [http-nio-8080-exec-8] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:14:43,112 [http-nio-8080-exec-7] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:14:48,214 [repositories/zxc] DELETE request invoked for repository 'zxc'
-[INFO ] 2019-10-09 10:14:48,224 [repositories/zxc] DELETE request successfully completed
-[INFO ] 2019-10-09 10:22:59,195 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:26:05,982 [http-nio-8080-exec-5] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:26:23,235 [repositories/asd] DELETE request invoked for repository 'asd'
-[INFO ] 2019-10-09 10:26:23,242 [repositories/asd] DELETE request successfully completed
-[INFO ] 2019-10-09 10:27:48,044 [repositories] DELETE request invoked for repository 'null'
-[ERROR] 2019-10-09 10:27:48,044 [repositories] Error while handling request
-java.lang.NullPointerException: null
-	at java.io.File.<init>(File.java:360)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryDir(LocalRepositoryManager.java:237)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryConfig(LocalRepositoryManager.java:308)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryInfo(LocalRepositoryManager.java:337)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.hasRepositoryConfig(RepositoryManager.java:228)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.removeRepository(RepositoryManager.java:339)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:429)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:425)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:135)
+[INFO ] 2019-10-16 17:19:49,849 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:19:49,849 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 17:19:56,138 [repositories/fam] GET statements
+[INFO ] 2019-10-16 17:20:01,215 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 17:20:21,518 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:20:21,519 [repositories/fam] Client sent bad request ( 415)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
+	at java.util.Optional.orElseThrow(Optional.java:290)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -128,91 +150,20 @@ java.lang.NullPointerException: null
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-09 10:47:08,092 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:51:24,958 [http-nio-8080-exec-2] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:51:56,235 [repositories/as] Client sent bad request ( 404)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: as
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
-	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
-	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
-	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$347a84e6.preHandle(<generated>)
-	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-09 10:52:12,302 [http-nio-8080-exec-9] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:52:13,365 [http-nio-8080-exec-7] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:52:13,405 [repositories/SYSTEM] POST data to repository
-[INFO ] 2019-10-09 10:52:13,642 [http-nio-8080-exec-2] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:52:13,664 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:52:14,047 [repositories/qwe] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:52:28,817 [repositories/qwe] DELETE request invoked for repository 'qwe'
-[INFO ] 2019-10-09 10:52:28,823 [repositories/qwe] DELETE request successfully completed
-[INFO ] 2019-10-09 10:52:56,885 [repositories/as] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:53:01,213 [http-nio-8080-exec-4] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:53:01,218 [repositories/SYSTEM] POST data to repository
-[INFO ] 2019-10-09 10:53:01,310 [repositories/qwe] Request for query 3392903 is finished
-[INFO ] 2019-10-09 10:53:02,826 [http-nio-8080-exec-6] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:00:20,022 [repositories] DELETE request invoked for repository 'null'
-[ERROR] 2019-10-09 11:00:20,023 [repositories] Error while handling request
-java.lang.NullPointerException: null
-	at java.io.File.<init>(File.java:360)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryDir(LocalRepositoryManager.java:237)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryConfig(LocalRepositoryManager.java:308)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryInfo(LocalRepositoryManager.java:337)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.hasRepositoryConfig(RepositoryManager.java:228)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.removeRepository(RepositoryManager.java:339)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:429)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:425)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:135)
+[INFO ] 2019-10-16 17:20:46,355 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:20:46,355 [repositories/fam] Client sent bad request ( 415)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
+	at java.util.Optional.orElseThrow(Optional.java:290)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -244,139 +195,26 @@ java.lang.NullPointerException: null
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-09 11:00:26,405 [repositories/qwe] DELETE request invoked for repository 'qwe'
-[INFO ] 2019-10-09 11:00:26,411 [repositories/qwe] DELETE request successfully completed
-[INFO ] 2019-10-09 11:25:55,134 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:30:25,391 [http-nio-8080-exec-6] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:34:03,040 [http-nio-8080-exec-2] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:35:10,525 [http-nio-8080-exec-4] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:35:31,210 [repositories/qw] Client sent bad request ( 404)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: qw
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
-	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
-	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
-	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$347a84e6.preHandle(<generated>)
-	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-09 11:36:37,216 [http-nio-8080-exec-9] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:44:28,432 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:44:55,735 [repositories/as] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:45:10,812 [http-nio-8080-exec-4] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:45:20,637 [http-nio-8080-exec-1] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:45:51,510 [repositories/qw] Client sent bad request ( 404)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: qw
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:108)
-	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.preHandle(RepositoryInterceptor.java:82)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$FastClassBySpringCGLIB$$7a1fdc31.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
-	at org.springframework.aop.support.DelegatingIntroductionInterceptor.doProceed(DelegatingIntroductionInterceptor.java:133)
-	at org.springframework.aop.support.DelegatingIntroductionInterceptor.invoke(DelegatingIntroductionInterceptor.java:121)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$347a84e6.preHandle(<generated>)
-	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:133)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:962)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-09 11:46:04,592 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-10-09 11:46:07,026 [repositories] DELETE request invoked for repository 'null'
-[ERROR] 2019-10-09 11:46:07,026 [repositories] Error while handling request
-java.lang.NullPointerException: null
-	at java.io.File.<init>(File.java:360)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryDir(LocalRepositoryManager.java:237)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryConfig(LocalRepositoryManager.java:308)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.getRepositoryInfo(LocalRepositoryManager.java:337)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.hasRepositoryConfig(RepositoryManager.java:228)
-	at org.eclipse.rdf4j.repository.manager.RepositoryManager.removeRepository(RepositoryManager.java:339)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:429)
-	at org.eclipse.rdf4j.repository.manager.LocalRepositoryManager.removeRepository(LocalRepositoryManager.java:425)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:135)
+[INFO ] 2019-10-16 17:20:48,881 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:20:48,881 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 17:20:55,574 [repositories/fam] GET statements
+[INFO ] 2019-10-16 17:20:57,255 [repositories/fam] GET statements
+[INFO ] 2019-10-16 17:21:14,090 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:21:14,090 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 17:21:16,729 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:21:16,729 [repositories/fam] Client sent bad request ( 415)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
+	at java.util.Optional.orElseThrow(Optional.java:290)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:894)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -408,6 +246,52 @@ java.lang.NullPointerException: null
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-09 14:52:29,406 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-10-09 14:56:52,669 [repositories/as] Request for query 3392903 is finished
-[INFO ] 2019-10-09 15:04:46,522 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Wed Oct 09 09:39:04 WEST 2019]; root of context hierarchy
+[INFO ] 2019-10-16 17:22:01,265 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 17:22:11,282 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 17:22:11,282 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 17:22:14,336 [repositories/fam] GET statements
+[INFO ] 2019-10-16 17:22:19,574 [repositories/fam] GET statements
+[INFO ] 2019-10-16 17:22:30,154 [repositories/fam] GET statements
+[INFO ] 2019-10-16 17:22:54,899 [repositories/fam] GET statements
+[INFO ] 2019-10-16 17:54:57,560 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-16 18:37:45,446 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2019-10-16 18:37:58,627 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 18:38:04,051 [repositories/fam] PUT data in repository
+[INFO ] 2019-10-16 18:38:04,052 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:39:06,076 [repositories/fam] PUT data in repository
+[INFO ] 2019-10-16 18:39:06,076 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:39:09,379 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2019-10-16 18:39:12,721 [repositories/fam] PUT data in repository
+[INFO ] 2019-10-16 18:39:12,721 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:41:19,499 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-10-16 18:42:31,828 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:42:31,828 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:42:34,159 [repositories/fam] PUT data in repository
+[INFO ] 2019-10-16 18:42:34,159 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:45:40,213 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:45:40,214 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:45:51,244 [repositories/fam] GET statements
+[INFO ] 2019-10-16 18:46:32,682 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 18:46:39,715 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:46:39,715 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:46:45,399 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 18:46:49,010 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:46:49,010 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:47:01,082 [repositories/fam2] GET statements
+[INFO ] 2019-10-16 18:47:14,620 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:47:14,620 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:47:32,748 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:47:32,748 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:47:36,293 [repositories/fam] DELETE data from repository
+[INFO ] 2019-10-16 18:47:42,056 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:47:42,057 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:47:58,234 [repositories/fam2] GET statements
+[INFO ] 2019-10-16 18:48:31,773 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:48:31,777 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:49:51,964 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-10-16 18:49:56,837 [repositories/fam] PUT data in repository
+[INFO ] 2019-10-16 18:49:56,837 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 18:50:06,281 [repositories/fam2] GET statements
+[INFO ] 2019-10-16 18:50:14,424 [repositories/fam] POST data to repository
+[INFO ] 2019-10-16 18:50:14,424 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-10-16 19:15:21,695 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Wed Oct 16 16:00:21 WEST 2019]; root of context hierarchy
