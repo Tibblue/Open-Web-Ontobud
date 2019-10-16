@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <v-radio-group hide-details v-model="fileTypeSelected">
+      <v-radio-group hide-details v-model="fileTypeSelected" class="ma-0 pa-0">
         <v-radio
           v-for="type in fileTypes"
           :key="type.value"
@@ -10,9 +10,7 @@
           color="success"
         ></v-radio>
       </v-radio-group>
-    </v-col>
-    <v-col cols="12" xl="6">
-      <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'download')">
+      <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'download')" class="mt-3">
         Export Repo (Download File)
       </v-btn>
     </v-col>
@@ -20,8 +18,6 @@
       <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'tab')">
         Export Repo (InScreen Text)
       </v-btn>
-    </v-col>
-    <v-col cols="12">
       <v-textarea outlined auto-grow readonly hide-details class="mt-3"
         v-model="exportResponse"
         label="InScreen Text"
@@ -40,6 +36,7 @@ const FileDownload = require('js-file-download')
 export default {
   data: () => ({
     fileTypeSelected: "ttl",
+    // TODO: confirm if no error exists when importing/exporting from other file types (example rdf-xml)
     fileTypes: [ // TODO: add more
       { text: 'Turtle', value: 'ttl' },
       { text: 'RDF/XML', value: 'rdf-xml' },
@@ -59,22 +56,17 @@ export default {
   },
   methods: {
     exportRepo(repoID, fileType, exportType) {
-      // fileType="text"
       var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
-      var headers = { 'headers' :{}}
+      var headers = { 'headers': {}}
       switch(fileType){
         case 'ttl':
-          headers = { 'headers' :{
-            Accept: "text/turtle"
-          }}
+          headers = { 'headers': { Accept: "text/turtle" }}
           break;
         case 'rdf-xml':
           fileType = "xml"
           break;
         case 'txt':
-          headers = { 'headers' :{
-            Accept: "text/plain"
-          }}
+          headers = { 'headers': { Accept: "text/plain" }}
           break;
         default:
       }

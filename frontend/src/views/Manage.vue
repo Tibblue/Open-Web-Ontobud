@@ -3,6 +3,8 @@
     <debug/>
     <v-row>
       <v-col cols="6">
+        <importRepo/>
+        <v-divider></v-divider>
         <exportRepo/>
       </v-col>
       <v-col cols="6">
@@ -16,6 +18,7 @@
 
 <script>
 import debug from '@/components/debug'
+import importRepo from '@/components/importRepo'
 import exportRepo from '@/components/exportRepo'
 import clearRepoStatements from '@/components/clearRepoStatements'
 import deleteCurrentRepo from '@/components/deleteCurrentRepo'
@@ -25,6 +28,7 @@ const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 export default {
   components: {
     debug,
+    importRepo,
     exportRepo,
     clearRepoStatements,
     deleteCurrentRepo,
