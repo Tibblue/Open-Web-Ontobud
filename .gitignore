@@ -1,9 +1,15 @@
-# ignore programs
+# ignore RDF4J and Apache programs
 rdf4j/programs/apache-tomcat-9.0.22
 rdf4j/programs/eclipse-rdf4j-2.5.3
+
+# Mongo ignores
+**/mongoData/
+
+# Frontend ignores
+**/node_modules/
 
 # temporary ignores
 rdf4j/edgar_wisdom.txt
 rdf4j/links.txt
-rdf4j/rdf_save_state
+rdf4j/rdf_save_state/
 testing/
