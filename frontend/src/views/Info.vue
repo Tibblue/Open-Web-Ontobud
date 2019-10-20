@@ -14,15 +14,15 @@
               <v-card-title class="align-center pt-2">
                 Statement Number: {{statementNumber}}
               </v-card-title>
-              <v-card-text>
-                <h4>Explicit Statements: TODO</h4>
-                <h4>Implicit Statements: TODO</h4>
-              </v-card-text>
             </v-card>
             <v-card flat color="primary my-1">
               <v-card-title class="align-center pt-2">
                 Expansion Ratio: TODO
               </v-card-title>
+              <v-card-text>
+                <h4>Explicit Statements: TODO</h4>
+                <h4>Implicit Statements: TODO</h4>
+              </v-card-text>
             </v-card>
           </v-col>
           <v-col cols="6">
@@ -39,6 +39,17 @@
                 <h4>Explicit Statements: TODO</h4>
               </v-card-text>
             </v-card>
+
+                <v-card flat color="my-2"
+                  v-for="classe in classes"
+                  :key="classe.name"
+                >
+                  <v-card-title
+                    class="fill-height align-end"
+                    v-text="classe.name"
+                  ></v-card-title>
+                </v-card>
+
           </v-col>
         </v-row>
       </v-container>
@@ -57,12 +68,15 @@ export default {
   },
   data: () => ({
     statementNumber: "Loading info...",
+    classes: [{name: 'Loading classes...'}],
     snackbarDEBUG: false,
   }),
   mounted: async function (){
     // console.log(process.env) // debug
     // console.log(this.$props)
-    this.getStatementNumber(this.$session.get("repoID"))
+    var currentRepoID = this.$session.get("repoID")
+    this.getStatementNumber(currentRepoID)
+    this.getClasses(currentRepoID)
   },
   methods: {
     getStatementNumber(repoID) {
@@ -73,6 +87,28 @@ export default {
         })
         .catch(alert => {
           this.statementNumber = "Servidor indisponivel...\n" + alert
+        })
+    },
+    getClasses(repoID) {
+      this.classes = [{name: 'Loading classes...'}]
+      var repoID = this.$session.get("repoID")
+      var query = 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }'
+      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      axios.post(url, query,
+                {headers: {"Content-Type": "application/sparql-query"}})
+        .then(response => {
+          // console.log(response.data) // debug
+          // console.log(response.data.head.vars) // debug Nome de Colunas
+          // console.log(response.data.results.bindings) // debug resultados
+          var classArray = []
+          var classes = response.data.results.bindings
+          classes.forEach(element => {
+            classArray.push({'name': element.class.value})
+          });
+          this.classes = classArray
+        })
+        .catch(alert => {
+          this.classes = [{name: "Get Classes FAIL!!!\n" + alert}]
         })
     },
   }
