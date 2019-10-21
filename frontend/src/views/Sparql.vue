@@ -19,17 +19,17 @@
             <!-- TODO: alterar para um dialog box,
                     com a query escrita por default e
                     opçao para query global ou nao, etc -->
-            <v-btn block color="primary" @click="saveQuery('meh',queryInput)">
+            <v-btn block color="primary" @click="saveQuery(newSavedQueryName,queryInput)">
               Save Query (NOT WORKING)
             </v-btn>
           </v-col>
-          <!-- <v-col cols="12" md="6">
+          <v-col cols="12" md="6">
             <v-text-field dense hide-details
               class="mt-0 py-0"
               v-model="newSavedQueryName"
               label="Query name"
             ></v-text-field>
-          </v-col> -->
+          </v-col>
         </v-row>
         <v-textarea outlined auto-grow readonly hide-details class="mt-3"
           v-model="queryResponse"
@@ -121,6 +121,7 @@
 <script>
 import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const mongo_url = "http://localhost:"+'5000' // FIXME use env
 
 export default {
   data: () => ({
@@ -138,7 +139,30 @@ export default {
     savedQueryExpandedList: [],
     savedQueryEditedList: {},
   }),
+  mounted: async function (){
+    // console.log(process.env) // debug
+    // console.log(this.$props)
+    var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
+    this.getSavedQueries(currentUserEmail)
+  },
   methods: {
+    getSavedQueries(currentUserEmail) {
+      this.savedQueries = [{'name': 'Loading Queries...', 'query': 'Please wait'}]
+      var url = mongo_url+'/api/queries/user/'+currentUserEmail
+      axios.get(url)
+        .then(response => {
+          // console.log(response.data) // debug
+          var savedQueriesArray = []
+          var savedQueriesAux = response.data
+          savedQueriesAux.forEach(element => {
+            savedQueriesArray.push({'name': element.name, 'query': element.query})
+          });
+          this.savedQueries = savedQueriesArray
+        })
+        .catch(alert => {
+          this.savedQueries = [{'name': "Get Classes FAIL!!!", 'query': alert}]
+        })
+    },
     runQuery(query) {
       var repoID = this.$session.get("repoID")
       // var queryEncoded = encodeURIComponent(query)
@@ -173,23 +197,21 @@ export default {
         })
     },
     saveQuery(name, query) {
-      // var queryEncoded = encodeURIComponent(query)
-      const formData = new FormData();
-      formData.append('action', 'save');
-      formData.append('query-name', "name");
-      formData.append('query', "query");
-      var language = "SPARQL"
-      formData.append('queryLn', language);
-      // formData.append('limit_query', limit);
-      var url = rdf4j_url+'/rdf4j-workbench/repositories/'+this.$session.get("repoID")+'/query'
-      axios.post(url, formData)
+      const body = {
+        'name': name,
+        'query': query,
+        'user_email': 'kiko@kiko' // TODO: use user email when auth gets done
+      }
+      var url = mongo_url+'/api/queries'
+      axios.post(url, body)
         .then(response => {
           console.log(response.data) // debug
           var response = response.data
-          this.queryResponse = "Query SUCCESS \n" + JSON.stringify(response)
+          this.queryResponse = "Query add SUCCESS \n" + JSON.stringify(response)
+          this.savedQueries.push({'name': name, 'query': query,})
         })
         .catch(alert => {
-          this.queryResponse = "Query FALHOU!!!\n" + alert
+          this.queryResponse = "Query add FAIL!!!\n" + alert
         })
     },
     savedQueryExpand(name) {
@@ -204,6 +226,7 @@ export default {
       this.savedQueryEditedList[name] = oldQuery
     },
     savedQueryEditSave(name,newQuery) {
+      // TODO update no mongo
       for (let index = 0; index < this.savedQueries.length; index++) {
         if(this.savedQueries[index].name===name){
           this.savedQueries[index].query = newQuery
@@ -211,15 +234,25 @@ export default {
       }
       delete this.savedQueryEditedList[name]
     },
-    deleteSavedQuery(name) { // FIXME
-      // TODO add dialog for confirmation
-      for (let index = 0; index < this.savedQueries.length; index++) {
-        if(this.savedQueries[index].name===name){
-          this.savedQueries.splice(index,1)
-          return index
-        }
-      }
-      console.log("TODO update when mongo is done, to delete the query in the database")
+    deleteSavedQuery(name) {
+      // TODO: add dialog for confirmation
+      var url = mongo_url+'/api/queries/'+name
+      axios.delete(url)
+        .then(response => {
+          console.log(response.data) // debug
+          var response = response.data
+          this.queryResponse = "Query delete SUCCESS \n" + JSON.stringify(response)
+          for (let index = 0; index < this.savedQueries.length; index++) {
+            if(this.savedQueries[index].name===name){
+              this.savedQueries.splice(index,1)
+              return index
+            }
+          }
+        })
+        .catch(alert => {
+          this.queryResponse = "Query delete FAIL!!!\n" + alert
+          // FIXME: detetar qd falha pk ja existe
+        })
     },
   }
 }
