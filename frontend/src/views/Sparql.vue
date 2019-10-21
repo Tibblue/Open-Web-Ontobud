@@ -78,9 +78,9 @@
                     v-text="savedQuery.name"
                   ></v-card-title>
                   <v-card-text v-if="savedQueryExpandedList.includes(savedQuery.name)">
-                    <span v-if="!savedQuery.edited">{{savedQuery.query}}</span>
+                    <span v-if="!savedQueryEditedList[savedQuery.name]">{{savedQuery.query}}</span>
                     <v-textarea v-else outlined auto-grow hide-details
-                      v-model="savedQuery.edited"
+                      v-model="savedQueryEditedList[savedQuery.name]"
                       rows="6"
                       row-height="16"
                       label="Edited Query"
@@ -98,10 +98,10 @@
                     <v-btn icon @click="runQuery(savedQuery.query)">
                       <v-icon>fas fa-play</v-icon>
                     </v-btn>
-                    <v-btn icon v-if="!savedQuery.edited" @click="editSavedQuery(savedQuery.name,savedQuery.edited)">
+                    <v-btn icon v-if="!savedQueryEditedList[savedQuery.name]" @click="savedQueryEdit(savedQuery.name,savedQuery.query)">
                       <v-icon>fas fa-edit</v-icon>
                     </v-btn>
-                    <v-btn icon v-else @click="editSavedQuery(savedQuery.name,savedQuery.edited)">
+                    <v-btn icon v-else @click="savedQueryEditSave(savedQuery.name,savedQueryEditedList[savedQuery.name])">
                       <v-icon>fas fa-save</v-icon>
                     </v-btn>
                     <v-btn icon @click="deleteSavedQuery(savedQuery.name)">
@@ -136,6 +136,7 @@ export default {
       { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE {\n ?elem a ?class.\n ?class a owl:Class. }\nGROUP BY ?class' },
     ],
     savedQueryExpandedList: [],
+    savedQueryEditedList: {},
   }),
   methods: {
     runQuery(query) {
@@ -199,27 +200,16 @@ export default {
       else
         this.savedQueryExpandedList.push(name)
     },
-    editSavedQuery(name,newQuery) { // TODO
+    savedQueryEdit(name,oldQuery) {
+      this.savedQueryEditedList[name] = oldQuery
+    },
+    savedQueryEditSave(name,newQuery) {
       for (let index = 0; index < this.savedQueries.length; index++) {
         if(this.savedQueries[index].name===name){
-          // if(newQuery){
-          if(this.savedQueries[index].edited){
-            this.savedQueries[index].query = this.savedQueries[index].edited
-            delete this.savedQueries[index].edited
-          }
-          else{
-            this.savedQueries[index].edited = this.savedQueries[index].query
-          }
-          return index
+          this.savedQueries[index].query = newQuery
         }
       }
-      // NOTE:
-      // -mudar de span para textbox para editar
-      // -mudar icon de edit para save
-      // -carregar no icon de save guarda a query (atualiza no mongo e depois
-      //    mete de volta o span)
-
-      console.log("TODO editSavedQuery()")
+      delete this.savedQueryEditedList[name]
     },
     deleteSavedQuery(name) { // FIXME
       // TODO add dialog for confirmation
