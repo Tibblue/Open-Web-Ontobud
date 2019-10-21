@@ -5,7 +5,7 @@ var QuerySchema = new Schema({
   name: {type: String, required: true, unique: true},
   query: {type: String, required: true},
   user_email: {type: String, required: true, unique: true},
-  global: {type: String, required: true, default: false},
+  repoID: {type: String},
 })
 
 module.exports = mongoose.model('Query', QuerySchema, 'query')

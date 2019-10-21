@@ -10,25 +10,29 @@
           placeholder="Place query and Execute"
         ></v-textarea>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="12">
             <v-btn block color="primary" @click="runQuery(queryInput)">
               Run Query
             </v-btn>
           </v-col>
-          <v-col cols="6" md="6">
-            <!-- TODO: alterar para um dialog box,
-                    com a query escrita por default e
-                    opçao para query global ou nao, etc -->
-            <v-btn block color="primary" @click="saveQuery(newSavedQueryName,queryInput)">
-              Save Query (NOT WORKING)
-            </v-btn>
-          </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="9" md="9">
             <v-text-field dense hide-details
               class="mt-0 py-0"
               v-model="newSavedQueryName"
-              label="Query name"
+              label="Saved Query name"
             ></v-text-field>
+          </v-col>
+          <v-col cols="3" md="3">
+            <v-checkbox hide-details class="mt-0 pt-2"
+              v-model="newSavedQueryGlobal"
+              label="Global"
+              color="primary"
+            ></v-checkbox>
+          </v-col>
+          <v-col cols="12" md="12">
+            <v-btn block color="primary" @click="saveQuery(newSavedQueryName,queryInput,newSavedQueryGlobal)">
+              Save Query
+            </v-btn>
           </v-col>
         </v-row>
         <v-textarea outlined auto-grow readonly hide-details class="mt-3"
@@ -128,13 +132,14 @@ export default {
     queryInput: "select * where { ?s ?p ?o }\nlimit 20",
     queryResponse: "",
     newSavedQueryName: "",
+    newSavedQueryGlobal: true,
     savedQueriesExpand: true,
     savedQueries: [ // temporary visual debug
-      { name: 'Select All', query: 'select * where { ?s ?p ?o }\nlimit 20' },
-      { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE {\n ?s a ?type.\n}' },
-      { name: 'Get classes only', query: 'SELECT DISTINCT ?s WHERE {\n ?s a owl:Class.\n}' },
-      { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE {\n ?class a owl:Class.\n}' },
-      { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE {\n ?elem a ?class.\n ?class a owl:Class. }\nGROUP BY ?class' },
+      { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 20' },
+      { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?s a ?type. }' },
+      { name: 'Get classes only', query: 'SELECT DISTINCT ?s WHERE { ?s a owl:Class. }' },
+      { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
+      { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
     ],
     savedQueryExpandedList: [],
     savedQueryEditedList: {},
@@ -196,12 +201,15 @@ export default {
           this.queryResponse = "Query FALHOU!!!\n" + alert
         })
     },
-    saveQuery(name, query) {
-      const body = {
+    saveQuery(name, query, global) {
+      var body = {
         'name': name,
         'query': query,
-        'user_email': 'kiko@kiko' // TODO: use user email when auth gets done
+        'user_email': 'kiko@kiko', // TODO: use user email when auth gets done
       }
+      if(!global)
+        body['repoID'] = this.$session.get("repoID")
+
       var url = mongo_url+'/api/queries'
       axios.post(url, body)
         .then(response => {
@@ -239,7 +247,7 @@ export default {
       var url = mongo_url+'/api/queries/'+name
       axios.delete(url)
         .then(response => {
-          console.log(response.data) // debug
+          // console.log(response.data) // debug
           var response = response.data
           this.queryResponse = "Query delete SUCCESS \n" + JSON.stringify(response)
           for (let index = 0; index < this.savedQueries.length; index++) {
