@@ -31,25 +31,20 @@
                 Existing Classes
               </v-card-title>
             </v-card>
-            <v-card flat color="primary my-1">
-              <v-card-title class="align-center pt-2">
-                Statement Number: {{statementNumber}}
-              </v-card-title>
-              <v-card-text>
-                <h4>Explicit Statements: TODO</h4>
-              </v-card-text>
-            </v-card>
-
-                <v-card flat color="my-2"
-                  v-for="classe in classes"
-                  :key="classe.name"
-                >
-                  <v-card-title
-                    class="fill-height align-end"
-                    v-text="classe.name"
-                  ></v-card-title>
-                </v-card>
-
+            <v-expansion-panels accordion>
+              <v-expansion-panel
+                v-for="classe in classes"
+                :key="classe.name"
+                @click="getClassElems($session.get('repoID'),classe.name)"
+              >
+                <v-expansion-panel-header>{{classe.name}}</v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <div v-for="elem in expandedClassElems" :key="elem">
+                    {{elem.split("#")[1]}}
+                  </div>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
           </v-col>
         </v-row>
       </v-container>
@@ -69,6 +64,7 @@ export default {
   data: () => ({
     statementNumber: "Loading info...",
     classes: [{name: 'Loading classes...'}],
+    expandedClassElems: ["Loading elements..."],
     snackbarDEBUG: false,
   }),
   mounted: async function (){
@@ -80,6 +76,7 @@ export default {
   },
   methods: {
     getStatementNumber(repoID) {
+      this.statementNumber = "Loading info..."
       axios.get(rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/size')
         .then(response => {
           // console.log(response.data)
@@ -111,6 +108,30 @@ export default {
           this.classes = [{name: "Get Classes FAIL!!!\n" + alert}]
         })
     },
+    getClassElems(repoID, classe) {
+      this.expandedClassElems = ["Loading elements..."]
+      var repoID = this.$session.get("repoID")
+      // var query = 'SELECT DISTINCT ?elem WHERE { ?elem a '+classe+'. }'
+      var query = 'PREFIX : <'+classe.split('#')[0]+'#> SELECT DISTINCT ?elem WHERE { ?elem a :'+classe.split('#')[1]+'. }'
+      console.log(query)
+      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      axios.post(url, query,
+                {headers: {"Content-Type": "application/sparql-query"}})
+        .then(response => {
+          // console.log(response.data) // debug
+          // console.log(response.data.head.vars) // debug Nome de Colunas
+          // console.log(response.data.results.bindings) // debug resultados
+          var elemArray = []
+          var elems = response.data.results.bindings
+          elems.forEach(element => {
+            elemArray.push(element.elem.value)
+          });
+          this.expandedClassElems = elemArray
+        })
+        .catch(alert => {
+          this.expandedClassElems = ["Get Class Elem FAIL!!!\n" + alert]
+        })
+    }
   }
 }
 </script>
