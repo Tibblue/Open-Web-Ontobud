@@ -2,6 +2,11 @@
 rdf4j/programs/apache-tomcat-9.0.22
 rdf4j/programs/eclipse-rdf4j-2.5.3
 
+# Backend ignores
+backend/sessions/
+backend/**/old/
+backend/views/
+
 # Mongo ignores
 **/mongoData/
 
