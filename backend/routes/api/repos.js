@@ -22,6 +22,14 @@ router.post('/', function (req, res) {
     .catch(error => res.status(500).jsonp(error))
 });
 
+// router.put('/:id/name', function (req, res) {
+//   // console.dir(req.body)
+//   console.log(">log-router API/USERS altering name: " + JSON.stringify(req.body))
+//   Repos.updateRepoName(req.params.id, req.body)
+//     .then(data => res.jsonp(data))
+//     .catch(error => res.status(500).jsonp(error))
+// });
+
 router.delete('/:id', function (req, res) {
   Repos.deleteRepo(req.params.id)
     .then(data => res.jsonp(data))
