@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app color="primary">
-    <v-btn :loading="syncLoading" icon @click="getRepositories()">
+    <v-btn :loading="loadingRepos" icon @click="getRepositories()">
       <v-icon>fas fa-sync</v-icon>
     </v-btn>
     <v-toolbar-title v-bind:selectedRepo.sync="selectedRepo">
@@ -28,7 +28,7 @@ const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 export default {
   // props: ['update'],
   data: () => ({
-    syncLoading: false,
+    loadingRepos: false,
     selectedRepo: "Loading Repositories",
     repoList: undefined,
   }),
@@ -54,7 +54,7 @@ export default {
       // location.reload()
     },
     getRepositories() {
-      this.syncLoading = true
+      this.loadingRepos = true
       axios.get(rdf4j_url+'/rdf4j-server/repositories')
         .then(response => {
           // console.log(response.data.head) // debug column names
@@ -85,7 +85,9 @@ export default {
           // this.alert = error // debug
           this.selectedRepo = "No Repositories available" + alert
         })
-      this.syncLoading = false
+        .finally(() => {
+          this.loadingRepos = false
+        })
     },
     getRepoName(string) {
       return string.split(" ID:")[0]

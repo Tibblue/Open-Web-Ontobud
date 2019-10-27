@@ -10,14 +10,20 @@
           color="success"
         ></v-radio>
       </v-radio-group>
-      <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'download')" class="mt-3">
+      <v-btn :loading="loading.exportFile" block color="success" @click="exportRepoFile($repo.id,fileTypeSelected)" class="mt-3">
         Export Repo (Download File)
       </v-btn>
+      <v-alert text dismissible type="error" :value="alert.exportFileFail">
+        File Export Failed...
+      </v-alert>
     </v-col>
     <v-col cols="12">
-      <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'tab')">
+      <v-btn :loading="loading.exportText" block color="success" @click="exportRepoText($repo.id,fileTypeSelected)">
         Export Repo (InScreen Text)
       </v-btn>
+      <v-alert text dismissible type="error" :value="alert.exportTextFail">
+        Text Export Failed...
+      </v-alert>
       <v-textarea outlined auto-grow readonly hide-details class="mt-3"
         v-model="exportResponse"
         label="InScreen Text"
@@ -43,11 +49,15 @@ export default {
       { text: 'Plain Text', value: 'txt' },
     ],
     exportResponse: "",
+    loading: {
+      exportFile: false,
+      exportText: false,
+    },
+    alert: {
+      exportFileFail: false,
+      exportTextFail: false,
+    },
   }),
-  mounted: async function (){
-    // console.log(process.env) # debug
-    // this.getRepositories()
-  },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
@@ -55,7 +65,8 @@ export default {
     },
   },
   methods: {
-    exportRepo(repoID, fileType, exportType) {
+    exportRepoFile(repoID, fileType) {
+      this.loading.exportFile = true
       var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
       var headers = { 'headers': {}}
       switch(fileType){
@@ -72,15 +83,41 @@ export default {
       }
       axios.get(url, headers)
         .then(response => {
-          if(exportType=='download')
-            FileDownload(response.data, 'export.'+fileType)
-          else{
-            // FIXME needs upgrades
-            this.exportResponse = response.data
-          }
+          FileDownload(response.data, 'export.'+fileType)
         })
         .catch(alert => {
-          this.exportResponse = "Export Failed!!! " + alert
+          this.alert.exportFileFail = true
+        })
+        .finally(() => {
+          this.loading.exportFile = false
+        })
+    },
+    exportRepoText(repoID, fileType) {
+      this.loading.exportText = true
+      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
+      var headers = { 'headers': {}}
+      switch(fileType){
+        case 'ttl':
+          headers = { 'headers': { Accept: "text/turtle" }}
+          break;
+        case 'rdf-xml':
+          fileType = "xml"
+          break;
+        case 'txt':
+          headers = { 'headers': { Accept: "text/plain" }}
+          break;
+        default:
+      }
+      axios.get(url, headers)
+        .then(response => {
+          // FIXME: needs visual upgrades
+          this.exportResponse = response.data
+        })
+        .catch(alert => {
+          this.alert.exportTextFail = true
+        })
+        .finally(() => {
+          this.loading.exportText = false
         })
     },
   },

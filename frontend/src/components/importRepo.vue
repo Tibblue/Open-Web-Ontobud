@@ -1,12 +1,5 @@
 <template>
   <v-row>
-    <v-col cols="12">
-      <v-text-field readonly outlined hide-details class="mt-3"
-        v-model="importResponse"
-        label="Import Response"
-        placeholder="Import Response"
-        ></v-text-field>
-    </v-col>
     <v-col cols="6">
       <v-radio-group hide-details v-model="fileTypeSelected" class="ma-0 pa-0">
         <v-radio
@@ -34,9 +27,15 @@
         v-model="importFile"
         label="File to Import"
       ></v-file-input>
-      <v-btn block color="success" @click="importRepoFile($repo.id,fileTypeSelected,importFile,addORreplaceSelected)">
+      <v-btn :loading="loading.importFile" block color="success" @click="importRepoFile($repo.id,fileTypeSelected,importFile,addORreplaceSelected)">
         Import Repo (File)
       </v-btn>
+      <v-alert text dismissible type="success" :value="alert.importFileSuccess">
+        File Import Successful!!! Updated {{ $repo.name }}
+      </v-alert>
+      <v-alert text dismissible type="error" :value="alert.importFileFail">
+        File Import Failed... Not Updated {{ $repo.name }}
+      </v-alert>
     </v-col>
     <v-col cols="12">
       <v-textarea outlined hide-details class="mb-3"
@@ -44,9 +43,15 @@
         label="Import Text"
         placeholder="Import Text"
         ></v-textarea>
-      <v-btn block color="success" @click="importRepoInput($repo.id,fileTypeSelected,importText,addORreplaceSelected)">
+      <v-btn :loading="loading.importText" block color="success" @click="importRepoText($repo.id,fileTypeSelected,importText,addORreplaceSelected)">
         Import Repo (Input Text)
       </v-btn>
+      <v-alert text dismissible type="success" :value="alert.importTextSuccess">
+        Text Import Successful!!! Updated {{ $repo.name }}
+      </v-alert>
+      <v-alert text dismissible type="error" :value="alert.importTextFail">
+        Text Import Failed... Not Updated {{ $repo.name }}
+      </v-alert>
     </v-col>
   </v-row>
 </template>
@@ -55,7 +60,6 @@
 import Vuex from 'vuex'
 import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
-const FileDownload = require('js-file-download')
 
 export default {
   data: () => ({
@@ -73,12 +77,17 @@ export default {
     ],
     importFile: undefined,
     importText: "",
-    importResponse: "",
+    loading: {
+      importFile: false,
+      importText: false,
+    },
+    alert: {
+      importFileSuccess: false,
+      importFileFail: false,
+      importTextSuccess: false,
+      importTextFail: false,
+    },
   }),
-  mounted: async function (){
-    // console.log(process.env) # debug
-    // this.getRepositories()
-  },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
@@ -87,6 +96,7 @@ export default {
   },
   methods: {
     importRepoFile(repoID, fileType, file, addORreplace) {
+      this.loading.importFile = true
       var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
       var data = file
       var headers = { 'headers' :{}}
@@ -105,21 +115,32 @@ export default {
       if(addORreplace==='add')
         axios.post(url, data, headers)
           .then(response => {
-            this.importResponse = "Import (Add) Success!" + response.data
+            this.alert.importFileSuccess = true
+            this.alert.importFileFail = false
           })
           .catch(alert => {
-            this.importResponse = "Import (Add) Failed..." + alert
+            this.alert.importFileFail = true
+            this.alert.importFileSuccess = false
+          })
+          .finally(() => {
+            this.loading.importFile = false
           })
       else
         axios.put(url, data, headers)
           .then(response => {
-            this.importResponse = "Import (Replace) Success!" + response.data
+            this.alert.importFileSuccess = true
+            this.alert.importFileFail = false
           })
           .catch(alert => {
-            this.importResponse = "Import (Replace) Failed..." + alert
+            this.alert.importFileFail = true
+            this.alert.importFileSuccess = false
+          })
+          .finally(() => {
+            this.loading.importFile = false
           })
     },
-    importRepoInput(repoID, fileType, input, addORreplace) {
+    importRepoText(repoID, fileType, input, addORreplace) {
+      this.loading.importText = true
       var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
       var data = input
       var headers = { 'headers' :{}}
@@ -139,18 +160,28 @@ export default {
       if(addORreplace==='add')
         axios.post(url, data, headers)
           .then(response => {
-            this.importResponse = "Import (Add) Success!" + response.data
+            this.alert.importTextSuccess = true
+            this.alert.importTextFail = false
           })
           .catch(alert => {
-            this.importResponse = "Import (Add) Failed..." + alert
+            this.alert.importTextFail = true
+            this.alert.importTextSuccess = false
+          })
+          .finally(() => {
+            this.loading.importText = false
           })
       else
         axios.put(url, data, headers)
           .then(response => {
-            this.importResponse = "Import (Replace) Success!" + response.data
+            this.alert.importTextSuccess = true
+            this.alert.importTextFail = false
           })
           .catch(alert => {
-            this.importResponse = "Import (Replace) Failed..." + alert
+            this.alert.importTextFail = true
+            this.alert.importTextSuccess = false
+          })
+          .finally(() => {
+            this.loading.importText = false
           })
     },
   },
