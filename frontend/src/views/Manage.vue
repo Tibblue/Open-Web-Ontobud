@@ -2,14 +2,14 @@
   <v-container>
     <debug/>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="12" lg="6">
         <importRepo/>
-        <v-divider></v-divider>
+      </v-col>
+      <v-col cols="12" lg="6">
         <exportRepo/>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="12" lg="6">
         <clearRepoStatements/>
-        <v-divider class="ma-1"></v-divider>
         <deleteCurrentRepo/>
       </v-col>
     </v-row>

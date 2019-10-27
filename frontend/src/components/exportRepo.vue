@@ -14,7 +14,7 @@
         Export Repo (Download File)
       </v-btn>
     </v-col>
-    <v-col cols="12" xl="6">
+    <v-col cols="12">
       <v-btn block color="success" @click="exportRepo($repo.id,fileTypeSelected,'tab')">
         Export Repo (InScreen Text)
       </v-btn>

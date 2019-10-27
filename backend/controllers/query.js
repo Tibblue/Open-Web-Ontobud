@@ -17,6 +17,22 @@ Queries.listByUserEmail = (user_email) => {
           .exec()
 }
 
+// Devolve a lista de queries de um user e repo em JSON
+Queries.listByUserEmailRepo = (user_email, repoID) => {
+  return Query
+          .find({'user_email': user_email, 'repoID': repoID})
+          .sort({name: 1})
+          .exec()
+}
+
+// Devolve a lista de queries de um user (global) em JSON
+Queries.listByUserEmailGlobal = (user_email) => {
+  return Query
+          .find({'user_email': user_email, 'repoID': {$exists: false}})
+          .sort({name: 1})
+          .exec()
+}
+
 // Devolve o numero de queries
 Queries.count = () => {
   return Query

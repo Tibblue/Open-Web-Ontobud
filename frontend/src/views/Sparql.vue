@@ -95,9 +95,6 @@
                       <v-icon left v-if="savedQueryExpandedList.includes(savedQuery.name)">fas fa-chevron-up</v-icon>
                       <v-icon left v-else>fas fa-chevron-down</v-icon>
                     </v-btn>
-                    <v-btn icon @click="runQuery(savedQuery.query)">
-                      <v-icon>fas fa-copy</v-icon>
-                    </v-btn>
                     <div class="flex-grow-1"></div>
                     <v-btn icon @click="runQuery(savedQuery.query)">
                       <v-icon>fas fa-play</v-icon>
