@@ -59,7 +59,18 @@
           :items="table.items"
           :items-per-page="10"
           class="elevation-1"
-        ></v-data-table>
+        >
+          <template v-slot:item="props">
+            <tr>
+              <td class="subheading" @click="cellClicked(props.item[col.text])"
+                v-for="col in table.headers"
+                :key="col.text"
+              >
+                {{props.item[col.text]}}
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
       </v-col>
       <v-expand-x-transition>
         <v-card flat color="transparent" class="ma-3"
@@ -132,11 +143,11 @@ export default {
     queryResponse: "",
     table: {
       headers: [
-        { text: 'Column', value: 'query',
+        { text: 'column', value: 'column',
           align: 'left', sortable: false,
         },
       ],
-      items: [{query: 'Value'}],
+      items: [{column: 'value'}],
       columnList: [],
       rowList: [],
     },
@@ -162,7 +173,7 @@ export default {
   mounted: async function (){
     // console.log(process.env) // debug
     var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
-    // this.getSavedQueries(currentUserEmail)
+    this.getSavedQueries(currentUserEmail)
   },
   computed: {
     $repo: {
@@ -223,6 +234,11 @@ export default {
         .finally(() => {
           this.loading.query = false
         })
+    },
+    cellClicked(cellInfo) {
+      // 'select * where { ?s ?p ?o } limit 20'
+      const query = 'select * where { <'+cellInfo+'> ?p ?o }'
+      this.runQuery(query)
     },
     saveQuery(name, query, global) {
       var body = {
