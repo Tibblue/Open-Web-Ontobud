@@ -42,7 +42,7 @@
           rows="6"
           row-height="16"
           label="Query"
-          placeholder="Place query and Execute"
+          placeholder="Place query and Run"
         ></v-textarea>
         <v-row>
           <v-col cols="12">
@@ -54,24 +54,12 @@
             </v-alert>
           </v-col>
         </v-row>
-        <v-simple-table>
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th v-for="column in table.columnList" class="text-left">
-                  {{column}}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="row in table.rowList">
-                <td v-for="cell in row">
-                  {{cell}}
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
+        <v-data-table
+          :headers="table.headers"
+          :items="table.items"
+          :items-per-page="10"
+          class="elevation-1"
+        ></v-data-table>
       </v-col>
       <v-expand-x-transition>
         <v-card flat color="transparent" class="ma-3"
@@ -143,6 +131,12 @@ export default {
     queryInput: "select * where { ?s ?p ?o }\nlimit 20",
     queryResponse: "",
     table: {
+      headers: [
+        { text: 'Column', value: 'query',
+          align: 'left', sortable: false,
+        },
+      ],
+      items: [{query: 'Value'}],
       columnList: [],
       rowList: [],
     },
@@ -151,8 +145,8 @@ export default {
     savedQueriesExpand: true,
     savedQueries: [ // temporary visual debug
       { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 20' },
-      { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?s a ?type. }' },
-      { name: 'Get classes only', query: 'SELECT DISTINCT ?s WHERE { ?s a owl:Class. }' },
+      { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?class a ?type. }' },
+      { name: 'Get classes only', query: 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' },
       { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
       { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
     ],
@@ -206,11 +200,22 @@ export default {
           // console.log(response.data.results.bindings) // debug resultados
           var columnsVars = response.data.head.vars
           var resultsData = response.data.results.bindings
-          // resultsData = resultsData.slice(0,100) // limite results
+          // resultsData = resultsData.slice(0,10) // limit results
           // console.log(columnsVars) // debug
           // console.log(resultsData) // debug
-          this.table.columnList = columnsVars
-          this.table.rowList = resultsData
+
+          this.table.headers = []
+          columnsVars.forEach(element => {
+            this.table.headers.push({'text': element, 'value': element})
+          });
+          this.table.items = []
+          resultsData.forEach(element => {
+            var elemAux = {}
+            for(const key in element){
+              elemAux[key] = element[key].value
+            }
+            this.table.items.push(elemAux)
+          });
         })
         .catch(alert => {
           this.alert.queryFail = true
