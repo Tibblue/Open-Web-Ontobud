@@ -2,19 +2,21 @@
   <v-container>
     <v-row>
       <v-col class="grow">
-        <v-textarea outlined auto-grow hide-details
-          v-model="queryInput"
-          rows="6"
-          row-height="16"
-          label="Query"
-          placeholder="Place query and Execute"
-        ></v-textarea>
         <v-row>
           <v-col cols="12">
-            <v-btn block color="primary" @click="runQuery(queryInput)">
-              Run Query
+            <v-btn block color="primary" @click="savedQueriesExpand=!savedQueriesExpand">
+              <div v-if="savedQueriesExpand==true">
+                <span>Hide Saved Queries</span>
+                <v-icon right>fas fa-chevron-right</v-icon>
+              </div>
+              <div v-else>
+                <span>Show Saved Queries</span>
+                <v-icon right>fas fa-chevron-left</v-icon>
+              </div>
             </v-btn>
           </v-col>
+        </v-row>
+        <v-row>
           <v-col cols="9" md="9">
             <v-text-field dense hide-details
               class="mt-0 py-0"
@@ -35,30 +37,41 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-textarea outlined auto-grow readonly hide-details class="mt-3"
-          v-model="queryResponse"
-          rows="4"
+        <v-textarea outlined auto-grow hide-details
+          v-model="queryInput"
+          rows="6"
           row-height="16"
-          label="Last query response"
-          placeholder="Query response"
+          label="Query"
+          placeholder="Place query and Execute"
         ></v-textarea>
         <v-row>
-          <v-divider class="ma-3"></v-divider>
-        </v-row>
-        <v-row>
           <v-col cols="12">
-            <v-btn block color="primary" @click="savedQueriesExpand=!savedQueriesExpand">
-              <div v-if="savedQueriesExpand==true">
-                <span>Hide Saved Queries</span>
-                <v-icon right>fas fa-chevron-right</v-icon>
-              </div>
-              <div v-else>
-                <span>Show Saved Queries</span>
-                <v-icon right>fas fa-chevron-left</v-icon>
-              </div>
+            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput)">
+              Run Query
             </v-btn>
+            <v-alert text dismissible type="error" :value="alert.queryFail">
+              Failed to Query {{ $repo.name }} ...
+            </v-alert>
           </v-col>
         </v-row>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th v-for="column in table.columnList" class="text-left">
+                  {{column}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in table.rowList">
+                <td v-for="cell in row">
+                  {{cell}}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </v-col>
       <v-expand-x-transition>
         <v-card flat color="transparent" class="ma-3"
@@ -120,6 +133,7 @@
 </template>
 
 <script>
+import Vuex from 'vuex'
 import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 const mongo_url = "http://localhost:"+'5000' // FIXME use env
@@ -128,6 +142,10 @@ export default {
   data: () => ({
     queryInput: "select * where { ?s ?p ?o }\nlimit 20",
     queryResponse: "",
+    table: {
+      columnList: [],
+      rowList: [],
+    },
     newSavedQueryName: "",
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,
@@ -140,12 +158,23 @@ export default {
     ],
     savedQueryExpandedList: [],
     savedQueryEditedList: {},
+    alert: {
+      queryFail: false,
+    },
+    loading: {
+      query: false,
+    },
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    // console.log(this.$props)
     var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
-    this.getSavedQueries(currentUserEmail)
+    // this.getSavedQueries(currentUserEmail)
+  },
+  computed: {
+    $repo: {
+      get: Vuex.mapState(['$repo']).$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo,
+    },
   },
   methods: {
     getSavedQueries(currentUserEmail) {
@@ -166,20 +195,8 @@ export default {
         })
     },
     runQuery(query) {
-      var repoID = this.$session.get("repoID")
-      // var queryEncoded = encodeURIComponent(query)
-      // var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
-      // axios.get(url+'?query='+queryEncoded)
-      //   .then(response => {
-      //     console.log(response.data)
-      //     var columnsVars = response.data.head.vars
-      //     var resultsData = response.data.results.bindings
-      //     resultsData = resultsData.slice(0,100) // limite results
-      //     this.queryResponse = "Query SUCCESS \n" + columnsVars + "\n" + resultsData
-      //   })
-      //   .catch(alert => {
-      //     this.queryResponse = "Query FALHOU!!!\n" + alert
-      //   })
+      this.loading.query = true
+      var repoID = this.$repo.id
       var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
       axios.post(url, query,
         {headers: {"Content-Type": "application/sparql-query"}})
@@ -189,13 +206,17 @@ export default {
           // console.log(response.data.results.bindings) // debug resultados
           var columnsVars = response.data.head.vars
           var resultsData = response.data.results.bindings
-          this.queryResponse = "Query SUCCESS \n" + columnsVars + "\n"
-          resultsData.forEach(element => {
-            this.queryResponse += JSON.stringify(element) + '\n'
-          });
+          // resultsData = resultsData.slice(0,100) // limite results
+          // console.log(columnsVars) // debug
+          // console.log(resultsData) // debug
+          this.table.columnList = columnsVars
+          this.table.rowList = resultsData
         })
         .catch(alert => {
-          this.queryResponse = "Query FALHOU!!!\n" + alert
+          this.alert.queryFail = true
+        })
+        .finally(() => {
+          this.loading.query = false
         })
     },
     saveQuery(name, query, global) {
@@ -205,7 +226,7 @@ export default {
         'user_email': 'kiko@kiko', // TODO: use user email when auth gets done
       }
       if(!global)
-        body['repoID'] = this.$session.get("repoID")
+        body['repoID'] = this.$repo.id
 
       var url = mongo_url+'/api/queries'
       axios.post(url, body)

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <span>algo tipo a lista de saved queries</span>
+      <!-- <span>algo tipo a lista de saved queries</span> -->
       <v-col cols="12">
         <!-- <repoCardList/> -->
       </v-col>
