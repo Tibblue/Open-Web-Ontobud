@@ -4,15 +4,21 @@
       <v-col>
         <h2>Resource: {{this.$route.query.uri.split('#')[1]}}</h2>
         <h3>{{$route.query.uri}}</h3>
+
+        <v-checkbox hide-details class="mt-0 pt-2"
+          v-model="prefixON"
+          label="Show Prefix"
+          color="primary"
+        ></v-checkbox>
       </v-col>
       <v-col cols="12">
         <v-data-table
           :headers="table.headers"
-          :items="subject.items"
+          :items="table.subjectResults"
           :items-per-page="10"
         >
           <template v-slot:item="props">
-            <tr>
+            <tr v-if="prefixON">
               <td @click="cellClicked($route.query.uri)">
                 {{$route.query.uri}}
               </td>
@@ -21,6 +27,81 @@
               </td>
               <td @click="cellClicked(props.item[table.headers[2].text])">
                 {{props.item[table.headers[2].text]}}
+              </td>
+            </tr>
+            <tr v-else>
+              <td @click="cellClicked($route.query.uri)">
+                {{$route.query.uri.split('#')[1]}}
+              </td>
+              <td @click="cellClicked(props.item[table.headers[1].text])">
+                {{props.item[table.headers[1].text].split('#')[1]}}
+              </td>
+              <td @click="cellClicked(props.item[table.headers[2].text])">
+                {{props.item[table.headers[2].text].split('#')[1]}}
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
+      </v-col>
+      <v-col cols="12">
+        <v-data-table
+          :headers="table.headers"
+          :items="table.predicateResults"
+          :items-per-page="10"
+        >
+          <template v-slot:item="props">
+            <tr v-if="prefixON">
+              <td @click="cellClicked(props.item[table.headers[0].text])">
+                {{props.item[table.headers[0].text]}}
+              </td>
+              <td @click="cellClicked($route.query.uri)">
+                {{$route.query.uri}}
+              </td>
+              <td @click="cellClicked(props.item[table.headers[2].text])">
+                {{props.item[table.headers[2].text]}}
+              </td>
+            </tr>
+            <tr v-else>
+              <td @click="cellClicked(props.item[table.headers[0].text])">
+                {{props.item[table.headers[0].text].split('#')[1]}}
+              </td>
+              <td @click="cellClicked($route.query.uri)">
+                {{$route.query.uri.split('#')[1]}}
+              </td>
+              <td @click="cellClicked(props.item[table.headers[2].text])">
+                {{props.item[table.headers[2].text].split('#')[1]}}
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
+      </v-col>
+      <v-col cols="12">
+        <v-data-table
+          :headers="table.headers"
+          :items="table.objectResults"
+          :items-per-page="10"
+        >
+          <template v-slot:item="props">
+            <tr v-if="prefixON">
+              <td @click="cellClicked(props.item[table.headers[0].text])">
+                {{props.item[table.headers[0].text]}}
+              </td>
+              <td @click="cellClicked(props.item[table.headers[1].text])">
+                {{props.item[table.headers[1].text]}}
+              </td>
+              <td @click="cellClicked($route.query.uri)">
+                {{$route.query.uri}}
+              </td>
+            </tr>
+            <tr v-else>
+              <td @click="cellClicked(props.item[table.headers[0].text])">
+                {{props.item[table.headers[0].text].split('#')[1]}}
+              </td>
+              <td @click="cellClicked(props.item[table.headers[1].text])">
+                {{props.item[table.headers[1].text].split('#')[1]}}
+              </td>
+              <td @click="cellClicked($route.query.uri)">
+                {{$route.query.uri.split('#')[1]}}
               </td>
             </tr>
           </template>
@@ -47,10 +128,12 @@ export default {
         { text: 'object', value: 'object' },
       ],
       items: [{column: 'value'}],
+      subjectResults: [],
+      predicateResults: [],
+      objectResults: [],
     },
-    subject: {
-      headers: [],
-      items: [],
+    prefixON: false,
+    },
     },
   }),
   mounted: async function (){
@@ -58,8 +141,8 @@ export default {
     var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
 
     this.subjectResults(this.$session.get('repoID'), this.$route.query.uri)
-    // this.predicateResults(this.$repo.id, this.$route.query.uri)
-    // this.objectResults(this.$repo.id, this.$route.query.uri)
+    this.predicateResults(this.$session.get('repoID'), this.$route.query.uri)
+    this.objectResults(this.$session.get('repoID'), this.$route.query.uri)
   },
   computed: {
     $repo: {
@@ -72,13 +155,100 @@ export default {
       // this.$router.push({query: { uri: this.$route.query.uri }})
       this.$router.push({query: { uri: cellInfo }})
       this.subjectResults(this.$repo.id, this.$route.query.uri)
-      // this.predicateResults(this.$repo.id, this.$route.query.uri)
-      // this.objectResults(this.$repo.id, this.$route.query.uri)
+      this.predicateResults(this.$repo.id, this.$route.query.uri)
+      this.objectResults(this.$repo.id, this.$route.query.uri)
     },
     subjectResults(repoID, resource) {
       // this.loading.subject = true
       const url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
       const query = 'select * where { <'+resource+'> ?predicate ?object }'
+      axios.post(url, query,
+        {headers: {"Content-Type": "application/sparql-query"}})
+        .then(response => {
+          // console.log(response.data) // debug
+          // console.log(response.data.results.bindings) // debug resultados
+          var resultsData = response.data.results.bindings
+
+          this.table.subjectResults = []
+          resultsData.forEach(element => {
+            var elemAux = {}
+            for(const key in element){
+              elemAux[key] = element[key].value
+            }
+            this.table.subjectResults.push(elemAux)
+          });
+        })
+        .catch(alert => {
+          console.log("FDS subject" + alert)
+          // this.alert.subjectFail = true
+        })
+        // .finally(() => {
+        //   this.loading.subject = false
+        //   return items
+        // })
+    },
+    predicateResults(repoID, resource) {
+      // this.loading.predicate = true
+      const url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      const query = 'select * where { ?subject <'+resource+'> ?object }'
+      axios.post(url, query,
+        {headers: {"Content-Type": "application/sparql-query"}})
+        .then(response => {
+          // console.log(response.data) // debug
+          // console.log(response.data.results.bindings) // debug resultados
+          var resultsData = response.data.results.bindings
+
+          this.table.predicateResults = []
+          resultsData.forEach(element => {
+            var elemAux = {}
+            for(const key in element){
+              elemAux[key] = element[key].value
+            }
+            this.table.predicateResults.push(elemAux)
+          });
+        })
+        .catch(alert => {
+          console.log("FDS predicate" + alert)
+          // this.alert.predicateFail = true
+        })
+        // .finally(() => {
+        //   this.loading.predicate = false
+        //   return items
+        // })
+    },
+    objectResults(repoID, resource) {
+      // this.loading.object = true
+      const url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      const query = 'select * where { ?subject ?predicate <'+resource+'> }'
+      axios.post(url, query,
+        {headers: {"Content-Type": "application/sparql-query"}})
+        .then(response => {
+          // console.log(response.data) // debug
+          // console.log(response.data.results.bindings) // debug resultados
+          var resultsData = response.data.results.bindings
+
+          this.table.objectResults = []
+          resultsData.forEach(element => {
+            var elemAux = {}
+            for(const key in element){
+              elemAux[key] = element[key].value
+            }
+            this.table.objectResults.push(elemAux)
+          });
+        })
+        .catch(alert => {
+          console.log("FDS object" + alert)
+          // this.alert.objectFail = true
+        })
+        // .finally(() => {
+        //   this.loading.object = false
+        //   return items
+        // })
+    },
+    runQuery(query) {
+      this.loading.query = true
+      var repoID = this.$repo.id
+      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
       axios.post(url, query,
         {headers: {"Content-Type": "application/sparql-query"}})
         .then(response => {
@@ -91,26 +261,24 @@ export default {
           // console.log(columnsVars) // debug
           // console.log(resultsData) // debug
 
-          this.subject.headers = []
+          this.table.headers = []
           columnsVars.forEach(element => {
-            this.subject.headers.push({'text': element, 'value': element})
+            this.table.headers.push({'text': element, 'value': element})
           });
-          this.subject.items = []
+          this.table.items = []
           resultsData.forEach(element => {
             var elemAux = {}
             for(const key in element){
               elemAux[key] = element[key].value
             }
-            this.subject.items.push(elemAux)
+            this.table.items.push(elemAux)
           });
         })
         .catch(alert => {
-          console.log("<FDS" + alert)
-          // this.alert.subjectFail = true
+          this.alert.queryFail = true
         })
         // .finally(() => {
-        //   this.loading.subject = false
-        //   return (headers, items)
+        //   this.loading.query = false
         // })
     },
   }
