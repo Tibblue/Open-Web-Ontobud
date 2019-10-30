@@ -148,8 +148,6 @@ export default {
         },
       ],
       items: [{column: 'value'}],
-      columnList: [],
-      rowList: [],
     },
     newSavedQueryName: "",
     newSavedQueryGlobal: true,
@@ -238,7 +236,8 @@ export default {
     cellClicked(cellInfo) {
       // 'select * where { ?s ?p ?o } limit 20'
       const query = 'select * where { <'+cellInfo+'> ?p ?o }'
-      this.runQuery(query)
+      // this.runQuery(query)
+      this.$router.push({path: "sparql/resource", query: { uri: cellInfo }})
     },
     saveQuery(name, query, global) {
       var body = {

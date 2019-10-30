@@ -32,6 +32,12 @@ export default new Router({
       props: true,
     },
     {
+      path: '/sparql/resource',
+      name: 'resource',
+      component: () => import('./views/Resource.vue'),
+      props: true,
+    },
+    {
       path: '/repositories',
       name: 'repositories',
       component: () => import('./views/Repositories.vue'),
