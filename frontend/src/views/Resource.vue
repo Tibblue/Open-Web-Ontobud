@@ -12,6 +12,110 @@
         ></v-checkbox>
       </v-col>
       <v-col cols="12">
+        <v-tabs grow>
+          <v-tab>Subject</v-tab>
+          <v-tab>Predicate</v-tab>
+          <v-tab>Object</v-tab>
+
+          <v-tab-item>
+            <v-data-table
+              :headers="table.headers"
+              :items="table.subjectResults"
+              :items-per-page="10"
+            >
+              <template v-slot:item="props">
+                <tr v-if="prefixON">
+                  <td @click="cellClicked($route.query.uri)">
+                    {{$route.query.uri}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[1].text])">
+                    {{props.item[table.headers[1].text]}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[2].text])">
+                    {{props.item[table.headers[2].text]}}
+                  </td>
+                </tr>
+                <tr v-else>
+                  <td @click="cellClicked($route.query.uri)">
+                    {{$route.query.uri.split('#')[1]}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[1].text])">
+                    {{props.item[table.headers[1].text].split('#')[1]}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[2].text])">
+                    {{props.item[table.headers[2].text].split('#')[1]}}
+                  </td>
+                </tr>
+              </template>
+            </v-data-table>
+          </v-tab-item>
+          <v-tab-item>
+            <v-data-table
+              :headers="table.headers"
+              :items="table.predicateResults"
+              :items-per-page="10"
+            >
+              <template v-slot:item="props">
+                <tr v-if="prefixON">
+                  <td @click="cellClicked(props.item[table.headers[0].text])">
+                    {{props.item[table.headers[0].text]}}
+                  </td>
+                  <td @click="cellClicked($route.query.uri)">
+                    {{$route.query.uri}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[2].text])">
+                    {{props.item[table.headers[2].text]}}
+                  </td>
+                </tr>
+                <tr v-else>
+                  <td @click="cellClicked(props.item[table.headers[0].text])">
+                    {{props.item[table.headers[0].text].split('#')[1]}}
+                  </td>
+                  <td @click="cellClicked($route.query.uri)">
+                    {{$route.query.uri.split('#')[1]}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[2].text])">
+                    {{props.item[table.headers[2].text].split('#')[1]}}
+                  </td>
+                </tr>
+              </template>
+            </v-data-table>
+          </v-tab-item>
+          <v-tab-item>
+            <v-data-table
+              :headers="table.headers"
+              :items="table.objectResults"
+              :items-per-page="10"
+            >
+              <template v-slot:item="props">
+                <tr v-if="prefixON">
+                  <td @click="cellClicked(props.item[table.headers[0].text])">
+                    {{props.item[table.headers[0].text]}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[1].text])">
+                    {{props.item[table.headers[1].text]}}
+                  </td>
+                  <td @click="cellClicked($route.query.uri)">
+                    {{$route.query.uri}}
+                  </td>
+                </tr>
+                <tr v-else>
+                  <td @click="cellClicked(props.item[table.headers[0].text])">
+                    {{props.item[table.headers[0].text].split('#')[1]}}
+                  </td>
+                  <td @click="cellClicked(props.item[table.headers[1].text])">
+                    {{props.item[table.headers[1].text].split('#')[1]}}
+                  </td>
+                  <td @click="cellClicked($route.query.uri)">
+                    {{$route.query.uri.split('#')[1]}}
+                  </td>
+                </tr>
+              </template>
+            </v-data-table>
+          </v-tab-item>
+        </v-tabs>
+      </v-col>
+      <v-col cols="12">
         <v-data-table
           :headers="table.headers"
           :items="table.subjectResults"
@@ -118,8 +222,6 @@ const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
   data: () => ({
-    queryInput: "select * where { ?s ?p ?o }\nlimit 20",
-    queryResponse: "",
     table: {
       headers: [
         // { text: 'column', value: 'column', align: 'left', sortable: false },
@@ -133,7 +235,15 @@ export default {
       objectResults: [],
     },
     prefixON: false,
+    loading: {
+      subject: false,
+      predicate: false,
+      object: false,
     },
+    alert: {
+      subjectFail: false,
+      predicateFail: false,
+      objectFail: false,
     },
   }),
   mounted: async function (){
