@@ -7,13 +7,80 @@
             <v-btn block color="primary" @click="savedQueriesExpand=!savedQueriesExpand">
               <div v-if="savedQueriesExpand==true">
                 <span>Hide Saved Queries</span>
-                <v-icon right>fas fa-chevron-right</v-icon>
+                <v-icon right>fas fa-chevron-up</v-icon>
               </div>
               <div v-else>
                 <span>Show Saved Queries</span>
-                <v-icon right>fas fa-chevron-left</v-icon>
+                <v-icon right>fas fa-chevron-down</v-icon>
               </div>
             </v-btn>
+          </v-col>
+        </v-row>
+        <v-expand-transition>
+          <v-card flat color="transparent" class="mb-4"
+            v-show="savedQueriesExpand"
+          >
+            <v-container fluid class="pa-0">
+              <v-row dense>
+                <v-col cols="6"
+                  v-for="savedQuery in savedQueries"
+                  :key="savedQuery.name"
+                >
+                  <v-card flat>
+                    <v-card-title
+                      class="fill-height align-end"
+                      v-text="savedQuery.name"
+                    ></v-card-title>
+                    <!-- <v-card-text v-if="savedQueryExpandedList.includes(savedQuery.name)">
+                      <span v-if="!savedQueryEditedList[savedQuery.name]">{{savedQuery.query}}</span>
+                      <v-textarea v-else outlined auto-grow hide-details
+                        v-model="savedQueryEditedList[savedQuery.name]"
+                        rows="6"
+                        row-height="16"
+                        label="Edited Query"
+                      ></v-textarea>
+                    </v-card-text> -->
+                    <v-card-actions>
+                      <v-btn icon @click="runQuery(savedQuery.query)">
+                        <v-icon>fas fa-play</v-icon>
+                      </v-btn>
+                      <v-btn icon @click="savedQueryEdit(savedQuery.name,savedQuery.query)">
+                        <v-icon>fas fa-edit</v-icon>
+                      </v-btn>
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                          <v-btn icon color="primary" dark v-on="on">
+                            <v-icon>fas fa-info</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>{{savedQuery.query}}</span>
+                      </v-tooltip>
+                      <div class="flex-grow-1"></div>
+                      <v-btn icon @click="deleteSavedQuery(savedQuery.name)">
+                        <v-icon>fas fa-trash</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-expand-transition>
+        <v-textarea outlined auto-grow hide-details
+          v-model="queryInput"
+          rows="6"
+          row-height="16"
+          label="Query"
+          placeholder="Place query and Run"
+        ></v-textarea>
+        <v-row>
+          <v-col cols="12">
+            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput)">
+              Run Query
+            </v-btn>
+            <v-alert text dismissible type="error" :value="alert.queryFail">
+              Failed to Query {{ $repo.name }} ...
+            </v-alert>
           </v-col>
         </v-row>
         <v-row>
@@ -37,23 +104,6 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-textarea outlined auto-grow hide-details
-          v-model="queryInput"
-          rows="6"
-          row-height="16"
-          label="Query"
-          placeholder="Place query and Run"
-        ></v-textarea>
-        <v-row>
-          <v-col cols="12">
-            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput)">
-              Run Query
-            </v-btn>
-            <v-alert text dismissible type="error" :value="alert.queryFail">
-              Failed to Query {{ $repo.name }} ...
-            </v-alert>
-          </v-col>
-        </v-row>
         <v-data-table
           :headers="table.headers"
           :items="table.items"
@@ -72,61 +122,6 @@
           </template>
         </v-data-table>
       </v-col>
-      <v-expand-x-transition>
-        <v-card flat color="transparent" class="ma-3"
-          v-show="savedQueriesExpand"
-          width="30%"
-        >
-          <v-container fluid class="pa-0">
-            <v-row>
-              <v-col cols="12">
-                <v-card flat color="primary mb-3">
-                  <v-card-title class="display-1 align-center justify-center pt-2">
-                    Saved Queries
-                  </v-card-title>
-                </v-card>
-                <v-card flat color="my-2"
-                  v-for="savedQuery in savedQueries"
-                  :key="savedQuery.name"
-                >
-                  <v-card-title
-                    class="fill-height align-end"
-                    v-text="savedQuery.name"
-                  ></v-card-title>
-                  <v-card-text v-if="savedQueryExpandedList.includes(savedQuery.name)">
-                    <span v-if="!savedQueryEditedList[savedQuery.name]">{{savedQuery.query}}</span>
-                    <v-textarea v-else outlined auto-grow hide-details
-                      v-model="savedQueryEditedList[savedQuery.name]"
-                      rows="6"
-                      row-height="16"
-                      label="Edited Query"
-                    ></v-textarea>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-btn icon @click="savedQueryExpand(savedQuery.name)">
-                      <v-icon left v-if="savedQueryExpandedList.includes(savedQuery.name)">fas fa-chevron-up</v-icon>
-                      <v-icon left v-else>fas fa-chevron-down</v-icon>
-                    </v-btn>
-                    <div class="flex-grow-1"></div>
-                    <v-btn icon @click="runQuery(savedQuery.query)">
-                      <v-icon>fas fa-play</v-icon>
-                    </v-btn>
-                    <v-btn icon v-if="!savedQueryEditedList[savedQuery.name]" @click="savedQueryEdit(savedQuery.name,savedQuery.query)">
-                      <v-icon>fas fa-edit</v-icon>
-                    </v-btn>
-                    <v-btn icon v-else @click="savedQueryEditSave(savedQuery.name,savedQueryEditedList[savedQuery.name])">
-                      <v-icon>fas fa-save</v-icon>
-                    </v-btn>
-                    <v-btn icon @click="deleteSavedQuery(savedQuery.name)">
-                      <v-icon>fas fa-trash</v-icon>
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-      </v-expand-x-transition>
     </v-row>
   </v-container>
 </template>
@@ -234,9 +229,6 @@ export default {
         })
     },
     cellClicked(cellInfo) {
-      // 'select * where { ?s ?p ?o } limit 20'
-      const query = 'select * where { <'+cellInfo+'> ?p ?o }'
-      // this.runQuery(query)
       this.$router.push({path: "sparql/resource", query: { uri: cellInfo }})
     },
     saveQuery(name, query, global) {
@@ -260,14 +252,14 @@ export default {
           this.queryResponse = "Query add FAIL!!!\n" + alert
         })
     },
-    savedQueryExpand(name) {
-      if(this.savedQueryExpandedList.includes(name)){
-        let index = this.savedQueryExpandedList.indexOf(name)
-        this.savedQueryExpandedList.splice(index,1)
-      }
-      else
-        this.savedQueryExpandedList.push(name)
-    },
+    // savedQueryExpand(name) {
+    //   if(this.savedQueryExpandedList.includes(name)){
+    //     let index = this.savedQueryExpandedList.indexOf(name)
+    //     this.savedQueryExpandedList.splice(index,1)
+    //   }
+    //   else
+    //     this.savedQueryExpandedList.push(name)
+    // },
     savedQueryEdit(name,oldQuery) {
       this.savedQueryEditedList[name] = oldQuery
     },

@@ -25,7 +25,7 @@
             >
               <template v-slot:item="props">
                 <tr v-if="prefixON">
-                  <td @click="cellClicked($route.query.uri)">
+                  <td>
                     {{$route.query.uri}}
                   </td>
                   <td @click="cellClicked(props.item[table.headers[1].text])">
@@ -36,7 +36,7 @@
                   </td>
                 </tr>
                 <tr v-else>
-                  <td @click="cellClicked($route.query.uri)">
+                  <td>
                     {{$route.query.uri.split('#')[1]}}
                   </td>
                   <td @click="cellClicked(props.item[table.headers[1].text])">
@@ -60,7 +60,7 @@
                   <td @click="cellClicked(props.item[table.headers[0].text])">
                     {{props.item[table.headers[0].text]}}
                   </td>
-                  <td @click="cellClicked($route.query.uri)">
+                  <td>
                     {{$route.query.uri}}
                   </td>
                   <td @click="cellClicked(props.item[table.headers[2].text])">
@@ -71,7 +71,7 @@
                   <td @click="cellClicked(props.item[table.headers[0].text])">
                     {{props.item[table.headers[0].text].split('#')[1]}}
                   </td>
-                  <td @click="cellClicked($route.query.uri)">
+                  <td>
                     {{$route.query.uri.split('#')[1]}}
                   </td>
                   <td @click="cellClicked(props.item[table.headers[2].text])">
@@ -95,7 +95,7 @@
                   <td @click="cellClicked(props.item[table.headers[1].text])">
                     {{props.item[table.headers[1].text]}}
                   </td>
-                  <td @click="cellClicked($route.query.uri)">
+                  <td>
                     {{$route.query.uri}}
                   </td>
                 </tr>
@@ -106,7 +106,7 @@
                   <td @click="cellClicked(props.item[table.headers[1].text])">
                     {{props.item[table.headers[1].text].split('#')[1]}}
                   </td>
-                  <td @click="cellClicked($route.query.uri)">
+                  <td>
                     {{$route.query.uri.split('#')[1]}}
                   </td>
                 </tr>
@@ -123,7 +123,7 @@
         >
           <template v-slot:item="props">
             <tr v-if="prefixON">
-              <td @click="cellClicked($route.query.uri)">
+              <td>
                 {{$route.query.uri}}
               </td>
               <td @click="cellClicked(props.item[table.headers[1].text])">
@@ -134,7 +134,7 @@
               </td>
             </tr>
             <tr v-else>
-              <td @click="cellClicked($route.query.uri)">
+              <td>
                 {{$route.query.uri.split('#')[1]}}
               </td>
               <td @click="cellClicked(props.item[table.headers[1].text])">
@@ -158,7 +158,7 @@
               <td @click="cellClicked(props.item[table.headers[0].text])">
                 {{props.item[table.headers[0].text]}}
               </td>
-              <td @click="cellClicked($route.query.uri)">
+              <td>
                 {{$route.query.uri}}
               </td>
               <td @click="cellClicked(props.item[table.headers[2].text])">
@@ -169,7 +169,7 @@
               <td @click="cellClicked(props.item[table.headers[0].text])">
                 {{props.item[table.headers[0].text].split('#')[1]}}
               </td>
-              <td @click="cellClicked($route.query.uri)">
+              <td>
                 {{$route.query.uri.split('#')[1]}}
               </td>
               <td @click="cellClicked(props.item[table.headers[2].text])">
@@ -193,7 +193,7 @@
               <td @click="cellClicked(props.item[table.headers[1].text])">
                 {{props.item[table.headers[1].text]}}
               </td>
-              <td @click="cellClicked($route.query.uri)">
+              <td>
                 {{$route.query.uri}}
               </td>
             </tr>
@@ -204,7 +204,7 @@
               <td @click="cellClicked(props.item[table.headers[1].text])">
                 {{props.item[table.headers[1].text].split('#')[1]}}
               </td>
-              <td @click="cellClicked($route.query.uri)">
+              <td>
                 {{$route.query.uri.split('#')[1]}}
               </td>
             </tr>
