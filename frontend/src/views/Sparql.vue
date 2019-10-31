@@ -31,9 +31,10 @@
                       class="fill-height align-end"
                       v-text="savedQuery.name"
                     ></v-card-title>
-                    <!-- <v-card-text v-if="savedQueryExpandedList.includes(savedQuery.name)">
-                      <span>{{savedQuery.query}}</span>
-                    </v-card-text> -->
+                    <!-- <v-card-text
+                      class="fill-height align-end"
+                      v-text="savedQuery.name"
+                    ></v-card-text> -->
                     <v-card-actions>
                       <v-btn icon @click="runQuery(savedQuery.query)">
                         <v-icon>fas fa-play</v-icon>
@@ -86,7 +87,10 @@
                         <span>{{savedQuery.query}}</span>
                       </v-tooltip>
                       <div class="flex-grow-1"></div>
-                      <v-btn icon @click="deleteSavedQuery(savedQuery.name)">
+                      <v-btn icon
+                        :loading="loading.queryDelete"
+                        @click="deleteSavedQuery(savedQuery.name)"
+                      >
                         <v-icon>fas fa-trash</v-icon>
                       </v-btn>
                     </v-card-actions>
@@ -98,6 +102,9 @@
         </v-expand-transition>
         <v-alert text dismissible type="error" :value="alert.queryEditFail">
           Failed to save query changes ...
+        </v-alert>
+        <v-alert text dismissible type="error" :value="alert.queryDeleteFail">
+          Failed to Delete query ...
         </v-alert>
         <v-textarea outlined auto-grow hide-details
           v-model="queryInput"
@@ -132,11 +139,17 @@
             ></v-checkbox>
           </v-col>
           <v-col cols="12" md="12">
-            <v-btn block color="primary" @click="saveQuery(newSavedQueryName,queryInput,newSavedQueryGlobal)">
+            <v-btn block color="primary"
+              :loading="loading.querySave"
+              @click="saveQuery(newSavedQueryName,queryInput,newSavedQueryGlobal)"
+            >
               Save Query
             </v-btn>
           </v-col>
         </v-row>
+        <v-alert text dismissible type="error" :value="alert.querySaveFail">
+          Failed to Save query ...
+        </v-alert>
         <v-data-table
           :headers="table.headers"
           :items="table.items"
@@ -194,11 +207,15 @@ export default {
     },
     alert: {
       queryFail: false,
+      querySaveFail: false,
       queryEditFail: false,
+      queryDeleteFail: false,
     },
     loading: {
       query: false,
+      querySave: false,
       queryEditSave: false,
+      queryDelete: false,
     },
   }),
   mounted: async function (){
@@ -270,61 +287,71 @@ export default {
       this.$router.push({path: "sparql/resource", query: { uri: cellInfo }})
     },
     saveQuery(name, query, global) {
+      this.loading.saveQuery = true
       var body = {
         'name': name,
         'query': query,
         'user_email': 'kiko@kiko', // TODO: use user email when auth gets done
       }
-      if(!global)
-        body['repoID'] = this.$repo.id
+      if(!global) body['repoID'] = this.$repo.id
 
       var url = mongo_url+'/api/queries'
       axios.post(url, body)
         .then(response => {
-          console.log(response.data) // debug
-          var response = response.data
-          this.queryResponse = "Query add SUCCESS \n" + JSON.stringify(response)
+          // console.log(response.data) // debug
           this.savedQueries.push({'name': name, 'query': query,})
+          this.loading.saveQuery = false
         })
         .catch(alert => {
-          this.queryResponse = "Query add FAIL!!!\n" + alert
+          this.loading.saveQuery = false
+          this.alert.querySaveFail = true
+          // FIXME: detetar qd falha pk ja existe
         })
     },
-    savedQueryEdit(name,oldQuery) {
-      this.editing.queryName = name
+    savedQueryEdit(queryName,oldQuery) {
+      this.editing.queryName = queryName
       this.editing.queryNewValue = oldQuery
     },
-    savedQueryEditSave(name,newQuery) {
+    savedQueryEditSave(queryName,newQuery) {
       this.loading.queryEditSave = true
-      // TODO update no mongo
-      // on success update page info
-      for (let index = 0; index < this.savedQueries.length; index++) {
-        if(this.savedQueries[index].name===name){
-          this.savedQueries[index].query = newQuery
+      const user_email = "kiko@kiko" // FIXME: use loged user
+      const url = mongo_url+'/api/queries/'+user_email+'/'+queryName
+      const body = {'query': newQuery}
+      axios.put(url, body)
+        .then(response => {
+          // console.log(response.data) // debug
+          for (let index = 0; index < this.savedQueries.length; index++) {
+            if(this.savedQueries[index].name===queryName){
+              this.savedQueries[index].query = newQuery
+              this.loading.queryEditSave = false
+              return
+            }
+          }
+        })
+        .catch(alert => {
+          // console.log(alert) // debug
           this.loading.queryEditSave = false
-          return
-        }
-      }
-      this.loading.queryEditSave = false
-      this.alert.queryEditFail = true
+          this.alert.queryEditFail = true
+        })
     },
     deleteSavedQuery(name) {
-      // TODO: add dialog for confirmation
-      var url = mongo_url+'/api/queries/'+name
+      this.loading.queryDelete = true
+      const user_email = "kiko@kiko" // FIXME: use loged user
+      const url = mongo_url+'/api/queries/'+user_email+'/'+name
       axios.delete(url)
         .then(response => {
           // console.log(response.data) // debug
-          var response = response.data
-          this.queryResponse = "Query delete SUCCESS \n" + JSON.stringify(response)
           for (let index = 0; index < this.savedQueries.length; index++) {
             if(this.savedQueries[index].name===name){
               this.savedQueries.splice(index,1)
+              this.loading.queryDelete = false
               return index
             }
           }
         })
         .catch(alert => {
-          this.queryResponse = "Query delete FAIL!!!\n" + alert
+          this.loading.queryDelete = false
+          this.alert.queryDeleteFail = true
           // FIXME: detetar qd falha pk ja existe
         })
     },
