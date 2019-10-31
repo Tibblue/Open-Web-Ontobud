@@ -53,6 +53,13 @@ Queries.createQuery = (repo) => {
   return Query.create(repo)
 }
 
+// Alterar query de um user
+Queries.updateQueryValue = (user_email, queryName, query) => {
+    return Query
+        .findOneAndUpdate({user_email: user_email, name: queryName}, query, {useFindAndModify: false})
+        .exec()
+}
+
 // Apaga um query por nome e user email
 Queries.deleteQuery = (name, user_email) => {
   return Query

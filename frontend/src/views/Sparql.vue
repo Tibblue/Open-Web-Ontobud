@@ -32,21 +32,51 @@
                       v-text="savedQuery.name"
                     ></v-card-title>
                     <!-- <v-card-text v-if="savedQueryExpandedList.includes(savedQuery.name)">
-                      <span v-if="!savedQueryEditedList[savedQuery.name]">{{savedQuery.query}}</span>
-                      <v-textarea v-else outlined auto-grow hide-details
-                        v-model="savedQueryEditedList[savedQuery.name]"
-                        rows="6"
-                        row-height="16"
-                        label="Edited Query"
-                      ></v-textarea>
+                      <span>{{savedQuery.query}}</span>
                     </v-card-text> -->
                     <v-card-actions>
                       <v-btn icon @click="runQuery(savedQuery.query)">
                         <v-icon>fas fa-play</v-icon>
                       </v-btn>
-                      <v-btn icon @click="savedQueryEdit(savedQuery.name,savedQuery.query)">
-                        <v-icon>fas fa-edit</v-icon>
-                      </v-btn>
+                      <v-dialog v-model="dialogEditQuery" max-width="600px">
+                        <template v-slot:activator="{ on }">
+                          <v-btn icon v-on="on"
+                            :loading="loading.queryEditSave"
+                            @click="savedQueryEdit(savedQuery.name,savedQuery.query)"
+                          >
+                            <v-icon>fas fa-edit</v-icon>
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title>
+                            <span class="headline">
+                              {{editing.queryName}}
+                            </span>
+                          </v-card-title>
+                          <v-card-text>
+                            <v-textarea outlined auto-grow hide-details
+                              v-model="editing.queryNewValue"
+                              rows="6"
+                              row-height="16"
+                              label="Edited Query"
+                            ></v-textarea>
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-col class="grow">
+                              <v-btn block color="success"
+                                @click="savedQueryEditSave(editing.queryName,editing.queryNewValue);dialogEditQuery=false"
+                              >
+                                Save
+                              </v-btn>
+                            </v-col>
+                            <v-col class="grow">
+                              <v-btn block color="error" @click="dialogEditQuery=false">
+                                Cancel
+                              </v-btn>
+                            </v-col>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
                       <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
                           <v-btn icon color="primary" dark v-on="on">
@@ -66,6 +96,9 @@
             </v-container>
           </v-card>
         </v-expand-transition>
+        <v-alert text dismissible type="error" :value="alert.queryEditFail">
+          Failed to save query changes ...
+        </v-alert>
         <v-textarea outlined auto-grow hide-details
           v-model="queryInput"
           rows="6"
@@ -154,13 +187,18 @@ export default {
       { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
       { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
     ],
-    savedQueryExpandedList: [],
-    savedQueryEditedList: {},
+    dialogEditQuery: false,
+    editing: {
+      queryName: "",
+      queryNewValue: "",
+    },
     alert: {
       queryFail: false,
+      queryEditFail: false,
     },
     loading: {
       query: false,
+      queryEditSave: false,
     },
   }),
   mounted: async function (){
@@ -252,25 +290,23 @@ export default {
           this.queryResponse = "Query add FAIL!!!\n" + alert
         })
     },
-    // savedQueryExpand(name) {
-    //   if(this.savedQueryExpandedList.includes(name)){
-    //     let index = this.savedQueryExpandedList.indexOf(name)
-    //     this.savedQueryExpandedList.splice(index,1)
-    //   }
-    //   else
-    //     this.savedQueryExpandedList.push(name)
-    // },
     savedQueryEdit(name,oldQuery) {
-      this.savedQueryEditedList[name] = oldQuery
+      this.editing.queryName = name
+      this.editing.queryNewValue = oldQuery
     },
     savedQueryEditSave(name,newQuery) {
+      this.loading.queryEditSave = true
       // TODO update no mongo
+      // on success update page info
       for (let index = 0; index < this.savedQueries.length; index++) {
         if(this.savedQueries[index].name===name){
           this.savedQueries[index].query = newQuery
+          this.loading.queryEditSave = false
+          return
         }
       }
-      delete this.savedQueryEditedList[name]
+      this.loading.queryEditSave = false
+      this.alert.queryEditFail = true
     },
     deleteSavedQuery(name) {
       // TODO: add dialog for confirmation

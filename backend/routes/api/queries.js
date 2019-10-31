@@ -28,13 +28,13 @@ router.post('/', function (req, res) {
     .catch(error => res.status(500).jsonp(error))
 });
 
-// router.put('/:name/name', function (req, res) {
-//   // console.dir(req.body)
-//   console.log(">log-router API/USERS altering name: " + JSON.stringify(req.body))
-//   Queries.updateQueryName(req.params.name, req.body)
-//     .then(data => res.jsonp(data))
-//     .catch(error => res.status(500).jsonp(error))
-// });
+router.put('/:user_email/:name/query', function (req, res) {
+  // console.dir(req.body)
+  console.log(">log-router API/USERS altering query: " + JSON.stringify(req.body))
+  Queries.updateQueryValue(req.params.user_email, req.params.name, req.body)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error))
+});
 
 router.delete('/:name', function (req, res) {
   Queries.deleteQuery(req.params.name)
