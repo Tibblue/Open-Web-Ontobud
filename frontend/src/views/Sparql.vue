@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <savedQueries @runQuery="runQuery"/>
+        <savedQueries ref="savedQueriesComp" @runQuery="runQuery"/>
         <!-- <v-divider></v-divider> -->
         <v-textarea outlined auto-grow hide-details
           v-model="queryInput"
@@ -102,22 +102,13 @@ export default {
       { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
       { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
     ],
-    dialogEditQuery: false,
-    editing: {
-      queryName: "",
-      queryNewValue: "",
-    },
     alert: {
       queryFail: false,
       querySaveFail: false,
-      queryEditFail: false,
-      queryDeleteFail: false,
     },
     loading: {
       query: false,
       querySave: false,
-      queryEditSave: false,
-      queryDelete: false,
     },
   }),
   mounted: async function (){
@@ -184,59 +175,13 @@ export default {
       axios.post(url, body)
         .then(response => {
           // console.log(response.data) // debug
-          this.savedQueries.push({'name': name, 'query': query,})
+          // console.log(this.$refs.savedQueriesComp) // debug to check child component variable
+          this.$refs.savedQueriesComp.savedQueries.push({'name': name, 'query': query,})
           this.loading.saveQuery = false
         })
         .catch(alert => {
           this.loading.saveQuery = false
           this.alert.querySaveFail = true
-          // FIXME: detetar qd falha pk ja existe
-        })
-    },
-    savedQueryEdit(queryName,oldQuery) {
-      this.editing.queryName = queryName
-      this.editing.queryNewValue = oldQuery
-    },
-    savedQueryEditSave(queryName,newQuery) {
-      this.loading.queryEditSave = true
-      const user_email = "kiko@kiko" // FIXME: use loged user
-      const url = backend_url+'/api/queries/'+user_email+'/'+queryName
-      const body = {'query': newQuery}
-      axios.put(url, body)
-        .then(response => {
-          // console.log(response.data) // debug
-          for (let index = 0; index < this.savedQueries.length; index++) {
-            if(this.savedQueries[index].name===queryName){
-              this.savedQueries[index].query = newQuery
-              this.loading.queryEditSave = false
-              return
-            }
-          }
-        })
-        .catch(alert => {
-          // console.log(alert) // debug
-          this.loading.queryEditSave = false
-          this.alert.queryEditFail = true
-        })
-    },
-    deleteSavedQuery(name) {
-      this.loading.queryDelete = true
-      const user_email = "kiko@kiko" // FIXME: use loged user
-      const url = backend_url+'/api/queries/'+user_email+'/'+name
-      axios.delete(url)
-        .then(response => {
-          // console.log(response.data) // debug
-          for (let index = 0; index < this.savedQueries.length; index++) {
-            if(this.savedQueries[index].name===name){
-              this.savedQueries.splice(index,1)
-              this.loading.queryDelete = false
-              return index
-            }
-          }
-        })
-        .catch(alert => {
-          this.loading.queryDelete = false
-          this.alert.queryDeleteFail = true
           // FIXME: detetar qd falha pk ja existe
         })
     },
