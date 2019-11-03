@@ -35,12 +35,6 @@ export default {
   //   console.log(process.env)
   // },
   methods: {
-    // simplifyRepos: function (repo) {
-    //   return {
-    //     id: repo.id.value,
-    //     title: repo.title.value
-    //   }
-    // }
   }
 }
 </script>

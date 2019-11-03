@@ -35,19 +35,12 @@ export default {
     deleteCurrentRepo,
   },
   data: () => ({
-    snackbarDEBUG: false,
   }),
   // mounted: async function (){
   //   console.log(this.$props)
   //   console.log(process.env)
   // },
   methods: {
-    // simplifyRepos: function (repo) {
-    //   return {
-    //     id: repo.id.value,
-    //     title: repo.title.value
-    //   }
-    // }
   }
 }
 </script>

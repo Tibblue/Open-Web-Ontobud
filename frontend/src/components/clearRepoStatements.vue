@@ -4,10 +4,10 @@
       <v-btn :loading="loading.clear" block color="warning" @click="clearStatements($repo.id)">
         Clear Repo Statements
       </v-btn>
-      <v-alert text dismissible type="success" :value="alert.clearSuccess">
+      <v-alert text dismissible type="success" v-model="alert.clearSuccess">
         {{ $repo.name }} was cleared with Success!
       </v-alert>
-      <v-alert text dismissible type="error" :value="alert.clearFail">
+      <v-alert text dismissible type="error" v-model="alert.clearFail">
         Failed to clear {{ $repo.name }} ...
       </v-alert>
     </v-col>

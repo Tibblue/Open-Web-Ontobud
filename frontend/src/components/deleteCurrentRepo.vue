@@ -39,10 +39,10 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-alert text dismissible type="success" :value="alertDeleteSuccess">
+      <v-alert text dismissible type="success" v-model="alert.deleteSuccess">
         {{ this.$session.get("repoName") }} was deleted with Success!!!
       </v-alert>
-      <v-alert text dismissible type="error" :value="alertDeleteFail">
+      <v-alert text dismissible type="error" v-model="alert.deleteFail">
         Failed to delete {{ this.$session.get("repoName") }} ...
       </v-alert>
     </v-col>
@@ -57,8 +57,10 @@ export default {
   data: () => ({
     deleteRepoIDConfirm: "",
     disableDialogConfirmDelete: true,
-    alertDeleteSuccess: false,
-    alertDeleteFail: false,
+    alert: {
+      deleteSuccess: false,
+      deleteFail: false,
+    },
     dialogDeleteRepo: false,
   }),
   mounted: async function (){
@@ -69,12 +71,12 @@ export default {
     deleteCurrentRepo(repoID) {
       axios.delete(rdf4j_url+'/rdf4j-server/repositories/'+repoID)
         .then(response => {
-          this.alertDeleteSuccess = true
-          this.alertDeleteFail = false
+          this.alert.deleteSuccess = true
+          this.alert.deleteFail = false
         })
         .catch(alert => {
-          this.alertDeleteFail = true
-          this.alertDeleteSuccess = false
+          this.alert.deleteFail = true
+          this.alert.deleteSuccess = false
         })
     },
     deleteConfirm(value) {

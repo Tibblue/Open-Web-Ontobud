@@ -30,10 +30,10 @@
       <v-btn :loading="loading.importFile" block color="success" @click="importRepoFile($repo.id,fileTypeSelected,importFile,addORreplaceSelected)">
         Import Repo (File)
       </v-btn>
-      <v-alert text dismissible type="success" :value="alert.importFileSuccess">
+      <v-alert text dismissible type="success" v-model="alert.importFileSuccess">
         File Import Successful!!! Updated {{ $repo.name }}
       </v-alert>
-      <v-alert text dismissible type="error" :value="alert.importFileFail">
+      <v-alert text dismissible type="error" v-model="alert.importFileFail">
         File Import Failed... Not Updated {{ $repo.name }}
       </v-alert>
     </v-col>
@@ -46,10 +46,10 @@
       <v-btn :loading="loading.importText" block color="success" @click="importRepoText($repo.id,fileTypeSelected,importText,addORreplaceSelected)">
         Import Repo (Input Text)
       </v-btn>
-      <v-alert text dismissible type="success" :value="alert.importTextSuccess">
+      <v-alert text dismissible type="success" v-model="alert.importTextSuccess">
         Text Import Successful!!! Updated {{ $repo.name }}
       </v-alert>
-      <v-alert text dismissible type="error" :value="alert.importTextFail">
+      <v-alert text dismissible type="error" v-model="alert.importTextFail">
         Text Import Failed... Not Updated {{ $repo.name }}
       </v-alert>
     </v-col>

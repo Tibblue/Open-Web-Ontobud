@@ -13,7 +13,7 @@
       <v-btn :loading="loading.exportFile" block color="success" @click="exportRepoFile($repo.id,fileTypeSelected)" class="mt-3">
         Export Repo (Download File)
       </v-btn>
-      <v-alert text dismissible type="error" :value="alert.exportFileFail">
+      <v-alert text dismissible type="error" v-model="alert.exportFileFail">
         File Export Failed...
       </v-alert>
     </v-col>
@@ -21,7 +21,7 @@
       <v-btn :loading="loading.exportText" block color="success" @click="exportRepoText($repo.id,fileTypeSelected)">
         Export Repo (InScreen Text)
       </v-btn>
-      <v-alert text dismissible type="error" :value="alert.exportTextFail">
+      <v-alert text dismissible type="error" v-model="alert.exportTextFail">
         Text Export Failed...
       </v-alert>
       <v-textarea outlined auto-grow readonly hide-details class="mt-3"
