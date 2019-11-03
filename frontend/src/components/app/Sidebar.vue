@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer app permanent
-    :mini-variant.sync="sidebar_mini"
+    :mini-variant="sidebar_mini"
   >
     <v-list-item>
       <v-list-item-icon>

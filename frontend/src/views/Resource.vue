@@ -12,7 +12,7 @@
         ></v-checkbox>
       </v-col>
       <v-col cols="12">
-        <v-tabs grow>
+        <v-tabs grow background-color="darken-2 primary">
           <v-tab>Subject</v-tab>
           <v-tab>Predicate</v-tab>
           <v-tab>Object</v-tab>
@@ -147,70 +147,6 @@
           </template>
         </v-data-table>
       </v-col>
-      <v-col cols="12">
-        <v-data-table
-          :headers="table.headers"
-          :items="table.predicateResults"
-          :items-per-page="10"
-        >
-          <template v-slot:item="props">
-            <tr v-if="prefixON">
-              <td @click="cellClicked(props.item[table.headers[0].text])">
-                {{props.item[table.headers[0].text]}}
-              </td>
-              <td>
-                {{$route.query.uri}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[2].text])">
-                {{props.item[table.headers[2].text]}}
-              </td>
-            </tr>
-            <tr v-else>
-              <td @click="cellClicked(props.item[table.headers[0].text])">
-                {{props.item[table.headers[0].text].split('#')[1]}}
-              </td>
-              <td>
-                {{$route.query.uri.split('#')[1]}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[2].text])">
-                {{props.item[table.headers[2].text].split('#')[1]}}
-              </td>
-            </tr>
-          </template>
-        </v-data-table>
-      </v-col>
-      <v-col cols="12">
-        <v-data-table
-          :headers="table.headers"
-          :items="table.objectResults"
-          :items-per-page="10"
-        >
-          <template v-slot:item="props">
-            <tr v-if="prefixON">
-              <td @click="cellClicked(props.item[table.headers[0].text])">
-                {{props.item[table.headers[0].text]}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[1].text])">
-                {{props.item[table.headers[1].text]}}
-              </td>
-              <td>
-                {{$route.query.uri}}
-              </td>
-            </tr>
-            <tr v-else>
-              <td @click="cellClicked(props.item[table.headers[0].text])">
-                {{props.item[table.headers[0].text].split('#')[1]}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[1].text])">
-                {{props.item[table.headers[1].text].split('#')[1]}}
-              </td>
-              <td>
-                {{$route.query.uri.split('#')[1]}}
-              </td>
-            </tr>
-          </template>
-        </v-data-table>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -229,7 +165,7 @@ export default {
         { text: 'predicate', value: 'predicate' },
         { text: 'object', value: 'object' },
       ],
-      items: [{column: 'value'}],
+      // items: [{column: 'value'}],
       subjectResults: [],
       predicateResults: [],
       objectResults: [],
