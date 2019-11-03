@@ -106,6 +106,7 @@
         <v-alert text dismissible type="error" :value="alert.queryDeleteFail">
           Failed to Delete query ...
         </v-alert>
+        <!-- <v-divider></v-divider> -->
         <v-textarea outlined auto-grow hide-details
           v-model="queryInput"
           rows="6"
@@ -176,7 +177,7 @@
 import Vuex from 'vuex'
 import axios from 'axios'
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
-const mongo_url = "http://localhost:"+'5000' // FIXME use env
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -232,7 +233,7 @@ export default {
   methods: {
     getSavedQueries(currentUserEmail) {
       this.savedQueries = [{'name': 'Loading Queries...', 'query': 'Please wait'}]
-      var url = mongo_url+'/api/queries/user/'+currentUserEmail
+      var url = backend_url+'/api/queries/user/'+currentUserEmail
       axios.get(url)
         .then(response => {
           // console.log(response.data) // debug
@@ -295,7 +296,7 @@ export default {
       }
       if(!global) body['repoID'] = this.$repo.id
 
-      var url = mongo_url+'/api/queries'
+      var url = backend_url+'/api/queries'
       axios.post(url, body)
         .then(response => {
           // console.log(response.data) // debug
@@ -315,7 +316,7 @@ export default {
     savedQueryEditSave(queryName,newQuery) {
       this.loading.queryEditSave = true
       const user_email = "kiko@kiko" // FIXME: use loged user
-      const url = mongo_url+'/api/queries/'+user_email+'/'+queryName
+      const url = backend_url+'/api/queries/'+user_email+'/'+queryName
       const body = {'query': newQuery}
       axios.put(url, body)
         .then(response => {
@@ -337,7 +338,7 @@ export default {
     deleteSavedQuery(name) {
       this.loading.queryDelete = true
       const user_email = "kiko@kiko" // FIXME: use loged user
-      const url = mongo_url+'/api/queries/'+user_email+'/'+name
+      const url = backend_url+'/api/queries/'+user_email+'/'+name
       axios.delete(url)
         .then(response => {
           // console.log(response.data) // debug
