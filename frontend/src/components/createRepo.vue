@@ -10,6 +10,11 @@
           color="info"
         ></v-radio>
       </v-radio-group>
+      <v-combobox hide-details :return-object="false"
+        v-model="repoTypeSelected"
+        :items="repoTypes"
+        label="Select the Repository Type"
+      ></v-combobox>
     </v-col>
     <v-col cols="12">
       <v-text-field hide-details class="mt-0 pt-0"
