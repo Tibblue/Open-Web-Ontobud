@@ -85,12 +85,42 @@
                     <span>{{savedQuery.query}}</span>
                   </v-tooltip>
                   <div class="flex-grow-1"></div>
-                  <v-btn icon
+                  <!-- <v-btn icon
                     :loading="loading.queryDelete"
                     @click="deleteSavedQuery(savedQuery.name)"
                   >
                     <v-icon>fas fa-trash</v-icon>
-                  </v-btn>
+                  </v-btn> -->
+                  <!-- <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon dark v-on="on"
+                        :loading="loading.queryDelete"
+                      >
+                        <v-icon>fas fa-trash</v-icon>
+                      </v-btn>
+                    </template>
+                    <v-btn color="error"
+                      :loading="loading.queryDelete"
+                      @click="deleteSavedQuery(savedQuery.name)"
+                    >
+                      Delete Query
+                    </v-btn>
+                  </v-tooltip> -->
+                  <v-menu left>
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon dark v-on="on"
+                        :loading="loading.queryDelete"
+                      >
+                        <v-icon>fas fa-trash</v-icon>
+                      </v-btn>
+                    </template>
+                    <v-btn color="error"
+                      :loading="loading.queryDelete"
+                      @click="deleteSavedQuery(savedQuery.name)"
+                    >
+                      Confirm
+                    </v-btn>
+                  </v-menu>
                 </v-card-actions>
               </v-card>
             </v-col>
