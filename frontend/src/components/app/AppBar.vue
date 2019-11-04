@@ -1,13 +1,12 @@
 <template>
   <v-app-bar app color="primary">
+    <!-- <v-toolbar-title v-bind:selectedRepo.sync="selectedRepo">
+      {{selectedRepo}}
+    </v-toolbar-title> -->
+    <div class="flex-grow-1"></div>
     <v-btn :loading="loadingRepos" icon @click="getRepositories()">
       <v-icon>fas fa-sync</v-icon>
     </v-btn>
-    <v-toolbar-title v-bind:selectedRepo.sync="selectedRepo">
-      {{selectedRepo}}
-    </v-toolbar-title>
-
-    <div class="flex-grow-1"></div>
     <v-col cols="4">
       <v-combobox dense hide-details
         v-model="selectedRepo"

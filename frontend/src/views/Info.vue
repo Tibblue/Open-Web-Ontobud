@@ -20,7 +20,7 @@
                 Expansion Ratio: TODO
               </v-card-title>
               <v-card-text>
-                <h4>Explicit Statements: TODO</h4>
+                <h4>Explicit Statements: {{statementNumber}}</h4>
                 <h4>Implicit Statements: TODO</h4>
               </v-card-text>
             </v-card>

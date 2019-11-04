@@ -10,11 +10,11 @@
           color="info"
         ></v-radio>
       </v-radio-group>
-      <v-combobox hide-details :return-object="false"
+      <!-- <v-combobox hide-details :return-object="false"
         v-model="repoTypeSelected"
         :items="repoTypes"
         label="Select the Repository Type"
-      ></v-combobox>
+      ></v-combobox> -->
     </v-col>
     <v-col cols="12">
       <v-text-field hide-details class="mt-0 pt-0"
@@ -28,17 +28,21 @@
         label="New Repo Name"
       ></v-text-field>
     </v-col>
-    <v-col cols="3">
-      <v-btn color="primary" @click="newRepo(newRepoID, newRepoName, repoTypeSelected)">
+    <v-col cols="12">
+      <v-btn :loading="loading.createRepo" block color="primary" @click="newRepo(newRepoID, newRepoName, repoTypeSelected)">
         Create Repo
       </v-btn>
     </v-col>
-    <v-col cols="9">
-      <v-text-field readonly outlined hide-details
-        v-model="newRepoResponse"
-        label="Response"
-        placeholder="Response to the request"
-      ></v-text-field>
+    <v-col cols="12">
+      <v-alert text dismissible type="success" v-model="alert.createRepoSuccess">
+        Repository create Successful!!! Created {{ newRepoName }}
+      </v-alert>
+      <v-alert text dismissible type="warning" v-model="alert.createRepoAlreadyExists">
+        Repository {{ newRepoName }} already exists!
+      </v-alert>
+      <v-alert text dismissible type="error" v-model="alert.createRepoFail">
+        Repository create Failed... Not Created {{ newRepoName }}
+      </v-alert>
     </v-col>
   </v-row>
 </template>
@@ -59,6 +63,17 @@ export default {
       { text: 'Hard Drive Store', value: 'native' },
       { text: 'Hard Drive Store + RDFS and Direct Type Reasoning', value: 'native-rdfs-dt' },
     ],
+    loading: {
+      createRepo: false,
+      deleteRepo: false,
+    },
+    alert: {
+      createRepoSuccess: false,
+      createRepoAlreadyExists: false,
+      createRepoFail: false,
+      deleteRepoSuccess: false,
+      deleteRepoFail: false,
+    },
   }),
   mounted: async function (){
     // console.log(process.env) # debug
@@ -66,19 +81,53 @@ export default {
   },
   methods: {
     newRepo(repoID, repoName, repoType) {
-      const formData = new FormData();
-      formData.append('type', repoType);
-      formData.append('Repository ID', repoID);
-      formData.append('Repository title', repoName);
-
-      axios.post(rdf4j_url+'/rdf4j-workbench/repositories/NONE/create', formData)
+      this.loading.createRepo = true
+      axios.get(rdf4j_url+'/rdf4j-server/repositories')
         .then(response => {
-          // console.log(response.data)
-          this.newRepoResponse = "Created " + repoName + " with SUCCESS \n" + response.data
-          // this.$emit('updateRepos',repoID) // NOTE: isto funcionou
+          // console.log(response.data.head) // debug column names
+          // console.log(response.data.results.bindings) // debug results
+          var isNew = true
+          var repoList = response.data.results.bindings
+          repoList.forEach(elem => {
+            if( repoID === elem.id.value){
+              isNew = false
+            }
+          })
+          if(isNew){
+            const formData = new FormData();
+            formData.append('type', repoType);
+            formData.append('Repository ID', repoID);
+            formData.append('Repository title', repoName);
+            // console.log(repoType) // debug
+            axios.post(rdf4j_url+'/rdf4j-workbench/repositories/NONE/create', formData)
+              .then(response => {
+                this.alert.createRepoSuccess = true
+                this.alert.createRepoAlreadyExists = false
+                this.alert.createRepoFail = false
+                // this.$emit('updateRepos',repoID) // NOTE: isto funcionou
+              })
+              .catch(alert => {
+                this.alert.createRepoSuccess = false
+                this.alert.createRepoAlreadyExists = false
+                this.alert.createRepoFail = true
+              })
+              // .finally(() => {
+              //   this.loading.createRepo = false
+              // })
+          }
+          else{
+            this.alert.createRepoSuccess = false
+            this.alert.createRepoAlreadyExists = true
+            this.alert.createRepoFail = false
+          }
         })
         .catch(alert => {
-          this.newRepoResponse = "Criação FALHOU!!!\n" + alert
+          this.alert.createRepoSuccess = false
+          this.alert.createRepoAlreadyExists = false
+          this.alert.createRepoFail = true
+        })
+        .finally(() => {
+          this.loading.createRepo = false
         })
     },
   },
