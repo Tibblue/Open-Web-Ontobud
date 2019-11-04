@@ -12,15 +12,22 @@
           placeholder="Place query and Run"
         ></v-textarea>
         <v-row>
-          <v-col cols="12">
-            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput)">
+          <v-col cols="9">
+            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput,infer)">
               Run Query
             </v-btn>
-            <v-alert text dismissible type="error" v-model="alert.queryFail">
-              Failed to Query {{ $repo.name }} ...
-            </v-alert>
+          </v-col>
+          <v-col cols="3" md="3">
+            <v-checkbox hide-details class="mt-0 pt-2"
+              v-model="infer"
+              label="Inferencing"
+              color="primary"
+            ></v-checkbox>
           </v-col>
         </v-row>
+        <v-alert text dismissible type="error" v-model="alert.queryFail">
+          Failed to Query {{ $repo.name }} ...
+        </v-alert>
         <v-row>
           <v-col cols="9" md="9">
             <v-text-field dense hide-details
@@ -74,6 +81,7 @@
 import savedQueries from '@/components/savedQueries'
 import Vuex from 'vuex'
 import axios from 'axios'
+const qs = require('querystring')
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
@@ -83,7 +91,7 @@ export default {
   },
   data: () => ({
     queryInput: "select * where { ?s ?p ?o }\nlimit 20",
-    queryResponse: "",
+    infer: true,
     table: {
       headers: [
         { text: 'column', value: 'column',
@@ -123,12 +131,12 @@ export default {
     },
   },
   methods: {
-    runQuery(query) {
+    runQuery(query, infer) {
       this.loading.query = true
       var repoID = this.$repo.id
       var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
-      axios.post(url, query,
-        {headers: {"Content-Type": "application/sparql-query"}})
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
+        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.head.vars) // debug Nome de Colunas

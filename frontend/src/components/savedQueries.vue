@@ -53,6 +53,8 @@
                         </span>
                       </v-card-title>
                       <v-card-text>
+                        <pre>{{editing.queryNewValue}}
+                        </pre>
                         <v-textarea outlined auto-grow hide-details
                           v-model="editing.queryNewValue"
                           rows="6"
