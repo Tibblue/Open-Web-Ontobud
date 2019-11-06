@@ -1,8 +1,12 @@
 var express = require('express');
+var bodyParser = require("body-parser")
 var axios = require('axios');
-var formidable = require('formidable')
 var qs = require('querystring')
 var router = express.Router();
+
+// Middleware Parsers
+var rawParser = bodyParser.raw({type: '*/*'}) //TODO change limit cap
+
 
 // RDF4J endpoint
 var rdf4jServer = 'http://localhost:8080/rdf4j-server/'
@@ -43,43 +47,55 @@ router.delete('/management/delete/:repo/statements', function (req, res) {
     .catch( () => res.status(404).send());
 });
 
-
-// import file (add)
-// TODO: make it work
-router.post('/management/importFile/:repo', function (req, res) {
+// import file (replace)
+router.put('/management/importFile/:repo', rawParser, function (req, res) {
   const repo = req.params.repo
+  const contentType = req.headers['content-type'] // keep original content type
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
-  const form = new formidable.IncomingForm();
-  form.parse(req, (error, fields, files) => {
-    // console.log(fields)
-    console.log(files)
-    // console.log(req.body)
-    // const body = qs.stringify(req.body)
-    const body = files.file
-    // const body = files.file.getAsBinary()
-    const config = { headers: { "Content-Type": 'text/turtle' } }
-    // const config = { headers: { "Content-Type": 'application/x-turtle' } }
-    axios.post(url, body, config)
-      .then(response => res.status(200).send())
-      // .catch(err => console.log('ERRO: ' + err));
-      .catch(err => {
-        console.log('ERRO: ' + err)
-        res.status(404).send(err)
-      });
-  })
-});
-
-// import text (replace)
-router.put('/management/importText/:repo', function (req, res) {
-  const repo = req.params.repo
-  const url = rdf4jServer + 'repositories/' + repo + '/statements'
-  console.log(req.body)
   const body = req.body
-  const config = { headers: { "Content-Type": 'application/x-turtle' } }
+  const config = { headers: { "Content-Type": contentType } }
   axios.put(url, body, config)
     .then( () => res.status(200).send())
     .catch( () => res.status(404).send("error"));
 });
+
+// import file (add)
+router.post('/management/importFile/:repo', rawParser, function (req, res) {
+  const repo = req.params.repo
+  const contentType = req.headers['content-type'] // keep original content type
+  const url = rdf4jServer + 'repositories/' + repo + '/statements'
+  const body = req.body
+  const config = { headers: { "Content-Type": contentType } }
+  axios.post(url, body, config)
+    .then( () => res.status(200).send())
+    .catch( () => res.status(404).send("error"));
+});
+
+// import text (replace)
+router.put('/management/importText/:repo', rawParser, function (req, res) {
+  const repo = req.params.repo
+  const contentType = req.headers['content-type'] // keep original content type
+  const url = rdf4jServer + 'repositories/' + repo + '/statements'
+  const body = req.body
+  const config = { headers: { "Content-Type": contentType } }
+  axios.put(url, body, config)
+    .then( () => res.status(200).send())
+    .catch( () => res.status(404).send("error"));
+});
+
+// import text (add)
+router.post('/management/importText/:repo', rawParser, function (req, res) {
+  const repo = req.params.repo
+  const contentType = req.headers['content-type'] // keep original content type
+  const url = rdf4jServer + 'repositories/' + repo + '/statements'
+  const body = req.body
+  const config = { headers: { "Content-Type": contentType } }
+  axios.post(url, body, config)
+    .then( () => res.status(200).send())
+    .catch( () => res.status(404).send("error"));
+});
+
+
 
 
 

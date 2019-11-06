@@ -55,7 +55,6 @@ export default {
   data: () => ({
     newRepoID: "",
     newRepoName: "",
-    newRepoResponse: "",
     repoTypeSelected: 'memory-rdfs-dt',
     repoTypes: [ // TODO: add more
       { text: 'Memory Store', value: 'memory' },
