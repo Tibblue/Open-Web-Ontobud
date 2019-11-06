@@ -1,67 +1,40 @@
-[INFO ] 2019-10-16 16:00:22,926 [main] Logback logging API implementation is configured.
-[INFO ] 2019-10-16 16:00:23,339 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
-[INFO ] 2019-10-16 16:00:23,339 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
-[INFO ] 2019-10-16 16:00:23,352 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
-[INFO ] 2019-10-16 16:00:23,364 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
-[INFO ] 2019-10-16 16:00:23,967 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
-[INFO ] 2019-10-16 16:00:24,012 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
-[INFO ] 2019-10-16 16:00:24,047 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
-[INFO ] 2019-10-16 16:00:24,052 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
-[INFO ] 2019-10-16 16:00:24,052 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
-[INFO ] 2019-10-16 16:00:24,052 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-10-16 16:00:24,055 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
-[INFO ] 2019-10-16 16:00:24,058 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
-[INFO ] 2019-10-16 16:00:24,059 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
-[INFO ] 2019-10-16 16:00:24,061 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
-[INFO ] 2019-10-16 16:00:24,061 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
-[INFO ] 2019-10-16 16:00:24,063 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
-[INFO ] 2019-10-16 16:00:24,064 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-10-16 16:00:24,064 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
-[INFO ] 2019-10-16 16:00:24,267 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 2799 ms
-[INFO ] 2019-10-16 16:01:55,969 [http-nio-8080-exec-9] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:01:56,306 [http-nio-8080-exec-2] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:01:58,610 [repositories/fam] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:01:58,927 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:16:20,893 [repositories/fam] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:16:21,790 [http-nio-8080-exec-10] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:16:25,148 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 16:16:32,192 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 16:16:32,195 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:23:19,824 [http-nio-8080-exec-6] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:23:31,605 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 16:23:31,605 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:23:40,059 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 16:23:47,538 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 16:23:47,539 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:24:50,563 [repositories/fam] PUT data in repository
-[INFO ] 2019-10-16 16:24:50,564 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:31:32,909 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 16:31:36,732 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 16:31:36,735 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:31:42,721 [repositories/fam] GET statements
-[INFO ] 2019-10-16 16:31:46,729 [repositories/fam] GET statements
-[INFO ] 2019-10-16 16:31:52,001 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 16:32:11,572 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 16:32:11,572 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:32:23,811 [repositories/fam] POST query 1044088069
-[INFO ] 2019-10-16 16:32:24,877 [repositories/fam] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:32:32,881 [repositories/fam] POST query -1558871678
-[INFO ] 2019-10-16 16:32:32,925 [repositories/fam] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:33:29,435 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 16:33:38,843 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 16:33:38,843 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:33:41,666 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 16:33:44,905 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 16:33:44,906 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 16:40:38,453 [http-nio-8080-exec-6] Request for query 3392903 is finished
-[INFO ] 2019-10-16 16:41:33,834 [http-nio-8080-exec-5] Request for query 3392903 is finished
-[INFO ] 2019-10-16 17:18:46,323 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 17:18:53,820 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:19:00,720 [repositories/fam] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
-	at java.util.Optional.orElseThrow(Optional.java:290)
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
+[INFO ] 2019-11-06 10:31:47,712 [main] Logback logging API implementation is configured.
+[INFO ] 2019-11-06 10:31:48,161 [main] Mapped URL path [/system/info/overview.view] onto handler 'commonWebappSystemInfoController'
+[INFO ] 2019-11-06 10:31:48,161 [main] Mapped URL path [/system/info/debug.view] onto handler 'filenameViewController'
+[INFO ] 2019-11-06 10:31:48,178 [main] Mapped URL path [/system/logging/overview.view] onto handler 'commonWebappLoggingOverviewController'
+[INFO ] 2019-11-06 10:31:48,192 [main] Mapped URL path [/system/overview.view] onto handler 'commonWebappSystemOverviewController'
+[INFO ] 2019-11-06 10:31:48,906 [main] Mapped URL path [/protocol] onto handler 'rdf4jProtocolController'
+[INFO ] 2019-11-06 10:31:48,949 [main] Mapped URL path [/repositories] onto handler 'rdf4jRepositoryListController'
+[INFO ] 2019-11-06 10:31:48,986 [main] Mapped URL path [/repositories/*] onto handler 'rdf4jRepositoryController'
+[INFO ] 2019-11-06 10:31:48,991 [main] Mapped URL path [/repositories/*/transactions/*] onto handler 'rdf4jRepositoryTransactionController'
+[INFO ] 2019-11-06 10:31:48,992 [main] Mapped URL path [/repositories/*/namespaces] onto handler 'rdf4jRepositoryNamespacesController'
+[INFO ] 2019-11-06 10:31:48,992 [main] Mapped URL path [/repositories/*/contexts] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-11-06 10:31:48,995 [main] Mapped URL path [/repositories/*/transactions] onto handler 'rdf4jRepositoryTransactionStartController'
+[INFO ] 2019-11-06 10:31:48,998 [main] Mapped URL path [/repositories/*/rdf-graphs/*] onto handler 'rdf4jRepositoryGraphController'
+[INFO ] 2019-11-06 10:31:48,999 [main] Mapped URL path [/repositories/*/size] onto handler 'rdf4jRepositorySizeController'
+[INFO ] 2019-11-06 10:31:49,000 [main] Mapped URL path [/repositories/*/namespaces/*] onto handler 'rdf4jRepositoryNamespaceController'
+[INFO ] 2019-11-06 10:31:49,000 [main] Mapped URL path [/repositories/*/rdf-graphs] onto handler 'rdf4jRepositoryContextsController'
+[INFO ] 2019-11-06 10:31:49,002 [main] Mapped URL path [/repositories/*/statements] onto handler 'rdf4jRepositoryStatementsController'
+[INFO ] 2019-11-06 10:31:49,003 [main] Mapped URL path [/home/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-11-06 10:31:49,003 [main] Mapped URL path [/overview.view] onto handler 'filenameViewController'
+[INFO ] 2019-11-06 10:31:49,175 [main] FrameworkServlet 'rdf4j-http-server': initialization completed in 3677 ms
+[INFO ] 2019-11-06 10:50:47,357 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-11-06 10:50:49,262 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-11-06 10:50:55,980 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2019-11-06 10:51:13,830 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 10:51:14,582 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 10:51:26,257 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 10:51:27,678 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 10:51:27,680 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 10:51:35,178 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 10:51:35,180 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 10:55:47,254 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 10:55:47,254 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[ERROR] 2019-11-06 10:55:47,255 [repositories/testing2] [Rio fatal] Expected an RDF value here, found '{' (1, -1)
+[WARN ] 2019-11-06 10:55:47,256 [repositories/testing2] Rolling back transaction due to connection close
+[INFO ] 2019-11-06 10:55:47,299 [repositories/testing2] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED DATA: Expected an RDF value here, found '{' [line 1]
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:408)
 	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
@@ -77,8 +50,8 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
@@ -101,16 +74,13 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-16 17:19:49,849 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:19:49,849 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 17:19:56,138 [repositories/fam] GET statements
-[INFO ] 2019-10-16 17:20:01,215 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 17:20:21,518 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:20:21,519 [repositories/fam] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
-	at java.util.Optional.orElseThrow(Optional.java:290)
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
+[INFO ] 2019-11-06 15:03:17,813 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 15:03:17,814 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[ERROR] 2019-11-06 15:03:17,816 [repositories/testing2] [Rio fatal] Expected an RDF value here, found '{' (1, -1)
+[WARN ] 2019-11-06 15:03:17,816 [repositories/testing2] Rolling back transaction due to connection close
+[INFO ] 2019-11-06 15:03:17,817 [repositories/testing2] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED DATA: Expected an RDF value here, found '{' [line 1]
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:408)
 	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
@@ -126,8 +96,8 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
@@ -150,12 +120,13 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-16 17:20:46,355 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:20:46,355 [repositories/fam] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
-	at java.util.Optional.orElseThrow(Optional.java:290)
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
+[INFO ] 2019-11-06 15:05:31,182 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 15:05:31,182 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[ERROR] 2019-11-06 15:05:31,183 [repositories/testing2] [Rio fatal] Expected an RDF value here, found '{' (1, -1)
+[WARN ] 2019-11-06 15:05:31,183 [repositories/testing2] Rolling back transaction due to connection close
+[INFO ] 2019-11-06 15:05:31,183 [repositories/testing2] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED DATA: Expected an RDF value here, found '{' [line 1]
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:408)
 	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
@@ -171,8 +142,8 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
@@ -195,26 +166,23 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-16 17:20:48,881 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:20:48,881 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 17:20:55,574 [repositories/fam] GET statements
-[INFO ] 2019-10-16 17:20:57,255 [repositories/fam] GET statements
-[INFO ] 2019-10-16 17:21:14,090 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:21:14,090 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 17:21:16,729 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:21:16,729 [repositories/fam] Client sent bad request ( 415)
-org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: application/x-www-form-urlencoded
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.lambda$getAddDataResult$0(StatementsController.java:373)
-	at java.util.Optional.orElseThrow(Optional.java:290)
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:372)
-	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:117)
+[INFO ] 2019-11-06 15:22:47,273 [repositories/test] PUT data in repository
+[INFO ] 2019-11-06 15:22:47,275 [repositories/test] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 15:23:59,215 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:23:59,215 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[ERROR] 2019-11-06 15:23:59,218 [repositories/testing2] [Rio fatal] Expected an RDF value here, found '{' (1, -1)
+[WARN ] 2019-11-06 15:23:59,218 [repositories/testing2] Rolling back transaction due to connection close
+[INFO ] 2019-11-06 15:23:59,219 [repositories/testing2] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED DATA: Expected an RDF value here, found '{' [line 1]
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:408)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:121)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -222,8 +190,8 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.filters.CorsFilter.handleSimpleCORS(CorsFilter.java:259)
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:163)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
@@ -246,52 +214,227 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unsupported MIME type: applic
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2019-10-16 17:22:01,265 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 17:22:11,282 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 17:22:11,282 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 17:22:14,336 [repositories/fam] GET statements
-[INFO ] 2019-10-16 17:22:19,574 [repositories/fam] GET statements
-[INFO ] 2019-10-16 17:22:30,154 [repositories/fam] GET statements
-[INFO ] 2019-10-16 17:22:54,899 [repositories/fam] GET statements
-[INFO ] 2019-10-16 17:54:57,560 [http-nio-8080-exec-9] Request for query 3392903 is finished
-[INFO ] 2019-10-16 18:37:45,446 [http-nio-8080-exec-8] Request for query 3392903 is finished
-[INFO ] 2019-10-16 18:37:58,627 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 18:38:04,051 [repositories/fam] PUT data in repository
-[INFO ] 2019-10-16 18:38:04,052 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:39:06,076 [repositories/fam] PUT data in repository
-[INFO ] 2019-10-16 18:39:06,076 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:39:09,379 [http-nio-8080-exec-9] Request for query 3392903 is finished
-[INFO ] 2019-10-16 18:39:12,721 [repositories/fam] PUT data in repository
-[INFO ] 2019-10-16 18:39:12,721 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:41:19,499 [http-nio-8080-exec-3] Request for query 3392903 is finished
-[INFO ] 2019-10-16 18:42:31,828 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:42:31,828 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:42:34,159 [repositories/fam] PUT data in repository
-[INFO ] 2019-10-16 18:42:34,159 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:45:40,213 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:45:40,214 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:45:51,244 [repositories/fam] GET statements
-[INFO ] 2019-10-16 18:46:32,682 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 18:46:39,715 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:46:39,715 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:46:45,399 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 18:46:49,010 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:46:49,010 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:47:01,082 [repositories/fam2] GET statements
-[INFO ] 2019-10-16 18:47:14,620 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:47:14,620 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:47:32,748 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:47:32,748 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:47:36,293 [repositories/fam] DELETE data from repository
-[INFO ] 2019-10-16 18:47:42,056 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:47:42,057 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:47:58,234 [repositories/fam2] GET statements
-[INFO ] 2019-10-16 18:48:31,773 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:48:31,777 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:49:51,964 [http-nio-8080-exec-7] Request for query 3392903 is finished
-[INFO ] 2019-10-16 18:49:56,837 [repositories/fam] PUT data in repository
-[INFO ] 2019-10-16 18:49:56,837 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 18:50:06,281 [repositories/fam2] GET statements
-[INFO ] 2019-10-16 18:50:14,424 [repositories/fam] POST data to repository
-[INFO ] 2019-10-16 18:50:14,424 [repositories/fam] no base URI specified, using dummy 'foo:bar'
-[INFO ] 2019-10-16 19:15:21,695 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Wed Oct 16 16:00:21 WEST 2019]; root of context hierarchy
+[INFO ] 2019-11-06 15:24:16,897 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:24:16,897 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[ERROR] 2019-11-06 15:24:16,898 [repositories/testing2] [Rio fatal] Expected an RDF value here, found '{' (1, -1)
+[WARN ] 2019-11-06 15:24:16,898 [repositories/testing2] Rolling back transaction due to connection close
+[INFO ] 2019-11-06 15:24:16,899 [repositories/testing2] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED DATA: Expected an RDF value here, found '{' [line 1]
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:408)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:121)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-11-06 15:24:34,486 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:24:34,486 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[ERROR] 2019-11-06 15:24:34,487 [repositories/testing2] [Rio fatal] Expected an RDF value here, found '{' (1, -1)
+[WARN ] 2019-11-06 15:24:34,487 [repositories/testing2] Rolling back transaction due to connection close
+[INFO ] 2019-11-06 15:24:34,487 [repositories/testing2] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED DATA: Expected an RDF value here, found '{' [line 1]
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:408)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:121)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-11-06 15:24:46,133 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:24:46,134 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[ERROR] 2019-11-06 15:24:46,136 [repositories/testing2] [Rio fatal] Expected an RDF value here, found '{' (1, -1)
+[WARN ] 2019-11-06 15:24:46,137 [repositories/testing2] Rolling back transaction due to connection close
+[INFO ] 2019-11-06 15:24:46,138 [repositories/testing2] Client sent bad request ( 400)
+org.eclipse.rdf4j.http.server.ClientHTTPException: MALFORMED DATA: Expected an RDF value here, found '{' [line 1]
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.getAddDataResult(StatementsController.java:408)
+	at org.eclipse.rdf4j.http.server.repository.statements.StatementsController.handleRequestInternal(StatementsController.java:121)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2019-11-06 15:34:10,324 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:34:10,328 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 15:34:27,422 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 15:34:35,417 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 15:34:35,425 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 15:34:41,286 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 15:34:43,253 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 15:34:43,255 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 15:34:48,183 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:34:48,183 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 15:34:53,760 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 15:34:53,763 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 15:35:31,858 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 15:35:52,473 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:35:52,474 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 15:35:55,988 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 15:35:55,990 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 15:36:01,647 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 15:36:01,648 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 15:36:05,262 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 15:36:05,266 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 16:39:22,690 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 16:39:24,714 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 16:40:15,124 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 16:40:15,125 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 16:40:30,745 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 16:40:30,745 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 16:40:50,578 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2019-11-06 16:40:51,045 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 16:40:51,050 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 16:41:54,985 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 16:41:54,987 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 16:42:40,826 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 16:42:40,826 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 16:43:33,401 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 16:43:33,402 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 16:50:43,864 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2019-11-06 16:50:44,178 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 16:50:44,182 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 16:50:48,077 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 16:50:49,132 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 16:50:49,137 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 16:51:03,335 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 16:51:03,335 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 16:51:07,296 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2019-11-06 16:51:07,632 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 16:51:07,636 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 17:08:42,464 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 17:08:42,464 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:09:10,055 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 17:09:10,056 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:18:19,544 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 17:20:52,287 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:20:52,287 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:20:59,145 [repositories/testing2] POST query -940484095
+[INFO ] 2019-11-06 17:21:00,589 [repositories/testing2] Request for query -940484095 is finished
+[INFO ] 2019-11-06 17:21:12,350 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 17:21:23,299 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:21:23,299 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:21:33,672 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:21:33,672 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:21:47,698 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:21:47,698 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:22:14,605 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 17:38:21,069 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:38:21,071 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:38:42,658 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 17:42:01,706 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:42:01,706 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:42:06,153 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 17:46:06,188 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:46:06,189 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:51:06,684 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 17:51:06,684 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 17:51:25,067 [repositories/testing2] POST data to repository
+[INFO ] 2019-11-06 17:51:25,067 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 18:01:33,567 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 18:01:33,568 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 18:01:38,283 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 18:01:41,835 [repositories/testing2] PUT data in repository
+[INFO ] 2019-11-06 18:01:41,835 [repositories/testing2] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2019-11-06 18:01:47,232 [repositories/testing2] DELETE data from repository
+[INFO ] 2019-11-06 18:02:38,187 [http-nio-8080-exec-2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 18:02:38,870 [repositories/testing2] POST query -9669974
+[INFO ] 2019-11-06 18:02:38,878 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2019-11-06 18:13:47,749 [main] Closing WebApplicationContext for namespace 'rdf4j-http-server-servlet': startup date [Wed Nov 06 10:31:45 WET 2019]; root of context hierarchy
