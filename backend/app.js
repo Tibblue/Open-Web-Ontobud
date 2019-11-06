@@ -19,7 +19,8 @@ app.locals.url = "http://"+app.address+":"+app.port+"/"
 const dbLocal = 'mongodb://127.0.0.1:27017/rdf4jFrontend'
 // Base de dados
 var mongoose = require('mongoose')
-mongoose.connect(dbLocal, {useNewUrlParser: true})
+mongoose.set('useCreateIndex', true)
+mongoose.connect(dbLocal, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(()=> console.log('Mongo running... status: ' + mongoose.connection.readyState))
   .catch(()=> console.log('Mongo: erro na conexao!!!'))
 
