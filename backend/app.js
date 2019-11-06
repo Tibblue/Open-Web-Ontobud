@@ -37,8 +37,9 @@ app.use(logger('dev'));
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser()); // COOKIE PARSER
-app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.raw({type: '*/*'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -53,9 +54,10 @@ app.use(function (req, res, next) {
 });
 
 // Routing
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/repos', require('./routes/api/repos'));
-app.use('/api/queries', require('./routes/api/queries'));
+app.use('/api/users', require('./routes/api/mongo/users'));
+app.use('/api/repos', require('./routes/api/mongo/repos'));
+app.use('/api/queries', require('./routes/api/mongo/queries'));
+app.use('/api/rdf4j', require('./routes/api/rdf4j/rdf4j'));
 
 
 

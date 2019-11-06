@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Repos = require("../../controllers/repo")
+var Repos = require("../../../controllers/repo")
 
 router.get('/', function (req, res) {
   Repos.list()

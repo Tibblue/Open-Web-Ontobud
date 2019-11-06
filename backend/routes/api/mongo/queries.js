@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Queries = require("../../controllers/query")
+var Queries = require("../../../controllers/query")
 
 router.get('/', function (req, res) {
   Queries.list()
