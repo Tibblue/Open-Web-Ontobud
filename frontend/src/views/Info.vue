@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <debug/>
     <v-card flat color="transparent" class="ma-3">
       <v-container fluid class="pa-0">
         <v-row>
@@ -53,14 +52,12 @@
 </template>
 
 <script>
-import debug from '@/components/debug'
 import axios from 'axios'
+const qs = require('querystring')
 const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
-  components: {
-    debug,
-  },
   data: () => ({
     statementNumber: "Loading info...",
     classes: [{name: 'Loading classes...'}],
@@ -69,7 +66,6 @@ export default {
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    // console.log(this.$props)
     var currentRepoID = this.$session.get("repoID")
     this.getStatementNumber(currentRepoID)
     this.getClasses(currentRepoID)
@@ -95,7 +91,6 @@ export default {
                 {headers: {"Content-Type": "application/sparql-query"}})
         .then(response => {
           // console.log(response.data) // debug
-          // console.log(response.data.head.vars) // debug Nome de Colunas
           // console.log(response.data.results.bindings) // debug resultados
           var classArray = []
           var classes = response.data.results.bindings
@@ -119,7 +114,6 @@ export default {
                 {headers: {"Content-Type": "application/sparql-query"}})
         .then(response => {
           // console.log(response.data) // debug
-          // console.log(response.data.head.vars) // debug Nome de Colunas
           // console.log(response.data.results.bindings) // debug resultados
           var elemArray = []
           var elems = response.data.results.bindings

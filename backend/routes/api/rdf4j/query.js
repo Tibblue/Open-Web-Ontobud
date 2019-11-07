@@ -10,7 +10,7 @@ var rdf4jWorkbench = 'http://localhost:8080/rdf4j-workbench/'
 
 //// Queries ////
 // query (GET)
-router.get('/query/:repo', function (req, res) {
+router.get('/:repo', function (req, res) {
   const repo = req.params.repo
   const params = req.query
   const url = rdf4jServer + 'repositories/' + repo
@@ -21,19 +21,19 @@ router.get('/query/:repo', function (req, res) {
 
 // query (POST) (params in x-www-form-urlencoded)
 // query (POST)
-router.post('/query/:repo', function (req, res) {
+router.post('/:repo', function (req, res) {
   const repo = req.params.repo
   const url = rdf4jServer + 'repositories/' + repo
   const body = qs.stringify(req.body)
   const config = {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
   axios.post(url, body, config)
     .then(response => res.jsonp(response.data))
-    .catch(err => console.log('ERRO: ' + err));
+    .catch(err => res.status(404).send(err));
 });
 
 // query (POST) (params in x-www-form-urlencoded)
 // query (POST) (accepts text/csv)
-// router.post('/query/:repo', function (req, res) {
+// router.post('/:repo', function (req, res) {
 //   const repo = req.params.repo
 //   const accept = req.headers['accept'] // keep original content type
 //   const url = rdf4jServer + 'repositories/' + repo
