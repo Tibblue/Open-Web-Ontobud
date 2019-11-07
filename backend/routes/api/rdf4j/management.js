@@ -7,13 +7,24 @@ var router = express.Router();
 // Middleware Parsers
 var rawParser = bodyParser.raw({type: '*/*'}) //TODO change limit cap
 
-
 // RDF4J endpoint
 var rdf4jServer = 'http://localhost:8080/rdf4j-server/'
 var rdf4jWorkbench = 'http://localhost:8080/rdf4j-workbench/'
 
 
-//// Management ////
+//// List Repos ////
+// get repo list
+router.get('/listRepos', function (req, res) {
+  const url = rdf4jServer + 'repositories'
+  const config = {headers: {Accept: 'application/json'}}
+  // const config = {headers: {Accept: 'text/csv'}} // other accept option
+  axios.get(url, config)
+    .then(response => res.jsonp(response.data.results.bindings))
+    .catch(err => console.log('ERRO: ' + err));
+});
+
+
+//// Create ////
 // create repository (params inside a form in x-www-form-urlencoded)
 router.post('/create', function (req, res) {
   const url = rdf4jWorkbench + 'repositories/NONE/create'
@@ -29,6 +40,8 @@ router.post('/create', function (req, res) {
     .catch(err => console.log('ERRO: ' + err));
 });
 
+
+//// Delete ////
 // delete repository
 router.delete('/delete/:repo', function (req, res) {
   const repo = req.params.repo
@@ -47,6 +60,8 @@ router.delete('/delete/:repo/statements', function (req, res) {
     .catch( () => res.status(404).send());
 });
 
+
+//// Import ////
 // import file (replace)
 router.put('/importFile/:repo', rawParser, function (req, res) {
   const repo = req.params.repo
@@ -70,6 +85,20 @@ router.post('/importFile/:repo', rawParser, function (req, res) {
     .then( () => res.status(200).send())
     .catch( () => res.status(404).send("error"));
 });
+
+// app.post('/upload/:image', bodyparser.raw({
+//     limit: '10mb',
+//     type: 'image/*'
+// }), (req, res) => {
+//     const image = req.params.image;
+//     const fd = fs.createWriteStream(`[SERVER_UPLOAD_PATH]/${image}`, {
+//         flags: "w+",
+//         encoding: "binary"
+//     });
+//     fd.end(req.body);
+//     fd.on('close', () => res.send({status: 'OK'});
+// });
+
 
 // import text (replace)
 router.put('/importText/:repo', rawParser, function (req, res) {
@@ -95,6 +124,8 @@ router.post('/importText/:repo', rawParser, function (req, res) {
     .catch( () => res.status(404).send("error"));
 });
 
+
+//// Export ////
 // export repository
 router.get('/export/:repo', function (req, res) {
   const repo = req.params.repo

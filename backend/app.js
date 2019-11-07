@@ -55,6 +55,8 @@ app.use(function (req, res, next) {
 app.use('/api/users', require('./routes/api/mongo/users'));
 app.use('/api/repos', require('./routes/api/mongo/repos'));
 app.use('/api/queries', require('./routes/api/mongo/queries'));
+app.use('/api/rdf4j/management', require('./routes/api/rdf4j/management'));
+app.use('/api/rdf4j/repository', require('./routes/api/rdf4j/repository'));
 app.use('/api/rdf4j', require('./routes/api/rdf4j/rdf4j'));
 
 
