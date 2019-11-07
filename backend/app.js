@@ -51,13 +51,15 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Routing
+//// Routing
+// Mongo
 app.use('/api/users', require('./routes/api/mongo/users'));
 app.use('/api/repos', require('./routes/api/mongo/repos'));
 app.use('/api/queries', require('./routes/api/mongo/queries'));
+// RDF4J
 app.use('/api/rdf4j/management', require('./routes/api/rdf4j/management'));
 app.use('/api/rdf4j/repository', require('./routes/api/rdf4j/repository'));
-app.use('/api/rdf4j', require('./routes/api/rdf4j/rdf4j'));
+app.use('/api/rdf4j/query', require('./routes/api/rdf4j/query'));
 
 
 

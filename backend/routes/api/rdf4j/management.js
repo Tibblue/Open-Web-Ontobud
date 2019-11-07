@@ -129,11 +129,11 @@ router.post('/importText/:repo', rawParser, function (req, res) {
 // export repository
 router.get('/export/:repo', function (req, res) {
   const repo = req.params.repo
-  const accept = req.headers['accept'] // keep original content type
+  const accept = req.headers['accept'] // keep original accept value
   const params = req.query
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
   axios.get(url, { params: params, headers: { "Accept": accept } } )
-    .then(response => {res.status(200).send(response.data)})
+    .then(response => res.status(200).send(response.data))
     .catch(() => res.status(404).send());
 });
 
