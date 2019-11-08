@@ -11,16 +11,30 @@
             </v-card>
             <v-card flat color="primary my-1">
               <v-card-title class="align-center pt-2">
-                Statement Number: {{statementNumber}}
+                Triples: {{explicitStatementsNumber + implicitStatementsNumber}}
+              </v-card-title>
+              <v-card-text>
+                <h4>Explicit Statements: {{explicitStatementsNumber}}</h4>
+                <h4>Implicit Statements: {{implicitStatementsNumber}}</h4>
+              </v-card-text>
+              <v-card-title class="align-center pt-2">
+                Expansion Ratio: {{expansionRatio}}
               </v-card-title>
             </v-card>
             <v-card flat color="primary my-1">
               <v-card-title class="align-center pt-2">
-                Expansion Ratio: TODO
+                Namespaces
               </v-card-title>
               <v-card-text>
-                <h4>Explicit Statements: {{statementNumber}}</h4>
-                <h4>Implicit Statements: TODO</h4>
+                <p class="mb-0"
+                  v-for="namespace in namespaces"
+                  :key="namespace.prefix"
+                >
+                  <span class="headline"><b>
+                    {{namespace.prefix}}:
+                  </b></span>
+                  {{namespace.namespace}}
+                </p>
               </v-card-text>
             </v-card>
           </v-col>
@@ -30,7 +44,7 @@
                 Existing Classes
               </v-card-title>
             </v-card>
-            <v-expansion-panels accordion>
+            <v-expansion-panels accordion focusable>
               <v-expansion-panel
                 v-for="classe in classes"
                 :key="classe.name"
@@ -38,9 +52,11 @@
               >
                 <v-expansion-panel-header>{{classe.name}}</v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  <div v-for="elem in expandedClassElems" :key="elem">
-                    {{elem.split("#")[1]}}
-                  </div>
+                  <ul>
+                    <li v-for="elem in expandedClassElems" :key="elem">
+                      {{elem.split("#")[1]}}
+                    </li>
+                  </ul>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -59,36 +75,59 @@ const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
-    statementNumber: "Loading info...",
+    currentRepoID: "",
+    explicitStatementsNumber: "Loading info...",
+    implicitStatementsNumber: "Loading info...",
+    expansionRatio: "Loading info...",
+    namespaces: [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}],
     classes: [{name: 'Loading classes...'}],
     expandedClassElems: ["Loading elements..."],
-    snackbarDEBUG: false,
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    var currentRepoID = this.$session.get("repoID")
-    this.getStatementNumber(currentRepoID)
-    this.getClasses(currentRepoID)
+    this.currentRepoID = this.$session.get("repoID")
+    this.getStatementNumber(this.currentRepoID)
+    this.getNamespaces(this.currentRepoID)
+    this.getClasses(this.currentRepoID)
   },
   methods: {
     getStatementNumber(repoID) {
-      this.statementNumber = "Loading info..."
-      axios.get(rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/size')
+      this.explicitStatementsNumber = "Loading info..."
+      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/triples')
         .then(response => {
           // console.log(response.data)
-          this.statementNumber = response.data
+          this.explicitStatementsNumber = response.data.explicit
+          this.implicitStatementsNumber = response.data.implicit
+          this.expansionRatio = response.data.expansion
         })
         .catch(alert => {
-          this.statementNumber = "Servidor indisponivel...\n" + alert
+          this.explicitStatementsNumber = "Servidor indisponivel...\n" + alert
+          this.implicitStatementsNumber = "Servidor indisponivel...\n" + alert
+          this.expansionRatio = "Servidor indisponivel...\n" + alert
+        })
+    },
+    getNamespaces(repoID) {
+      this.namespaces = [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}]
+      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+        .then(response => {
+          var elemArray = []
+          var elems = response.data
+          elems.forEach(element => {
+            elemArray.push({'prefix': element.prefix.value, 'namespace': element.namespace.value})
+          });
+          this.namespaces = elemArray
+        })
+        .catch(alert => {
+          this.namespaces = [{prefix: 'Get Namespaces FAIL!!!', namespace: alert}]
         })
     },
     getClasses(repoID) {
       this.classes = [{name: 'Loading classes...'}]
       var repoID = this.$session.get("repoID")
       var query = 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }'
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
-      axios.post(url, query,
-                {headers: {"Content-Type": "application/sparql-query"}})
+      var url = backend_url+'/api/rdf4j/query/'+repoID
+      axios.post(url, qs.stringify({'query': query}),
+        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
@@ -106,12 +145,10 @@ export default {
     getClassElems(repoID, classe) {
       this.expandedClassElems = ["Loading elements..."]
       var repoID = this.$session.get("repoID")
-      // var query = 'SELECT DISTINCT ?elem WHERE { ?elem a '+classe+'. }'
-      var query = 'PREFIX : <'+classe.split('#')[0]+'#> SELECT DISTINCT ?elem WHERE { ?elem a :'+classe.split('#')[1]+'. }'
-      console.log(query)
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
-      axios.post(url, query,
-                {headers: {"Content-Type": "application/sparql-query"}})
+      var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. }'
+      var url = backend_url+'/api/rdf4j/query/'+repoID
+      axios.post(url, qs.stringify({'query': query}),
+        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
