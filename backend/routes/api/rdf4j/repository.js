@@ -15,7 +15,7 @@ router.get('/:repo/explicit', function (req, res) {
   const url = rdf4jServer + 'repositories/' + repo + '/size'
   axios.get(url)
     .then(response => res.jsonp(response.data))
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // get statement number (implicit & explicit)
@@ -29,7 +29,7 @@ router.get('/:repo/total', function (req, res) {
     .then(response => {
       res.jsonp(parseInt(response.data.results.bindings[0].triples.value))
     })
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // get number explicit and implicit statements and expansion ratio
@@ -54,7 +54,7 @@ router.get('/:repo/namespaces', function (req, res) {
   // const config = {headers: {Accept: 'text/csv'}}
   axios.get(url, config)
     .then(response => res.jsonp(response.data.results.bindings))
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // get repository contexts
@@ -65,7 +65,7 @@ router.get('/:repo/contexts', function (req, res) {
   // const config = {headers: {Accept: 'text/csv'}}
   axios.get(url, config)
     .then(response => res.jsonp(response.data.results.bindings))
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 

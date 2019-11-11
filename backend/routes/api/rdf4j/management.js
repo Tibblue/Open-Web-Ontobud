@@ -20,7 +20,7 @@ router.get('/listRepos', function (req, res) {
   // const config = {headers: {Accept: 'text/csv'}} // other accept option
   axios.get(url, config)
     .then(response => res.jsonp(response.data.results.bindings))
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 
@@ -37,7 +37,7 @@ router.post('/create', function (req, res) {
   }
   axios.post(url, body, config)
     .then(response => res.jsonp(response.data.results.bindings))
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 
@@ -48,7 +48,7 @@ router.delete('/delete/:repo', function (req, res) {
   const url = rdf4jServer + 'repositories/' + repo
   axios.delete(url)
     .then( () => res.status(200).send())
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // delete all statements from repository
@@ -57,7 +57,7 @@ router.delete('/delete/:repo/statements', function (req, res) {
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
   axios.delete(url)
     .then( () => res.status(200).send())
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 
@@ -71,7 +71,7 @@ router.put('/importFile/:repo', rawParser, function (req, res) {
   const config = { headers: { "Content-Type": contentType } }
   axios.put(url, body, config)
     .then( () => res.status(200).send())
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // import file (add)
@@ -83,7 +83,7 @@ router.post('/importFile/:repo', rawParser, function (req, res) {
   const config = { headers: { "Content-Type": contentType } }
   axios.post(url, body, config)
     .then( () => res.status(200).send())
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // app.post('/upload/:image', bodyparser.raw({
@@ -109,7 +109,7 @@ router.put('/importText/:repo', rawParser, function (req, res) {
   const config = { headers: { "Content-Type": contentType } }
   axios.put(url, body, config)
     .then( () => res.status(200).send())
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // import text (add)
@@ -121,7 +121,7 @@ router.post('/importText/:repo', rawParser, function (req, res) {
   const config = { headers: { "Content-Type": contentType } }
   axios.post(url, body, config)
     .then( () => res.status(200).send())
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 
@@ -134,7 +134,7 @@ router.get('/export/:repo', function (req, res) {
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
   axios.get(url, { params: params, headers: { "Accept": accept } } )
     .then(response => res.status(200).send(response.data))
-    .catch(err => res.status(res.statusCode).send(err));
+    .catch( () => res.status(400).send());
 });
 
 

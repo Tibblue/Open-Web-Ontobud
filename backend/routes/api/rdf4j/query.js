@@ -16,7 +16,7 @@ router.get('/:repo', function (req, res) {
   const url = rdf4jServer + 'repositories/' + repo
   axios.get(url, { params: params,headers: {'Accept': 'text/csv'} })
     .then(response => res.status(200).send(response.data))
-    .catch(() => res.status(404).send());
+    .catch( () => res.status(400).send());
 });
 
 // query (POST) (params in x-www-form-urlencoded)
@@ -28,7 +28,7 @@ router.post('/:repo', function (req, res) {
   const config = {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
   axios.post(url, body, config)
     .then(response => res.jsonp(response.data))
-    .catch(err => res.status(404).send(err));
+    .catch( () => res.status(400).send());
 });
 
 // query (POST) (params in x-www-form-urlencoded)
