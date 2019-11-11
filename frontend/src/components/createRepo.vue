@@ -17,23 +17,17 @@
       ></v-combobox> -->
     </v-col>
     <v-col cols="12">
-      <v-text-field hide-details class="mt-0 pt-0"
+      <v-text-field hide-details class="mt-0 mb-3 pt-0"
         v-model="newRepoID"
         label="New Repo ID"
       ></v-text-field>
-    </v-col>
-    <v-col cols="12">
-      <v-text-field hide-details class="mt-0 pt-0"
+      <v-text-field hide-details class="mt-0 mb-3 pt-0"
         v-model="newRepoName"
         label="New Repo Name"
       ></v-text-field>
-    </v-col>
-    <v-col cols="12">
       <v-btn :loading="loading.createRepo" block color="primary" @click="newRepo(newRepoID, newRepoName, repoTypeSelected)">
         Create Repo
       </v-btn>
-    </v-col>
-    <v-col cols="12">
       <v-alert text dismissible type="success" v-model="alert.createRepoSuccess">
         Repository create Successful!!! Created {{ newRepoName }}
       </v-alert>

@@ -1,22 +1,19 @@
 <template>
   <v-row>
-    <v-col cols="9" px-2>
-      <v-text-field hide-details class="mt-0 pt-0"
+    <v-col cols="12">
+      <v-text-field hide-details class="mb-3 pt-0"
         v-model="deleteRepoID"
         label="Repo ID"
       ></v-text-field>
-    </v-col>
-    <v-col cols="3">
-      <v-btn color="warning" @click="deleteRepo(deleteRepoID)">
+      <v-btn :loading="loading.deleteRepo" block color="warning" @click="deleteRepo(deleteRepoID)">
         Delete Repo
       </v-btn>
-    </v-col>
-    <v-col cols="12">
-      <v-text-field readonly outlined hide-details
-        v-model="deleteRepoResponse"
-        label="Response"
-        placeholder="Response to the request"
-      ></v-text-field>
+      <v-alert text dismissible type="success" v-model="alert.deleteRepoSuccess">
+        Repo Delete Successful!!!
+      </v-alert>
+      <v-alert text dismissible type="error" v-model="alert.deleteRepoFail">
+        Repo Delete Failed...
+      </v-alert>
     </v-col>
   </v-row>
 </template>
@@ -28,10 +25,16 @@ const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 export default {
   data: () => ({
     // selectedRepo: "Loading Repositories",
-    // repoSearch: "",
     // repoList: undefined,
     deleteRepoID: "",
     deleteRepoResponse: "",
+    alert: {
+      deleteRepoSuccess: false,
+      deleteRepoFail: false,
+    },
+    loading: {
+      deleteRepo: false,
+    },
   }),
   mounted: async function (){
     // console.log(process.env) # debug
@@ -39,12 +42,18 @@ export default {
   },
   methods: {
     deleteRepo(repoID) {
+      this.loading.deleteRepo = true
       axios.delete(backend_url+'/api/rdf4j/management/delete/'+repoID)
         .then(response => {
-          this.deleteRepoResponse = "Deleted " + repoID + " with SUCCESS" + response.data
+          this.alert.deleteRepoSuccess = true
+          this.alert.deleteRepoFail = false
         })
         .catch(alert => {
-          this.deleteRepoResponse = "Remoção FALHOU!!! " + alert
+          this.alert.deleteRepoSuccess = false
+          this.alert.deleteRepoFail = true
+        })
+        .finally(() => {
+          this.loading.deleteRepo = false
         })
     },
   },

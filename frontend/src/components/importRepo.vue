@@ -42,7 +42,7 @@
         v-model="importText"
         label="Import Text"
         placeholder="Import Text"
-        ></v-textarea>
+      ></v-textarea>
       <v-btn :loading="loading.importText" block color="success" @click="importRepoText($repo.id,fileTypeSelected,importText,addORreplaceSelected)">
         Import Repo (Input Text)
       </v-btn>
