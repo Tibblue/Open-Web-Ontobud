@@ -4,9 +4,30 @@
       <v-container fluid class="pa-0">
         <v-row>
           <v-col cols="6">
+            <v-expansion-panels :v-model="[0]">
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  <span class="display-1 align-center pa-0">
+                    Statements
+                  </span>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content class="px-4 py-2">
+                    <v-card-title class="align-center pt-2">
+                      Triples: {{explicitStatementsNumber + implicitStatementsNumber}}
+                    </v-card-title>
+                    <v-card-text>
+                      <h4>Explicit Statements: {{explicitStatementsNumber}}</h4>
+                      <h4>Implicit Statements: {{implicitStatementsNumber}}</h4>
+                    </v-card-text>
+                    <v-card-title class="align-center pt-2">
+                      Expansion Ratio: {{expansionRatio.toFixed(3)}}
+                    </v-card-title>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
             <v-card flat color="primary my-2">
               <v-card-title class="display-1 align-center justify-center pt-2">
-                Info
+                Statements
               </v-card-title>
             </v-card>
             <v-card flat color="primary my-1">
@@ -21,6 +42,27 @@
                 Expansion Ratio: {{expansionRatio}}
               </v-card-title>
             </v-card>
+
+            <v-expansion-panels :v-model="[0]">
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  <span class="display-1 align-center pa-0">
+                    Namespaces
+                  </span>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content class="px-4 py-2">
+                  <p class="mb-0"
+                    v-for="namespace in namespaces"
+                    :key="namespace.prefix"
+                  >
+                    <span class="headline"><b>
+                      {{namespace.prefix}}:
+                    </b></span>
+                    {{namespace.namespace}}
+                  </p>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
             <v-card flat color="primary my-1">
               <v-card-title class="align-center pt-2">
                 Namespaces
@@ -39,6 +81,34 @@
             </v-card>
           </v-col>
           <v-col cols="6">
+            <v-expansion-panels accordion>
+              <v-expansion-panel>
+                <v-expansion-panel-header>
+                  <span class="display-1 align-center pa-0">
+                    Existing Classes
+                  </span>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <v-expansion-panels accordion focusable>
+                    <v-expansion-panel
+                      v-for="classe in classes"
+                      :key="classe.name"
+                      @click="getClassElems($session.get('repoID'),classe.name)"
+                    >
+                      <v-expansion-panel-header>{{classe.name}}</v-expansion-panel-header>
+                      <v-expansion-panel-content>
+                        <ul>
+                          <li v-for="elem in expandedClassElems" :key="elem">
+                            {{elem.split("#")[1]}}
+                          </li>
+                        </ul>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+
             <v-card flat color="primary my-2">
               <v-card-title class="display-1 align-center justify-center pt-2">
                 Existing Classes
@@ -110,6 +180,7 @@ export default {
       this.namespaces = [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}]
       axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
         .then(response => {
+          // console.log(response.data)
           var elemArray = []
           var elems = response.data
           elems.forEach(element => {
@@ -166,3 +237,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.v-expansion-panel-content__wrap {
+  padding: 0px;
+}
+.v-expansion-panel-header {
+  background:#2196F3
+}
+</style>
