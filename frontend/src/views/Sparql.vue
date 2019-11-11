@@ -82,7 +82,6 @@ import savedQueries from '@/components/savedQueries'
 import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
@@ -121,8 +120,7 @@ export default {
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
-    // this.getSavedQueries(currentUserEmail)
+    // var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
   },
   computed: {
     $repo: {
@@ -134,7 +132,7 @@ export default {
     runQuery(query, infer) {
       this.loading.query = true
       var repoID = this.$repo.id
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      var url = backend_url+'/api/rdf4j/query/'+repoID
       axios.post(url, qs.stringify({'query': query, 'infer': infer}),
         {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
@@ -143,10 +141,7 @@ export default {
           // console.log(response.data.results.bindings) // debug resultados
           var columnsVars = response.data.head.vars
           var resultsData = response.data.results.bindings
-          // resultsData = resultsData.slice(0,10) // limit results
-          // console.log(columnsVars) // debug
-          // console.log(resultsData) // debug
-
+          // process results
           this.table.headers = []
           columnsVars.forEach(element => {
             this.table.headers.push({'text': element, 'value': element})

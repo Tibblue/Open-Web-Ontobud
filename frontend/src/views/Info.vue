@@ -3,7 +3,7 @@
     <v-card flat color="transparent" class="ma-3">
       <v-container fluid class="pa-0">
         <v-row>
-          <v-col cols="6">
+          <v-col cols="12" lg="6">
             <v-expansion-panels :v-model="[0]">
               <v-expansion-panel>
                 <v-expansion-panel-header>
@@ -80,7 +80,7 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="6">
+          <v-col cols="12" lg="6">
             <v-expansion-panels accordion>
               <v-expansion-panel>
                 <v-expansion-panel-header>

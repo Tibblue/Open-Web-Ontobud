@@ -7,10 +7,10 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="12" lg="6">
         <createRepo/>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="12" lg="6">
         <deleteRepo/>
       </v-col>
     </v-row>
@@ -20,21 +20,17 @@
 <script>
 import createRepo from '@/components/createRepo'
 import deleteRepo from '@/components/deleteRepo'
-import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 
 export default {
   components: {
     createRepo,
     deleteRepo,
   },
-  data: () => ({
-  }),
+  // data: () => ({
+  // }),
   // mounted: async function (){
-  //   console.log(this.$props)
-  //   console.log(process.env)
   // },
-  methods: {
-  }
+  // methods: {
+  // }
 }
 </script>

@@ -51,7 +51,7 @@
 
 <script>
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     deleteCurrentRepo(repoID) {
-      axios.delete(rdf4j_url+'/rdf4j-server/repositories/'+repoID)
+      axios.delete(backend_url+'/api/rdf4j/management/delete/'+repoID)
         .then(response => {
           this.alert.deleteSuccess = true
           this.alert.deleteFail = false

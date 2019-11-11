@@ -115,7 +115,7 @@
           </v-tab-item>
         </v-tabs>
       </v-col>
-      <v-col cols="12">
+      <!-- <v-col cols="12">
         <v-data-table
           :headers="table.headers"
           :items="table.subjectResults"
@@ -146,7 +146,7 @@
             </tr>
           </template>
         </v-data-table>
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -154,7 +154,8 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const qs = require('querystring')
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -198,18 +199,17 @@ export default {
   },
   methods: {
     cellClicked(cellInfo) {
-      // this.$router.push({query: { uri: this.$route.query.uri }})
-      this.$router.push({query: { uri: cellInfo }})
+      this.$router.replace({query: { uri: cellInfo }})
       this.subjectResults(this.$repo.id, this.$route.query.uri)
       this.predicateResults(this.$repo.id, this.$route.query.uri)
       this.objectResults(this.$repo.id, this.$route.query.uri)
     },
     subjectResults(repoID, resource) {
       // this.loading.subject = true
-      const url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { <'+resource+'> ?predicate ?object }'
-      axios.post(url, query,
-        {headers: {"Content-Type": "application/sparql-query"}})
+      axios.post(url, qs.stringify({'query': query}),
+        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
@@ -235,10 +235,10 @@ export default {
     },
     predicateResults(repoID, resource) {
       // this.loading.predicate = true
-      const url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject <'+resource+'> ?object }'
-      axios.post(url, query,
-        {headers: {"Content-Type": "application/sparql-query"}})
+      axios.post(url, qs.stringify({'query': query}),
+        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
@@ -264,10 +264,10 @@ export default {
     },
     objectResults(repoID, resource) {
       // this.loading.object = true
-      const url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
+      const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject ?predicate <'+resource+'> }'
-      axios.post(url, query,
-        {headers: {"Content-Type": "application/sparql-query"}})
+      axios.post(url, qs.stringify({'query': query}),
+        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
@@ -289,42 +289,6 @@ export default {
         // .finally(() => {
         //   this.loading.object = false
         //   return items
-        // })
-    },
-    runQuery(query) {
-      this.loading.query = true
-      var repoID = this.$repo.id
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID
-      axios.post(url, query,
-        {headers: {"Content-Type": "application/sparql-query"}})
-        .then(response => {
-          // console.log(response.data) // debug
-          // console.log(response.data.head.vars) // debug Nome de Colunas
-          // console.log(response.data.results.bindings) // debug resultados
-          var columnsVars = response.data.head.vars
-          var resultsData = response.data.results.bindings
-          // resultsData = resultsData.slice(0,10) // limit results
-          // console.log(columnsVars) // debug
-          // console.log(resultsData) // debug
-
-          this.table.headers = []
-          columnsVars.forEach(element => {
-            this.table.headers.push({'text': element, 'value': element})
-          });
-          this.table.items = []
-          resultsData.forEach(element => {
-            var elemAux = {}
-            for(const key in element){
-              elemAux[key] = element[key].value
-            }
-            this.table.items.push(elemAux)
-          });
-        })
-        .catch(alert => {
-          this.alert.queryFail = true
-        })
-        // .finally(() => {
-        //   this.loading.query = false
         // })
     },
   }

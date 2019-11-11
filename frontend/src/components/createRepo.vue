@@ -49,7 +49,8 @@
 
 <script>
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const qs = require('querystring')
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -81,24 +82,25 @@ export default {
   methods: {
     newRepo(repoID, repoName, repoType) {
       this.loading.createRepo = true
-      axios.get(rdf4j_url+'/rdf4j-server/repositories')
+      axios.get(backend_url+'/api/rdf4j/management/listRepos')
         .then(response => {
           // console.log(response.data.head) // debug column names
           // console.log(response.data.results.bindings) // debug results
           var isNew = true
-          var repoList = response.data.results.bindings
+          var repoList = response.data
           repoList.forEach(elem => {
             if( repoID === elem.id.value){
               isNew = false
             }
           })
           if(isNew){
-            const formData = new FormData();
-            formData.append('type', repoType);
-            formData.append('Repository ID', repoID);
-            formData.append('Repository title', repoName);
-            // console.log(repoType) // debug
-            axios.post(rdf4j_url+'/rdf4j-workbench/repositories/NONE/create', formData)
+            var form = {}
+            form['type'] = repoType
+            form['Repository ID'] = repoID
+            form['Repository title'] = repoName
+            axios.post(backend_url+'/api/rdf4j/management/create', qs.stringify(form),
+              {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+            )
               .then(response => {
                 this.alert.createRepoSuccess = true
                 this.alert.createRepoAlreadyExists = false
