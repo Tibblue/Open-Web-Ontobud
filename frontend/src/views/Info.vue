@@ -20,7 +20,7 @@
                       <h4>Implicit Statements: {{implicitStatementsNumber}}</h4>
                     </v-card-text>
                     <v-card-title class="align-center pt-2">
-                      Expansion Ratio: {{expansionRatio.toFixed(3)}}
+                      Expansion Ratio: {{expansionRatio}}
                     </v-card-title>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -140,7 +140,6 @@
 <script>
 import axios from 'axios'
 const qs = require('querystring')
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
@@ -168,7 +167,7 @@ export default {
           // console.log(response.data)
           this.explicitStatementsNumber = response.data.explicit
           this.implicitStatementsNumber = response.data.implicit
-          this.expansionRatio = response.data.expansion
+          this.expansionRatio = response.data.expansion || 0
         })
         .catch(alert => {
           this.explicitStatementsNumber = "Servidor indisponivel...\n" + alert

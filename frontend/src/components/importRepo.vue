@@ -59,7 +59,7 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -97,7 +97,7 @@ export default {
   methods: {
     importRepoFile(repoID, fileType, file, addORreplace) {
       this.loading.importFile = true
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
+      var url = backend_url+'/api/rdf4j/management/importFile/'+repoID
       var data = file
       var headers = { 'headers' :{}}
       switch(fileType){
@@ -141,7 +141,7 @@ export default {
     },
     importRepoText(repoID, fileType, input, addORreplace) {
       this.loading.importText = true
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
+      var url = backend_url+'/api/rdf4j/management/importText/'+repoID
       var data = input
       var headers = { 'headers' :{}}
       switch(fileType){

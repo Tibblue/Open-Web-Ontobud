@@ -23,7 +23,7 @@
 
 <script>
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     deleteRepo(repoID) {
-      axios.delete(rdf4j_url+'/rdf4j-server/repositories/'+repoID)
+      axios.delete(backend_url+'/api/rdf4j/management/delete/'+repoID)
         .then(response => {
           this.deleteRepoResponse = "Deleted " + repoID + " with SUCCESS" + response.data
         })
@@ -47,31 +47,6 @@ export default {
           this.deleteRepoResponse = "Remoção FALHOU!!! " + alert
         })
     },
-    // getRepositories() {
-    //   // TODO: Consider adding a loading bar on Repo Reload
-    //   axios.get(rdf4j_url+'/rdf4j-server/repositories')
-    //     .then(response => {
-    //       // this.alert = response.data // debug
-    //       // console.log(response.data.head) // debug column names
-    //       // console.log(response.data.results.bindings) // debug results
-    //       var repoList = response.data.results.bindings
-    //       var repoListText = []
-    //       repoList.forEach(elem => {
-    //         repoListText.push(elem.title.value+" ID:"+elem.id.value)
-    //       });
-    //       // console.log(response.data) // debug
-    //       this.repoList = repoListText
-    //       if(this.$session.has("repoName"))
-    //         this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
-    //       if(this.selectedRepo==="Loading Repositories")
-    //         this.selectedRepo = repoListText[0]
-    //     })
-    //     .catch(alert => {
-    //       // this.alert = error // debug
-    //       // this.selectedRepo = "PEDIDO FALHOU!!! " + alert
-    //       this.selectedRepo = "No Repositories available"
-    //     })
-    // },
   },
 };
 </script>

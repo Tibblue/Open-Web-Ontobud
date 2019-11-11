@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="12">
+    <v-col cols="8">
       <v-radio-group hide-details v-model="fileTypeSelected" class="ma-0 pa-0">
         <v-radio
           v-for="type in fileTypes"
@@ -10,7 +10,16 @@
           color="success"
         ></v-radio>
       </v-radio-group>
-      <v-btn :loading="loading.exportFile" block color="success" @click="exportRepoFile($repo.id,fileTypeSelected)" class="mt-3">
+    </v-col>
+    <v-col cols="4">
+      <v-checkbox hide-details class="mt-0 pt-2"
+        v-model="infer"
+        label="Inferencing"
+        color="primary"
+      ></v-checkbox>
+    </v-col>
+    <v-col cols="12">
+      <v-btn :loading="loading.exportFile" block color="success" @click="exportRepoFile($repo.id,fileTypeSelected,infer)" class="mt-3">
         Export Repo (Download File)
       </v-btn>
       <v-alert text dismissible type="error" v-model="alert.exportFileFail">
@@ -18,7 +27,7 @@
       </v-alert>
     </v-col>
     <v-col cols="12">
-      <v-btn :loading="loading.exportText" block color="success" @click="exportRepoText($repo.id,fileTypeSelected)">
+      <v-btn :loading="loading.exportText" block color="success" @click="exportRepoText($repo.id,fileTypeSelected,infer)">
         Export Repo (InScreen Text)
       </v-btn>
       <v-alert text dismissible type="error" v-model="alert.exportTextFail">
@@ -36,7 +45,7 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 const FileDownload = require('js-file-download')
 
 export default {
@@ -48,6 +57,7 @@ export default {
       { text: 'RDF/XML', value: 'rdf-xml' },
       { text: 'Plain Text', value: 'txt' },
     ],
+    infer: true,
     exportResponse: "",
     loading: {
       exportFile: false,
@@ -65,19 +75,20 @@ export default {
     },
   },
   methods: {
-    exportRepoFile(repoID, fileType) {
+    exportRepoFile(repoID, fileType, infer) {
       this.loading.exportFile = true
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
-      var headers = { 'headers': {}}
+      var url = backend_url+'/api/rdf4j/management/export/'+repoID
+      var headers = {}
+      headers['params'] = { 'infer': infer}
       switch(fileType){
         case 'ttl':
-          headers = { 'headers': { Accept: "text/turtle" }}
+          headers['headers'] = { Accept: "text/turtle" }
           break;
         case 'rdf-xml':
           fileType = "xml"
           break;
         case 'txt':
-          headers = { 'headers': { Accept: "text/plain" }}
+          headers['headers'] = { Accept: "text/plain" }
           break;
         default:
       }
@@ -92,19 +103,20 @@ export default {
           this.loading.exportFile = false
         })
     },
-    exportRepoText(repoID, fileType) {
+    exportRepoText(repoID, fileType, infer) {
       this.loading.exportText = true
-      var url = rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements'
-      var headers = { 'headers': {}}
+      var url = backend_url+'/api/rdf4j/management/export/'+repoID
+      var headers = {}
+      headers['params'] = { 'infer': infer}
       switch(fileType){
         case 'ttl':
-          headers = { 'headers': { Accept: "text/turtle" }}
+          headers['headers'] = { Accept: "text/turtle" }
           break;
         case 'rdf-xml':
           fileType = "xml"
           break;
         case 'txt':
-          headers = { 'headers': { Accept: "text/plain" }}
+          headers['headers'] = { Accept: "text/plain" }
           break;
         default:
       }

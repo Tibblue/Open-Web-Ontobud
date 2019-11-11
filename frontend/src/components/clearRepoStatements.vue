@@ -17,7 +17,7 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -38,7 +38,7 @@ export default {
   methods: {
     clearStatements(repoID) {
       this.loading.clear = true
-      axios.delete(rdf4j_url+'/rdf4j-server/repositories/'+repoID+'/statements')
+      axios.delete(backend_url+'/api/rdf4j/management/delete/'+repoID+'/statements')
         .then(response => {
           this.alert.clearSuccess = true
           this.alert.clearFail = false
