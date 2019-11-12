@@ -1,13 +1,19 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
+      <v-col cols="12" lg="9">
         <h2>Resource: {{this.$route.query.uri.split('#')[1]}}</h2>
         <h3>{{$route.query.uri}}</h3>
-
+      </v-col>
+      <v-col cols="12" lg="3">
+        <v-checkbox hide-details class="mt-0 pt-2"
+          v-model="namespaceON"
+          label="Show Namespace"
+          color="primary"
+        ></v-checkbox>
         <v-checkbox hide-details class="mt-0 pt-2"
           v-model="prefixON"
-          label="Show Prefix"
+          label="Use Prefix"
           color="primary"
         ></v-checkbox>
       </v-col>
@@ -20,30 +26,19 @@
           <v-tab-item>
             <v-data-table
               :headers="table.headers"
-              :items="table.subjectResults"
+              :items="subjectResults"
               :items-per-page="10"
             >
               <template v-slot:item="props">
-                <tr v-if="prefixON">
+                <tr>
                   <td>
-                    {{$route.query.uri}}
+                    {{resourceTableURI}}
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    {{props.item[table.headers[1].text]}}
+                  <td @click="cellClicked(props.item[table.headers[1].text].uri)">
+                    {{props.item[table.headers[1].text].value}}
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    {{props.item[table.headers[2].text]}}
-                  </td>
-                </tr>
-                <tr v-else>
-                  <td>
-                    {{$route.query.uri.split('#')[1]}}
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    {{props.item[table.headers[1].text].split('#')[1]}}
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    {{props.item[table.headers[2].text].split('#')[1]}}
+                  <td @click="cellClicked(props.item[table.headers[2].text].uri)">
+                    {{props.item[table.headers[2].text].value}}
                   </td>
                 </tr>
               </template>
@@ -52,30 +47,19 @@
           <v-tab-item>
             <v-data-table
               :headers="table.headers"
-              :items="table.predicateResults"
+              :items="predicateResults"
               :items-per-page="10"
             >
               <template v-slot:item="props">
-                <tr v-if="prefixON">
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    {{props.item[table.headers[0].text]}}
+                <tr>
+                  <td @click="cellClicked(props.item[table.headers[0].text].uri)">
+                    {{props.item[table.headers[0].text].value}}
                   </td>
                   <td>
-                    {{$route.query.uri}}
+                    {{resourceTableURI}}
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    {{props.item[table.headers[2].text]}}
-                  </td>
-                </tr>
-                <tr v-else>
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    {{props.item[table.headers[0].text].split('#')[1]}}
-                  </td>
-                  <td>
-                    {{$route.query.uri.split('#')[1]}}
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    {{props.item[table.headers[2].text].split('#')[1]}}
+                  <td @click="cellClicked(props.item[table.headers[2].text].uri)">
+                    {{props.item[table.headers[2].text].value}}
                   </td>
                 </tr>
               </template>
@@ -84,30 +68,19 @@
           <v-tab-item>
             <v-data-table
               :headers="table.headers"
-              :items="table.objectResults"
+              :items="objectResults"
               :items-per-page="10"
             >
               <template v-slot:item="props">
-                <tr v-if="prefixON">
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    {{props.item[table.headers[0].text]}}
+                <tr>
+                  <td @click="cellClicked(props.item[table.headers[0].text].uri)">
+                    {{props.item[table.headers[0].text].value}}
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    {{props.item[table.headers[1].text]}}
-                  </td>
-                  <td>
-                    {{$route.query.uri}}
-                  </td>
-                </tr>
-                <tr v-else>
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    {{props.item[table.headers[0].text].split('#')[1]}}
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    {{props.item[table.headers[1].text].split('#')[1]}}
+                  <td @click="cellClicked(props.item[table.headers[1].text].uri)">
+                    {{props.item[table.headers[1].text].value}}
                   </td>
                   <td>
-                    {{$route.query.uri.split('#')[1]}}
+                    {{resourceTableURI}}
                   </td>
                 </tr>
               </template>
@@ -115,6 +88,7 @@
           </v-tab-item>
         </v-tabs>
       </v-col>
+
       <!-- <v-col cols="12">
         <v-data-table
           :headers="table.headers"
@@ -135,7 +109,7 @@
             </tr>
           </template>
         </v-data-table>
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -150,16 +124,17 @@ export default {
   data: () => ({
     table: {
       headers: [
-        // { text: 'column', value: 'column', align: 'left', sortable: false },
-        { text: 'subject', value: 'subject' },
-        { text: 'predicate', value: 'predicate' },
-        { text: 'object', value: 'object' },
+        { text: 'subject', value: 'subject', sortable: false },
+        { text: 'predicate', value: 'predicate', sortable: false },
+        { text: 'object', value: 'object', sortable: false },
       ],
       subjectResults: [],
       predicateResults: [],
       objectResults: [],
     },
-    prefixON: false,
+    namespaces: {},
+    namespaceON: true,
+    prefixON: true,
     loading: {
       subject: false,
       predicate: false,
@@ -175,6 +150,7 @@ export default {
     // console.log(process.env) // debug
     var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
 
+    this.getNamespaces(this.$session.get('repoID'))
     this.getSubjectResults(this.$session.get('repoID'), this.$route.query.uri)
     this.getPredicateResults(this.$session.get('repoID'), this.$route.query.uri)
     this.getObjectResults(this.$session.get('repoID'), this.$route.query.uri)
@@ -185,8 +161,15 @@ export default {
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
     resourceTableURI: function() {
-      if(this.prefixON)
-        return this.$route.query.uri
+      if(this.namespaceON)
+        if(this.prefixON){
+          var namespace = this.$route.query.uri.split('#')[0] + '#'
+          var prefix = this.namespaces[namespace] || namespace
+          var resource = this.$route.query.uri.split('#')[1] || ''
+          return prefix + resource
+        }
+        else
+          return this.$route.query.uri
       else
         return this.$route.query.uri.split('#')[1]
     },
@@ -195,10 +178,17 @@ export default {
       this.table.subjectResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.prefixON)
-            elemAux[key] = element[key]
+          if(this.namespaceON)
+            if(this.prefixON){
+              var namespace = element[key].split('#')[0] + '#'
+              var prefix = this.namespaces[namespace] || namespace
+              var resource = element[key].split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+            }
+            else
+              elemAux[key] = {'value': element[key], 'uri': element[key]}
           else
-            elemAux[key] = element[key].split('#')[1]
+            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
         }
         results.push(elemAux)
       });
@@ -209,10 +199,17 @@ export default {
       this.table.predicateResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.prefixON)
-            elemAux[key] = element[key]
+          if(this.namespaceON)
+            if(this.prefixON){
+              var namespace = element[key].split('#')[0] + '#'
+              var prefix = this.namespaces[namespace] || namespace
+              var resource = element[key].split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+            }
+            else
+              elemAux[key] = {'value': element[key], 'uri': element[key]}
           else
-            elemAux[key] = element[key].split('#')[1]
+            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
         }
         results.push(elemAux)
       });
@@ -223,10 +220,17 @@ export default {
       this.table.objectResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.prefixON)
-            elemAux[key] = element[key]
+          if(this.namespaceON)
+            if(this.prefixON){
+              var namespace = element[key].split('#')[0] + '#'
+              var prefix = this.namespaces[namespace] || namespace
+              var resource = element[key].split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+            }
+            else
+              elemAux[key] = {'value': element[key], 'uri': element[key]}
           else
-            elemAux[key] = element[key].split('#')[1]
+            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
         }
         results.push(elemAux)
       });
@@ -234,6 +238,17 @@ export default {
     },
   },
   methods: {
+    getNamespaces(repoID) {
+      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+        .then(response => {
+          response.data.forEach(elem => {
+            this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
+          });
+        })
+        .catch(alert => {
+          this.namespaces = {}
+        })
+    },
     cellClicked(cellInfo) {
       this.$router.replace({query: { uri: cellInfo }})
       this.getSubjectResults(this.$repo.id, this.$route.query.uri)
