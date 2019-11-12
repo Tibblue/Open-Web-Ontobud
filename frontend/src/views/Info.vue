@@ -25,24 +25,6 @@
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
-            <v-card flat color="primary my-2">
-              <v-card-title class="display-1 align-center justify-center pt-2">
-                Statements
-              </v-card-title>
-            </v-card>
-            <v-card flat color="primary my-1">
-              <v-card-title class="align-center pt-2">
-                Triples: {{explicitStatementsNumber + implicitStatementsNumber}}
-              </v-card-title>
-              <v-card-text>
-                <h4>Explicit Statements: {{explicitStatementsNumber}}</h4>
-                <h4>Implicit Statements: {{implicitStatementsNumber}}</h4>
-              </v-card-text>
-              <v-card-title class="align-center pt-2">
-                Expansion Ratio: {{expansionRatio}}
-              </v-card-title>
-            </v-card>
-
             <v-expansion-panels :v-model="[0]">
               <v-expansion-panel>
                 <v-expansion-panel-header>
@@ -63,22 +45,6 @@
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
-            <v-card flat color="primary my-1">
-              <v-card-title class="align-center pt-2">
-                Namespaces
-              </v-card-title>
-              <v-card-text>
-                <p class="mb-0"
-                  v-for="namespace in namespaces"
-                  :key="namespace.prefix"
-                >
-                  <span class="headline"><b>
-                    {{namespace.prefix}}:
-                  </b></span>
-                  {{namespace.namespace}}
-                </p>
-              </v-card-text>
-            </v-card>
           </v-col>
           <v-col cols="12" lg="6">
             <v-expansion-panels accordion>
@@ -105,28 +71,6 @@
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                   </v-expansion-panels>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-
-            <v-card flat color="primary my-2">
-              <v-card-title class="display-1 align-center justify-center pt-2">
-                Existing Classes
-              </v-card-title>
-            </v-card>
-            <v-expansion-panels accordion focusable>
-              <v-expansion-panel
-                v-for="classe in classes"
-                :key="classe.name"
-                @click="getClassElems($session.get('repoID'),classe.name)"
-              >
-                <v-expansion-panel-header>{{classe.name}}</v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <ul>
-                    <li v-for="elem in expandedClassElems" :key="elem">
-                      {{elem.split("#")[1]}}
-                    </li>
-                  </ul>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
