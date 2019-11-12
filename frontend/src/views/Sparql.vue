@@ -92,12 +92,8 @@ export default {
     queryInput: "select * where { ?s ?p ?o }\nlimit 20",
     infer: true,
     table: {
-      headers: [
-        { text: 'column', value: 'column',
-          align: 'left', sortable: false,
-        },
-      ],
-      items: [{column: 'value'}],
+      headers: [],
+      items: [],
     },
     newSavedQueryName: "",
     newSavedQueryGlobal: true,

@@ -118,13 +118,13 @@
       <!-- <v-col cols="12">
         <v-data-table
           :headers="table.headers"
-          :items="table.subjectResults"
+          :items="subjectResults"
           :items-per-page="10"
         >
           <template v-slot:item="props">
-            <tr v-if="prefixON">
+            <tr>
               <td>
-                {{$route.query.uri}}
+                {{resourceTableURI}}
               </td>
               <td @click="cellClicked(props.item[table.headers[1].text])">
                 {{props.item[table.headers[1].text]}}
@@ -133,20 +133,9 @@
                 {{props.item[table.headers[2].text]}}
               </td>
             </tr>
-            <tr v-else>
-              <td>
-                {{$route.query.uri.split('#')[1]}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[1].text])">
-                {{props.item[table.headers[1].text].split('#')[1]}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[2].text])">
-                {{props.item[table.headers[2].text].split('#')[1]}}
-              </td>
-            </tr>
           </template>
         </v-data-table>
-      </v-col> -->
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -166,7 +155,6 @@ export default {
         { text: 'predicate', value: 'predicate' },
         { text: 'object', value: 'object' },
       ],
-      // items: [{column: 'value'}],
       subjectResults: [],
       predicateResults: [],
       objectResults: [],
@@ -187,24 +175,72 @@ export default {
     // console.log(process.env) // debug
     var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
 
-    this.subjectResults(this.$session.get('repoID'), this.$route.query.uri)
-    this.predicateResults(this.$session.get('repoID'), this.$route.query.uri)
-    this.objectResults(this.$session.get('repoID'), this.$route.query.uri)
+    this.getSubjectResults(this.$session.get('repoID'), this.$route.query.uri)
+    this.getPredicateResults(this.$session.get('repoID'), this.$route.query.uri)
+    this.getObjectResults(this.$session.get('repoID'), this.$route.query.uri)
   },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    resourceTableURI: function() {
+      if(this.prefixON)
+        return this.$route.query.uri
+      else
+        return this.$route.query.uri.split('#')[1]
+    },
+    subjectResults: function() {
+      var results = []
+      this.table.subjectResults.forEach(element => {
+        var elemAux = {}
+        for(const key in element){
+          if(this.prefixON)
+            elemAux[key] = element[key]
+          else
+            elemAux[key] = element[key].split('#')[1]
+        }
+        results.push(elemAux)
+      });
+      return results
+    },
+    predicateResults: function() {
+      var results = []
+      this.table.predicateResults.forEach(element => {
+        var elemAux = {}
+        for(const key in element){
+          if(this.prefixON)
+            elemAux[key] = element[key]
+          else
+            elemAux[key] = element[key].split('#')[1]
+        }
+        results.push(elemAux)
+      });
+      return results
+    },
+    objectResults: function() {
+      var results = []
+      this.table.objectResults.forEach(element => {
+        var elemAux = {}
+        for(const key in element){
+          if(this.prefixON)
+            elemAux[key] = element[key]
+          else
+            elemAux[key] = element[key].split('#')[1]
+        }
+        results.push(elemAux)
+      });
+      return results
+    },
   },
   methods: {
     cellClicked(cellInfo) {
       this.$router.replace({query: { uri: cellInfo }})
-      this.subjectResults(this.$repo.id, this.$route.query.uri)
-      this.predicateResults(this.$repo.id, this.$route.query.uri)
-      this.objectResults(this.$repo.id, this.$route.query.uri)
+      this.getSubjectResults(this.$repo.id, this.$route.query.uri)
+      this.getPredicateResults(this.$repo.id, this.$route.query.uri)
+      this.getObjectResults(this.$repo.id, this.$route.query.uri)
     },
-    subjectResults(repoID, resource) {
+    getSubjectResults(repoID, resource) {
       // this.loading.subject = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { <'+resource+'> ?predicate ?object }'
@@ -225,15 +261,15 @@ export default {
           });
         })
         .catch(alert => {
+          this.table.subjectResults = []
           console.log("FDS subject" + alert)
           // this.alert.subjectFail = true
         })
         // .finally(() => {
         //   this.loading.subject = false
-        //   return items
         // })
     },
-    predicateResults(repoID, resource) {
+    getPredicateResults(repoID, resource) {
       // this.loading.predicate = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject <'+resource+'> ?object }'
@@ -262,7 +298,7 @@ export default {
         //   return items
         // })
     },
-    objectResults(repoID, resource) {
+    getObjectResults(repoID, resource) {
       // this.loading.object = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject ?predicate <'+resource+'> }'

@@ -2,15 +2,15 @@
   <v-container>
     <v-row>
       <v-col cols="12" lg="6">
-        <clearRepoStatements/>
-        <deleteCurrentRepo/>
-        <v-divider></v-divider>
         <importRepo/>
       </v-col>
       <v-col cols="12" lg="6">
         <exportRepo/>
       </v-col>
-      <v-col cols="12" lg="6">
+      <v-col cols="12">
+        <v-divider></v-divider>
+        <clearRepoStatements/>
+        <deleteCurrentRepo/>
       </v-col>
     </v-row>
   </v-container>

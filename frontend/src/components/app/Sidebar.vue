@@ -69,15 +69,16 @@ export default {
     model: 1,
     sidebar_mini: false,
     sidebar_items: [
+      { text: 'Login', icon: 'fas fa-sign-in-alt', link: '/auth/login'},
+      { text: 'Logout', icon: 'fas fa-sign-out-alt', link: '/auth/logout'},
       { text: 'Home', icon: 'fas fa-home', link: '/'},
       { text: 'Manage Repository', icon: 'fas fa-archive', link: '/manage'},
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
       { text: 'All Repositories', icon: 'fas fa-boxes', link: '/repositories'},
-      // { text: 'Management', icon: 'fas fa-tasks', link: '/management'},
       { text: 'TODO Settings', icon: 'fas fa-cog', link: '/settings'},
       { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
-      // { text: 'Settings', icon: 'fas fa-cog', link: '/settings' ,
+      // { text: 'Settings', icon: 'fas fa-cog',
       //   subgroup: [
       //     { text: 'Repositories', icon: 'fas fa-chevron_right', link: '/testing/button1/repos'},
       //     { text: 'My Settings', icon: 'fas fa-chevron_right', link: '/testing/button2/settings'}
