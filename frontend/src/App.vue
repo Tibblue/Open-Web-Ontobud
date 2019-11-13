@@ -24,15 +24,11 @@ export default {
     Sidebar,
     Footer,
   },
-  data: () => ({
-    // selectedRepo: "hi",
-    // update: null,
-  }),
-  methods: {
-    updateRepos() {
-      this.update = ["updateRepos"]
-      console.log("emit is gud")
-    }
-  },
+  // data: () => ({
+  //   // selectedRepo: "hi",
+  //   // update: null,
+  // }),
+  // methods: {
+  // },
 };
 </script>

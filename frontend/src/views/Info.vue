@@ -4,9 +4,9 @@
       <v-container fluid class="pa-0">
         <v-row>
           <v-col cols="12" lg="6">
-            <v-expansion-panels :v-model="[0]">
+            <v-expansion-panels :value="0">
               <v-expansion-panel>
-                <v-expansion-panel-header>
+                <v-expansion-panel-header :style="expansionPanelCSS">
                   <span class="display-1 align-center pa-0">
                     Statements
                   </span>
@@ -25,9 +25,9 @@
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
-            <v-expansion-panels :v-model="[0]">
+            <v-expansion-panels :value="0" class="pt-6">
               <v-expansion-panel>
-                <v-expansion-panel-header>
+                <v-expansion-panel-header :style="expansionPanelCSS">
                   <span class="display-1 align-center pa-0">
                     Namespaces
                   </span>
@@ -47,9 +47,9 @@
             </v-expansion-panels>
           </v-col>
           <v-col cols="12" lg="6">
-            <v-expansion-panels accordion>
+            <v-expansion-panels accordion :value="0">
               <v-expansion-panel>
-                <v-expansion-panel-header>
+                <v-expansion-panel-header :style="expansionPanelCSS">
                   <span class="display-1 align-center pa-0">
                     Existing Classes
                   </span>
@@ -102,6 +102,17 @@ export default {
     this.getStatementNumber(this.currentRepoID)
     this.getNamespaces(this.currentRepoID)
     this.getClasses(this.currentRepoID)
+  },
+  computed: {
+    expansionPanelCSS() {
+      if(this.$vuetify.theme.dark)
+        var primaryColor = "#2196F3"
+      else
+        var primaryColor = "#1976D2"
+      return {
+        '--primary-color': primaryColor,
+      }
+    }
   },
   methods: {
     getStatementNumber(repoID) {
@@ -186,6 +197,6 @@ export default {
   padding: 0px;
 }
 .v-expansion-panel-header {
-  background:#2196F3
+  background-color: var(--primary-color);
 }
 </style>

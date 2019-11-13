@@ -18,7 +18,7 @@
         ></v-checkbox>
       </v-col>
       <v-col cols="12">
-        <v-tabs grow background-color="darken-2 primary">
+        <v-tabs grow background-color="darken-1 primary">
           <v-tab>Subject</v-tab>
           <v-tab>Predicate</v-tab>
           <v-tab>Object</v-tab>

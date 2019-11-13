@@ -158,9 +158,6 @@ export default {
           this.loading.query = false
         })
     },
-    cellClicked(cellInfo) {
-      this.$router.push({path: "sparql/resource", query: { uri: cellInfo }})
-    },
     saveQuery(name, query, global) {
       this.loading.saveQuery = true
       var body = {
