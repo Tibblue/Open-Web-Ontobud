@@ -3,7 +3,8 @@
     <v-row>
       <v-col cols="12" lg="9">
         <h2>Resource: {{this.$route.query.uri.split('#')[1]}}</h2>
-        <h3>{{$route.query.uri}}</h3>
+        <h3>Namespace: {{this.$route.query.uri.split('#')[0]}}</h3>
+        <p class="mb-0">{{$route.query.uri}}</p>
       </v-col>
       <v-col cols="12" lg="3">
         <v-checkbox hide-details class="mt-0 pt-2"
@@ -20,7 +21,7 @@
           v-model="inferON"
           label="Inferencing"
           color="primary"
-          @change="updateResults($event)"
+          @change="updateResults()"
         ></v-checkbox>
       </v-col>
       <v-col cols="12">
@@ -258,11 +259,9 @@ export default {
     },
     cellClicked(cellInfo) {
       this.$router.replace({query: { uri: cellInfo }})
-      this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.updateResults()
     },
-    updateResults(event) {
+    updateResults() {
       this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
       this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
       this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)

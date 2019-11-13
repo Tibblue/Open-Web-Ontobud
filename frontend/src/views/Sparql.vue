@@ -12,36 +12,36 @@
           placeholder="Place query and Run"
         ></v-textarea>
         <v-row>
-          <v-col cols="9">
-            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput,infer)">
-              Run Query
-            </v-btn>
-          </v-col>
-          <v-col cols="3" md="3">
+          <v-col cols="3" lg="2">
             <v-checkbox hide-details class="mt-0 pt-2"
               v-model="infer"
               label="Inferencing"
               color="primary"
             ></v-checkbox>
           </v-col>
+          <v-col cols="9" lg="10">
+            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput,infer)">
+              Run Query
+            </v-btn>
+          </v-col>
         </v-row>
         <v-alert text dismissible type="error" v-model="alert.queryFail">
           Failed to Query {{ $repo.name }} ...
         </v-alert>
         <v-row>
-          <v-col cols="9" md="9">
-            <v-text-field dense hide-details
-              class="mt-0 py-0"
-              v-model="newSavedQueryName"
-              label="Saved Query name"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="3" md="3">
+          <v-col cols="3" lg="2">
             <v-checkbox hide-details class="mt-0 pt-2"
               v-model="newSavedQueryGlobal"
               label="Global"
               color="primary"
             ></v-checkbox>
+          </v-col>
+          <v-col cols="9" lg="10">
+            <v-text-field dense hide-details
+              class="mt-0 py-0"
+              v-model="newSavedQueryName"
+              label="Saved Query name"
+            ></v-text-field>
           </v-col>
           <v-col cols="12" md="12">
             <v-btn block color="primary"
@@ -55,19 +55,28 @@
         <v-alert text dismissible type="error" v-model="alert.querySaveFail">
           Failed to Save query ...
         </v-alert>
+        <v-row>
+          <v-col cols="6">
+            <v-checkbox hide-details class="mt-0 pt-2"
+              v-model="namespaceON"
+              label="Show Namespace"
+              color="primary"
+            ></v-checkbox>
+          </v-col>
+        </v-row>
         <v-data-table
           :headers="table.headers"
-          :items="table.items"
+          :items="tableResults"
           :items-per-page="10"
           class="elevation-1"
         >
           <template v-slot:item="props">
             <tr>
-              <td class="subheading" @click="cellClicked(props.item[col.text])"
+              <td class="subheading" @click="cellClicked(props.item[col.text].uri)"
                 v-for="col in table.headers"
                 :key="col.text"
               >
-                {{props.item[col.text]}}
+                {{props.item[col.text].value}}
               </td>
             </tr>
           </template>
@@ -95,6 +104,9 @@ export default {
       headers: [],
       items: [],
     },
+    namespaces: {},
+    namespaceON: true,
+    prefixON: true,
     newSavedQueryName: "",
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,
@@ -123,8 +135,36 @@ export default {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    tableResults: function() {
+      var results = []
+      this.table.items.forEach(element => {
+        var elemAux = {}
+        for(const key in element){
+          if(this.namespaceON)
+              elemAux[key] = {'value': element[key], 'uri': element[key]}
+          else
+            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
+        }
+        results.push(elemAux)
+      });
+      return results
+    },
   },
   methods: {
+    getNamespaces(repoID) {
+      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+        .then(response => {
+          response.data.forEach(elem => {
+            this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
+          });
+        })
+        .catch(alert => {
+          this.namespaces = {}
+        })
+    },
+    cellClicked(cellInfo) {
+      this.$router.push({path: "sparql/resource", query: { uri: cellInfo }})
+    },
     runQuery(query, infer) {
       this.loading.query = true
       var repoID = this.$repo.id
