@@ -156,7 +156,7 @@ export default {
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
+    // var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
 
     this.getNamespaces(this.$session.get('repoID'))
     this.getSubjectResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)

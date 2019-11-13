@@ -63,6 +63,13 @@
               color="primary"
             ></v-checkbox>
           </v-col>
+          <v-col cols="6">
+            <v-checkbox hide-details class="mt-0 pt-2"
+              v-model="prefixON"
+              label="Use Prefix"
+              color="primary"
+            ></v-checkbox>
+          </v-col>
         </v-row>
         <v-data-table
           :headers="table.headers"
@@ -129,6 +136,8 @@ export default {
   mounted: async function (){
     // console.log(process.env) // debug
     // var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
+
+    this.getNamespaces(this.$session.get('repoID'))
   },
   computed: {
     $repo: {
@@ -141,6 +150,13 @@ export default {
         var elemAux = {}
         for(const key in element){
           if(this.namespaceON)
+            if(this.prefixON){
+              var namespace = element[key].split('#')[0] + '#'
+              var prefix = this.namespaces[namespace] || namespace
+              var resource = element[key].split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+            }
+            else
               elemAux[key] = {'value': element[key], 'uri': element[key]}
           else
             elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
@@ -154,9 +170,12 @@ export default {
     getNamespaces(repoID) {
       axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
         .then(response => {
+          // puting results directly into this.namespaces usually results in a empty list
+          var auxList = {} // for safety
           response.data.forEach(elem => {
-            this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
+            auxList[elem.namespace.value] = elem.prefix.value + ':'
           });
+          this.namespaces = auxList
         })
         .catch(alert => {
           this.namespaces = {}
