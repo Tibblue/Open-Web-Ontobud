@@ -16,6 +16,12 @@
           label="Use Prefix"
           color="primary"
         ></v-checkbox>
+        <v-checkbox hide-details class="mt-0 pt-2"
+          v-model="inferON"
+          label="Inferencing"
+          color="primary"
+          @change="updateResults($event)"
+        ></v-checkbox>
       </v-col>
       <v-col cols="12">
         <v-tabs grow background-color="darken-1 primary">
@@ -122,6 +128,7 @@ const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
+    inferON: true,
     table: {
       headers: [
         { text: 'subject', value: 'subject', sortable: false },
@@ -151,9 +158,9 @@ export default {
     var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
 
     this.getNamespaces(this.$session.get('repoID'))
-    this.getSubjectResults(this.$session.get('repoID'), this.$route.query.uri)
-    this.getPredicateResults(this.$session.get('repoID'), this.$route.query.uri)
-    this.getObjectResults(this.$session.get('repoID'), this.$route.query.uri)
+    this.getSubjectResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
+    this.getPredicateResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
+    this.getObjectResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
   },
   computed: {
     $repo: {
@@ -251,15 +258,20 @@ export default {
     },
     cellClicked(cellInfo) {
       this.$router.replace({query: { uri: cellInfo }})
-      this.getSubjectResults(this.$repo.id, this.$route.query.uri)
-      this.getPredicateResults(this.$repo.id, this.$route.query.uri)
-      this.getObjectResults(this.$repo.id, this.$route.query.uri)
+      this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
     },
-    getSubjectResults(repoID, resource) {
+    updateResults(event) {
+      this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+    },
+    getSubjectResults(repoID, resource, infer) {
       // this.loading.subject = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { <'+resource+'> ?predicate ?object }'
-      axios.post(url, qs.stringify({'query': query}),
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
         {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
@@ -284,11 +296,11 @@ export default {
         //   this.loading.subject = false
         // })
     },
-    getPredicateResults(repoID, resource) {
+    getPredicateResults(repoID, resource, infer) {
       // this.loading.predicate = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject <'+resource+'> ?object }'
-      axios.post(url, qs.stringify({'query': query}),
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
         {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
@@ -313,11 +325,11 @@ export default {
         //   return items
         // })
     },
-    getObjectResults(repoID, resource) {
+    getObjectResults(repoID, resource, infer) {
       // this.loading.object = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject ?predicate <'+resource+'> }'
-      axios.post(url, qs.stringify({'query': query}),
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
         {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
         .then(response => {
           // console.log(response.data) // debug
