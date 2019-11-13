@@ -4,14 +4,16 @@
       <v-col>
         <savedQueries ref="savedQueriesComp" @runQuery="runQuery"/>
         <!-- <v-divider></v-divider> -->
-        <v-textarea outlined auto-grow hide-details
-          v-model="queryInput"
-          rows="6"
-          row-height="16"
-          label="Query"
-          placeholder="Place query and Run"
-        ></v-textarea>
-        <v-row>
+        <v-row dense>
+          <v-col cols="12">
+            <v-textarea outlined auto-grow hide-details
+              v-model="queryInput"
+              rows="6"
+              row-height="16"
+              label="Query"
+              placeholder="Place query and Run"
+            ></v-textarea>
+          </v-col>
           <v-col cols="3" lg="2">
             <v-checkbox hide-details class="mt-0 pt-2"
               v-model="infer"
@@ -26,9 +28,9 @@
           </v-col>
         </v-row>
         <v-alert text dismissible type="error" v-model="alert.queryFail">
-          Failed to Query {{ $repo.name }} ...
+          Run Query Failed ...
         </v-alert>
-        <v-row>
+        <v-row dense>
           <v-col cols="3" lg="2">
             <v-checkbox hide-details class="mt-0 pt-2"
               v-model="newSavedQueryGlobal"
@@ -53,9 +55,9 @@
           </v-col>
         </v-row>
         <v-alert text dismissible type="error" v-model="alert.querySaveFail">
-          Failed to Save query ...
+          Save query Failed ...
         </v-alert>
-        <v-row>
+        <v-row dense>
           <v-col cols="6">
             <v-checkbox hide-details class="mt-0 pt-2"
               v-model="namespaceON"
@@ -70,24 +72,29 @@
               color="primary"
             ></v-checkbox>
           </v-col>
+          <v-col cols="12">
+            <v-data-table
+              :headers="table.headers"
+              :items="tableResults"
+              :items-per-page="10"
+              class="elevation-1"
+            >
+              <template v-slot:item="props">
+                <tr>
+                  <td class="subheading" @click="cellClicked(props.item[col.text])"
+                    v-for="col in table.headers"
+                    :key="col.text"
+                  >
+                    <span v-if="props.item[col.text].type==='uri'">
+                      <u>{{props.item[col.text].value}}</u>
+                    </span>
+                    <span v-else>{{props.item[col.text].value}}</span>
+                  </td>
+                </tr>
+              </template>
+            </v-data-table>
+          </v-col>
         </v-row>
-        <v-data-table
-          :headers="table.headers"
-          :items="tableResults"
-          :items-per-page="10"
-          class="elevation-1"
-        >
-          <template v-slot:item="props">
-            <tr>
-              <td class="subheading" @click="cellClicked(props.item[col.text].uri)"
-                v-for="col in table.headers"
-                :key="col.text"
-              >
-                {{props.item[col.text].value}}
-              </td>
-            </tr>
-          </template>
-        </v-data-table>
       </v-col>
     </v-row>
   </v-container>
@@ -149,17 +156,17 @@ export default {
       this.table.items.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON)
-            if(this.prefixON){
-              var namespace = element[key].split('#')[0] + '#'
+          if(this.namespaceON || element[key].type==='literal')
+            if(this.prefixON && !element[key].type==='literal'){
+              var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
-              var resource = element[key].split('#')[1] || ''
-              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+              var resource = element[key].value.split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key].value, 'type': element[key].type}
             }
             else
-              elemAux[key] = {'value': element[key], 'uri': element[key]}
+              elemAux[key] = {'value': element[key].value, 'uri': element[key].value, 'type': element[key].type}
           else
-            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
+            elemAux[key] = {'value': element[key].value.split('#')[1], 'uri': element[key].value, 'type': element[key].type}
         }
         results.push(elemAux)
       });
@@ -182,7 +189,8 @@ export default {
         })
     },
     cellClicked(cellInfo) {
-      this.$router.push({path: "sparql/resource", query: { uri: cellInfo }})
+      if(cellInfo.type==='uri')
+        this.$router.push({path: "sparql/resource", query: { uri: cellInfo.uri }})
     },
     runQuery(query, infer) {
       this.loading.query = true
@@ -205,7 +213,10 @@ export default {
           resultsData.forEach(element => {
             var elemAux = {}
             for(const key in element){
-              elemAux[key] = element[key].value
+              elemAux[key] = {
+                'value': element[key].value,
+                'type': element[key].type
+              }
             }
             this.table.items.push(elemAux)
           });

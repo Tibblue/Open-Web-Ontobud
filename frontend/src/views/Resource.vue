@@ -39,13 +39,19 @@
               <template v-slot:item="props">
                 <tr>
                   <td>
-                    {{resourceTableURI}}
+                    <b>{{resourceTableURI}}</b>
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text].uri)">
-                    {{props.item[table.headers[1].text].value}}
+                  <td @click="cellClicked(props.item[table.headers[1].text])">
+                    <span v-if="props.item[table.headers[1].text].type==='uri'">
+                      <u>{{props.item[table.headers[1].text].value}}</u>
+                    </span>
+                    <span v-else>{{props.item[table.headers[1].text].value}}</span>
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text].uri)">
-                    {{props.item[table.headers[2].text].value}}
+                  <td @click="cellClicked(props.item[table.headers[2].text])">
+                    <span v-if="props.item[table.headers[2].text].type==='uri'">
+                      <u>{{props.item[table.headers[2].text].value}}</u>
+                    </span>
+                    <span v-else>{{props.item[table.headers[2].text].value}}</span>
                   </td>
                 </tr>
               </template>
@@ -59,14 +65,20 @@
             >
               <template v-slot:item="props">
                 <tr>
-                  <td @click="cellClicked(props.item[table.headers[0].text].uri)">
-                    {{props.item[table.headers[0].text].value}}
+                  <td @click="cellClicked(props.item[table.headers[0].text])">
+                    <span v-if="props.item[table.headers[0].text].type==='uri'">
+                      <u>{{props.item[table.headers[0].text].value}}</u>
+                    </span>
+                    <span v-else>{{props.item[table.headers[0].text].value}}</span>
                   </td>
                   <td>
-                    {{resourceTableURI}}
+                    <b>{{resourceTableURI}}</b>
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text].uri)">
-                    {{props.item[table.headers[2].text].value}}
+                  <td @click="cellClicked(props.item[table.headers[2].text])">
+                    <span v-if="props.item[table.headers[2].text].type==='uri'">
+                      <u>{{props.item[table.headers[2].text].value}}</u>
+                    </span>
+                    <span v-else>{{props.item[table.headers[2].text].value}}</span>
                   </td>
                 </tr>
               </template>
@@ -80,14 +92,20 @@
             >
               <template v-slot:item="props">
                 <tr>
-                  <td @click="cellClicked(props.item[table.headers[0].text].uri)">
-                    {{props.item[table.headers[0].text].value}}
+                  <td @click="cellClicked(props.item[table.headers[0].text])">
+                    <span v-if="props.item[table.headers[0].text].type==='uri'">
+                      <u>{{props.item[table.headers[0].text].value}}</u>
+                    </span>
+                    <span v-else>{{props.item[table.headers[0].text].value}}</span>
                   </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text].uri)">
-                    {{props.item[table.headers[1].text].value}}
+                  <td @click="cellClicked(props.item[table.headers[1].text])">
+                    <span v-if="props.item[table.headers[1].text].type==='uri'">
+                      <u>{{props.item[table.headers[1].text].value}}</u>
+                    </span>
+                    <span v-else>{{props.item[table.headers[1].text].value}}</span>
                   </td>
                   <td>
-                    {{resourceTableURI}}
+                    <b>{{resourceTableURI}}</b>
                   </td>
                 </tr>
               </template>
@@ -186,17 +204,17 @@ export default {
       this.table.subjectResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON)
-            if(this.prefixON){
-              var namespace = element[key].split('#')[0] + '#'
+          if(this.namespaceON || element[key].type==='literal')
+            if(this.prefixON && !element[key].type==='literal'){
+              var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
-              var resource = element[key].split('#')[1] || ''
-              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+              var resource = element[key].value.split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key].value, 'type': element[key].type}
             }
             else
-              elemAux[key] = {'value': element[key], 'uri': element[key]}
+              elemAux[key] = {'value': element[key].value, 'uri': element[key].value, 'type': element[key].type}
           else
-            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
+            elemAux[key] = {'value': element[key].value.split('#')[1], 'uri': element[key].value, 'type': element[key].type}
         }
         results.push(elemAux)
       });
@@ -207,17 +225,17 @@ export default {
       this.table.predicateResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON)
-            if(this.prefixON){
-              var namespace = element[key].split('#')[0] + '#'
+          if(this.namespaceON || element[key].type==='literal')
+            if(this.prefixON && !element[key].type==='literal'){
+              var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
-              var resource = element[key].split('#')[1] || ''
-              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+              var resource = element[key].value.split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key].value, 'type': element[key].type}
             }
             else
-              elemAux[key] = {'value': element[key], 'uri': element[key]}
+              elemAux[key] = {'value': element[key].value, 'uri': element[key].value, 'type': element[key].type}
           else
-            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
+            elemAux[key] = {'value': element[key].value.split('#')[1], 'uri': element[key].value, 'type': element[key].type}
         }
         results.push(elemAux)
       });
@@ -228,17 +246,17 @@ export default {
       this.table.objectResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON)
-            if(this.prefixON){
-              var namespace = element[key].split('#')[0] + '#'
+          if(this.namespaceON || element[key].type==='literal')
+            if(this.prefixON && !element[key].type==='literal'){
+              var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
-              var resource = element[key].split('#')[1] || ''
-              elemAux[key] = {'value': prefix + resource, 'uri': element[key]}
+              var resource = element[key].value.split('#')[1] || ''
+              elemAux[key] = {'value': prefix + resource, 'uri': element[key].value, 'type': element[key].type}
             }
             else
-              elemAux[key] = {'value': element[key], 'uri': element[key]}
+              elemAux[key] = {'value': element[key].value, 'uri': element[key].value, 'type': element[key].type}
           else
-            elemAux[key] = {'value': element[key].split('#')[1], 'uri': element[key]}
+            elemAux[key] = {'value': element[key].value.split('#')[1], 'uri': element[key].value, 'type': element[key].type}
         }
         results.push(elemAux)
       });
@@ -258,8 +276,10 @@ export default {
         })
     },
     cellClicked(cellInfo) {
-      this.$router.replace({query: { uri: cellInfo }})
-      this.updateResults()
+      if(cellInfo.type==='uri'){
+        this.$router.replace({query: { uri: cellInfo.uri }})
+        this.updateResults()
+      }
     },
     updateResults() {
       this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
@@ -281,7 +301,10 @@ export default {
           resultsData.forEach(element => {
             var elemAux = {}
             for(const key in element){
-              elemAux[key] = element[key].value
+              elemAux[key] = {
+                'value': element[key].value,
+                'type': element[key].type
+              }
             }
             this.table.subjectResults.push(elemAux)
           });
@@ -310,7 +333,10 @@ export default {
           resultsData.forEach(element => {
             var elemAux = {}
             for(const key in element){
-              elemAux[key] = element[key].value
+              elemAux[key] = {
+                'value': element[key].value,
+                'type': element[key].type
+              }
             }
             this.table.predicateResults.push(elemAux)
           });
@@ -339,7 +365,10 @@ export default {
           resultsData.forEach(element => {
             var elemAux = {}
             for(const key in element){
-              elemAux[key] = element[key].value
+              elemAux[key] = {
+                'value': element[key].value,
+                'type': element[key].type
+              }
             }
             this.table.objectResults.push(elemAux)
           });
