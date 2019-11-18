@@ -3,7 +3,6 @@ var express = require('express');
 var bodyParser = require("body-parser")
 var path = require('path');
 var logger = require('morgan');
-var flash = require('connect-flash')
 
 // auth session stuff
 var uuid = require("uuid/v4")
@@ -17,7 +16,7 @@ var auth = require('./auth/auth')
 
 var app = express();
 // Variaveis
-app.address = '127.0.0.1'
+app.address = 'localhost'
 app.port = 5000
 app.locals.url = "http://"+app.address+":"+app.port+"/"
 
@@ -55,7 +54,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //// Middleware
-app.use(flash()) // FLASH
 app.use(logger('dev'));
 // Body parsers
 app.use(express.json());

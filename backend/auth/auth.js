@@ -8,7 +8,7 @@ passport.use("login", new localStrategy({
   passwordField: "password"
 }, async (email, password, done) => {
   try {
-    user = await UserController.findOne(email)
+    user = await UserController.getUser(email)
     if (!user)
       return done(null, false, {message: "User not found!"})
     var validPassword = await UserController.isValidPassword(password, user.password)
@@ -49,8 +49,7 @@ passport.use("jwt", new JWTstrategy({
 // Check if user is authenticated
 module.exports.isAuthenticated = passport.authenticate("jwt", {
   session: false,
-  failureRedirect: '/',
-  failureFlash: 'Not Authenticated!',
+  failureRedirect: '/auth',
 })
 
 // if authenticated redirect to main
