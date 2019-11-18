@@ -49,7 +49,7 @@ passport.use("jwt", new JWTstrategy({
 // Check if user is authenticated
 module.exports.isAuthenticated = passport.authenticate("jwt", {
   session: false,
-  failureRedirect: '/auth',
+  // failureRedirect: '/auth',
 })
 
 // if authenticated redirect to main
