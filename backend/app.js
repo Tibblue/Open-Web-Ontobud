@@ -33,7 +33,7 @@ mongoose.connect(dbLocal, {useNewUrlParser: true, useUnifiedTopology: true})
 // configure session
 app.use(session({
   genid: req => {
-    console.log('Gerando nova sessão !!!')
+    console.log('>> Gerando nova sessão !!!')
     // console.log(req.sessionID)
     return uuid()
   },

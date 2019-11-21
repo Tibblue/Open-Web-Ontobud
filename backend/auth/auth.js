@@ -52,12 +52,12 @@ module.exports.isAuthenticated = passport.authenticate("jwt", {
   // failureRedirect: '/auth',
 })
 
-// if authenticated redirect to main
+// if authenticated return warning
 module.exports.authenticated = (req, res, next) => passport.authenticate("jwt", {
   session: false,
 }, (err, session, info) => {
   if (err) return next(err)
   if (!session) next()
-  else res.redirect(req.app.locals.url + "main")
+  else res.status(400).send("Already Logged in")
 })(req, res, next)
 
