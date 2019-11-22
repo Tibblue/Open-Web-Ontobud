@@ -9,11 +9,10 @@ passport.use("login", new localStrategy({
 }, async (email, password, done) => {
   try {
     user = await UserController.getUser(email)
-    if (!user)
-      return done(null, false, {message: "User not found!"})
-    var validPassword = await UserController.isValidPassword(password, user.password)
-    if (!validPassword)
-      return done(null, false, {message: "Invalid Password!"})
+    if (!user) return done(null, false, {message: "User not found!"})
+    // if (!user.approved) return done(null, false, {message: "User not approved by admin!"})
+    var validPass = await UserController.isValidPassword(password, user.password)
+    if (!validPass) return done(null, false, {message: "Incorrect Password!"})
 
     return done(null, user, {message: "User authenticated!"})
   }
@@ -25,18 +24,13 @@ passport.use("login", new localStrategy({
 // Token Verification
 var JWTstrategy = require("passport-jwt").Strategy
 var ExtractJWT = require("passport-jwt").ExtractJwt
+var jwt = require("jsonwebtoken")
 var fs = require("fs")
-
-var extractFromSession = function (req) {
-  var token = null
-  if (req && req.session) token = req.session.token
-  return token
-}
 
 passport.use("jwt", new JWTstrategy({
   secretOrKey: fs.readFileSync("./auth/public.key", "utf8"),
   algorithms: ["RS256"],
-  jwtFromRequest: ExtractJWT.fromExtractors([extractFromSession])
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
 }, async (token, done) => {
   try {
     return done(null, token.user)
@@ -49,15 +43,18 @@ passport.use("jwt", new JWTstrategy({
 // Check if user is authenticated
 module.exports.isAuthenticated = passport.authenticate("jwt", {
   session: false,
-  // failureRedirect: '/auth',
 })
 
-// if authenticated return warning
-module.exports.authenticated = (req, res, next) => passport.authenticate("jwt", {
-  session: false,
-}, (err, session, info) => {
-  if (err) return next(err)
-  if (!session) next()
-  else res.status(400).send("Already Logged in")
-})(req, res, next)
+const tokenOptions = {
+  expiresIn: '10m',
+  algorithm: "RS256"
+}
+
+// Generates token with userInfo
+module.exports.genToken = function(userInfo){
+  var privateKey = fs.readFileSync("./auth/private.key", "utf8")
+  var token = jwt.sign({user: userInfo}, privateKey, tokenOptions)
+  return token
+}
+
 

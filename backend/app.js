@@ -4,25 +4,17 @@ var bodyParser = require("body-parser")
 var path = require('path');
 var logger = require('morgan');
 
-// auth session stuff
-var uuid = require("uuid/v4")
-var passport = require('passport')
-var session = require("express-session")
-var FileStore = require("session-file-store")(session)
-
-require('./auth/auth')
-var auth = require('./auth/auth')
-
 
 var app = express();
+
 // Variaveis
 app.address = 'localhost'
 app.port = 5000
 app.locals.url = "http://"+app.address+":"+app.port+"/"
 
+//// Base de dados
 // const dbOnline = 'mongodb+srv://Kiko:Kiko@pri-1819-kiko-rsuyj.mongodb.net/test?retryWrites=true'
 const dbLocal = 'mongodb://127.0.0.1:27017/rdf4jFrontend'
-// Base de dados
 var mongoose = require('mongoose')
 mongoose.set('useCreateIndex', true)
 mongoose.connect(dbLocal, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -30,25 +22,9 @@ mongoose.connect(dbLocal, {useNewUrlParser: true, useUnifiedTopology: true})
   .catch(()=> console.log('Mongo: erro na conexao!!!'))
 
 
-// configure session
-app.use(session({
-  genid: req => {
-    console.log('>> Gerando nova sessão !!!')
-    // console.log(req.sessionID)
-    return uuid()
-  },
-  store: new FileStore(),
-  secret: 'batataazul',
-  resave: false,
-  saveUninitialized: true,
-  cookie:{maxAge: 2*60*1000}, // miliseconds
-}))
-
 // initialize passport
+var passport = require('passport')
 app.use(passport.initialize())
-app.use(passport.session())
-
-
 // View engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

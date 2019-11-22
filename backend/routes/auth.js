@@ -1,37 +1,28 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport')
-var jwt = require("jsonwebtoken")
-var fs = require('fs')
 var auth = require("../auth/auth")
-
-const tokenOptions = {
-  expiresIn: '10m',
-  algorithm: "RS256"
-}
+var Users = require("../controllers/user")
 
 
+// Sign Up - Create new User
+router.post('/signup', function (req, res) {
+  Users.createUser(req.body)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error))
+});
 
 // Logs user in
-router.post('/login', auth.authenticated, async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try{
-      if(err || !user) {
-        if (!user)
-          return res.status(404).send(info.message)
-        else
-          return next(err)
-      }
+      if(err) return next(err)
+      if (!user) return res.status(404).send(info.message)
       req.login(user, {session: false}, async (error) => {
-        if(error) return next(error)
-        var tokenUser = {email: user.email}
-        var privateKey = fs.readFileSync("./auth/private.key", "utf8")
-        // Token Generation
-        var token = jwt.sign({user: tokenUser}, privateKey, tokenOptions)
-        req.session.token = token
-        req.session.email = user.email
-        res.send("success " + token)
-        // res.redirect(req.app.locals.url + "auth/authrequired")
+        if (error) return next(error)
+        var userInfo = {email: user.email}
+        var token = auth.genToken(userInfo)
+        res.send(token)
       })
     }catch(error){
       return next(error)
@@ -39,40 +30,21 @@ router.post('/login', auth.authenticated, async (req, res, next) => {
   })(req,res,next)
 });
 
-// Logs user out
-router.post('/logout', auth.isAuthenticated, (req, res, next) => {
-  // req.logout() // didnt work
-  req.session.destroy( (error) => {
-    if(!error)
-      res.send('success');
-    else
-      res.status(400).send('fail')
-  })
+// Delete User Account
+router.delete('/delete/:email', function(req, res) {
+  Users.deleteUser(req.params.email)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error))
 });
 
 
 // debug
-router.get('/token', auth.isAuthenticated, (req, res) => {
-  // console.dir(req.query)
-  console.log(">> SESSION ID: " + req.sessionID)
-  // console.log(req.session)
-  console.log(">> SESSION Token: " + req.session.token)
-  res.send(req.session.token)
+router.get('/user', auth.isAuthenticated, (req, res, next) => {
+  passport.authenticate("jwt", async (err, user) => {
+    if (err) return next(err)
+    res.jsonp(user)
+  })(req,res,next)
 });
-
-// debug
-router.get('/user', auth.isAuthenticated, (req, res) => {
-  // console.log(req.session)
-  console.log(">> SESSION Token: " + req.session.token)
-  var publicKey = fs.readFileSync("./auth/public.key", "utf8")
-  var legit = jwt.verify(req.session.token, publicKey, tokenOptions)
-  res.send(legit)
-});
-
-// debug
-router.get('/authrequired', auth.isAuthenticated, (req, res) => {
-  res.send('Atingiste area autenticada!!!')
-})
 
 
 module.exports = router;
