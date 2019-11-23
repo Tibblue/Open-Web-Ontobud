@@ -156,8 +156,8 @@ export default {
       this.table.items.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON || element[key].type==='literal')
-            if(this.prefixON && !element[key].type==='literal'){
+          if(this.namespaceON || element[key].type=='literal')
+            if(this.prefixON && element[key].type!='literal'){
               var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
               var resource = element[key].value.split('#')[1] || ''

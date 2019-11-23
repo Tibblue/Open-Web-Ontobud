@@ -204,8 +204,8 @@ export default {
       this.table.subjectResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON || element[key].type==='literal')
-            if(this.prefixON && !element[key].type==='literal'){
+          if(this.namespaceON || element[key].type=='literal')
+            if(this.prefixON && element[key].type!='literal'){
               var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
               var resource = element[key].value.split('#')[1] || ''
@@ -225,8 +225,8 @@ export default {
       this.table.predicateResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON || element[key].type==='literal')
-            if(this.prefixON && !element[key].type==='literal'){
+          if(this.namespaceON || element[key].type=='literal')
+            if(this.prefixON && element[key].type!='literal'){
               var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
               var resource = element[key].value.split('#')[1] || ''
@@ -246,8 +246,8 @@ export default {
       this.table.objectResults.forEach(element => {
         var elemAux = {}
         for(const key in element){
-          if(this.namespaceON || element[key].type==='literal')
-            if(this.prefixON && !element[key].type==='literal'){
+          if(this.namespaceON || element[key].type=='literal')
+            if(this.prefixON && element[key].type!='literal'){
               var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
               var resource = element[key].value.split('#')[1] || ''
