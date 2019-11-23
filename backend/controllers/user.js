@@ -38,6 +38,14 @@ Users.createUser = user => {
   return User.create(user)
 }
 
+// Alterar password de um user
+Users.updateUserPassword = (email, password) => {
+  password = bcrypt.hashSync(password, saltRounds)
+  return User
+          .findOneAndUpdate({email: email}, password, {useFindAndModify: false})
+          .exec()
+}
+
 // delete user
 // TODO check password
 Users.deleteUser = email => {
@@ -56,9 +64,3 @@ Users.deleteUser = email => {
 //         .exec()
 // }
 
-// // Alterar password de um user
-// Users.updateUserPassword = (email, password) => {
-//     return User
-//         .findOneAndUpdate({email: email}, password, {useFindAndModify: false})
-//         .exec()
-// }

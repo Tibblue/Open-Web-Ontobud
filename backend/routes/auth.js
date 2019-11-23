@@ -31,15 +31,22 @@ router.post('/login', async (req, res, next) => {
 });
 
 // Delete User Account
-router.delete('/delete/:email', function(req, res) {
-  Users.deleteUser(req.params.email)
-    .then(data => res.jsonp(data))
-    .catch(error => res.status(500).jsonp(error))
+router.delete('/delete/:email', auth.isAuthenticated, function(req, res, next) {
+  passport.authenticate("jwt", async (err, user) => {
+    if (err) return next(err)
+    // TODO: if admin, can delete any user
+    if(req.params.email === user.email){
+      Users.deleteUser(req.params.email)
+        .then(data => res.jsonp(data))
+        .catch(error => res.status(500).jsonp(error))
+    }
+    else res.status(403).send()
+  })(req, res, next)
 });
 
 
 // debug
-router.get('/user', auth.isAuthenticated, (req, res, next) => {
+router.get('/user', auth.isAuthenticated, function(req, res, next) {
   passport.authenticate("jwt", async (err, user) => {
     if (err) return next(err)
     res.jsonp(user)
