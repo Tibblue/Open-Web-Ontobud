@@ -46,7 +46,7 @@ module.exports.isAuthenticated = passport.authenticate("jwt", {
 })
 
 const tokenOptions = {
-  expiresIn: '10m',
+  // expiresIn: '4h',
   algorithm: "RS256"
 }
 

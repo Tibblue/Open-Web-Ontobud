@@ -72,7 +72,7 @@ export default {
       { text: 'Login', icon: 'fas fa-sign-in-alt', link: '/auth/login'},
       { text: 'Logout', icon: 'fas fa-sign-out-alt', link: '/auth/logout'},
       { text: 'Sign Up', icon: 'fas fa-user-plus', link: '/auth/signup'},
-      { text: 'TODO User Settings', icon: 'fas fa-user-cog', link: '/auth/signup'},
+      { text: 'TODO User Settings', icon: 'fas fa-user-cog', link: '/auth/usersettings'},
       { text: 'Home', icon: 'fas fa-home', link: '/'},
       { text: 'Manage Repository', icon: 'fas fa-archive', link: '/manage'},
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},

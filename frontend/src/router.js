@@ -8,40 +8,44 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/auth/login',
+      name: 'login',
+      component: () => import('./views/Login.vue'),
+    },
+    {
+      path: '/auth/logout',
+      name: 'logout',
+      component: () => import('./views/Logout.vue'),
+    },
+    {
       path: '/',
       name: 'homepage',
       component: () => import('./views/Home.vue'),
-      props: true,
     },
     {
       path: '/manage',
       name: 'manageRepo',
       component: () => import('./views/Manage.vue'),
-      props: true,
     },
     {
       path: '/info',
       name: 'repoInfo',
       component: () => import('./views/Info.vue'),
-      props: true,
     },
     {
       path: '/sparql',
       name: 'sparql',
       component: () => import('./views/Sparql.vue'),
-      props: true,
     },
     {
       path: '/sparql/resource',
       name: 'resource',
       component: () => import('./views/Resource.vue'),
-      props: true,
     },
     {
       path: '/repositories',
       name: 'repositories',
       component: () => import('./views/Repositories.vue'),
-      props: true,
     },
   ]
 })

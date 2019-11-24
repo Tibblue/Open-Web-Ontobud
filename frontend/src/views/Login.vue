@@ -1,15 +1,15 @@
 <template>
   <v-container>
-    <debug/>
+    <login/>
   </v-container>
 </template>
 
 <script>
-import debug from '@/components/debug'
+import login from '@/components/login'
 
 export default {
   components: {
-    debug,
+    login,
   },
   // data: () => ({
   // }),
