@@ -60,6 +60,7 @@ export default {
 
           this.alert.userLoginSuccess = true
           this.alert.userLoginFail = false
+          this.$router.go(0)
         })
         .catch(alert => {
           console.log(alert.response.data)

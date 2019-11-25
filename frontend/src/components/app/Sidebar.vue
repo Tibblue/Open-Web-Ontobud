@@ -44,6 +44,54 @@
 
     <v-divider></v-divider>
 
+
+    <v-list nav v-if="!this.$session.get('userToken')">
+      <v-list-item @click="login()" link to="/auth/login">
+        <v-list-item-icon>
+          <v-icon>fas fa-sign-in-alt</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Login
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item @click="login()" link to="/auth/signup">
+        <v-list-item-icon>
+          <v-icon>fas fa-user-plus</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            TODO Sign Up
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+    <v-list nav v-else>
+      <v-list-item @click="logout()">
+        <v-list-item-icon>
+          <v-icon>fas fa-sign-out-alt</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Logout
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item link to="/auth/userSettings">
+        <v-list-item-icon>
+          <v-icon>fas fa-user-cog</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            TODO User Settings
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+
+    <v-divider></v-divider>
+
     <v-list nav>
       <v-list-item
         v-for="item in sidebar_items"
@@ -69,10 +117,10 @@ export default {
     model: 1,
     sidebar_mini: false,
     sidebar_items: [
-      { text: 'Login', icon: 'fas fa-sign-in-alt', link: '/auth/login'},
-      { text: 'Logout', icon: 'fas fa-sign-out-alt', link: '/auth/logout'},
-      { text: 'Sign Up', icon: 'fas fa-user-plus', link: '/auth/signup'},
-      { text: 'TODO User Settings', icon: 'fas fa-user-cog', link: '/auth/usersettings'},
+      // { text: 'Login', icon: 'fas fa-sign-in-alt', link: '/auth/login'},
+      // { text: 'Sign Up', icon: 'fas fa-user-plus', link: '/auth/signup'},
+      // { text: 'Logout', icon: 'fas fa-sign-out-alt', link: '/auth/logout'},
+      // { text: 'TODO User Settings', icon: 'fas fa-user-cog', link: '/auth/usersettings'},
       { text: 'Home', icon: 'fas fa-home', link: '/'},
       { text: 'Manage Repository', icon: 'fas fa-archive', link: '/manage'},
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},
@@ -88,12 +136,24 @@ export default {
       // },
     ],
   }),
+  // mounted: async function (){
+  //   // console.log(process.env) # debug
+  // },
   methods: {
     goTo: function (id) {
       this.$router.push(id)
     },
     swapDarkMode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+    },
+    login: function () {
+      // TODO
+    },
+    logout: function () {
+      this.$session.remove("userToken")
+      this.$session.remove("userEmail")
+      this.$router.go()
+      // this.$forceUpdate()
     },
   }
 }

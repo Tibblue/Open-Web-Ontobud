@@ -116,7 +116,7 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+// const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
@@ -147,7 +147,7 @@ export default {
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
+    var currentUserEmail = this.$session.get("userEmail") // email from session
     this.getSavedQueries(currentUserEmail)
   },
   computed: {

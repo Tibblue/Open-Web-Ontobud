@@ -48,7 +48,7 @@
           <v-col cols="12" md="12">
             <v-btn block color="primary"
               :loading="loading.querySave"
-              @click="saveQuery(newSavedQueryName,queryInput,newSavedQueryGlobal)"
+              @click="saveQuery(newSavedQueryName,queryInput,$session.get('userEmail'),newSavedQueryGlobal)"
             >
               Save Query
             </v-btn>
@@ -228,12 +228,12 @@ export default {
           this.loading.query = false
         })
     },
-    saveQuery(name, query, global) {
+    saveQuery(name, query, userEmail, global) {
       this.loading.saveQuery = true
       var body = {
         'name': name,
         'query': query,
-        'user_email': 'kiko@kiko', // TODO: use user email when auth gets done
+        'user_email': userEmail, // TODO: use user email when auth gets done
       }
       if(!global) body['repoID'] = this.$repo.id
 
@@ -243,12 +243,14 @@ export default {
           // console.log(response.data) // debug
           // console.log(this.$refs.savedQueriesComp) // debug to check child component variable
           this.$refs.savedQueriesComp.savedQueries.push({'name': name, 'query': query,})
-          this.loading.saveQuery = false
+          this.alert.querySaveFail = false
         })
         .catch(alert => {
-          this.loading.saveQuery = false
           this.alert.querySaveFail = true
           // FIXME: detetar qd falha pk ja existe
+        })
+        .finally(() => {
+          this.loading.saveQuery = false
         })
     },
   }
