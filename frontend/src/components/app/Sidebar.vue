@@ -45,6 +45,7 @@
     <v-divider></v-divider>
 
 
+    <!-- <v-list nav v-if="!this.loggedIn"> -->
     <v-list nav v-if="!this.$session.get('userToken')">
       <v-list-item @click="login()" link to="/auth/login">
         <v-list-item-icon>
@@ -56,16 +57,44 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item @click="login()" link to="/auth/signup">
-        <v-list-item-icon>
-          <v-icon>fas fa-user-plus</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title class="title">
-            TODO Sign Up
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          <v-menu right offset-x :close-on-content-click="false">
+            <template v-slot:activator="{ on }">
+              <v-list-item link v-on="on">
+                <v-list-item-icon>
+                  <v-icon>fas fa-user-plus</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title class="title">
+                    Sign Up
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+            <v-card class="pa-3 pt-4">
+              <v-text-field hide-details class="mt-0 mb-4 pt-0"
+                v-model="userName"
+                label="name"
+                required
+              ></v-text-field>
+              <v-text-field hide-details class="mt-0 mb-4 pt-0"
+                v-model="userEmail"
+                label="Email"
+              ></v-text-field>
+              <v-text-field hide-details class="mt-0 mb-4 pt-0"
+                v-model="userPass"
+                label="Password"
+              ></v-text-field>
+              <v-btn :loading="loading.userSignUp" block color="primary" @click="signUp(userName, userEmail, userPass)">
+                Sign Up
+              </v-btn>
+              <v-alert text dismissible type="success" v-model="alert.userSignUpSuccess">
+                Sign Up Successful!!!
+              </v-alert>
+              <v-alert text dismissible type="error" v-model="alert.userSignUpFail">
+                Sign Up Failed...
+              </v-alert>
+            </v-card>
+          </v-menu>
     </v-list>
     <v-list nav v-else>
       <v-list-item @click="logout()">
@@ -112,8 +141,13 @@
 </template>
 
 <script>
+import axios from 'axios'
+const qs = require('querystring')
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
+
 export default {
   data: () => ({
+    // loggedIn: false,
     model: 1,
     sidebar_mini: false,
     sidebar_items: [
@@ -135,9 +169,20 @@ export default {
       //   ]
       // },
     ],
+    userName: "",
+    userEmail: "",
+    userPass: "",
+    loading: {
+      userSignUp: false,
+    },
+    alert: {
+      userSignUpSuccess: false,
+      userSignUpFail: false,
+    },
   }),
   // mounted: async function (){
   //   // console.log(process.env) # debug
+  //   // this.loggedIn = !!this.$session.get('userToken')
   // },
   methods: {
     goTo: function (id) {
@@ -152,9 +197,34 @@ export default {
     logout: function () {
       this.$session.remove("userToken")
       this.$session.remove("userEmail")
+      // this.loggedIn = false
       this.$router.go()
       // this.$forceUpdate()
     },
+    signUp(userName, userEmail, userPass) {
+      this.loading.userSignUp = true
+      var form = {}
+      form['name'] = userName
+      form['email'] = userEmail
+      form['password'] = userPass
+      axios.post(backend_url+'/auth/signup', qs.stringify(form),
+        {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+      )
+        .then(response => {
+          // console.log(response.data.head) // debug column names
+          // console.log(response.data.results.bindings) // debug results
+          this.alert.userSignUpSuccess = true
+          this.alert.userSignUpFail = false
+        })
+        .catch(alert => {
+          console.log(alert.response.data)
+          this.alert.userSignUpSuccess = false
+          this.alert.userSignUpFail = true
+        })
+        .finally(() => {
+          this.loading.userSignUp = false
+        })
+    }
   }
 }
 </script>
