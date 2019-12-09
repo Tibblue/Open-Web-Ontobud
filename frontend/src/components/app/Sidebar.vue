@@ -57,44 +57,21 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-          <v-menu right offset-x :close-on-content-click="false">
-            <template v-slot:activator="{ on }">
-              <v-list-item link v-on="on">
-                <v-list-item-icon>
-                  <v-icon>fas fa-user-plus</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title class="title">
-                    Sign Up
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </template>
-            <v-card class="pa-3 pt-4">
-              <v-text-field hide-details class="mt-0 mb-4 pt-0"
-                v-model="userName"
-                label="name"
-                required
-              ></v-text-field>
-              <v-text-field hide-details class="mt-0 mb-4 pt-0"
-                v-model="userEmail"
-                label="Email"
-              ></v-text-field>
-              <v-text-field hide-details class="mt-0 mb-4 pt-0"
-                v-model="userPass"
-                label="Password"
-              ></v-text-field>
-              <v-btn :loading="loading.userSignUp" block color="primary" @click="signUp(userName, userEmail, userPass)">
+      <v-menu right offset-x :close-on-content-click="false">
+        <template v-slot:activator="{ on }">
+          <v-list-item link v-on="on">
+            <v-list-item-icon>
+              <v-icon>fas fa-user-plus</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title class="title">
                 Sign Up
-              </v-btn>
-              <v-alert text dismissible type="success" v-model="alert.userSignUpSuccess">
-                Sign Up Successful!!!
-              </v-alert>
-              <v-alert text dismissible type="error" v-model="alert.userSignUpFail">
-                Sign Up Failed...
-              </v-alert>
-            </v-card>
-          </v-menu>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        <signIn/>
+      </v-menu>
     </v-list>
     <v-list nav v-else>
       <v-list-item @click="logout()">
@@ -141,11 +118,15 @@
 </template>
 
 <script>
+import signIn from '@/components/signIn'
 import axios from 'axios'
 const qs = require('querystring')
 const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
+  components: {
+    signIn,
+  },
   data: () => ({
     // loggedIn: false,
     model: 1,
