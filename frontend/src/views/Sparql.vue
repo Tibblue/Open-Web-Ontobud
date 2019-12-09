@@ -2,8 +2,19 @@
   <v-container>
     <v-row>
       <v-col>
-        <savedQueries ref="savedQueriesComp" @runQuery="runQuery"/>
-        <!-- <v-divider></v-divider> -->
+        <v-row dense v-if="!this.$session.get('userToken')">
+          <v-col cols="12" md="12">
+            <v-alert text dismissible type="warning" >
+              Viewing Saved queries requires Account Login
+            </v-alert>
+          </v-col>
+        </v-row>
+        <v-row dense v-else>
+          <v-col cols="12" md="12">
+            <savedQueries ref="savedQueriesComp" @runQuery="runQuery"/>
+          </v-col>
+        </v-row>
+
         <v-row dense>
           <v-col cols="12">
             <v-textarea outlined auto-grow hide-details
@@ -26,11 +37,21 @@
               Run Query
             </v-btn>
           </v-col>
+          <v-col cols="12">
+            <v-alert text dismissible type="error" v-model="alert.queryFail">
+              Run Query Failed ...
+            </v-alert>
+          </v-col>
         </v-row>
-        <v-alert text dismissible type="error" v-model="alert.queryFail">
-          Run Query Failed ...
-        </v-alert>
-        <v-row dense>
+
+        <v-row dense v-if="!this.$session.get('userToken')">
+          <v-col cols="12" md="12">
+            <v-alert text dismissible type="warning" >
+              Saving queries requires Account Login
+            </v-alert>
+          </v-col>
+        </v-row>
+        <v-row dense v-else>
           <v-col cols="3" lg="2">
             <v-checkbox hide-details class="mt-0 pt-2"
               v-model="newSavedQueryGlobal"
@@ -52,11 +73,12 @@
             >
               Save Query
             </v-btn>
+            <v-alert text dismissible type="error" v-model="alert.querySaveFail">
+              Save query Failed ...
+            </v-alert>
           </v-col>
         </v-row>
-        <v-alert text dismissible type="error" v-model="alert.querySaveFail">
-          Save query Failed ...
-        </v-alert>
+
         <v-row dense>
           <v-col cols="6">
             <v-checkbox hide-details class="mt-0 pt-2"

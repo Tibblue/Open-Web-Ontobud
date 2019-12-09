@@ -124,13 +124,14 @@ export default {
     newSavedQueryName: "",
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,
-    savedQueries: [ // temporary visual debug
-      { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 20' },
-      { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?class a ?type. }' },
-      { name: 'Get classes only', query: 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' },
-      { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
-      { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
-    ],
+    savedQueries: [],
+    // savedQueries: [ // temporary visual debug
+    //   { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 20' },
+    //   { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?class a ?type. }' },
+    //   { name: 'Get classes only', query: 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' },
+    //   { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
+    //   { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
+    // ],
     dialogEditQuery: false,
     editing: {
       queryName: "",
@@ -147,8 +148,10 @@ export default {
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    var currentUserEmail = this.$session.get("userEmail") // email from session
-    this.getSavedQueries(currentUserEmail)
+    if(this.$session.get('userToken')){
+      var currentUserEmail = this.$session.get("userEmail") // email from session
+      this.getSavedQueries(currentUserEmail)
+    }
   },
   computed: {
     $repo: {
