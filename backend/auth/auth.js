@@ -28,7 +28,7 @@ var jwt = require("jsonwebtoken")
 var fs = require("fs")
 
 passport.use("jwt", new JWTstrategy({
-  secretOrKey: fs.readFileSync("./auth/public.key", "utf8"),
+  secretOrKey: fs.readFileSync("./auth/rsa.key.pub", "utf8"),
   algorithms: ["RS256"],
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
 }, async (token, done) => {
@@ -52,9 +52,16 @@ const tokenOptions = {
 
 // Generates token with userInfo
 module.exports.genToken = function(userInfo){
-  var privateKey = fs.readFileSync("./auth/private.key", "utf8")
+  var privateKey = fs.readFileSync("./auth/rsa.key", "utf8")
   var token = jwt.sign({user: userInfo}, privateKey, tokenOptions)
   return token
+}
+
+// Reverts token to userInfo
+module.exports.reverseToken = function (userToken) {
+  var publicKey = fs.readFileSync("./auth/rsa.key.pub", "utf8")
+  var legit = jwt.verify(userToken, publicKey, tokenOptions)
+  return legit
 }
 
 
