@@ -55,9 +55,9 @@ export default {
   methods: {
     signUp(userName, userEmail, userPass) {
       if( !this.userName || !this.userEmail || !this.userPass ){
-        this.alert.userSignUpFailMessage = "All fields are required"
         this.alert.userSignUpSuccess = false
         this.alert.userSignUpFail = true
+        this.alert.userSignUpFailMessage = "All fields are required"
       }
       else{
         this.loading.userSignUp = true
@@ -78,6 +78,7 @@ export default {
             console.log(alert.response.data)
             this.alert.userSignUpSuccess = false
             this.alert.userSignUpFail = true
+            this.alert.userSignUpFailMessage = "Sign Up Failed..."
           })
           .finally(() => {
             this.loading.userSignUp = false

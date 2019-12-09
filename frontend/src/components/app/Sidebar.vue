@@ -47,16 +47,21 @@
 
     <!-- <v-list nav v-if="!this.loggedIn"> -->
     <v-list nav v-if="!this.$session.get('userToken')">
-      <v-list-item @click="login()" link to="/auth/login">
-        <v-list-item-icon>
-          <v-icon>fas fa-sign-in-alt</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title class="title">
-            Login
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <v-menu right offset-x :close-on-content-click="false">
+        <template v-slot:activator="{ on }">
+          <v-list-item link v-on="on">
+            <v-list-item-icon>
+              <v-icon>fas fa-sign-in-alt</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title class="title">
+                Login
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        <login/>
+      </v-menu>
       <v-menu right offset-x :close-on-content-click="false">
         <template v-slot:activator="{ on }">
           <v-list-item link v-on="on">
@@ -118,13 +123,15 @@
 </template>
 
 <script>
-import signIn from '@/components/signIn'
+import login from '@/components/login_card'
+import signIn from '@/components/signIn_card'
 import axios from 'axios'
 const qs = require('querystring')
 const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   components: {
+    login,
     signIn,
   },
   data: () => ({
