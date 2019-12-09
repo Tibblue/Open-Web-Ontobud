@@ -14,6 +14,18 @@ router.get('/user/:email', function (req, res) {
     .catch(error => res.status(500).jsonp(error))
 });
 
+router.get('/user/:email/global', function (req, res) {
+  Queries.listByUserEmailGlobal(req.params.email)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error))
+});
+
+router.get('/user/:email/:repo', function (req, res) {
+  Queries.listByUserEmailRepo(req.params.email, req.params.repo)
+    .then(data => res.jsonp(data))
+    .catch(error => res.status(500).jsonp(error))
+});
+
 router.get('/:name', function (req, res) {
   Queries.getQuery(req.params.name)
     .then(data => res.jsonp(data))

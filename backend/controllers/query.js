@@ -25,7 +25,7 @@ Queries.listByUserEmailRepo = (user_email, repoID) => {
           .exec()
 }
 
-// Devolve a lista de queries de um user (global) em JSON
+// Devolve a lista de queries (Globais) de um user em JSON
 Queries.listByUserEmailGlobal = (user_email) => {
   return Query
           .find({'user_email': user_email, 'repoID': {$exists: false}})

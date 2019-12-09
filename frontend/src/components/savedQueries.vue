@@ -86,6 +86,14 @@
                     </template>
                     <span>{{savedQuery.query}}</span>
                   </v-tooltip>
+                  <v-tooltip bottom v-if="savedQuery.global">
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon color="primary" dark v-on="on">
+                        <v-icon>fas fa-globe</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>User global query</span>
+                  </v-tooltip>
                   <div class="flex-grow-1"></div>
                   <v-menu left>
                     <template v-slot:activator="{ on }">
@@ -124,7 +132,8 @@ export default {
     newSavedQueryName: "",
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,
-    savedQueries: [],
+    savedQueriesGlobal: [],
+    savedQueriesRepo: [],
     // savedQueries: [ // temporary visual debug
     //   { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 20' },
     //   { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?class a ?type. }' },
@@ -150,7 +159,9 @@ export default {
     // console.log(process.env) // debug
     if(this.$session.get('userToken')){
       var currentUserEmail = this.$session.get("userEmail") // email from session
-      this.getSavedQueries(currentUserEmail)
+      var currentRepo = this.$repo.id
+      this.getSavedQueriesGlobal(currentUserEmail)
+      this.getSavedQueriesRepo(currentUserEmail,currentRepo)
     }
   },
   computed: {
@@ -158,23 +169,43 @@ export default {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    savedQueries: function() {
+      return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
+    }
   },
   methods: {
-    getSavedQueries(currentUserEmail) {
-      this.savedQueries = [{'name': 'Loading Queries...', 'query': 'Please wait'}]
-      var url = backend_url+'/api/queries/user/'+currentUserEmail
+    getSavedQueriesGlobal(currentUserEmail) {
+      this.savedQueriesGlobal = [{'name': 'Loading Global Queries...', 'query': 'Please wait', 'global': true}]
+      var url = backend_url+'/api/queries/user/'+currentUserEmail+'/global'
       axios.get(url)
         .then(response => {
           // console.log(response.data) // debug
           var savedQueriesArray = []
           var savedQueriesAux = response.data
           savedQueriesAux.forEach(element => {
-            savedQueriesArray.push({'name': element.name, 'query': element.query})
+            savedQueriesArray.push({'name': element.name, 'query': element.query, 'global': true})
           });
-          this.savedQueries = savedQueriesArray
+          this.savedQueriesGlobal = savedQueriesArray
         })
         .catch(alert => {
-          this.savedQueries = [{'name': "Get Classes FAIL!!!", 'query': alert}]
+          this.savedQueriesGlobal = [{'name': "Get Repo Queries FAIL!!!", 'query': alert, 'global': true}]
+        })
+    },
+    getSavedQueriesRepo(currentUserEmail, currentRepo) {
+      this.savedQueriesRepo = [{'name': 'Loading Repo Queries...', 'query': 'Please wait', 'global': false}]
+      var url = backend_url+'/api/queries/user/'+currentUserEmail+'/'+currentRepo
+      axios.get(url)
+        .then(response => {
+          // console.log(response.data) // debug
+          var savedQueriesArray = []
+          var savedQueriesAux = response.data
+          savedQueriesAux.forEach(element => {
+            savedQueriesArray.push({'name': element.name, 'query': element.query, 'global': false})
+          });
+          this.savedQueriesRepo = savedQueriesArray
+        })
+        .catch(alert => {
+          this.savedQueriesRepo = [{'name': "Get Repo Queries FAIL!!!", 'query': alert, 'global': false}]
         })
     },
     runQuery(query) {
@@ -186,7 +217,7 @@ export default {
     },
     savedQueryEditSave(queryName,newQuery) {
       this.loading.queryEditSave = true
-      const user_email = "kiko@kiko" // FIXME: use loged user
+      const user_email = this.$session.get("userEmail")
       const url = backend_url+'/api/queries/'+user_email+'/'+queryName
       const body = {'query': newQuery}
       axios.put(url, body)
@@ -208,7 +239,7 @@ export default {
     },
     deleteSavedQuery(name) {
       this.loading.queryDelete = true
-      const user_email = "kiko@kiko" // FIXME: use loged user
+      const user_email = this.$session.get("userEmail")
       const url = backend_url+'/api/queries/'+user_email+'/'+name
       axios.delete(url)
         .then(response => {
