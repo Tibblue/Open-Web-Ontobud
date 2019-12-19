@@ -264,7 +264,11 @@ export default {
         .then(response => {
           // console.log(response.data) // debug
           // console.log(this.$refs.savedQueriesComp) // debug to check child component variable
-          this.$refs.savedQueriesComp.savedQueries.push({'name': name, 'query': query,})
+          if(global)
+            this.$refs.savedQueriesComp.savedQueriesGlobal.push({'name': name, 'query': query, 'global': true})
+          else
+            this.$refs.savedQueriesComp.savedQueriesRepo.push({'name': name, 'query': query, 'global': false})
+
           this.alert.querySaveFail = false
         })
         .catch(alert => {

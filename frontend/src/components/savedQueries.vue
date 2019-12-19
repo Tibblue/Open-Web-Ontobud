@@ -101,7 +101,7 @@
                         <v-icon>fas fa-trash</v-icon>
                       </v-btn>
                     </template>
-                    <v-btn color="error" @click="deleteSavedQuery(savedQuery.name)">
+                    <v-btn color="error" @click="deleteSavedQuery(savedQuery.name, savedQuery.global)">
                       Confirm
                     </v-btn>
                   </v-menu>
@@ -237,7 +237,7 @@ export default {
           this.alert.queryEditFail = true
         })
     },
-    deleteSavedQuery(name) {
+    deleteSavedQuery(name, global) {
       this.loading.queryDelete = true
       const user_email = this.$session.get("userEmail")
       const url = backend_url+'/api/queries/'+user_email+'/'+name
@@ -245,10 +245,19 @@ export default {
         .then(response => {
           // console.log(response.data) // debug
           for (let index = 0; index < this.savedQueries.length; index++) {
-            if(this.savedQueries[index].name===name){
-              this.savedQueries.splice(index,1)
-              this.loading.queryDelete = false
-              return index
+            if(global){
+              if(this.savedQueriesGlobal[index].name===name){
+                this.savedQueriesGlobal.splice(index,1)
+                this.loading.queryDelete = false
+                return index
+              }
+            }
+            else{
+              if(this.savedQueriesRepo[index].name===name){
+                this.savedQueriesRepo.splice(index,1)
+                this.loading.queryDelete = false
+                return index
+              }
             }
           }
         })
