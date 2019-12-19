@@ -65,3 +65,34 @@ module.exports.reverseToken = function (userToken) {
 }
 
 
+// user permissions verification to access page
+// level var is a list with the type of users that have permissions
+// module.exports.havePermissions = function (level) {
+//   return function (req, res, next) {
+//     var size = level.length
+//     var haveP = false
+//     for (var i = 0; i < size; i++)
+//       if (level[i] == req.session.type) haveP = true
+//     if (haveP) next()
+//     else {
+//       req.flash('error', "Permission Denied!")
+//       res.redirect(req.app.locals.url + "main")
+//     }
+//   }
+// }
+
+// create user admin if not exists
+// module.exports.createAdmin = async function (password) {
+//   var admin = await UserController.findOne("admin@admin")
+//   if (admin == null) {
+//     admin = {
+//       name: "admin",
+//       email: "admin@admin",
+//       password: password,
+//       type: "1",
+//       approved: true,
+//     }
+//     UserController.createUser(admin)
+//       .catch(error => console.log("Admin user not created " + error))
+//   }
+// }

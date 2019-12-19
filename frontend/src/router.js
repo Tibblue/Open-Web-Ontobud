@@ -22,6 +22,13 @@ export default new Router({
       name: 'logout',
       component: () => import('./views/Logout.vue'),
     },
+    // {
+    //   path: '/auth/userSettings',
+    //   name: 'userSettings',
+    //   component: () => import('./views/UserSettings.vue'),
+    // },
+
+
     {
       path: '/',
       name: 'homepage',
