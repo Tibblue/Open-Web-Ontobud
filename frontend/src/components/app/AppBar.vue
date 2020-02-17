@@ -22,7 +22,8 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+// const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
+const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   // props: ['update'],
@@ -54,16 +55,14 @@ export default {
     },
     getRepositories() {
       this.loadingRepos = true
-      axios.get(rdf4j_url+'/rdf4j-server/repositories')
+      axios.get(backend_url+'/api/rdf4j/management/listRepos')
         .then(response => {
-          // console.log(response.data.head) // debug column names
-          // console.log(response.data.results.bindings) // debug results
-          var repoList = response.data.results.bindings
+          // console.log(response.data) // debug
+          var repoList = response.data
           var repoListText = []
           repoList.forEach(elem => {
             repoListText.push(elem.title.value+" ID:"+elem.id.value)
           });
-          // console.log(response.data) // debug
           this.repoList = repoListText
           if(this.$session.has("repoName")){
             this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
@@ -72,8 +71,11 @@ export default {
               name: this.$session.get("repoName"),
             }
           }
-          if(this.selectedRepo==="Loading Repositories"){
+          else{
+          // if(this.selectedRepo==="Loading Repositories"){
             this.selectedRepo = repoListText[0]
+            this.$session.set("repoID",this.getRepoID(repoListText[0]))
+            this.$session.set("repoName",this.getRepoName(repoListText[0]))
             this.$repo = {
               id: this.getRepoID(repoListText[0]),
               name: this.getRepoName(repoListText[0]),
