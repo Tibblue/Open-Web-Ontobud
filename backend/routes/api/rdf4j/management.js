@@ -5,7 +5,8 @@ var qs = require('querystring')
 var router = express.Router();
 
 // Middleware Parsers
-var rawParser = bodyParser.raw({type: '*/*'}) //TODO change limit cap
+var rawTextParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check limit cap
+var rawFileParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check limit cap
 
 // RDF4J endpoint
 var rdf4jServer = 'http://localhost:8080/rdf4j-server/'
@@ -63,7 +64,7 @@ router.delete('/delete/:repo/statements', function (req, res) {
 
 //// Import ////
 // import file (replace)
-router.put('/importFile/:repo', rawParser, function (req, res) {
+router.put('/importFile/:repo', rawFileParser, function (req, res) {
   const repo = req.params.repo
   const contentType = req.headers['content-type'] // keep original content type
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
@@ -75,7 +76,7 @@ router.put('/importFile/:repo', rawParser, function (req, res) {
 });
 
 // import file (add)
-router.post('/importFile/:repo', rawParser, function (req, res) {
+router.post('/importFile/:repo', rawFileParser, function (req, res) {
   const repo = req.params.repo
   const contentType = req.headers['content-type'] // keep original content type
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
@@ -101,7 +102,7 @@ router.post('/importFile/:repo', rawParser, function (req, res) {
 
 
 // import text (replace)
-router.put('/importText/:repo', rawParser, function (req, res) {
+router.put('/importText/:repo', rawTextParser, function (req, res) {
   const repo = req.params.repo
   const contentType = req.headers['content-type'] // keep original content type
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
@@ -113,7 +114,7 @@ router.put('/importText/:repo', rawParser, function (req, res) {
 });
 
 // import text (add)
-router.post('/importText/:repo', rawParser, function (req, res) {
+router.post('/importText/:repo', rawTextParser, function (req, res) {
   const repo = req.params.repo
   const contentType = req.headers['content-type'] // keep original content type
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
