@@ -14,18 +14,35 @@ services:
     restart: on-failure
     ports:
       - "${VUE_APP_RDF4J_PORT}:8080"
+  backend:
+    image: tibblue/tese-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        VUE_APP_RDF4J_PORT: 8080
+        VUE_APP_BACKEND_PORT: 5000
+        VUE_APP_FRONTEND_PORT: 8000
+    environment:
+      VUE_APP_RDF4J_PORT: ${VUE_APP_RDF4J_PORT}
+      VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
+      VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
+    links:
+      - rdf4j
+    ports:
+      - "${VUE_APP_BACKEND_PORT}:5000"
   frontend:
     image: tibblue/tese-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        VUE_APP_RDF4J_PORT: 8080
+        VUE_APP_BACKEND_PORT: 5000
         VUE_APP_FRONTEND_PORT: 8000
     environment:
-      VUE_APP_RDF4J_PORT: ${VUE_APP_RDF4J_PORT}
+      VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
       VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
     links:
-      - rdf4j
+      - backend
     ports:
       - "${VUE_APP_FRONTEND_PORT}:8000"
