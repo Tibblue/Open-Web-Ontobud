@@ -9,8 +9,8 @@ var rawTextParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check li
 var rawFileParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check limit cap
 
 // RDF4J endpoint
-var rdf4jServer = 'http://localhost:8080/rdf4j-server/'
-var rdf4jWorkbench = 'http://localhost:8080/rdf4j-workbench/'
+var rdf4jServer = 'http://localhost:8080/rdf4j-server/' // FIXME usar env port
+var rdf4jWorkbench = 'http://localhost:8080/rdf4j-workbench/' // FIXME usar env port
 
 
 //// List Repos ////
