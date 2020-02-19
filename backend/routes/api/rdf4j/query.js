@@ -2,11 +2,10 @@ var express = require('express');
 var axios = require('axios');
 var qs = require('querystring')
 var router = express.Router();
-var urls = require('../../../urls');
 
 // RDF4J endpoint
-// var rdf4j = urls.rdf4j
-var rdf4j = 'localhost:8080'
+var urls = require('../../../urls');
+var rdf4j = urls.rdf4j
 var rdf4jServer = 'http://'+rdf4j+'/rdf4j-server/'
 
 

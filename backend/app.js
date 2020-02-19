@@ -13,10 +13,11 @@ app.port = 5000
 app.locals.url = "http://"+app.address+":"+app.port+"/"
 
 // URLS para mongo e rdf4j globais (util qd se altera para correr em docker)
-// var urls = require('./urls')
-// urls.rdf4j = (process.argv[2] || 'localhost:8080')
-// urls.mongo = (process.argv[3] || '127.0.0.1:27017')
-var mongo = '127.0.0.1:27017'
+var urls = require('./urls')
+var rdf4j = (process.argv[2] || 'localhost:8080') // FIXME improve?
+var mongo = (process.argv[3] || '127.0.0.1:27017') // FIXME improve?
+urls.rdf4j = rdf4j
+urls.mongo = mongo
 
 
 //// Base de dados

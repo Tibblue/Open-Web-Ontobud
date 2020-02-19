@@ -7,6 +7,7 @@ EXPOSE 5000
 # ARG VUE_APP_RDF4J_PORT=8080
 # ENV change if needed
 # ENV VUE_APP_RDF4J_PORT=$VUE_APP_RDF4J_PORT
+
 # set Vue(Frontend) port, default 8000
 # ARG VUE_APP_VUE_PORT=8000
 # ENV change if needed
@@ -21,4 +22,5 @@ WORKDIR /home/app/backend
 # RUN npm install bcrypt
 RUN npm install
 # RUN npm audit fix
-CMD npm run start
+# CMD npm run start
+CMD npm start rdf4j:8080 mongo:27017
