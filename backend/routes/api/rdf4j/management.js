@@ -3,14 +3,17 @@ var bodyParser = require("body-parser")
 var axios = require('axios');
 var qs = require('querystring')
 var router = express.Router();
+var urls = require('../../../urls');
 
 // Middleware Parsers
 var rawTextParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check limit cap
 var rawFileParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check limit cap
 
 // RDF4J endpoint
-var rdf4jServer = 'http://localhost:8080/rdf4j-server/' // FIXME usar env port
-var rdf4jWorkbench = 'http://localhost:8080/rdf4j-workbench/' // FIXME usar env port
+// var rdf4j = urls.rdf4j
+var rdf4j = 'localhost:8080'
+var rdf4jServer = 'http://'+rdf4j+'/rdf4j-server/'
+var rdf4jWorkbench = 'http://'+rdf4j+'/rdf4j-workbench/'
 
 
 //// List Repos ////

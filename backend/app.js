@@ -12,9 +12,16 @@ app.address = 'localhost'
 app.port = 5000
 app.locals.url = "http://"+app.address+":"+app.port+"/"
 
+// URLS para mongo e rdf4j globais (util qd se altera para correr em docker)
+// var urls = require('./urls')
+// urls.rdf4j = (process.argv[2] || 'localhost:8080')
+// urls.mongo = (process.argv[3] || '127.0.0.1:27017')
+var mongo = '127.0.0.1:27017'
+
+
 //// Base de dados
 // const dbOnline = 'mongodb+srv://Kiko:Kiko@pri-1819-kiko-rsuyj.mongodb.net/test?retryWrites=true'
-const dbLocal = 'mongodb://127.0.0.1:27017/rdf4jFrontend'
+const dbLocal = 'mongodb://'+mongo+'/rdf4jFrontend'
 var mongoose = require('mongoose')
 mongoose.set('useCreateIndex', true)
 mongoose.connect(dbLocal, {useNewUrlParser: true, useUnifiedTopology: true})

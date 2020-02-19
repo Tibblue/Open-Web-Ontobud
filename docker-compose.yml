@@ -29,6 +29,7 @@ services:
       VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
     links:
       - rdf4j
+    restart: on-failure
     ports:
       - "${VUE_APP_BACKEND_PORT}:5000"
   frontend:
@@ -44,5 +45,6 @@ services:
       VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
     links:
       - backend
+    restart: on-failure
     ports:
       - "${VUE_APP_FRONTEND_PORT}:8000"
