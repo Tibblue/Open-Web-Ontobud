@@ -1,5 +1,11 @@
 version: '3'
 services:
+  mongo:
+    image: mongo
+    volumes:
+      - db-data:/mnt/c/Users/KIKO/Desktop/GIT/TESE/mongo/mongoData
+    ports:
+      - "27017:27017"
   rdf4j:
     image: tibblue/tese-rdf4j:latest
     build:
@@ -28,6 +34,7 @@ services:
       VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
       VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
     links:
+      - mongo
       - rdf4j
     restart: on-failure
     ports:
@@ -48,3 +55,5 @@ services:
     restart: on-failure
     ports:
       - "${VUE_APP_FRONTEND_PORT}:8000"
+volumes:
+  db-data:
