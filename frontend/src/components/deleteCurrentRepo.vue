@@ -51,7 +51,7 @@
 
 <script>
 import axios from 'axios'
-const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
+const backend_url = "http://"+process.env.VUE_APP_URL+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -73,6 +73,8 @@ export default {
         .then(response => {
           this.alert.deleteSuccess = true
           this.alert.deleteFail = false
+          this.$session.remove("repoID")
+          this.$session.remove("repoName")
         })
         .catch(alert => {
           this.alert.deleteFail = true

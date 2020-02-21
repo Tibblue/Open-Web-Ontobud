@@ -127,7 +127,7 @@ import login from '@/components/login_card'
 import signIn from '@/components/signIn_card'
 import axios from 'axios'
 const qs = require('querystring')
-const backend_url = "http://localhost:"+process.env.VUE_APP_BACKEND_PORT
+const backend_url = "http://"+process.env.VUE_APP_URL+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   components: {

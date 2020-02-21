@@ -5,40 +5,39 @@ services:
     volumes:
       - mongoData:/data/db
     environment:
-      VUE_APP_MONGO_PORT: ${VUE_APP_MONGO_PORT}
+      MONGO_PORT: ${MONGO_PORT}
     ports:
-      - "${VUE_APP_MONGO_PORT}:27017"
+      - "${MONGO_PORT}:27017"
     restart: on-failure
   rdf4j:
     image: tibblue/tese-rdf4j:latest
     environment:
       RDF4J_DATA: ${RDF4J_DATA}
-      VUE_APP_RDF4J_PORT: ${VUE_APP_RDF4J_PORT}
+      RDF4J_PORT: ${RDF4J_PORT}
     ports:
-      - "${VUE_APP_RDF4J_PORT}:8080"
+      - "${RDF4J_PORT}:8080"
     restart: on-failure
   backend:
     image: tibblue/tese-backend:latest
     environment:
-      VUE_APP_RDF4J_PORT: ${VUE_APP_RDF4J_PORT}
-      VUE_APP_MONGO_PORT: ${VUE_APP_MONGO_PORT}
+      RDF4J_PORT: ${RDF4J_PORT}
+      MONGO_PORT: ${MONGO_PORT}
       VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
-      VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
     links:
       - mongo
       - rdf4j
     ports:
       - "${VUE_APP_BACKEND_PORT}:5000"
     restart: on-failure
-  frontend:
-    image: tibblue/tese-frontend:latest
-    environment:
-      VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
-      VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
-    links:
-      - backend
-    ports:
-      - "${VUE_APP_FRONTEND_PORT}:8000"
-    restart: on-failure
+  # frontend:
+  #   image: tibblue/tese-frontend:latest
+  #   environment:
+  #     VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
+  #     VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
+  #   links:
+  #     - backend
+  #   ports:
+  #     - "${VUE_APP_FRONTEND_PORT}:8000"
+  #   restart: on-failure
 volumes:
   mongoData:
