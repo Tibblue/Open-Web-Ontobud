@@ -22,22 +22,23 @@ services:
     environment:
       RDF4J_PORT: ${RDF4J_PORT}
       MONGO_PORT: ${MONGO_PORT}
-      NODE_PORT: ${NODE_PORT}
+      VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
     links:
       - mongo
       - rdf4j
     ports:
-      - "${NODE_PORT}:5000"
+      - "${VUE_APP_BACKEND_PORT}:5000"
     restart: on-failure
   frontend:
     image: tibblue/tese-frontend:latest
     environment:
-      NODE_PORT: ${NODE_PORT}
-      VUE_PORT: ${VUE_PORT}
+      VUE_APP_BACKEND_HOST: ${VUE_APP_BACKEND_HOST}
+      VUE_APP_BACKEND_PORT: ${VUE_APP_BACKEND_PORT}
+      VUE_APP_FRONTEND_PORT: ${VUE_APP_FRONTEND_PORT}
     links:
       - backend
     ports:
-      - "${VUE_PORT}:8000"
+      - "${VUE_APP_FRONTEND_PORT}:8000"
     restart: on-failure
 volumes:
   mongoData:

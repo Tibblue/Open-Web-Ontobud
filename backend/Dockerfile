@@ -3,17 +3,15 @@ FROM node:10.15.3
 # default port is 5000, change as needed
 EXPOSE 5000
 
-# set RDF4J port, default 8080
-# ARG VUE_APP_RDF4J_PORT=8080
-# ENV change if needed
-# ENV VUE_APP_RDF4J_PORT=$VUE_APP_RDF4J_PORT
-
-# set Vue(Frontend) port, default 8000
-# ARG VUE_APP_VUE_PORT=8000
-# ENV change if needed
-# ENV VUE_APP_VUE_PORT=$VUE_APP_VUE_PORT
-
-# ENV MONGO_HOST "host.docker.internal"
+# set Node(Backend) port, default 8001
+# ARG VUE_APP_BACKEND_PORT=8001
+# ENV VUE_APP_BACKEND_PORT=$VUE_APP_BACKEND_PORT
+# set RDF4J port, default 8002
+# ARG RDF4J_PORT=8002
+# ENV RDF4J_PORT=$RDF4J_PORT
+# set MONGO port, default 8003
+# ARG MONGO_PORT=8003
+# ENV MONGO_PORT=$MONGO_PORT
 
 COPY . /home/app/backend
 

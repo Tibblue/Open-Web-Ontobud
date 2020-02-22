@@ -23,7 +23,7 @@
 import Vuex from 'vuex'
 import axios from 'axios'
 // const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
-const backend_url = "http://"+process.env.VUE_APP_URL+":"+process.env.VUE_APP_BACKEND_PORT
+const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   // props: ['update'],
