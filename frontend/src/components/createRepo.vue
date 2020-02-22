@@ -123,6 +123,7 @@ export default {
         })
         .finally(() => {
           this.loading.createRepo = false
+          // this.$router.go()
         })
     },
   },
