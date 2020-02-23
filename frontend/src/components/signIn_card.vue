@@ -15,6 +15,9 @@
     <v-text-field hide-details class="mt-0 mb-4 pt-0"
       v-model="userPass"
       label="Password"
+      :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+      :type="showPass ? 'text' : 'password'"
+      @click:append="showPass = !showPass"
       required
       filled
     ></v-text-field>
@@ -40,6 +43,7 @@ export default {
     userName: "",
     userEmail: "",
     userPass: "",
+    showPass: false,
     loading: {
       userSignUp: false,
     },
