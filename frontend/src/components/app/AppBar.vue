@@ -51,7 +51,7 @@ export default {
       this.$session.set("repoID",id)
       this.$session.set("repoName",name)
       // this.$emit('repoChanged',name) # NOTE: isto funcionou
-      // location.reload()
+      this.$router.go(0)
     },
     getRepositories() {
       this.loadingRepos = true

@@ -49,8 +49,8 @@ Queries.getQuery = (name) => {
 
 
 // Cria um query
-Queries.createQuery = (repo) => {
-  return Query.create(repo)
+Queries.createQuery = (query) => {
+  return Query.create(query)
 }
 
 // Alterar query de um user

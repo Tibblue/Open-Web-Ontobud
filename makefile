@@ -15,16 +15,15 @@ upload:
 # 	docker tag tibblue/tese-frontend:latest tibblue/tese-frontend:v0.2
 
 runCompose:
-	docker-compose --project-directory ./frontend up
+	docker-compose up
 
-debugRunMongo: #just a note
-	docker run -it --rm --name mongo -p 27017:27017 --mount type=bind,source="C:\Users\KIKO\Desktop\GIT\TESE\mongo\mongoData",target=/data/db mongo:latest
-debugRunRDF: #just a note
+debugRunMongo:
+	docker run -it --rm --name mongo -p 27017:27017 mongo:latest
+debugRunRDF:
 	docker run -it --rm --name rdf4j -p 8080:8080 tibblue/tese-rdf4j:latest
-
-debugRunBackend: #just a note
+debugRunBackend:
 	docker run -it --rm --name backend -p 5000:5000 tibblue/tese-backend:latest
 	# docker run -it --rm --name backend -e VUE_APP_RDF4J_PORT=8080 -p 5000:5000 tibblue/tese-backend:latest
-debugRunFrontend: #just a note
+debugRunFrontend:
 	docker run -it --rm --name frontend -p 8000:8000 tibblue/tese-frontend:latest
 	# docker run -it --rm --name frontend -e VUE_APP_RDF4J_PORT=8080 -p 8000:8000 tibblue/tese-frontend:latest

@@ -3,14 +3,13 @@
     <v-btn color="info" @click="snackbarDEBUG=true">
       Confirm current repo (DEBUG)
     </v-btn>
-    <v-btn color="warning" @click="$session.clear()">
-      Clear $session (DEBUG)
-    </v-btn>
     <v-snackbar top v-model="snackbarDEBUG">
       {{ this.$session.get("repoName") }} - {{ this.$session.get("repoID") }}
-      <!-- {{this.$route.query.repoID}} - {{this.$route.query.repoID}} -->
       <v-btn @click="snackbarDEBUG=false">Close</v-btn>
     </v-snackbar>
+    <!-- <v-btn color="warning" @click="$session.clear()">
+      Clear $session (DEBUG)
+    </v-btn> -->
     <br/>
     <span>{{this.$store.state.$repo}}</span>
     <br/>
