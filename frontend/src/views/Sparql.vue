@@ -242,6 +242,7 @@ export default {
             }
             this.table.items.push(elemAux)
           });
+          this.alert.queryFail = false
         })
         .catch(alert => {
           this.alert.queryFail = true
@@ -274,6 +275,7 @@ export default {
         .catch(alert => {
           this.alert.querySaveFail = true
           // FIXME: detetar qd falha pk ja existe
+          // FIXME: devolver mais feedback de erro
         })
         .finally(() => {
           this.loading.saveQuery = false

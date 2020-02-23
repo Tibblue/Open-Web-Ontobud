@@ -100,6 +100,7 @@ export default {
                 this.alert.createRepoAlreadyExists = false
                 this.alert.createRepoFail = false
                 // this.$emit('updateRepos',repoID) // NOTE: isto funcionou
+                this.$router.go(0) // FIXME: reload enquanto nao atualizo só a repoList
               })
               .catch(alert => {
                 this.alert.createRepoSuccess = false

@@ -47,6 +47,12 @@ export default {
         .then(response => {
           this.alert.deleteRepoSuccess = true
           this.alert.deleteRepoFail = false
+          // this.$emit('updateRepos',repoID) // NOTE: isto funcionou
+          if(repoID===this.$session.get("repoID")){
+            this.$session.remove("repoID")
+            this.$session.remove("repoName")
+          }
+          this.$router.go(0) // FIXME: reload enquanto nao atualizo só a repoList
         })
         .catch(alert => {
           this.alert.deleteRepoSuccess = false

@@ -75,6 +75,7 @@ export default {
           this.alert.deleteFail = false
           this.$session.remove("repoID")
           this.$session.remove("repoName")
+          this.$router.go(0)
         })
         .catch(alert => {
           this.alert.deleteFail = true
