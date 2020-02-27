@@ -63,8 +63,8 @@ export default {
           repoList.forEach(elem => {
             repoListText.push(elem.title.value+" ID:"+elem.id.value)
           });
-          this.repoList = repoListText
-          if(this.$session.has("repoName")){
+          this.repoList = repoListText.sort()
+          if(this.$session.has("repoName")){ // NOTE: possible bug source?
             this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
             this.$repo = {
               id: this.$session.get("repoID"),
