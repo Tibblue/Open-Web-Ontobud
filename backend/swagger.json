@@ -1,0 +1,250 @@
+{
+  "swagger": "2.0",
+  "host": "localhost:8000",
+  "basePath": "/api",
+  "info": {
+    "version": "1.0.0",
+    "title": "OntoWorks Application API",
+    "description": "OntoWorks Backend Application API documentation",
+    "contact": {
+      "name": "Francisco Oliveira",
+      "email": "a78416@alunos.uminho.pt"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json",
+    "application/x-www-form-urlencoded"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Requests related to User Authentication"
+    },
+    {
+      "name": "RDF4J",
+      "description": "Requests related to RDF4J Server"
+    },
+    {
+      "name": "Mongo",
+      "description": "Requests related to MongoDB"
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Create new user account",
+        "description": "Create new user account.",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "User account name"
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "required": true,
+            "description": "User account email"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true,
+            "description": "User account password"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created, and returns JSON user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "500": {
+            "description": "Creation failed. Likely duplicate key (already used email)"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login with user account",
+        "description": "Login with user account. Grants access to additional features.",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "required": true,
+            "description": "User account email"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true,
+            "description": "User account password"
+          }
+        ],
+        "produces": [
+          "application/jwt"
+        ],
+        "responses": {
+          "200": {
+            "description": "JWT access token. Will be required in some requests for Authorization."
+          },
+          "404": {
+            "description": "Login failed. Likely wrong email ou password"
+          }
+        }
+      }
+    },
+    "/auth/delete/{email}": {
+      "delete": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Delete user account by email",
+        "description": "Delete user account with the specified email.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "type": "string",
+            "required": true,
+            "description": "Account email"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    },
+    "/rdf4j": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Login with user account",
+        "description": "Login with user account. Grants access to additional features.",
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    },
+    "/mongo": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Login with user account",
+        "description": "Login with user account. Grants access to additional features.",
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "name",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "TestUser"
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "test@email"
+        },
+        "password": {
+          "type": "string",
+          "example": "testpass"
+        }
+      }
+    },
+    "Repository": {
+      "required": [
+        "id",
+        "name",
+        "owner_email"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner_email": {
+          "type": "string"
+        }
+      }
+    },
+    "SavedQuery": {
+      "required": [
+        "user_email",
+        "name",
+        "query"
+      ],
+      "properties": {
+        "user_email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "query": {
+          "type": "string"
+        },
+        "repoID": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

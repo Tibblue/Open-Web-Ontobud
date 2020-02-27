@@ -4,8 +4,12 @@ var bodyParser = require("body-parser")
 var path = require('path');
 var logger = require('morgan');
 
-
 var app = express();
+
+// Swagger UI
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Variaveis
 app.address = 'localhost'
@@ -69,8 +73,6 @@ app.use('/api/rdf4j/repository', require('./routes/api/rdf4j/repository'));
 app.use('/api/rdf4j/query', require('./routes/api/rdf4j/query'));
 // Auth
 app.use('/auth', require('./routes/auth'));
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
