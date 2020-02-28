@@ -45,7 +45,6 @@
     <v-divider></v-divider>
 
 
-    <!-- <v-list nav v-if="!this.loggedIn"> -->
     <v-list nav v-if="!this.$session.get('userToken')">
       <v-menu right offset-x :close-on-content-click="false">
         <template v-slot:activator="{ on }">
@@ -182,39 +181,12 @@ export default {
     swapDarkMode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     },
-    login: function () {
-      // TODO
-    },
     logout: function () {
       this.$session.remove("userToken")
       this.$session.remove("userEmail")
       // this.loggedIn = false
       this.$router.go()
       // this.$forceUpdate()
-    },
-    signUp(userName, userEmail, userPass) {
-      this.loading.userSignUp = true
-      var form = {}
-      form['name'] = userName
-      form['email'] = userEmail
-      form['password'] = userPass
-      axios.post(backend_url+'/api/auth/signup', qs.stringify(form),
-        {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
-      )
-        .then(response => {
-          // console.log(response.data.head) // debug column names
-          // console.log(response.data.results.bindings) // debug results
-          this.alert.userSignUpSuccess = true
-          this.alert.userSignUpFail = false
-        })
-        .catch(alert => {
-          console.log(alert.response.data)
-          this.alert.userSignUpSuccess = false
-          this.alert.userSignUpFail = true
-        })
-        .finally(() => {
-          this.loading.userSignUp = false
-        })
     }
   }
 }
