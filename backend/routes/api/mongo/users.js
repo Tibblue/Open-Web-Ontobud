@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Users = require("../../../controllers/user")
-var bcrypt = require("bcrypt")
-const saltRounds = 10
 
 router.get('/', function (req, res) {
   Users.list()

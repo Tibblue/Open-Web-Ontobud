@@ -61,7 +61,7 @@ export default {
         var form = {}
         form['email'] = userEmail
         form['password'] = userPass
-        axios.post(backend_url+'/auth/login', qs.stringify(form),
+        axios.post(backend_url+'/api/auth/login', qs.stringify(form),
           {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
         )
           .then(response => {

@@ -51,11 +51,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 
 
-// Headers alterados para permitir PUTs e DELETEs sem problemas
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, PATCH,OPTIONS');
   res.header('Access-Control-Allow-Credentials', true)
   next();
 });
@@ -72,7 +71,7 @@ app.use('/api/rdf4j/management', require('./routes/api/rdf4j/management'));
 app.use('/api/rdf4j/repository', require('./routes/api/rdf4j/repository'));
 app.use('/api/rdf4j/query', require('./routes/api/rdf4j/query'));
 // Auth
-app.use('/auth', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

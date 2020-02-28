@@ -69,7 +69,7 @@ export default {
         form['name'] = userName
         form['email'] = userEmail
         form['password'] = userPass
-        axios.post(backend_url+'/auth/signup', qs.stringify(form),
+        axios.post(backend_url+'/api/auth/signup', qs.stringify(form),
           {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
         )
           .then(response => {
