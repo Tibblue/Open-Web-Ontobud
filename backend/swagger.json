@@ -1,7 +1,5 @@
 {
-  "swagger": "2.0",
-  "host": "localhost:8000",
-  "basePath": "/api",
+  "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
     "title": "OntoWorks Application API",
@@ -15,19 +13,16 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "schemes": [
-    "http"
-  ],
-  "consumes": [
-    "application/json",
-    "application/x-www-form-urlencoded"
-  ],
-  "produces": [
-    "application/json",
-    "application/xml"
-  ],
-  "tags": [
+  "servers": [{
+      "url": "http://epl.di.uminho.pt:8001/api",
+      "description": "Main server"
+    },
     {
+      "url": "http://localhost:5000/api",
+      "description": "Testing server"
+    }
+  ],
+  "tags": [{
       "name": "Auth",
       "description": "Requests related to User Authentication"
     },
@@ -48,40 +43,42 @@
         ],
         "summary": "Create new user account",
         "description": "Create new user account.",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "parameters": [
-          {
-            "in": "formData",
-            "name": "name",
-            "type": "string",
-            "required": true,
-            "description": "User account name"
-          },
-          {
-            "in": "formData",
-            "name": "email",
-            "type": "string",
-            "required": true,
-            "description": "User account email"
-          },
-          {
-            "in": "formData",
-            "name": "password",
-            "type": "string",
-            "required": true,
-            "description": "User account password"
+        "requestBody": {
+          "description": "User account details.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ]
+              }
+            }
           }
-        ],
-        "produces": [
-          "application/json"
-        ],
+        },
         "responses": {
           "200": {
             "description": "New user is created, and returns JSON user object",
-            "schema": {
-              "$ref": "#/definitions/User"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
             }
           },
           "500": {
@@ -96,32 +93,33 @@
           "Auth"
         ],
         "summary": "Login with user account",
-        "description": "Login with user account. Grants access to additional features.",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "parameters": [
-          {
-            "in": "formData",
-            "name": "email",
-            "type": "string",
-            "required": true,
-            "description": "User account email"
-          },
-          {
-            "in": "formData",
-            "name": "password",
-            "type": "string",
-            "required": true,
-            "description": "User account password"
+        "description": "Login with user account. \nReturns JWT token to be used as authorization for some requests and User name and email.\n",
+        "requestBody": {
+          "description": "Login credentials.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
           }
-        ],
-        "produces": [
-          "application/jwt"
-        ],
+        },
         "responses": {
           "200": {
-            "description": "JWT access token. Will be required in some requests for Authorization."
+            "description": "JWT access token and User info. JWT will be required in some requests for Authorization."
           },
           "404": {
             "description": "Login failed. Likely wrong email ou password"
@@ -135,19 +133,40 @@
           "Auth"
         ],
         "summary": "Delete user account by email",
-        "description": "Delete user account with the specified email.",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "email",
-            "type": "string",
-            "required": true,
-            "description": "Account email"
+        "description": "Delete user account with the specified email.\nOnly the user himself or a admin can delete a account.\n",
+        "security": [{
+          "bearerAuth": []
+        }],
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email to delete",
+          "schema": {
+            "type": "string"
           }
+        }],
+        "responses": {
+          "200": {
+            "description": "Account deleted"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/user": {
+      "get": {
+        "tags": [
+          "Auth"
         ],
+        "security": [{
+          "bearerAuth": []
+        }],
         "responses": {
           "default": {
-            "description": "TODO"
+            "description": "Debug"
           }
         }
       }
@@ -157,8 +176,8 @@
         "tags": [
           "RDF4J"
         ],
-        "summary": "Login with user account",
-        "description": "Login with user account. Grants access to additional features.",
+        "summary": "TODO",
+        "description": "TODO",
         "responses": {
           "default": {
             "description": "TODO"
@@ -171,8 +190,105 @@
         "tags": [
           "Mongo"
         ],
-        "summary": "Login with user account",
-        "description": "Login with user account. Grants access to additional features.",
+        "deprecated": true,
+        "summary": "TODO",
+        "description": "TODO",
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Users list",
+        "description": "Returns a JSON list with all the users.",
+        "responses": {
+          "200": {
+            "description": "Operation successful"
+          },
+          "default": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "TODO",
+        "description": "TODO",
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    },
+    "/users/{email}": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "TODO",
+        "description": "TODO",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "TODO",
+        "description": "TODO",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    },
+    "/users/{email}/password": {
+      "put": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "TODO",
+        "description": "TODO",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email",
+          "schema": {
+            "type": "string"
+          }
+        }],
         "responses": {
           "default": {
             "description": "TODO"
@@ -181,68 +297,77 @@
       }
     }
   },
-  "definitions": {
-    "User": {
-      "required": [
-        "name",
-        "email",
-        "password"
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "TestUser"
-        },
-        "email": {
-          "type": "string",
-          "uniqueItems": true,
-          "example": "test@email"
-        },
-        "password": {
-          "type": "string",
-          "example": "testpass"
-        }
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     },
-    "Repository": {
-      "required": [
-        "id",
-        "name",
-        "owner_email"
-      ],
-      "properties": {
-        "id": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "name": {
-          "type": "string"
-        },
-        "owner_email": {
-          "type": "string"
+    "schemas": {
+      "User": {
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "test"
+          },
+          "email": {
+            "type": "string",
+            "uniqueItems": true,
+            "example": "test@email"
+          },
+          "password": {
+            "type": "string",
+            "example": "test"
+          }
         }
-      }
-    },
-    "SavedQuery": {
-      "required": [
-        "user_email",
-        "name",
-        "query"
-      ],
-      "properties": {
-        "user_email": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "name": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "query": {
-          "type": "string"
-        },
-        "repoID": {
-          "type": "string"
+      },
+      "Repository": {
+        "required": [
+          "id",
+          "name",
+          "owner_email"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "owner_email": {
+            "type": "string"
+          }
+        }
+      },
+      "SavedQuery": {
+        "required": [
+          "user_email",
+          "name",
+          "query"
+        ],
+        "properties": {
+          "user_email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "query": {
+            "type": "string"
+          },
+          "repoID": {
+            "type": "string"
+          }
         }
       }
     }

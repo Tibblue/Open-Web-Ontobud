@@ -11,10 +11,212 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://epl.di.uminho.pt:5000/api
+  - url: http://epl.di.uminho.pt:8001/api
     description: Main server
   - url: http://localhost:5000/api
     description: Testing server
+
+tags:
+- name: Auth
+  description: Requests related to User Authentication
+- name: RDF4J
+  description: Requests related to RDF4J Server
+- name: Mongo
+  description: Requests related to MongoDB
+paths:
+  "/auth/signup":
+    post:
+      tags:
+      - Auth
+      summary: Create new user account
+      description: Create new user account.
+      requestBody:
+        description: User account details.
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - password
+      responses:
+        '200':
+          description: New user is created, and returns JSON user object
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/User"
+        '500':
+          description: Creation failed. Likely duplicate key (already used email)
+  "/auth/login":
+    post:
+      tags:
+      - Auth
+      summary: Login with user account
+      description: |
+        Login with user account.
+        Returns JWT token to be used as authorization for some requests and User name and email.
+      requestBody:
+        description: Login credentials.
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+              # example:
+              #   email: "kiko"
+              #   password: "kiko"
+      responses:
+        '200':
+          description: JWT access token and User info. JWT will be required in some requests for Authorization.
+        '404':
+          description: Login failed. Likely wrong email ou password
+  "/auth/delete/{email}":
+    delete:
+      tags:
+      - Auth
+      summary: Delete user account by email
+      description: |
+        Delete user account with the specified email.
+        Only the user himself or a admin can delete a account.
+      security:
+        - bearerAuth: []
+      parameters:
+      - in: path
+        required: true
+        name: email
+        description: Account email to delete
+        schema:
+          type: string
+        # allowReserved: true
+      responses:
+        '200':
+          description: Account deleted
+        '401':
+          description: Unauthorized
+        # default:
+        #   description: Email doesn't exist
+  "/auth/user":
+    get:
+      tags:
+      - Auth
+      # deprecated: true
+      security:
+        - bearerAuth: []
+      responses:
+        default:
+          description: Debug
+
+  # RDF4J SECTION
+  "/rdf4j":
+    get:
+      tags:
+      - RDF4J
+      summary: TODO
+      description: TODO
+      responses:
+        default:
+          description: TODO
+
+  # MONGO SECTION
+  "/mongo":
+    get:
+      tags:
+      - Mongo
+      deprecated: true
+      summary: TODO
+      description: TODO
+      responses:
+        default:
+          description: TODO
+  "/users":
+    get:
+      tags:
+      - Mongo
+      summary: Users list
+      description: Returns a JSON list with all the users.
+      responses:
+        '200':
+          description: Operation successful
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+    post:
+      tags:
+      - Mongo
+      summary: TODO
+      description: TODO
+      responses:
+        default:
+          description: TODO
+  "/users/{email}":
+    get:
+      tags:
+      - Mongo
+      summary: TODO
+      description: TODO
+      parameters:
+      - in: path
+        required: true
+        name: email
+        description: Account email
+        schema:
+          type: string
+      responses:
+        default:
+          description: TODO
+    delete:
+      tags:
+      - Mongo
+      summary: TODO
+      description: TODO
+      parameters:
+      - in: path
+        required: true
+        name: email
+        description: Account email
+        schema:
+          type: string
+      responses:
+        default:
+          description: TODO
+  "/users/{email}/password":
+    put:
+      tags:
+      - Mongo
+      summary: TODO
+      description: TODO
+      parameters:
+      - in: path
+        required: true
+        name: email
+        description: Account email
+        schema:
+          type: string
+      responses:
+        default:
+          description: TODO
+
 
 components:
   securitySchemes:
@@ -31,14 +233,14 @@ components:
       properties:
         name:
           type: string
-          example: "TestUser"
+          example: "test"
         email:
           type: string
           uniqueItems: true
           example: "test@email"
         password:
           type: string
-          example: "testpass"
+          example: "test"
     Repository:
       required:
       - id
@@ -68,119 +270,3 @@ components:
           type: string
         repoID:
           type: string
-
-
-tags:
-- name: Auth
-  description: Requests related to User Authentication
-- name: RDF4J
-  description: Requests related to RDF4J Server
-- name: Mongo
-  description: Requests related to MongoDB
-paths:
-  "/auth/signup":
-    post:
-      tags:
-      - Auth
-      summary: Create new user account
-      description: Create new user account.
-      requestBody:
-        description: User account details.
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '200':
-          description: New user is created, and returns JSON user object
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/User"
-        '500':
-          description: Creation failed. Likely duplicate key (already used email)
-  "/auth/login":
-    post:
-      tags:
-      - Auth
-      summary: Login with user account
-      description: Login with user account. Grants access to additional features.
-      requestBody:
-        description: Login credentials.
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-              required:
-                - email
-                - password
-              # example:
-              #   email: "kiko"
-              #   password: "kiko"
-      responses:
-        '200':
-          description: JWT access token. Will be required in some requests for Authorization.
-        '404':
-          description: Login failed. Likely wrong email ou password
-  "/auth/delete/{email}":
-    delete:
-      tags:
-      - Auth
-      summary: Delete user account by email
-      description: |
-        Delete user account with the specified email.
-        Only the user himself or a admin can delete a account.
-      security:
-        - bearerAuth: []
-      parameters:
-      - in: path
-        required: true
-        name: email
-        description: Account email to delete
-        schema:
-          type: string
-        # allowReserved: true
-      responses:
-        default:
-          description: TODO
-        '200':
-          description: Account deleted
-        '401':
-          description: Unauthorized
-  "/auth/user":
-    get:
-      tags:
-      - Auth
-      deprecated: true
-      security:
-        - bearerAuth: []
-      responses:
-        default:
-          description: Debug
-
-
-  "/rdf4j":
-    get:
-      tags:
-      - RDF4J
-      summary: Login with user account
-      description: Login with user account. Grants access to additional features.
-      responses:
-        default:
-          description: TODO
-  "/mongo":
-    get:
-      tags:
-      - Mongo
-      summary: Login with user account
-      description: Login with user account. Grants access to additional features.
-      responses:
-        default:
-          description: TODO
