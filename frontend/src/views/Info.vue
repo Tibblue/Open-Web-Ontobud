@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <alerts/>
     <v-card flat color="transparent" class="ma-3">
       <v-container fluid class="pa-0">
         <v-row>
@@ -82,11 +83,15 @@
 </template>
 
 <script>
+import alerts from '@/components/alerts'
 import axios from 'axios'
 const qs = require('querystring')
 const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
+  components: {
+    alerts,
+  },
   data: () => ({
     currentRepoID: "",
     explicitStatementsNumber: "Loading info...",

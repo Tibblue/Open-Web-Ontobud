@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <alerts/>
     <v-row>
       <v-col>
         <v-row dense v-if="!this.$session.get('userToken')">
@@ -123,6 +124,7 @@
 </template>
 
 <script>
+import alerts from '@/components/alerts'
 import savedQueries from '@/components/savedQueries'
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -131,6 +133,7 @@ const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.V
 
 export default {
   components: {
+    alerts,
     savedQueries,
   },
   data: () => ({

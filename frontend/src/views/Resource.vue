@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <alerts/>
     <v-row>
       <v-col cols="12" lg="9">
         <h2>Resource: {{this.$route.query.uri.split('#')[1]}}</h2>
@@ -140,12 +141,16 @@
 </template>
 
 <script>
+import alerts from '@/components/alerts'
 import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
 const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
+  components: {
+    alerts,
+  },
   data: () => ({
     inferON: true,
     table: {

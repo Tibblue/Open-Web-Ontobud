@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <alerts/>
     <v-row>
       <!-- <span>algo tipo a lista de saved queries</span> -->
       <v-col cols="12">
@@ -18,11 +19,13 @@
 </template>
 
 <script>
+import alerts from '@/components/alerts'
 import createRepo from '@/components/createRepo'
 import deleteRepo from '@/components/deleteRepo'
 
 export default {
   components: {
+    alerts,
     createRepo,
     deleteRepo,
   },

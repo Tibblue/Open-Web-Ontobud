@@ -70,6 +70,7 @@ export default {
             var token = response.data
             this.$session.set("userToken", token)
             this.$session.set("userEmail", userEmail)
+            this.$session.flash.set("login", {msg: "Login Success!!!", color: "success"})
 
             this.alert.loginSuccess = true
             this.alert.loginFail = false

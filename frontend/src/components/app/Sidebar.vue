@@ -184,6 +184,7 @@ export default {
     logout: function () {
       this.$session.remove("userToken")
       this.$session.remove("userEmail")
+      this.$session.flash.set("login", {msg: "Logout Success!!!", color: "warning"})
       // this.loggedIn = false
       this.$router.go()
       // this.$forceUpdate()

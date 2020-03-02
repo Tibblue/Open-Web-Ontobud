@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <alerts/>
     <v-row>
       <v-col cols="12" lg="6">
         <importRepo/>
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import alerts from '@/components/alerts'
 import importRepo from '@/components/importRepo'
 import exportRepo from '@/components/exportRepo'
 import clearRepoStatements from '@/components/clearRepoStatements'
@@ -24,6 +26,7 @@ import deleteCurrentRepo from '@/components/deleteCurrentRepo'
 
 export default {
   components: {
+    alerts,
     importRepo,
     exportRepo,
     clearRepoStatements,

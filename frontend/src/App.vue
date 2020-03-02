@@ -25,9 +25,9 @@ export default {
     Footer,
   },
   // data: () => ({
-  //   // selectedRepo: "hi",
-  //   // update: null,
   // }),
+  // mounted: async function (){
+  // },
   // methods: {
   // },
 };

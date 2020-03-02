@@ -7,7 +7,7 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
-Vue.use(VueSession)
+Vue.use(VueSession, {persist: true})
 
 const store = new Vuex.Store({
   state: {
