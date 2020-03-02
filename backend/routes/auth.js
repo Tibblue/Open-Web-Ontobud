@@ -37,7 +37,7 @@ router.delete('/delete/:email', auth.isAuthenticated, function(req, res, next) {
     // TODO: if admin, can delete any user
     if(req.params.email === user.email){
       Users.deleteUser(req.params.email)
-        .then(data => res.jsonp(data))
+        .then(data => res.status(200).jsonp(data))
         .catch(error => res.status(500).jsonp(error))
     }
     else res.status(403).send()
@@ -47,7 +47,7 @@ router.delete('/delete/:email', auth.isAuthenticated, function(req, res, next) {
 
 // debug
 router.get('/user', auth.isAuthenticated, function(req, res, next) {
-  passport.authenticate("jwt", async (err, user) => {
+  passport.authenticate("jwt", {session:false}, async (err, user) => {
     if (err) return next(err)
     res.jsonp(user)
   })(req,res,next)
