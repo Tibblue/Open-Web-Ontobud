@@ -13,10 +13,18 @@
     <br/>
     <br/>
     <span>{{this.$session.get("repoName")}}</span>
-    <span>{{this.$session.get("repoID")}}</span>
-    <!-- <br/>
-    <span>{{this.$store.state.$repo}}</span> -->
     <br/>
+    <span>{{this.$session.get("repoID")}}</span>
+    <br/>
+    <br/>
+    <span>{{this.$session.get("userToken")}}</span>
+    <br/>
+    <span>{{this.$session.get("userName")}}</span>
+    <br/>
+    <span>{{this.$session.get("userEmail")}}</span>
+    <br/>
+    <!-- <span>{{this.$store.state.$repo}}</span>
+    <br/> -->
     <br/>
     <span>{{this.$store.state}}</span>
     <br/>

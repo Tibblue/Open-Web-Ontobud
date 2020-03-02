@@ -15,14 +15,18 @@ router.post('/signup', function (req, res) {
 // Logs user in
 router.post('/login', async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
-    try{
+    try {
+      // console.log(user) // debug
       if(err) return next(err)
       if (!user) return res.status(404).send(info.message)
       req.login(user, {session: false}, async (error) => {
         if (error) return next(error)
-        var userInfo = {email: user.email}
+        var userInfo = {
+          name: user.name,
+          email: user.email
+        }
         var token = auth.genToken(userInfo)
-        res.send(token)
+        res.jsonp({token: token, userInfo: userInfo})
       })
     }catch(error){
       return next(error)
@@ -45,7 +49,7 @@ router.delete('/delete/:email', auth.isAuthenticated, function(req, res, next) {
 });
 
 
-// debug
+// Decrypt JWT payload information
 router.get('/user', auth.isAuthenticated, function(req, res, next) {
   passport.authenticate("jwt", {session:false}, async (err, user) => {
     if (err) return next(err)

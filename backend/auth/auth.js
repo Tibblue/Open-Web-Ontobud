@@ -1,6 +1,11 @@
+var fs = require("fs")
+var UserController = require("../controllers/user")
+// Token Verification
 var passport = require("passport")
 var localStrategy = require("passport-local").Strategy
-var UserController = require("../controllers/user")
+var JWTstrategy = require("passport-jwt").Strategy
+var ExtractJWT = require("passport-jwt").ExtractJwt
+var jwt = require("jsonwebtoken")
 
 // Users Login
 passport.use("login", new localStrategy({
@@ -21,11 +26,6 @@ passport.use("login", new localStrategy({
   }
 }))
 
-// Token Verification
-var JWTstrategy = require("passport-jwt").Strategy
-var ExtractJWT = require("passport-jwt").ExtractJwt
-var jwt = require("jsonwebtoken")
-var fs = require("fs")
 
 passport.use("jwt", new JWTstrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),

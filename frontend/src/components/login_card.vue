@@ -67,9 +67,11 @@ export default {
           .then(response => {
             // console.log(response.data.head) // debug column names
             // console.log(response.data.results.bindings) // debug results
-            var token = response.data
+            var token = response.data.token
+            var userInfo = response.data.userInfo
             this.$session.set("userToken", token)
-            this.$session.set("userEmail", userEmail)
+            this.$session.set("userName", userInfo.name)
+            this.$session.set("userEmail", userInfo.email)
             this.$session.flash.set("login", {msg: "Login Success!!!", color: "success"})
 
             this.alert.loginSuccess = true
