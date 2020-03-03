@@ -176,21 +176,6 @@
         }
       }
     },
-    "/rdf4j": {
-      "get": {
-        "tags": [
-          "RDF4J"
-        ],
-        "deprecated": true,
-        "summary": "TODO",
-        "description": "TODO",
-        "responses": {
-          "default": {
-            "description": "TODO"
-          }
-        }
-      }
-    },
     "/rdf4j/management/listRepos": {
       "get": {
         "tags": [
@@ -382,6 +367,398 @@
           },
           "400": {
             "description": "Bad request (or the repository does not exist)"
+          }
+        }
+      }
+    },
+    "/rdf4j/management/importFile/{repository}": {
+      "post": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Import file into a repository (add triples)",
+        "description": "Import file into a repository. \nThe statements/triples will be **added** to the already existing in the repository.\n",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "content": {
+            "text/turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+xml": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/rdf+n3": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/x-nquads": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/trix": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-trig": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-binary-rdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Import success"
+          },
+          "400": {
+            "description": "Bad request (or the repository does not exist)"
+          },
+          "default": {
+            "description": "TODO"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Import file into a repository (replace triples)",
+        "description": "Import file into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "content": {
+            "text/turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+xml": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/rdf+n3": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/x-nquads": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/trix": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-trig": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-binary-rdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Import success"
+          },
+          "400": {
+            "description": "Bad request (or the repository does not exist)"
+          },
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    },
+    "/rdf4j/management/importText/{repository}": {
+      "post": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Import text into a repository (add triples)",
+        "description": "Import text into a repository. \nThe statements/triples will be **added** to the already existing in the repository.\n",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "content": {
+            "text/turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+xml": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/rdf+n3": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/x-nquads": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/trix": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-trig": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-binary-rdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Import success"
+          },
+          "400": {
+            "description": "Bad request (or the repository does not exist)"
+          },
+          "default": {
+            "description": "TODO"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Import text into a repository (replace triples)",
+        "description": "Import text into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "content": {
+            "text/turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-turtle": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+xml": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/rdf+n3": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/x-nquads": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/rdf+json": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/trix": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-trig": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/x-binary-rdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Import success"
+          },
+          "400": {
+            "description": "Bad request (or the repository does not exist)"
+          },
+          "default": {
+            "description": "TODO"
           }
         }
       }
