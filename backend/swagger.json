@@ -93,7 +93,7 @@
           "Auth"
         ],
         "summary": "Login with user account",
-        "description": "Login with user account. \nReturns JWT token to be used as authorization for some requests and User name and email.\n",
+        "description": "Login with user account.\nReturns JWT token to be used as authorization for some requests and User name and email.\n",
         "requestBody": {
           "description": "Login credentials.",
           "required": true,
@@ -199,8 +199,163 @@
         "summary": "List Repositories",
         "description": "Returns all existing repositories.",
         "responses": {
+          "200": {
+            "description": "Request success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "readable": {
+                        "type": "object",
+                        "properties": {
+                          "datatype": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "id": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "title": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "uri": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "writable": {
+                        "type": "object",
+                        "properties": {
+                          "datatype": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/rdf4j/management/create": {
+      "post": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Create a new Repository",
+        "description": "Create a new Repository.\nCreating a repository with a Repository ID that already exists will overwrite the old one,\nlikely resulting is data loss.\n",
+        "requestBody": {
+          "description": "Login credentials.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "memory",
+                      "memory-rdfs-dt",
+                      "native",
+                      "native-rdfs-dt"
+                    ],
+                    "default": "memory"
+                  },
+                  "Repository ID": {
+                    "type": "string"
+                  },
+                  "Repository title": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "type": "memory-rdfs-dt",
+                  "Repository ID": "test",
+                  "Repository title": "test"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
           "default": {
-            "description": "TODO"
+            "description": "TODO (already existing repo ID)"
+          }
+        }
+      }
+    },
+    "/rdf4j/management/delete/{repository}": {
+      "delete": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Delete a Repository",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string",
+            "example": "test"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Delete success"
+          },
+          "400": {
+            "description": "Bad request (or the repository does not exist)"
           }
         }
       }
@@ -341,7 +496,7 @@
           "RDF4J"
         ],
         "summary": "Query a Repository",
-        "description": "Run a SPARQL query in a Repository. \nBecause it is a GET request the query size is limited. Use the POST if needed.\n",
+        "description": "Run a SPARQL query in a Repository.\nBecause it is a GET request the query size is limited. Use the POST if needed.\n",
         "parameters": [{
             "in": "path",
             "required": true,
