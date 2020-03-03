@@ -15,7 +15,9 @@ router.get('/:repo', function (req, res) {
   const repo = req.params.repo
   const params = req.query
   const url = rdf4jServer + 'repositories/' + repo
-  axios.get(url, { params: params,headers: {'Accept': 'text/csv'} })
+  // const config = { params: params}
+  const config = { params: params, headers: {'Accept': 'text/csv'}}
+  axios.get(url, config)
     .then(response => res.status(200).send(response.data))
     .catch( () => res.status(400).send());
 });
@@ -25,7 +27,12 @@ router.post('/:repo', function (req, res) {
   const repo = req.params.repo
   const url = rdf4jServer + 'repositories/' + repo
   const body = qs.stringify(req.body)
-  const config = {headers: {'Accept': 'text/csv', 'Content-Type': 'application/x-www-form-urlencoded'}}
+  const config = {
+    headers: {
+      'Accept': 'text/csv',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
   axios.post(url, body, config)
     .then(response => res.status(200).send(response.data))
     .catch( () => res.status(400).send());

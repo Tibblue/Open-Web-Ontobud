@@ -25,8 +25,10 @@ router.get('/help', function (req, res) {
 // get repo list
 router.get('/listRepos', function (req, res) {
   const url = rdf4jServer + 'repositories'
-  const config = {headers: {Accept: 'application/json'}}
-  // const config = {headers: {Accept: 'text/csv'}} // other accept option
+  const accept = 'application/json' // HARDCODE
+  const accept = 'text/csv' // HARDCODE option2
+  // const accept = req.headers['accept'] // keep original accept value
+  const config = {headers: {Accept: accept}}
   axios.get(url, config)
     .then(response => res.jsonp(response.data.results.bindings))
     .catch( () => res.status(400).send());
@@ -141,7 +143,8 @@ router.get('/export/:repo', function (req, res) {
   const accept = req.headers['accept'] // keep original accept value
   const params = req.query
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
-  axios.get(url, { params: params, headers: { "Accept": accept } } )
+  const config = { params: params, headers: { "Accept": accept }}
+  axios.get(url, config)
     .then(response => res.status(200).send(response.data))
     .catch( () => res.status(400).send());
 });

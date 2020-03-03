@@ -276,6 +276,551 @@ paths:
           description: Clear success
         '400':
           description: Bad request (or the repository does not exist)
+  "/rdf4j/management/export/{repository}":
+    get:
+      tags:
+      - RDF4J
+      summary: Export repository
+      # description: Export repository
+      parameters:
+      - in: path
+        required: true
+        name: repository
+        description: Target Repository
+        schema:
+          type: string
+      - in: query
+        name: infer
+        description: Returns infered triples?
+        schema:
+          type: boolean
+          example: "true"
+          default: "true"
+      responses:
+        '200':
+          description: Export success
+          content:
+            # Format  	  MIME type
+            # RDF/XML     application/rdf+xml
+            # N-Triples	  text/plain
+            # Turtle	    text/turtle
+            # N3	        text/rdf+n3
+            # N-Quads     text/x-nquads
+            # JSON-LD     application/ld+json
+            # RDF/JSON    application/rdf+json
+            # TriX  	    application/trix
+            # TriG	      application/x-trig
+            # Rdf4j Binary RDF	application/x-binary-rdf
+            text/turtle:
+              schema:
+                type: string
+                example: |
+                  @prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .
+                  @prefix owl: <http://www.w3.org/2002/07/owl#> .
+                  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                  @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+                  <http://www.semanticweb.org/kiko/fam> a owl:Ontology .
+
+                  :filho_de a owl:ObjectProperty;
+                    owl:inverseOf :pai_de .
+
+                  :pai_de a owl:ObjectProperty;
+                    rdfs:domain :pai;
+                    rdfs:range :filho .
+
+                  :filho a owl:Class;
+                    rdfs:subClassOf :pessoa .
+
+                  :pai a owl:Class;
+                    rdfs:subClassOf :pessoa .
+
+                  :pessoa a owl:Class .
+
+                  :carlos a owl:NamedIndividual ;
+                    :filho_de :antonio .
+
+                  :antonio a owl:NamedIndividual;
+                    :pai_de :carlos .
+            application/x-turtle:
+              schema:
+                type: string
+                example: |
+                  @prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .
+                  @prefix owl: <http://www.w3.org/2002/07/owl#> .
+                  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                  @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+                  <http://www.semanticweb.org/kiko/fam> a owl:Ontology .
+
+                  :filho_de a owl:ObjectProperty;
+                    owl:inverseOf :pai_de .
+
+                  :pai_de a owl:ObjectProperty;
+                    rdfs:domain :pai;
+                    rdfs:range :filho .
+
+                  :filho a owl:Class;
+                    rdfs:subClassOf :pessoa .
+
+                  :pai a owl:Class;
+                    rdfs:subClassOf :pessoa .
+
+                  :pessoa a owl:Class .
+
+                  :carlos a owl:NamedIndividual ;
+                    :filho_de :antonio .
+
+                  :antonio a owl:NamedIndividual;
+                    :pai_de :carlos .
+            application/rdf-xml:
+              schema:
+                type: string
+                example: |
+                  <?xml version="1.0" encoding="UTF-8"?>
+                  <rdf:RDF xmlns="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#"
+                  	xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                  	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+                  	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/fam">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
+                  	</rdf:Description>
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+                  		<owl:inverseOf rdf:resource="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de" />
+                  	</rdf:Description>
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+                  		<rdfs:domain rdf:resource="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai" />
+                  		<rdfs:range rdf:resource="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho" />
+                  	</rdf:Description>
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+                  		<rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa" />
+                  	</rdf:Description>
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+                  		<rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa" />
+                  	</rdf:Description>
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+                  	</rdf:Description>
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual" />
+                  		<pai_de rdf:resource="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos" />
+                  	</rdf:Description>
+
+                  	<rdf:Description rdf:about="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos">
+                  		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual" />
+                  		<filho_de rdf:resource="http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio" />
+                  	</rdf:Description>
+                  </rdf:RDF>
+
+            text/plain:
+              schema:
+                type: string
+                example: |
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio> .
+                  <http://www.semanticweb.org/kiko/fam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de> <http://www.w3.org/2002/07/owl#inverseOf> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho> .
+            text/rdf+n3:
+              schema:
+                type: string
+                example: |
+                  @prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .
+                  @prefix owl: <http://www.w3.org/2002/07/owl#> .
+                  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                  @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+                  @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+                  @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+                  :filho a owl:Class;
+                    rdfs:subClassOf :pessoa .
+
+                  :pai a owl:Class;
+                    rdfs:subClassOf :pessoa .
+
+                  :pessoa a owl:Class .
+
+                  :antonio a owl:NamedIndividual;
+                    :pai_de :carlos .
+
+                  :carlos a owl:NamedIndividual;
+                    :filho_de :antonio .
+
+                  <http://www.semanticweb.org/kiko/fam> a owl:Ontology .
+
+                  :filho_de a owl:ObjectProperty;
+                    owl:inverseOf :pai_de .
+
+                  :pai_de a owl:ObjectProperty;
+                    rdfs:domain :pai;
+                    rdfs:range :filho .
+            text/x-nquads:
+              schema:
+                type: string
+                example: |
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio> .
+                  <http://www.semanticweb.org/kiko/fam> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de> <http://www.w3.org/2002/07/owl#inverseOf> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai> .
+                  <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho> .
+
+            application/ld+json:
+              schema:
+                type: string
+                example: |
+                  [
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/fam",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#Ontology"
+                          ]
+                      },
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#NamedIndividual"
+                          ],
+                          "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de": [
+                              {
+                                  "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos"
+                              }
+                          ]
+                      },
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#NamedIndividual"
+                          ],
+                          "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de": [
+                              {
+                                  "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio"
+                              }
+                          ]
+                      },
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#Class"
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+                              {
+                                  "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa"
+                              }
+                          ]
+                      },
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#ObjectProperty"
+                          ],
+                          "http://www.w3.org/2002/07/owl#inverseOf": [
+                              {
+                                  "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de"
+                              }
+                          ]
+                      },
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#Class"
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+                              {
+                                  "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa"
+                              }
+                          ]
+                      },
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#ObjectProperty"
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#domain": [
+                              {
+                                  "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai"
+                              }
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#range": [
+                              {
+                                  "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho"
+                              }
+                          ]
+                      },
+                      {
+                          "@id": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa",
+                          "@type": [
+                              "http://www.w3.org/2002/07/owl#Class"
+                          ]
+                      }
+                  ]
+            application/rdf+json:
+              schema:
+                type: string
+                example: |
+                  {
+                      "http://www.semanticweb.org/kiko/fam": {
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#Ontology",
+                                  "type": "uri"
+                              }
+                          ]
+                      },
+                      "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio": {
+                          "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de": [
+                              {
+                                  "value": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos",
+                                  "type": "uri"
+                              }
+                          ],
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#NamedIndividual",
+                                  "type": "uri"
+                              }
+                          ]
+                      },
+                      "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos": {
+                          "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de": [
+                              {
+                                  "value": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio",
+                                  "type": "uri"
+                              }
+                          ],
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#NamedIndividual",
+                                  "type": "uri"
+                              }
+                          ]
+                      },
+                      "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho": {
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#Class",
+                                  "type": "uri"
+                              }
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+                              {
+                                  "value": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa",
+                                  "type": "uri"
+                              }
+                          ]
+                      },
+                      "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de": {
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#ObjectProperty",
+                                  "type": "uri"
+                              }
+                          ],
+                          "http://www.w3.org/2002/07/owl#inverseOf": [
+                              {
+                                  "value": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de",
+                                  "type": "uri"
+                              }
+                          ]
+                      },
+                      "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai": {
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#Class",
+                                  "type": "uri"
+                              }
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+                              {
+                                  "value": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa",
+                                  "type": "uri"
+                              }
+                          ]
+                      },
+                      "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de": {
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#ObjectProperty",
+                                  "type": "uri"
+                              }
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#domain": [
+                              {
+                                  "value": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai",
+                                  "type": "uri"
+                              }
+                          ],
+                          "http://www.w3.org/2000/01/rdf-schema#range": [
+                              {
+                                  "value": "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho",
+                                  "type": "uri"
+                              }
+                          ]
+                      },
+                      "http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa": {
+                          "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+                              {
+                                  "value": "http://www.w3.org/2002/07/owl#Class",
+                                  "type": "uri"
+                              }
+                          ]
+                      }
+                  }
+            application/trix:
+              schema:
+                type: string
+                example: |
+                  <?xml version='1.0' encoding='UTF-8'?>
+                  <TriX xmlns='http://www.w3.org/2004/03/trix/trix-1/'>
+                  	<graph>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#Class</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho</uri>
+                  			<uri>http://www.w3.org/2000/01/rdf-schema#subClassOf</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#Class</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai</uri>
+                  			<uri>http://www.w3.org/2000/01/rdf-schema#subClassOf</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pessoa</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#Class</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#NamedIndividual</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#NamedIndividual</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#carlos</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#antonio</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/fam</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#Ontology</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho_de</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#inverseOf</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de</uri>
+                  			<uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+                  			<uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de</uri>
+                  			<uri>http://www.w3.org/2000/01/rdf-schema#domain</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai</uri>
+                  		</triple>
+                  		<triple>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#pai_de</uri>
+                  			<uri>http://www.w3.org/2000/01/rdf-schema#range</uri>
+                  			<uri>http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#filho</uri>
+                  		</triple>
+                  	</graph>
+                  </TriX>
+            application/x-trig:
+              schema:
+                type: string
+                example: |
+                  @prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .
+                  @prefix owl: <http://www.w3.org/2002/07/owl#> .
+                  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+                  @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+                  @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+                  @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+                  {
+                    :filho a owl:Class;
+                      rdfs:subClassOf :pessoa .
+
+                    :pai a owl:Class;
+                      rdfs:subClassOf :pessoa .
+
+                    :pessoa a owl:Class .
+
+                    :antonio a owl:NamedIndividual;
+                      :pai_de :carlos .
+
+                    :carlos a owl:NamedIndividual;
+                      :filho_de :antonio .
+
+                    <http://www.semanticweb.org/kiko/fam> a owl:Ontology .
+
+                    :filho_de a owl:ObjectProperty;
+                      owl:inverseOf :pai_de .
+
+                    :pai_de a owl:ObjectProperty;
+                      rdfs:domain :pai;
+                      rdfs:range :filho .
+                  }
+            application/x-binary-rdf:
+              schema:
+                # type: string
+                description: "Binary value"
+        '400':
+          description: Bad request
   "/rdf4j/repository/{repository}/explicit":
     get:
       tags:
@@ -392,8 +937,9 @@ paths:
         name: infer
         description: Returns infered triples? (default true)
         schema:
-          type: string
-          example: "true"
+          type: boolean
+          example: true
+          default: true
       responses:
         '200':
           description: Query successful
