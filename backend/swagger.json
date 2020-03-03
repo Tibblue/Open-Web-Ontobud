@@ -360,6 +360,32 @@
         }
       }
     },
+    "/rdf4j/management/delete/{repository}/statements": {
+      "delete": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Clear all Repository statements/triples",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string",
+            "example": "test"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Clear success"
+          },
+          "400": {
+            "description": "Bad request (or the repository does not exist)"
+          }
+        }
+      }
+    },
     "/rdf4j/repository/{repository}/explicit": {
       "get": {
         "tags": [
