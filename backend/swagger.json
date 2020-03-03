@@ -122,7 +122,27 @@
             "description": "JWT access token and User info. JWT will be required in some requests for Authorization."
           },
           "404": {
-            "description": "Login failed. Likely wrong email ou password"
+            "description": "Login failed. Likely wrong email ou password."
+          }
+        }
+      }
+    },
+    "/auth/user": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get user info from JWT",
+        "description": "Decrypts JWT payload, returning some user account information.\n",
+        "security": [{
+          "bearerAuth": []
+        }],
+        "responses": {
+          "200": {
+            "description": "Information returned."
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -156,31 +176,128 @@
         }
       }
     },
-    "/auth/user": {
-      "get": {
-        "tags": [
-          "Auth"
-        ],
-        "security": [{
-          "bearerAuth": []
-        }],
-        "responses": {
-          "default": {
-            "description": "Debug"
-          }
-        }
-      }
-    },
     "/rdf4j": {
       "get": {
         "tags": [
           "RDF4J"
         ],
+        "deprecated": true,
         "summary": "TODO",
         "description": "TODO",
         "responses": {
           "default": {
             "description": "TODO"
+          }
+        }
+      }
+    },
+    "/rdf4j/management/listRepos": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "List Repositories",
+        "description": "Returns all existing repositories.",
+        "responses": {
+          "default": {
+            "description": "TODO"
+          }
+        }
+      }
+    },
+    "/rdf4j/query/{repository}": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Query a Repository",
+        "description": "Run a SPARQL query in a Repository. \nBecause it is a GET request the query size is limited. Use the POST if needed.\n",
+        "parameters": [{
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Repository to be queried",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "required": true,
+            "name": "query",
+            "description": "SPARQL query to run",
+            "schema": {
+              "type": "string",
+              "example": "select * where { ?s ?p ?o } limit 20"
+            }
+          },
+          {
+            "in": "query",
+            "name": "infer",
+            "description": "Returns infered triples? (default true)",
+            "schema": {
+              "type": "string",
+              "example": "true"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Query successful"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Query a Repository",
+        "description": "Run a SPARQL query in a Repository.\n",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Repository to be queried",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "SPARQL query to run"
+                  },
+                  "infer": {
+                    "type": "string",
+                    "description": "Returns infered triples? (default true)"
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "example": {
+                  "query": "select * where { ?s ?p ?o } limit 20",
+                  "infer": "true"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Query successful"
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       }

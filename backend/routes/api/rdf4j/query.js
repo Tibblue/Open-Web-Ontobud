@@ -10,7 +10,7 @@ var rdf4jServer = 'http://'+rdf4j+'/rdf4j-server/'
 
 
 //// Queries ////
-// query (GET)
+// query (GET) (params in queryParams)
 router.get('/:repo', function (req, res) {
   const repo = req.params.repo
   const params = req.query
@@ -21,14 +21,13 @@ router.get('/:repo', function (req, res) {
 });
 
 // query (POST) (params in x-www-form-urlencoded)
-// query (POST)
 router.post('/:repo', function (req, res) {
   const repo = req.params.repo
   const url = rdf4jServer + 'repositories/' + repo
   const body = qs.stringify(req.body)
-  const config = {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+  const config = {headers: {'Accept': 'text/csv', 'Content-Type': 'application/x-www-form-urlencoded'}}
   axios.post(url, body, config)
-    .then(response => res.jsonp(response.data))
+    .then(response => res.status(200).send(response.data))
     .catch( () => res.status(400).send());
 });
 
