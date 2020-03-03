@@ -205,6 +205,136 @@
         }
       }
     },
+    "/rdf4j/repository/{repository}/explicit": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Explicit triples count",
+        "description": "Returns the number of explicit triples in the repository.",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Request success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/rdf4j/repository/{repository}/total": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Total triples count",
+        "description": "Returns the total (explicit+implicit) number of triples in the repository.",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Request success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/rdf4j/repository/{repository}/triples": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Explicit and Implicit triples count and Expansion ratio",
+        "description": "Returns the number of explicit and implicit triples in the repository and the expansion ratio.",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Request success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/rdf4j/repository/{repository}/namespaces": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Repository Namespaces",
+        "description": "Returns the repository namespaces.",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Request success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/rdf4j/repository/{repository}/contexts": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Repository contexts",
+        "description": "Returns the repository contexts.",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Request success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
     "/rdf4j/query/{repository}": {
       "get": {
         "tags": [
