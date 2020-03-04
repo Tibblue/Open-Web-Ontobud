@@ -143,6 +143,7 @@ export default {
       headers: [],
       items: [],
     },
+    defaultNamespace: "",
     namespaces: {},
     namespaceON: true,
     prefixON: true,
@@ -169,7 +170,9 @@ export default {
     // console.log(process.env) // debug
     // var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
 
-    this.getNamespaces(this.$session.get('repoID'))
+    var currentRepoID = this.$session.get('repoID')
+    this.getNamespaces(currentRepoID)
+    this.getDefaultNamespace(currentRepoID)
   },
   computed: {
     $repo: {
@@ -213,12 +216,23 @@ export default {
           this.namespaces = {}
         })
     },
+    getDefaultNamespace(repoID) {
+      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces/ /')
+        .then(response => {
+          this.defaultNamespace = "PREFIX : <"+response.data+">\n"
+        })
+        .catch(alert => {
+          this.defaultNamespace = ""
+        })
+    },
     cellClicked(cellInfo) {
       if(cellInfo.type==='uri')
         this.$router.push({path: "sparql/resource", query: { uri: cellInfo.uri }})
     },
     runQuery(query, infer) {
       this.loading.query = true
+      const defaultNamespaceExists = /^ *PREFIX : /m.test(query)
+      if(!defaultNamespaceExists) query = this.defaultNamespace + query
       var repoID = this.$repo.id
       var url = backend_url+'/api/rdf4j/query/'+repoID
       axios.post(url, qs.stringify({'query': query, 'infer': infer}),
