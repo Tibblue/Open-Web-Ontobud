@@ -29,7 +29,7 @@ router.post('/:repo', function (req, res) {
   const body = qs.stringify(req.body)
   const config = {
     headers: {
-      'Accept': 'text/csv',
+      // 'Accept': 'text/csv',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }

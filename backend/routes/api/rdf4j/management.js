@@ -26,7 +26,7 @@ router.get('/help', function (req, res) {
 router.get('/listRepos', function (req, res) {
   const url = rdf4jServer + 'repositories'
   const accept = 'application/json' // HARDCODE
-  const accept = 'text/csv' // HARDCODE option2
+  // const accept = 'text/csv' // HARDCODE option2
   // const accept = req.headers['accept'] // keep original accept value
   const config = {headers: {Accept: accept}}
   axios.get(url, config)
