@@ -897,6 +897,7 @@
         "tags": [
           "RDF4J"
         ],
+        "deprecated": true,
         "summary": "Total triples count",
         "description": "Returns the total (explicit+implicit) number of triples in the repository.",
         "parameters": [{
@@ -960,6 +961,41 @@
             "type": "string"
           }
         }],
+        "responses": {
+          "200": {
+            "description": "Request success"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/rdf4j/repository/{repository}/namespaces/{prefix}": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Returns the namespace for a prefix in a repository",
+        "parameters": [{
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "required": true,
+            "name": "prefix",
+            "description": "Target Prefix",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Request success"

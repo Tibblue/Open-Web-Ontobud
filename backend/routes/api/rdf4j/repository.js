@@ -58,6 +58,16 @@ router.get('/:repo/namespaces', function (req, res) {
     .catch( () => res.status(400).send());
 });
 
+// get repository namespace by prefix
+router.get('/:repo/namespaces/:prefix', function (req, res) {
+  const repo = req.params.repo
+  const prefix = req.params.prefix
+  const url = rdf4jServer + 'repositories/' + repo + '/namespaces/' + prefix
+  axios.get(url)
+    .then(response => res.status(200).send(response.data))
+    .catch( () => res.status(400).send());
+});
+
 // get repository contexts
 router.get('/:repo/contexts', function (req, res) {
   const repo = req.params.repo
