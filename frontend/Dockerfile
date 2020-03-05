@@ -1,7 +1,9 @@
 FROM vuejs/ci:latest
+
 # default port is 8000, change as needed
 EXPOSE 8000
 
+### Set Enviroment Variables
 # set FRONTEND port, default 8000
 ARG VUE_APP_FRONTEND_PORT=8000
 ENV VUE_APP_FRONTEND_PORT=$VUE_APP_FRONTEND_PORT
@@ -12,9 +14,17 @@ ENV VUE_APP_BACKEND_PORT=$VUE_APP_BACKEND_PORT
 ARG VUE_APP_BACKEND_HOST=localhost
 ENV VUE_APP_BACKEND_HOST=$VUE_APP_BACKEND_HOST
 
-COPY . /home/app/frontend
-
+### Set WorkDir
 WORKDIR /home/app/frontend
+
+### Copy package.json
+COPY package*.json /home/app/frontend/
+### NPM Install
 RUN npm install
 RUN npm audit fix
+
+### Copy APP
+COPY . /home/app/frontend
+
+### Run Node Server
 CMD npm run serve
