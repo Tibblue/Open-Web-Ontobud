@@ -16,6 +16,14 @@
           </v-col>
         </v-row>
 
+        <!-- <v-row dense>
+          <v-col cols="12" md="6">
+            <v-btn block color="primary" @click="goToDefaultGraph()">
+              Default Graph
+            </v-btn>
+          </v-col>
+        </v-row> -->
+
         <v-row dense>
           <v-col cols="12">
             <v-textarea outlined auto-grow hide-details
@@ -104,6 +112,12 @@
             ></v-checkbox>
           </v-col>
           <v-col cols="12">
+            <!-- TODO:
+                    -add search
+                    -fix ordering
+                    -customize data footer
+                    -change items-per-page
+             -->
             <v-data-table
               :headers="table.headers"
               :items="tableResults"
@@ -159,9 +173,9 @@ export default {
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,
     savedQueries: [ // temporary visual debug
-      { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 20' },
+      { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 200' },
       { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?class a ?type. }' },
-      { name: 'Get classes only', query: 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' },
+      { name: 'Get OWL classes only', query: 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' },
       { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
       { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
     ],
@@ -176,8 +190,6 @@ export default {
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    // var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
-
     var currentRepoID = this.$session.get('repoID')
     this.getNamespaces(currentRepoID)
     this.getDefaultNamespace(currentRepoID)
@@ -232,6 +244,10 @@ export default {
         .catch(alert => {
           this.defaultNamespace = ""
         })
+    },
+    goToDefaultGraph() {
+      const uri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+      this.$router.push({path: "sparql/resource", query: { uri: uri, position: "predicate" }})
     },
     cellClicked(cellInfo) {
       if(cellInfo.type==='uri')
