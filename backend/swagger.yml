@@ -54,7 +54,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/User"
+                $ref: '#/components/schemas/User'
         '500':
           description: Creation failed. Likely duplicate key (already used email)
   "/auth/login":
@@ -1228,9 +1228,10 @@ paths:
       - in: path
         required: true
         name: prefix
-        description: Target Prefix
+        description: Target Prefix (can be a space to simulate noname prefix)
         schema:
           type: string
+          # default: ""
       responses:
         '200':
           description: Request success
@@ -1346,55 +1347,100 @@ paths:
       responses:
         '200':
           description: Operation successful
-          # content:
-          #   application/json:
-          #     schema:
-          #       $ref: '#/components/schemas/User'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
         default:
           description: Unexpected error
     post:
       tags:
       - Mongo
-      summary: TODO
-      description: TODO
+      summary: Create a new user element
+      # description: Create a new user element
+      requestBody:
+        description: User account details.
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - password
       responses:
-        default:
-          description: TODO
+        '200':
+          description: User created with success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '500':
+          description: Internal error. Likely duplicate key (email already exists)
+        # default:
+        #   description: TODO
   "/users/{email}":
     get:
       tags:
       - Mongo
-      summary: TODO
-      description: TODO
+      summary: User information by email
+      description: Given a User email, returns the User information
       parameters:
       - in: path
         required: true
         name: email
-        description: Account email
+        description: User email
         schema:
           type: string
       responses:
-        default:
-          description: TODO
+        '200':
+          description: Operation successful. (or user doesnt exist and returns empty object...)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request
+        # default:
+        #   description: TODO
     delete:
       tags:
       - Mongo
-      summary: TODO
-      description: TODO
+      summary: Delete user by email
+      # description: Delete user account with the specified email.
       parameters:
       - in: path
         required: true
         name: email
-        description: Account email
+        description: Email from the User to delete
         schema:
           type: string
       responses:
-        default:
-          description: TODO
+        '200':
+          description: User deleted with success. (or it doesnt exist and returns empty object)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request
+        # default:
+        #   description: Email doesn't exist
   "/users/{email}/password":
     put:
       tags:
       - Mongo
+      deprecated: true
       summary: TODO
       description: TODO
       parameters:
@@ -1422,6 +1468,9 @@ components:
       - email
       - password
       properties:
+        _id:
+          type: string
+          example: "5da988f5204a53011f3b3e49"
         name:
           type: string
           example: "test"
@@ -1431,7 +1480,10 @@ components:
           example: "test@email"
         password:
           type: string
-          example: "test"
+          example: "$2b$10$7SVjTqc7BGf8/P83WN5CPOYlBcKzEIdfSbhEEl3vbpARswHccGtke"
+        __v:
+          type: number
+          example: 0
     Repository:
       required:
       - id

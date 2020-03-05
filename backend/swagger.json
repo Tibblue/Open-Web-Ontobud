@@ -13,7 +13,8 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "servers": [{
+  "servers": [
+    {
       "url": "http://epl.di.uminho.pt:8001/api",
       "description": "Main server"
     },
@@ -22,7 +23,8 @@
       "description": "Testing server"
     }
   ],
-  "tags": [{
+  "tags": [
+    {
       "name": "Auth",
       "description": "Requests related to User Authentication"
     },
@@ -134,9 +136,11 @@
         ],
         "summary": "Get user info from JWT",
         "description": "Decrypts JWT payload, returning some user account information.\n",
-        "security": [{
-          "bearerAuth": []
-        }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Information returned."
@@ -154,18 +158,22 @@
         ],
         "summary": "Delete user account by email",
         "description": "Delete user account with the specified email.\nOnly the user himself or a admin can delete a account.\n",
-        "security": [{
-          "bearerAuth": []
-        }],
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "email",
-          "description": "Account email to delete",
-          "schema": {
-            "type": "string"
+        "security": [
+          {
+            "bearerAuth": []
           }
-        }],
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "Account email to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Account deleted"
@@ -325,16 +333,18 @@
           "RDF4J"
         ],
         "summary": "Delete a Repository",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string",
-            "example": "test"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string",
+              "example": "test"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Delete success"
@@ -351,16 +361,18 @@
           "RDF4J"
         ],
         "summary": "Clear all Repository statements/triples",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string",
-            "example": "test"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string",
+              "example": "test"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Clear success"
@@ -377,16 +389,18 @@
           "RDF4J"
         ],
         "summary": "Import file into a repository (add triples)",
-        "description": "Import file into a repository. \nThe statements/triples will be **added** to the already existing in the repository.\n",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "description": "Import file into a repository.\nThe statements/triples will be **added** to the already existing in the repository.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -475,15 +489,17 @@
         ],
         "summary": "Import file into a repository (replace triples)",
         "description": "Import file into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -573,16 +589,18 @@
           "RDF4J"
         ],
         "summary": "Import text into a repository (add triples)",
-        "description": "Import text into a repository. \nThe statements/triples will be **added** to the already existing in the repository.\n",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "description": "Import text into a repository.\nThe statements/triples will be **added** to the already existing in the repository.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -671,15 +689,17 @@
         ],
         "summary": "Import text into a repository (replace triples)",
         "description": "Import text into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -769,7 +789,8 @@
           "RDF4J"
         ],
         "summary": "Export repository",
-        "parameters": [{
+        "parameters": [
+          {
             "in": "path",
             "required": true,
             "name": "repository",
@@ -796,13 +817,13 @@
               "text/turtle": {
                 "schema": {
                   "type": "string",
-                  "example": "@prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n<http://www.semanticweb.org/kiko/fam> a owl:Ontology .\n\n:filho_de a owl:ObjectProperty;\n  owl:inverseOf :pai_de .\n\n:pai_de a owl:ObjectProperty;\n  rdfs:domain :pai;\n  rdfs:range :filho .\n\n:filho a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pai a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pessoa a owl:Class .\n\n:carlos a owl:NamedIndividual ;\n  :filho_de :antonio .\n  \n:antonio a owl:NamedIndividual;\n  :pai_de :carlos .\n"
+                  "example": "@prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n<http://www.semanticweb.org/kiko/fam> a owl:Ontology .\n\n:filho_de a owl:ObjectProperty;\n  owl:inverseOf :pai_de .\n\n:pai_de a owl:ObjectProperty;\n  rdfs:domain :pai;\n  rdfs:range :filho .\n\n:filho a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pai a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pessoa a owl:Class .\n\n:carlos a owl:NamedIndividual ;\n  :filho_de :antonio .\n\n:antonio a owl:NamedIndividual;\n  :pai_de :carlos .\n"
                 }
               },
               "application/x-turtle": {
                 "schema": {
                   "type": "string",
-                  "example": "@prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n<http://www.semanticweb.org/kiko/fam> a owl:Ontology .\n\n:filho_de a owl:ObjectProperty;\n  owl:inverseOf :pai_de .\n\n:pai_de a owl:ObjectProperty;\n  rdfs:domain :pai;\n  rdfs:range :filho .\n\n:filho a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pai a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pessoa a owl:Class .\n\n:carlos a owl:NamedIndividual ;\n  :filho_de :antonio .\n  \n:antonio a owl:NamedIndividual;\n  :pai_de :carlos .\n"
+                  "example": "@prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n<http://www.semanticweb.org/kiko/fam> a owl:Ontology .\n\n:filho_de a owl:ObjectProperty;\n  owl:inverseOf :pai_de .\n\n:pai_de a owl:ObjectProperty;\n  rdfs:domain :pai;\n  rdfs:range :filho .\n\n:filho a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pai a owl:Class;\n  rdfs:subClassOf :pessoa .\n\n:pessoa a owl:Class .\n\n:carlos a owl:NamedIndividual ;\n  :filho_de :antonio .\n\n:antonio a owl:NamedIndividual;\n  :pai_de :carlos .\n"
                 }
               },
               "application/rdf-xml": {
@@ -850,7 +871,7 @@
               "application/x-trig": {
                 "schema": {
                   "type": "string",
-                  "example": "@prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix xml: <http://www.w3.org/XML/1998/namespace> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n{\n  :filho a owl:Class;\n    rdfs:subClassOf :pessoa .\n  \n  :pai a owl:Class;\n    rdfs:subClassOf :pessoa .\n  \n  :pessoa a owl:Class .\n  \n  :antonio a owl:NamedIndividual;\n    :pai_de :carlos .\n  \n  :carlos a owl:NamedIndividual;\n    :filho_de :antonio .\n  \n  <http://www.semanticweb.org/kiko/fam> a owl:Ontology .\n  \n  :filho_de a owl:ObjectProperty;\n    owl:inverseOf :pai_de .\n  \n  :pai_de a owl:ObjectProperty;\n    rdfs:domain :pai;\n    rdfs:range :filho .\n}\n"
+                  "example": "@prefix : <http://www.semanticweb.org/kiko/ontologies/2019/9/untitled-ontology-23#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix xml: <http://www.w3.org/XML/1998/namespace> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n{\n  :filho a owl:Class;\n    rdfs:subClassOf :pessoa .\n\n  :pai a owl:Class;\n    rdfs:subClassOf :pessoa .\n\n  :pessoa a owl:Class .\n\n  :antonio a owl:NamedIndividual;\n    :pai_de :carlos .\n\n  :carlos a owl:NamedIndividual;\n    :filho_de :antonio .\n\n  <http://www.semanticweb.org/kiko/fam> a owl:Ontology .\n\n  :filho_de a owl:ObjectProperty;\n    owl:inverseOf :pai_de .\n\n  :pai_de a owl:ObjectProperty;\n    rdfs:domain :pai;\n    rdfs:range :filho .\n}\n"
                 }
               },
               "application/x-binary-rdf": {
@@ -873,15 +894,17 @@
         ],
         "summary": "Explicit triples count",
         "description": "Returns the number of explicit triples in the repository.",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Request success"
@@ -900,15 +923,17 @@
         "deprecated": true,
         "summary": "Total triples count",
         "description": "Returns the total (explicit+implicit) number of triples in the repository.",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Request success"
@@ -926,15 +951,17 @@
         ],
         "summary": "Explicit and Implicit triples count and Expansion ratio",
         "description": "Returns the number of explicit and implicit triples in the repository and the expansion ratio.",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Request success"
@@ -952,15 +979,17 @@
         ],
         "summary": "Repository Namespaces",
         "description": "Returns the repository namespaces.",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Request success"
@@ -977,7 +1006,8 @@
           "RDF4J"
         ],
         "summary": "Returns the namespace for a prefix in a repository",
-        "parameters": [{
+        "parameters": [
+          {
             "in": "path",
             "required": true,
             "name": "repository",
@@ -990,7 +1020,7 @@
             "in": "path",
             "required": true,
             "name": "prefix",
-            "description": "Target Prefix",
+            "description": "Target Prefix (can be a space to simulate noname prefix)",
             "schema": {
               "type": "string"
             }
@@ -1013,15 +1043,17 @@
         ],
         "summary": "Repository contexts",
         "description": "Returns the repository contexts.",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Target Repository",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Target Repository",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "Request success"
@@ -1039,7 +1071,8 @@
         ],
         "summary": "Query a Repository",
         "description": "Run a SPARQL query in a Repository.\nBecause it is a GET request the query size is limited. Use the POST if needed.\n",
-        "parameters": [{
+        "parameters": [
+          {
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1084,15 +1117,17 @@
         ],
         "summary": "Query a Repository",
         "description": "Run a SPARQL query in a Repository.\n",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "repository",
-          "description": "Repository to be queried",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Repository to be queried",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -1154,7 +1189,17 @@
         "description": "Returns a JSON list with all the users.",
         "responses": {
           "200": {
-            "description": "Operation successful"
+            "description": "Operation successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
           },
           "default": {
             "description": "Unexpected error"
@@ -1165,11 +1210,47 @@
         "tags": [
           "Mongo"
         ],
-        "summary": "TODO",
-        "description": "TODO",
+        "summary": "Create a new user element",
+        "requestBody": {
+          "description": "User account details.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
-          "default": {
-            "description": "TODO"
+          "200": {
+            "description": "User created with success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error. Likely duplicate key (email already exists)"
           }
         }
       }
@@ -1179,20 +1260,32 @@
         "tags": [
           "Mongo"
         ],
-        "summary": "TODO",
-        "description": "TODO",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "email",
-          "description": "Account email",
-          "schema": {
-            "type": "string"
+        "summary": "User information by email",
+        "description": "Given a User email, returns the User information",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "User email",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
-          "default": {
-            "description": "TODO"
+          "200": {
+            "description": "Operation successful. (or user doesnt exist and returns empty object...)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       },
@@ -1200,20 +1293,31 @@
         "tags": [
           "Mongo"
         ],
-        "summary": "TODO",
-        "description": "TODO",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "email",
-          "description": "Account email",
-          "schema": {
-            "type": "string"
+        "summary": "Delete user by email",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "Email from the User to delete",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
-          "default": {
-            "description": "TODO"
+          "200": {
+            "description": "User deleted with success. (or it doesnt exist and returns empty object)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       }
@@ -1223,17 +1327,20 @@
         "tags": [
           "Mongo"
         ],
+        "deprecated": true,
         "summary": "TODO",
         "description": "TODO",
-        "parameters": [{
-          "in": "path",
-          "required": true,
-          "name": "email",
-          "description": "Account email",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "Account email",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "default": {
             "description": "TODO"
@@ -1258,6 +1365,10 @@
           "password"
         ],
         "properties": {
+          "_id": {
+            "type": "string",
+            "example": "5da988f5204a53011f3b3e49"
+          },
           "name": {
             "type": "string",
             "example": "test"
@@ -1269,7 +1380,11 @@
           },
           "password": {
             "type": "string",
-            "example": "test"
+            "example": "$2b$10$7SVjTqc7BGf8/P83WN5CPOYlBcKzEIdfSbhEEl3vbpARswHccGtke"
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
           }
         }
       },
