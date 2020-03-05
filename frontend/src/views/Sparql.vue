@@ -45,6 +45,14 @@
           </v-col>
         </v-row>
 
+        <v-row dense>
+          <v-col cols="12" md="6">
+            <v-btn block color="primary" @click="goToDefaultGraph()">
+              Default Graph
+            </v-btn>
+          </v-col>
+        </v-row>
+
         <v-row dense v-if="!this.$session.get('userToken')">
           <v-col cols="12" md="12">
             <v-alert text dismissible type="warning" >

@@ -15,7 +15,7 @@
       </v-col>
     </v-row>
     <v-expand-transition>
-      <v-card flat color="transparent" class="mb-4"
+      <v-card flat color="transparent" class="mb-2"
         v-show="savedQueriesExpand"
       >
         <v-container fluid class="pa-0">

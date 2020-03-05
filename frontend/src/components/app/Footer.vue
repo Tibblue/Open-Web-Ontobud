@@ -1,6 +1,6 @@
 <template>
 <v-footer app padless inset>
-  <v-col>
+  <v-col class="pa-2">
     <v-row align="center" justify="center">
       <v-btn
         v-for="icon in footer_icons"
@@ -11,7 +11,7 @@
         <v-icon size="24px" @click="goTo(icon[1])">{{icon[0]}}</v-icon>
       </v-btn>
     </v-row>
-    <v-divider class="my-2"></v-divider>
+    <v-divider class="my-1"></v-divider>
     <v-row align="center" justify="center">
       <span class="text-center">
         2019/2020 — <strong>Francisco Oliveira</strong> —

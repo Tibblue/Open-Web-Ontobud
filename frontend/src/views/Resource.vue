@@ -26,7 +26,9 @@
         ></v-checkbox>
       </v-col>
       <v-col cols="12">
-        <v-tabs grow background-color="darken-1 primary">
+        <v-tabs grow background-color="darken-1 primary"
+          :value="this.activeTab"
+        >
           <v-tab>Subject</v-tab>
           <v-tab>Predicate</v-tab>
           <v-tab>Object</v-tab>
@@ -163,6 +165,7 @@ export default {
       predicateResults: [],
       objectResults: [],
     },
+    activeTab: 1,
     namespaces: {},
     namespaceON: true,
     prefixON: true,
@@ -178,9 +181,20 @@ export default {
     },
   }),
   mounted: async function (){
-    // console.log(process.env) // debug
-    // var currentUserEmail = 'kiko@kiko' // FIXME: use loged user
-
+    switch (this.$route.query.position) {
+      case "subject":
+        this.activeTab = 0
+        break;
+      case "predicate":
+        this.activeTab = 1
+        break;
+      case "object":
+        this.activeTab = 2
+        break;
+      default:
+        this.activeTab = 0
+        break;
+    }
     this.getNamespaces(this.$session.get('repoID'))
     this.getSubjectResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
     this.getPredicateResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
