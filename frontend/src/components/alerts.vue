@@ -1,10 +1,10 @@
 <template>
   <div>
     <v-snackbar top
-      v-model="snackbarLogin"
-      :color="snackbarLogin.color"
+      v-model="this.snackbarLogin"
+      :color="this.snackbarLoginColor"
     >
-      {{ this.snackbarLogin.msg }}
+      {{ this.snackbarLoginMsg }}
       <v-btn @click="snackbarLogin=false">Close</v-btn>
     </v-snackbar>
   </div>
@@ -13,10 +13,18 @@
 <script>
 export default {
   data: () => ({
-    snackbarLogin: null,
+    snackbarLogin: false,
+    snackbarLoginValue: null,
+    snackbarLoginColor: "",
+    snackbarLoginMsg: "",
   }),
   mounted: async function (){
-    this.snackbarLogin = this.$session.flash.get("login")
+    this.snackbarLoginValue = this.$session.flash.get("login")
+    if(this.snackbarLoginValue){
+      this.snackbarLoginColor = this.snackbarLoginValue.color
+      this.snackbarLoginMsg = this.snackbarLoginValue.msg
+      this.snackbarLogin = true
+    }
   },
   methods:{
   },
