@@ -296,7 +296,7 @@ export default {
     },
     cellClicked(cellInfo) {
       if(cellInfo.type==='uri'){
-        this.$router.replace({query: { uri: cellInfo.uri }})
+        this.$router.push({query: { uri: cellInfo.uri }})
         this.updateResults()
       }
     },

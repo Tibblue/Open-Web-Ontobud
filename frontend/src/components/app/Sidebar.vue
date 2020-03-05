@@ -143,14 +143,18 @@ export default {
       // { text: 'Sign Up', icon: 'fas fa-user-plus', link: '/auth/signup'},
       // { text: 'Logout', icon: 'fas fa-sign-out-alt', link: '/auth/logout'},
       // { text: 'TODO User Settings', icon: 'fas fa-user-cog', link: '/auth/usersettings'},
+
       // Navigation
       { text: 'Home', icon: 'fas fa-home', link: '/'},
       { text: 'Manage Repo', icon: 'fas fa-archive', link: '/manage'},
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
+      { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource'},
+      { text: 'TODO Navigation', icon: 'fas fa-project-diagram', link: '/navigation'},
       { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories'},
-      { text: 'TODO Settings', icon: 'fas fa-cog', link: '/settings'},
       { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
+      // { text: 'TODO Settings', icon: 'fas fa-cog', link: '/settings'},
+
       // Testing DEBUG
       // { text: 'Settings', icon: 'fas fa-cog',
       //   subgroup: [

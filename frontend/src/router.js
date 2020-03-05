@@ -50,10 +50,15 @@ export default new Router({
       component: () => import('./views/Sparql.vue'),
     },
     {
-      path: '/sparql/resource',
+      path: '/resource',
       name: 'resource',
       component: () => import('./views/Resource.vue'),
     },
+    // {
+    //   path: '/navigation',
+    //   name: 'navigation',
+    //   component: () => import('./views/Navigation.vue'),
+    // },
     {
       path: '/repositories',
       name: 'repositories',

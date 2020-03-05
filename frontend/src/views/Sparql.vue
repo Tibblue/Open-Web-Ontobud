@@ -16,13 +16,13 @@
           </v-col>
         </v-row>
 
-        <!-- <v-row dense>
-          <v-col cols="12" md="6">
+        <v-row dense>
+          <v-col cols="12" md="12">
             <v-btn block color="primary" @click="goToDefaultGraph()">
               Default Graph
             </v-btn>
           </v-col>
-        </v-row> -->
+        </v-row>
 
         <v-row dense>
           <v-col cols="12">
@@ -52,14 +52,14 @@
             </v-alert>
           </v-col>
         </v-row>
-
+<!--
         <v-row dense>
           <v-col cols="12" md="6">
             <v-btn block color="primary" @click="goToDefaultGraph()">
               Default Graph
             </v-btn>
           </v-col>
-        </v-row>
+        </v-row> -->
 
         <v-row dense v-if="!this.$session.get('userToken')">
           <v-col cols="12" md="12">
@@ -247,11 +247,11 @@ export default {
     },
     goToDefaultGraph() {
       const uri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-      this.$router.push({path: "sparql/resource", query: { uri: uri, position: "predicate" }})
+      this.$router.push({path: "resource", query: { uri: uri, position: "predicate" }})
     },
     cellClicked(cellInfo) {
       if(cellInfo.type==='uri')
-        this.$router.push({path: "sparql/resource", query: { uri: cellInfo.uri }})
+        this.$router.push({path: "resource", query: { uri: cellInfo.uri }})
     },
     runQuery(query, infer) {
       this.loading.query = true
