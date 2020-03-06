@@ -18,7 +18,7 @@
 
         <v-row dense>
           <v-col cols="12" md="12">
-            <v-btn block color="primary" @click="goToDefaultGraph()">
+            <v-btn block color="success" @click="goToDefaultGraph()">
               Default Graph
             </v-btn>
           </v-col>
@@ -55,7 +55,7 @@
 <!--
         <v-row dense>
           <v-col cols="12" md="6">
-            <v-btn block color="primary" @click="goToDefaultGraph()">
+            <v-btn block color="success" @click="goToDefaultGraph()">
               Default Graph
             </v-btn>
           </v-col>
@@ -122,6 +122,7 @@
               :headers="table.headers"
               :items="tableResults"
               :items-per-page="10"
+              :items-per-page-options="[5,10,25,100,-1]"
               class="elevation-1"
             >
               <template v-slot:item="props">
@@ -159,13 +160,14 @@ export default {
     savedQueries,
   },
   data: () => ({
-    queryInput: "select * where { ?s ?p ?o }\nlimit 20",
+    queryInput: "select * where { ?s ?p ?o }\nlimit 50",
     infer: true,
     table: {
       headers: [],
       items: [],
     },
     defaultNamespace: "",
+    defaultNamespaceForQuery: "",
     namespaces: {},
     namespaceON: true,
     prefixON: true,
@@ -239,15 +241,18 @@ export default {
     getDefaultNamespace(repoID) {
       axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces/ /')
         .then(response => {
-          this.defaultNamespace = "PREFIX : <"+response.data+">\n"
+          this.defaultNamespace = response.data
+          this.defaultNamespaceForQuery = "PREFIX : <"+response.data+">\n"
         })
         .catch(alert => {
           this.defaultNamespace = ""
+          this.defaultNamespaceForQuery = ""
         })
     },
     goToDefaultGraph() {
-      const uri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-      this.$router.push({path: "resource", query: { uri: uri, position: "predicate" }})
+      var query = 'select ?s ?p ?o where {\nvalues ?p { rdf:type }\n?s a ?o.\nFILTER (STRSTARTS(str(?s), "'+this.defaultNamespace+'"))\n}'
+      // console.log(query) // debug
+      this.runQuery(query, true)
     },
     cellClicked(cellInfo) {
       if(cellInfo.type==='uri')
@@ -256,7 +261,7 @@ export default {
     runQuery(query, infer) {
       this.loading.query = true
       const defaultNamespaceExists = /^ *PREFIX : /m.test(query)
-      if(!defaultNamespaceExists) query = this.defaultNamespace + query
+      if(!defaultNamespaceExists) query = this.defaultNamespaceForQuery + query
       var repoID = this.$repo.id
       var url = backend_url+'/api/rdf4j/query/'+repoID
       axios.post(url, qs.stringify({'query': query, 'infer': infer}),
