@@ -3,8 +3,8 @@
     <alerts/>
     <v-row>
       <v-col cols="12" lg="9">
-        <h2>Resource: {{this.$route.query.uri.split('#')[1]}}</h2>
-        <h3>Namespace: {{this.$route.query.uri.split('#')[0]}}</h3>
+        <h2>Resource: {{this.uri.split('#')[1]}}</h2>
+        <h3>Namespace: {{this.uri.split('#')[0]}}</h3>
         <p class="mb-0">{{$route.query.uri}}</p>
       </v-col>
       <v-col cols="12" lg="3">
@@ -154,6 +154,7 @@ export default {
     alerts,
   },
   data: () => ({
+    uri: "",
     inferON: true,
     table: {
       headers: [
@@ -196,9 +197,12 @@ export default {
         break;
     }
     this.getNamespaces(this.$session.get('repoID'))
-    this.getSubjectResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
-    this.getPredicateResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
-    this.getObjectResults(this.$session.get('repoID'), this.$route.query.uri, this.inferON)
+    if(this.$route.query.uri){
+      this.uri = this.$route.query.uri
+      this.getSubjectResults(this.$session.get('repoID'), this.uri, this.inferON)
+      this.getPredicateResults(this.$session.get('repoID'), this.uri, this.inferON)
+      this.getObjectResults(this.$session.get('repoID'), this.uri, this.inferON)
+    }
   },
   computed: {
     $repo: {
@@ -208,15 +212,15 @@ export default {
     resourceTableURI: function() {
       if(this.namespaceON)
         if(this.prefixON){
-          var namespace = this.$route.query.uri.split('#')[0] + '#'
+          var namespace = this.uri.split('#')[0] + '#'
           var prefix = this.namespaces[namespace] || namespace
-          var resource = this.$route.query.uri.split('#')[1] || ''
+          var resource = this.uri.split('#')[1] || ''
           return prefix + resource
         }
         else
-          return this.$route.query.uri
+          return this.uri
       else
-        return this.$route.query.uri.split('#')[1]
+        return this.uri.split('#')[1]
     },
     subjectResults: function() {
       var results = []
@@ -301,9 +305,9 @@ export default {
       }
     },
     updateResults() {
-      this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.getSubjectResults(this.$repo.id, this.uri, this.inferON)
+      this.getPredicateResults(this.$repo.id, this.uri, this.inferON)
+      this.getObjectResults(this.$repo.id, this.uri, this.inferON)
     },
     getSubjectResults(repoID, resource, infer) {
       // this.loading.subject = true
