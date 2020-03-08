@@ -1347,6 +1347,322 @@
           }
         }
       }
+    },
+    "/queries": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Saved Queries list",
+        "description": "Returns a JSON list with all the saved queries.",
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SavedQuery"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Create a new Saved Query",
+        "requestBody": {
+          "description": "Saved Query details.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/SavedQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "default": {
+            "description": "TODO (already exists a query with same name from same user)"
+          }
+        }
+      }
+    },
+    "/queries/user/{email}": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Get saved queries from a user",
+        "description": "Given a User email, returns its saved queries",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "User email",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful. (or user doesnt exist and returns empty object...)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SavedQuery"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/queries/user/{email}/global": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Get global saved queries from a user",
+        "description": "Given a User email, returns its global (not associated to any specific repository) saved queries",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "User email",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful. (or user doesnt exist and returns empty object...)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SavedQuery"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/queries/user/{email}/{repository}": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Get saved queries from a user and repository",
+        "description": "Given a User email and Repository ID, returns its saved queries",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "User email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "required": true,
+            "name": "repository",
+            "description": "Repository ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful. (or user doesnt exist and returns empty object...)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SavedQuery"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/queries/{name}": {
+      "get": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Get a saved query by name.",
+        "description": "Given a Query Name, returns it.",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "name",
+            "description": "Query name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful. (or user doesnt exist and returns empty object...)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedQuery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/queries/{email}/{name}": {
+      "put": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Change a Saved Query query value",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "User email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "required": true,
+            "name": "name",
+            "description": "Query name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Saved Query details.",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful. (or user/name doesnt exist and returns empty object...)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedQuery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Mongo"
+        ],
+        "summary": "Delete Saved Query",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "email",
+            "description": "User email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "required": true,
+            "name": "name",
+            "description": "Query name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Saved Query deleted with success. (or user/name doesnt exist and returns empty object)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedQuery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1360,13 +1676,16 @@
     "schemas": {
       "User": {
         "required": [
+          "_id",
           "name",
           "email",
-          "password"
+          "password",
+          "__v"
         ],
         "properties": {
           "_id": {
             "type": "string",
+            "uniqueItems": true,
             "example": "5da988f5204a53011f3b3e49"
           },
           "name": {
@@ -1388,6 +1707,41 @@
           }
         }
       },
+      "SavedQuery": {
+        "required": [
+          "_id",
+          "user_email",
+          "name",
+          "query",
+          "__v"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true,
+            "example": "5da988f5204a53011f3b3e49"
+          },
+          "user_email": {
+            "type": "string",
+            "uniqueItems": true,
+            "example": "test@email"
+          },
+          "name": {
+            "type": "string",
+            "uniqueItems": true,
+            "example": "QueryExample"
+          },
+          "query": {
+            "type": "string",
+            "example": "select * where { ?s ?p ?o } limit 100"
+          },
+          "repoID": {
+            "type": "string",
+            "description": "Contains the repoID of the repository associated with this query. Doesnt exist if the query is global (not associated to a specific repository)",
+            "example": "repo"
+          }
+        }
+      },
       "Repository": {
         "required": [
           "id",
@@ -1403,29 +1757,6 @@
             "type": "string"
           },
           "owner_email": {
-            "type": "string"
-          }
-        }
-      },
-      "SavedQuery": {
-        "required": [
-          "user_email",
-          "name",
-          "query"
-        ],
-        "properties": {
-          "user_email": {
-            "type": "string",
-            "uniqueItems": true
-          },
-          "name": {
-            "type": "string",
-            "uniqueItems": true
-          },
-          "query": {
-            "type": "string"
-          },
-          "repoID": {
             "type": "string"
           }
         }
