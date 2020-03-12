@@ -275,7 +275,7 @@ export default {
           // process results
           this.table.headers = []
           columnsVars.forEach(element => {
-            this.table.headers.push({'text': element, 'value': element})
+            this.table.headers.push({'text': element, 'value': element, sortable: true})
           });
           this.table.items = []
           resultsData.forEach(element => {

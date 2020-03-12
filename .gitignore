@@ -1,6 +1,6 @@
 # ignore RDF4J and Apache programs
-rdf4j/programs/apache-tomcat-9.0.22
-rdf4j/programs/eclipse-rdf4j-2.5.3
+rdf4j/programs/apache-tomcat-*
+rdf4j/programs/eclipse-rdf4j-*
 
 # Backend ignores
 backend/sessions/
