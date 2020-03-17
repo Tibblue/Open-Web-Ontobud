@@ -17,7 +17,4 @@ backend/views/
 
 # temporary ignores
 rdf4j/edgar_wisdom.txt
-rdf4j/links.txt
 rdf4j/rdf_save_state/
-testing/
-backend/auth/oldKeys/
