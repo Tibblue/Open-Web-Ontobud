@@ -15,11 +15,9 @@ var rdf4jServer = 'http://'+rdf4j+'/rdf4j-server/'
 var rdf4jWorkbench = 'http://'+rdf4j+'/rdf4j-workbench/'
 
 
-router.get('/help', function (req, res) {
-  // res.send("hello")
-  // res.send(urls.mongo + urls.rdf4j)
-  res.send(rdf4j)
-});
+// router.get('/help', function (req, res) {
+//   res.send("hello")
+// });
 
 //// List Repos ////
 // get repo list
@@ -36,20 +34,87 @@ router.get('/listRepos', function (req, res) {
 
 
 //// Create ////
-// create repository (params inside a form in x-www-form-urlencoded)
-router.post('/create', function (req, res) {
-  const url = rdf4jWorkbench + 'repositories/NONE/create'
-  const body = qs.stringify(req.body)
-  const config = {
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": 'application/x-www-form-urlencoded'
-    }
+// create repository
+// params received inside a form in x-www-form-urlencoded
+// information sent in text/turtle syntax inside body
+router.put('/create', function (req, res) {
+  const reqBody = req.body
+  const repoID = reqBody["Repository ID"] || "nonamerepo"
+  const repoTitle = reqBody["Repository Title"] || "nonamerepo"
+  var type = "NativeStore" // default value
+  var repInference = "" // default disabled
+  const persist = reqBody["Persist"] || "true" // hardcode
+  // const syncDelay = reqBody["Sync Delay"] // FIXME: consider enable
+  var middleNodes = 0 // aux value
+
+  // repo type detection
+  switch (reqBody["type"]) {
+    case "memory":
+    case "memory-rdfs-dt":
+      type = "MemoryStore"
+      break;
+    case "native":
+    case "native-rdfs-dt":
+      type = "NativeStore"
+      break;
+    default:
+      break;
   }
-  axios.post(url, body, config)
-    .then(response => res.jsonp(response.data.results.bindings))
-    .catch( () => res.status(400).send());
+
+  // inference type detection
+  switch (reqBody["type"]) {
+    case "memory":
+    case "native":
+      // do nothing. use default "NativeStore"
+      break;
+    case "memory-rdfs-dt":
+    case "native-rdfs-dt":
+      middleNodes += 2
+      repInference = `
+_:node2 sail:delegate _:node3.
+_:node3 sail:delegate _:node4.
+
+_:node3 sail:sailType "rdf4j:SchemaCachingRDFSInferencer".
+_:node2 sail:sailType "openrdf:DirectTypeHierarchyInferencer".
+`
+      break;
+    default:
+      break;
+  }
+
+  var prefix = `@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rep: <http://www.openrdf.org/config/repository#>.
+@prefix sr: <http://www.openrdf.org/config/repository/sail#>.
+@prefix sail: <http://www.openrdf.org/config/sail#>.
+@prefix sb: <http://www.openrdf.org/config/sail/base#>.
+@prefix ms: <http://www.openrdf.org/config/sail/memory#>.
+`
+  var repConfig = `
+<http://localhost:8080/rdf4j-server/repositories/`+ repoID + `/config#` + repoID + `> a rep:Repository;
+  rep:repositoryID "`+ repoID + `";
+  rdfs:label "`+ repoTitle + `";
+  rep:repositoryImpl _:node1.
+
+_:node1 rep:repositoryType "openrdf:SailRepository";
+  sr:sailImpl _:node2.
+
+_:node`+ (2 + middleNodes) + ` sail:sailType "openrdf:` + type + `";
+  sb:evaluationStrategyFactory "org.eclipse.rdf4j.query.algebra.evaluation.impl.StrictEvaluationStrategyFactory";
+  ms:persist `+ persist + `.
+`
+  // FIXME: aparentemente repositorios COM inferencia, nao guardam o valor de persistencia. simplesmente desaparece
+  const url = rdf4jServer + 'repositories/' + repoID
+  const body = prefix + repConfig + repInference
+  // console.log(body)
+  const config = { headers: { "Content-Type": 'text/turtle' } }
+  axios.put(url, body, config)
+    .then(response => res.send())
+    .catch(error => {
+      // console.log(error.response.data)
+      res.status(400).send(error.response.data)
+    });
 });
+
 
 
 //// Delete ////
@@ -58,8 +123,8 @@ router.delete('/delete/:repo', function (req, res) {
   const repo = req.params.repo
   const url = rdf4jServer + 'repositories/' + repo
   axios.delete(url)
-    .then( () => res.status(200).send())
-    .catch( () => res.status(400).send());
+    .then(response => res.status(200).send())
+    .catch(error => res.status(error.response.status).send(error.response.data));
 });
 
 // delete all statements from repository
@@ -67,9 +132,10 @@ router.delete('/delete/:repo/statements', function (req, res) {
   const repo = req.params.repo
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
   axios.delete(url)
-    .then( () => res.status(200).send())
-    .catch( () => res.status(400).send());
+    .then(response => res.status(200).send())
+    .catch(error => res.status(error.response.status).send(error.response.data));
 });
+
 
 
 //// Import ////
