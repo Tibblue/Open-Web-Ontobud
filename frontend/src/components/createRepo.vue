@@ -50,12 +50,12 @@ export default {
   data: () => ({
     newRepoID: "",
     newRepoName: "",
-    repoTypeSelected: 'memory-rdfs-dt',
+    repoTypeSelected: 'native',
     repoTypes: [ // TODO: add more
-      { text: 'Memory Store', value: 'memory' },
-      { text: 'Memory Store + RDFS and Direct Type Reasoning', value: 'memory-rdfs-dt' },
       { text: 'Hard Drive Store', value: 'native' },
       { text: 'Hard Drive Store + RDFS and Direct Type Reasoning', value: 'native-rdfs-dt' },
+      { text: 'Memory Store', value: 'memory' },
+      { text: 'Memory Store + RDFS and Direct Type Reasoning', value: 'memory-rdfs-dt' },
     ],
     loading: {
       createRepo: false,
@@ -91,8 +91,8 @@ export default {
             var form = {}
             form['type'] = repoType
             form['Repository ID'] = repoID
-            form['Repository title'] = repoName
-            axios.post(backend_url+'/api/rdf4j/management/create', qs.stringify(form),
+            form['Repository Title'] = repoName
+            axios.put(backend_url+'/api/rdf4j/management/create', qs.stringify(form),
               {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
             )
               .then(response => {
