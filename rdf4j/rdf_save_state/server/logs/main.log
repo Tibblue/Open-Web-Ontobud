@@ -1,17 +1,47 @@
-[INFO ] 2020-03-17 18:53:30,255 [main] Logback logging API implementation is configured.
-[INFO ] 2020-03-17 18:53:34,367 [main] Completed initialization in 5884 ms
-[INFO ] 2020-03-17 19:09:54,591 [http-nio-8080-exec-1] Request for query 3392903 is finished
-[INFO ] 2020-03-17 19:10:24,495 [repositories/batata] PUT request invoked for repository 'batata'
-[INFO ] 2020-03-17 19:10:24,602 [repositories/batata] Client sent bad request ( 409)
-org.eclipse.rdf4j.http.server.ClientHTTPException: REPOSITORY EXISTS: repository already exists: batata
-	at org.eclipse.rdf4j.http.server.repository.RepositoryController.handleRequestInternal(RepositoryController.java:161)
+[INFO ] 2020-03-18 17:26:34,747 [main] Logback logging API implementation is configured.
+[INFO ] 2020-03-18 17:26:38,683 [main] Completed initialization in 5818 ms
+[INFO ] 2020-03-18 17:50:58,680 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:51:07,670 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 17:51:07,670 [repositories/animePRC] POST query -9669974
+[INFO ] 2020-03-18 17:51:07,670 [repositories/animePRC] POST query -940484095
+[INFO ] 2020-03-18 17:51:07,783 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:51:08,671 [repositories/animePRC] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:51:09,379 [repositories/animePRC] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:53:17,066 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:53:17,612 [repositories/fam] GET namespace list
+[INFO ] 2020-03-18 17:53:17,616 [repositories/fam] POST query -9669974
+[INFO ] 2020-03-18 17:53:17,618 [repositories/fam] POST query -940484095
+[INFO ] 2020-03-18 17:53:17,622 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:53:17,866 [repositories/fam] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:53:17,980 [repositories/fam] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:53:21,196 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:53:21,526 [repositories/fam3] POST query -9669974
+[INFO ] 2020-03-18 17:53:21,529 [repositories/fam3] POST query -940484095
+[INFO ] 2020-03-18 17:53:21,529 [repositories/fam3] GET namespace list
+[INFO ] 2020-03-18 17:53:21,535 [repositories/fam3] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:53:21,547 [repositories/fam3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:53:21,549 [repositories/fam3] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:54:46,099 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:54:46,262 [repositories/ola] POST query -940484095
+[INFO ] 2020-03-18 17:54:46,274 [repositories/ola] GET namespace list
+[INFO ] 2020-03-18 17:54:46,283 [repositories/ola] POST query -9669974
+[INFO ] 2020-03-18 17:54:46,286 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:54:46,289 [repositories/ola] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:54:46,291 [repositories/ola] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:54:52,747 [repositories/ola] GET namespace for prefix 
+[INFO ] 2020-03-18 17:54:52,747 [repositories/ola] GET namespace list
+[INFO ] 2020-03-18 17:54:52,750 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:54:52,852 [repositories/ola] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Undefined prefix: 
+	at org.eclipse.rdf4j.http.server.repository.namespaces.NamespaceController.getExportNamespaceResult(NamespaceController.java:85)
+	at org.eclipse.rdf4j.http.server.repository.namespaces.NamespaceController.handleRequestInternal(NamespaceController.java:65)
 	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:177)
 	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:52)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:663)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -43,9 +73,104 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: REPOSITORY EXISTS: repository
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2020-03-17 19:10:29,510 [repositories/batata] DELETE request invoked for repository 'batata'
-[INFO ] 2020-03-17 19:10:29,566 [repositories/batata] DELETE request successfully completed
-[INFO ] 2020-03-17 19:10:40,307 [repositories/batata] Client sent bad request ( 404)
+[INFO ] 2020-03-18 17:54:56,440 [repositories/ola] POST query -9669974
+[INFO ] 2020-03-18 17:54:56,443 [repositories/ola] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:54:56,444 [repositories/ola] POST query -940484095
+[INFO ] 2020-03-18 17:54:56,445 [repositories/ola] GET namespace list
+[INFO ] 2020-03-18 17:54:56,448 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:54:56,453 [repositories/ola] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:54:57,372 [repositories/ola] GET namespace list
+[INFO ] 2020-03-18 17:54:57,373 [repositories/ola] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:54:57,375 [repositories/ola] GET namespace for prefix 
+[INFO ] 2020-03-18 17:54:57,376 [repositories/ola] Client sent bad request ( 404)
+org.eclipse.rdf4j.http.server.ClientHTTPException: Undefined prefix: 
+	at org.eclipse.rdf4j.http.server.repository.namespaces.NamespaceController.getExportNamespaceResult(NamespaceController.java:85)
+	at org.eclipse.rdf4j.http.server.repository.namespaces.NamespaceController.handleRequestInternal(NamespaceController.java:65)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:177)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352)
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.github.ziplet.filter.compression.CompressingFilter.doFilter(CompressingFilter.java:300)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO ] 2020-03-18 17:55:07,110 [repositories/ola] DELETE request invoked for repository 'ola'
+[INFO ] 2020-03-18 17:55:07,168 [repositories/ola] DELETE request successfully completed
+[INFO ] 2020-03-18 17:55:08,356 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:12,799 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:18,351 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 17:55:18,351 [repositories/qwe] POST query -940484095
+[INFO ] 2020-03-18 17:55:18,351 [repositories/qwe] POST query -9669974
+[INFO ] 2020-03-18 17:55:18,356 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:18,359 [repositories/qwe] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:55:18,728 [repositories/qwe] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:55:21,967 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:22,129 [repositories/animePRC] POST query -9669974
+[INFO ] 2020-03-18 17:55:22,130 [repositories/animePRC] POST query -940484095
+[INFO ] 2020-03-18 17:55:22,133 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 17:55:22,133 [repositories/animePRC] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:55:22,139 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:22,458 [repositories/animePRC] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:55:27,394 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:27,557 [repositories/qwe] POST query -9669974
+[INFO ] 2020-03-18 17:55:27,563 [repositories/qwe] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:55:27,564 [repositories/qwe] POST query -940484095
+[INFO ] 2020-03-18 17:55:27,567 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 17:55:27,569 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:27,668 [repositories/qwe] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:55:32,506 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:33,850 [repositories/test] GET namespace list
+[INFO ] 2020-03-18 17:55:33,851 [repositories/test] POST query -9669974
+[INFO ] 2020-03-18 17:55:33,850 [repositories/test] POST query -940484095
+[INFO ] 2020-03-18 17:55:33,856 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:33,858 [repositories/test] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:55:33,917 [repositories/test] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:55:37,620 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:37,768 [repositories/qwe] POST query -940484095
+[INFO ] 2020-03-18 17:55:37,768 [repositories/qwe] POST query -9669974
+[INFO ] 2020-03-18 17:55:37,770 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 17:55:37,771 [repositories/qwe] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:55:37,772 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:37,861 [repositories/qwe] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:55:42,262 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:42,426 [repositories/test] POST query -9669974
+[INFO ] 2020-03-18 17:55:42,428 [repositories/test] GET namespace list
+[INFO ] 2020-03-18 17:55:42,428 [repositories/test] POST query -940484095
+[INFO ] 2020-03-18 17:55:42,431 [repositories/test] Request for query -9669974 is finished
+[INFO ] 2020-03-18 17:55:42,432 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2020-03-18 17:55:42,506 [repositories/test] Request for query -940484095 is finished
+[INFO ] 2020-03-18 17:57:56,344 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:00:40,456 [repositories/batata] Client sent bad request ( 404)
 org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: batata
 	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor.setRequestAttributes(RepositoryInterceptor.java:107)
 	at org.eclipse.rdf4j.http.server.ServerInterceptor.preHandle(ServerInterceptor.java:32)
@@ -60,13 +185,13 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: batata
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
-	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$39ae2599.preHandle(<generated>)
+	at org.eclipse.rdf4j.http.server.repository.RepositoryInterceptor$$EnhancerBySpringCGLIB$$5afdd30e.preHandle(<generated>)
 	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:141)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1035)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:931)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:666)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
@@ -98,6 +223,237 @@ org.eclipse.rdf4j.http.server.ClientHTTPException: Unknown repository: batata
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-[INFO ] 2020-03-17 20:06:01,217 [repositories/batata] PUT request invoked for repository 'batata'
-[INFO ] 2020-03-17 20:06:10,973 [repositories/batata] DELETE request invoked for repository 'batata'
-[INFO ] 2020-03-17 20:06:10,988 [repositories/batata] DELETE request successfully completed
+[INFO ] 2020-03-18 18:01:21,170 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:01:21,576 [repositories/testing2] GET namespace list
+[INFO ] 2020-03-18 18:01:21,576 [repositories/testing2] POST query -940484095
+[INFO ] 2020-03-18 18:01:21,577 [repositories/testing2] POST query -9669974
+[INFO ] 2020-03-18 18:01:21,585 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:01:21,601 [repositories/testing2] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:01:21,607 [repositories/testing2] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:01:27,698 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:01:27,904 [repositories/fam3] POST query -9669974
+[INFO ] 2020-03-18 18:01:27,909 [repositories/fam3] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:01:27,910 [repositories/fam3] GET namespace list
+[INFO ] 2020-03-18 18:01:27,910 [repositories/fam3] POST query -940484095
+[INFO ] 2020-03-18 18:01:27,913 [repositories/fam3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:01:27,924 [repositories/fam3] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:01:50,992 [repositories/fam3] DELETE request invoked for repository 'fam3'
+[INFO ] 2020-03-18 18:01:51,004 [repositories/fam3] DELETE request successfully completed
+[INFO ] 2020-03-18 18:01:51,866 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:01:55,419 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:01:59,354 [repositories/fam] DELETE request invoked for repository 'fam'
+[INFO ] 2020-03-18 18:01:59,361 [repositories/fam] DELETE request successfully completed
+[INFO ] 2020-03-18 18:02:00,012 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:02:52,215 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:05:15,443 [repositories/batata] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:05:45,515 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:05:45,569 [repositories/fam] PUT request invoked for repository 'fam'
+[INFO ] 2020-03-18 18:05:47,715 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:06:21,857 [repositories/fam] DELETE request invoked for repository 'fam'
+[INFO ] 2020-03-18 18:06:21,891 [repositories/fam] DELETE request successfully completed
+[INFO ] 2020-03-18 18:06:24,603 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:06:31,454 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:06:31,483 [repositories/fam] PUT request invoked for repository 'fam'
+[INFO ] 2020-03-18 18:06:33,067 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:08:18,574 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:08:18,611 [repositories/fam+infer] PUT request invoked for repository 'fam+infer'
+[INFO ] 2020-03-18 18:08:20,300 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:14:54,355 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:14:56,529 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:14:57,952 [repositories/fam] POST query -940484095
+[INFO ] 2020-03-18 18:14:57,952 [repositories/fam] POST query -9669974
+[INFO ] 2020-03-18 18:14:57,953 [repositories/fam] GET namespace list
+[INFO ] 2020-03-18 18:14:58,011 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:14:58,031 [repositories/fam] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:14:58,032 [repositories/fam] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:15:00,890 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:01,383 [repositories/fam+infer] GET namespace list
+[INFO ] 2020-03-18 18:15:01,383 [repositories/fam+infer] POST query -940484095
+[INFO ] 2020-03-18 18:15:01,383 [repositories/fam+infer] POST query -9669974
+[INFO ] 2020-03-18 18:15:01,385 [repositories/fam+infer] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:01,389 [repositories/fam+infer] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:15:01,398 [repositories/fam+infer] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:15:07,227 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:07,391 [repositories/fam] POST query -9669974
+[INFO ] 2020-03-18 18:15:07,392 [repositories/fam] POST query -940484095
+[INFO ] 2020-03-18 18:15:07,391 [repositories/fam] GET namespace list
+[INFO ] 2020-03-18 18:15:07,399 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:07,403 [repositories/fam] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:15:07,405 [repositories/fam] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:15:16,861 [repositories/fam] POST data to repository
+[INFO ] 2020-03-18 18:15:16,862 [repositories/fam] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2020-03-18 18:15:22,350 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:28,670 [repositories/fam+infer] POST data to repository
+[INFO ] 2020-03-18 18:15:28,670 [repositories/fam+infer] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2020-03-18 18:15:32,073 [repositories/fam+infer] POST query -9669974
+[INFO ] 2020-03-18 18:15:32,073 [repositories/fam+infer] GET namespace list
+[INFO ] 2020-03-18 18:15:32,073 [repositories/fam+infer] POST query -940484095
+[INFO ] 2020-03-18 18:15:32,083 [repositories/fam+infer] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:15:32,089 [repositories/fam+infer] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:15:32,174 [repositories/fam+infer] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:36,192 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:36,326 [repositories/fam] POST query -9669974
+[INFO ] 2020-03-18 18:15:36,326 [repositories/fam] POST query -940484095
+[INFO ] 2020-03-18 18:15:36,328 [repositories/fam] GET namespace list
+[INFO ] 2020-03-18 18:15:36,329 [repositories/fam] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:15:36,329 [repositories/fam] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:15:36,331 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:47,194 [http-nio-8080-exec-8] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:47,361 [repositories/test] POST query -9669974
+[INFO ] 2020-03-18 18:15:47,364 [repositories/test] POST query -940484095
+[INFO ] 2020-03-18 18:15:47,364 [repositories/test] GET namespace list
+[INFO ] 2020-03-18 18:15:47,369 [repositories/test] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:15:47,370 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:48,777 [repositories/test] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:15:53,980 [http-nio-8080-exec-10] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:54,187 [repositories/qwe] POST query -9669974
+[INFO ] 2020-03-18 18:15:54,192 [repositories/qwe] POST query -940484095
+[INFO ] 2020-03-18 18:15:54,193 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 18:15:54,199 [repositories/qwe] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:15:54,200 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:15:54,603 [repositories/qwe] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:16:08,537 [repositories/qwe] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:08,537 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 18:16:08,540 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:11,163 [repositories/qwe] POST query -9669974
+[INFO ] 2020-03-18 18:16:11,165 [repositories/qwe] POST query -940484095
+[INFO ] 2020-03-18 18:16:11,166 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 18:16:11,168 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:11,169 [repositories/qwe] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:16:11,438 [repositories/qwe] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:16:12,735 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 18:16:12,736 [repositories/qwe] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:12,736 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:16,050 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:16,418 [repositories/test] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:16,419 [repositories/test] GET namespace list
+[INFO ] 2020-03-18 18:16:16,421 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:17,517 [repositories/test] POST query -9669974
+[INFO ] 2020-03-18 18:16:17,519 [repositories/test] POST query -940484095
+[INFO ] 2020-03-18 18:16:17,521 [repositories/test] GET namespace list
+[INFO ] 2020-03-18 18:16:17,521 [repositories/test] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:16:17,523 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:17,803 [repositories/test] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:16:18,296 [repositories/test] GET namespace list
+[INFO ] 2020-03-18 18:16:18,296 [repositories/test] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:18,298 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:34,658 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:35,071 [repositories/testing2] GET namespace list
+[INFO ] 2020-03-18 18:16:35,072 [repositories/testing2] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:35,076 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:36,114 [repositories/testing2] POST query -9669974
+[INFO ] 2020-03-18 18:16:36,116 [repositories/testing2] POST query -940484095
+[INFO ] 2020-03-18 18:16:36,116 [repositories/testing2] GET namespace list
+[INFO ] 2020-03-18 18:16:36,121 [repositories/testing2] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:16:36,123 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:36,125 [repositories/testing2] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:16:37,059 [repositories/testing2] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:37,059 [repositories/testing2] GET namespace list
+[INFO ] 2020-03-18 18:16:37,061 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:39,340 [http-nio-8080-exec-1] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:39,850 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 18:16:39,850 [repositories/animePRC] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:39,861 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:41,499 [repositories/animePRC] POST query -9669974
+[INFO ] 2020-03-18 18:16:41,501 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 18:16:41,503 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:41,504 [repositories/animePRC] POST query -940484095
+[INFO ] 2020-03-18 18:16:41,514 [repositories/animePRC] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:16:41,845 [repositories/animePRC] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:16:42,324 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 18:16:42,324 [repositories/animePRC] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:42,326 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:47,604 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:47,979 [repositories/fam] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:47,981 [repositories/fam] GET namespace list
+[INFO ] 2020-03-18 18:16:47,982 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:49,810 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:16:50,185 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 18:16:50,185 [repositories/animePRC] GET namespace for prefix 
+[INFO ] 2020-03-18 18:16:50,188 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:06,358 [repositories/animePRC] POST query -9669974
+[INFO ] 2020-03-18 18:17:06,365 [repositories/animePRC] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:17:06,371 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 18:17:06,371 [repositories/animePRC] POST query -940484095
+[INFO ] 2020-03-18 18:17:06,373 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:06,884 [repositories/animePRC] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:17:09,237 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:09,392 [repositories/fam] POST query -9669974
+[INFO ] 2020-03-18 18:17:09,394 [repositories/fam] GET namespace list
+[INFO ] 2020-03-18 18:17:09,394 [repositories/fam] POST query -940484095
+[INFO ] 2020-03-18 18:17:09,396 [repositories/fam] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:09,400 [repositories/fam] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:17:09,401 [repositories/fam] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:17:13,654 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:13,827 [repositories/animePRC] POST query -9669974
+[INFO ] 2020-03-18 18:17:13,832 [repositories/animePRC] POST query -940484095
+[INFO ] 2020-03-18 18:17:13,833 [repositories/animePRC] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:17:13,839 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 18:17:13,840 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:14,059 [repositories/animePRC] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:17:19,737 [repositories/animePRC] GET namespace list
+[INFO ] 2020-03-18 18:17:19,737 [repositories/animePRC] GET namespace for prefix 
+[INFO ] 2020-03-18 18:17:19,740 [repositories/animePRC] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:32,222 [http-nio-8080-exec-4] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:32,608 [repositories/testing2] GET namespace for prefix 
+[INFO ] 2020-03-18 18:17:32,608 [repositories/testing2] GET namespace list
+[INFO ] 2020-03-18 18:17:32,610 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:33,295 [repositories/testing2] POST query -9669974
+[INFO ] 2020-03-18 18:17:33,295 [repositories/testing2] POST query -940484095
+[INFO ] 2020-03-18 18:17:33,296 [repositories/testing2] GET namespace list
+[INFO ] 2020-03-18 18:17:33,297 [repositories/testing2] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:17:33,298 [repositories/testing2] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:17:33,299 [repositories/testing2] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:20:35,297 [repositories/testing2] DELETE request invoked for repository 'testing2'
+[INFO ] 2020-03-18 18:20:35,311 [repositories/testing2] DELETE request successfully completed
+[INFO ] 2020-03-18 18:20:36,649 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:20:45,836 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:20:47,150 [repositories/test] POST query -9669974
+[INFO ] 2020-03-18 18:20:47,157 [repositories/test] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:20:47,158 [repositories/test] POST query -940484095
+[INFO ] 2020-03-18 18:20:47,168 [repositories/test] GET namespace list
+[INFO ] 2020-03-18 18:20:47,177 [repositories/test] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:20:47,278 [repositories/test] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:21:59,627 [http-nio-8080-exec-6] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:21:59,653 [repositories/anime] PUT request invoked for repository 'anime'
+[INFO ] 2020-03-18 18:22:00,796 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:22:10,151 [repositories/test] DELETE request invoked for repository 'test'
+[INFO ] 2020-03-18 18:22:10,165 [repositories/test] DELETE request successfully completed
+[INFO ] 2020-03-18 18:22:11,222 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:40:36,787 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:40:38,228 [repositories/qwe] GET namespace list
+[INFO ] 2020-03-18 18:40:38,229 [repositories/qwe] POST query -9669974
+[INFO ] 2020-03-18 18:40:38,235 [repositories/qwe] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:40:38,248 [repositories/qwe] POST query -940484095
+[INFO ] 2020-03-18 18:40:38,304 [repositories/qwe] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:40:38,438 [repositories/qwe] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:40:59,576 [repositories/qwe] DELETE request invoked for repository 'qwe'
+[INFO ] 2020-03-18 18:40:59,592 [repositories/qwe] DELETE request successfully completed
+[INFO ] 2020-03-18 18:41:01,128 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:41:33,175 [http-nio-8080-exec-3] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:41:33,206 [repositories/anime+infer] PUT request invoked for repository 'anime+infer'
+[INFO ] 2020-03-18 18:41:34,522 [http-nio-8080-exec-7] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:41:39,191 [http-nio-8080-exec-9] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:41:47,265 [repositories/anime+infer] POST data to repository
+[INFO ] 2020-03-18 18:41:47,265 [repositories/anime+infer] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2020-03-18 18:43:31,914 [repositories/anime+infer] GET namespace list
+[INFO ] 2020-03-18 18:43:31,915 [repositories/anime+infer] POST query -940484095
+[INFO ] 2020-03-18 18:43:31,915 [repositories/anime+infer] POST query -9669974
+[INFO ] 2020-03-18 18:43:31,920 [repositories/anime+infer] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:43:31,936 [repositories/anime+infer] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:43:35,000 [repositories/anime+infer] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:43:41,933 [http-nio-8080-exec-5] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:43:42,268 [repositories/anime] GET namespace list
+[INFO ] 2020-03-18 18:43:42,268 [repositories/anime] POST query -9669974
+[INFO ] 2020-03-18 18:43:42,268 [repositories/anime] POST query -940484095
+[INFO ] 2020-03-18 18:43:42,273 [repositories/anime] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:43:42,275 [repositories/anime] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:43:42,281 [repositories/anime] Request for query -940484095 is finished
+[INFO ] 2020-03-18 18:43:51,361 [repositories/anime] POST data to repository
+[INFO ] 2020-03-18 18:43:51,361 [repositories/anime] no base URI specified, using dummy 'foo:bar'
+[INFO ] 2020-03-18 18:44:01,407 [repositories/anime] POST query -9669974
+[INFO ] 2020-03-18 18:44:01,411 [repositories/anime] Request for query -9669974 is finished
+[INFO ] 2020-03-18 18:44:01,420 [repositories/anime] POST query -940484095
+[INFO ] 2020-03-18 18:44:01,421 [repositories/anime] GET namespace list
+[INFO ] 2020-03-18 18:44:01,423 [repositories/anime] Request for query 3392903 is finished
+[INFO ] 2020-03-18 18:44:04,444 [repositories/anime] Request for query -940484095 is finished
