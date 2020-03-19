@@ -192,19 +192,77 @@ paths:
                           type: string
                         value:
                           type: boolean
+            text/csv:
+              schema:
+                type: string
         '400':
-          description: Bad request
+          description: Bad request.
+        '406':
+          description: Invalid accept type.
+  "/rdf4j/management/repoInfo/{repository}":
+    get:
+      tags:
+      - RDF4J
+      summary: Repository configuration
+      # description: Repository configuration
+      parameters:
+      - in: path
+        required: true
+        name: repository
+        description: Target Repository
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request success
+          content:
+            text/turtle:
+              schema:
+                type: string
+            application/x-turtle:
+              schema:
+                type: string
+            application/rdf+xml:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+            text/rdf+n3:
+              schema:
+                type: string
+            text/x-nquads:
+              schema:
+                type: string
+            application/ld+json:
+              schema:
+                type: string
+            application/rdf+json:
+              schema:
+                type: string
+            application/trix:
+              schema:
+                type: string
+            application/x-trig:
+              schema:
+                type: string
+            application/x-binary-rdf:
+              schema:
+                type: string
+        '400':
+          description: Bad request.
+        '404':
+          description: Unknown Repository. Repository does not exist.
+        '406':
+          description: Invalid accept type.
   "/rdf4j/management/create":
-    post:
+    put:
       tags:
       - RDF4J
       summary: Create a new Repository
-      description: |
-        Create a new Repository.
-        Creating a repository with a Repository ID that already exists will overwrite the old one,
-        likely resulting is data loss.
+      # description: Create a new Repository.
       requestBody:
-        description: Login credentials.
+        description: Configuration values.
         required: true
         content:
           application/x-www-form-urlencoded:
@@ -213,31 +271,72 @@ paths:
               properties:
                 type:
                   type: string
-                  enum: ["memory", "memory-rdfs-dt", "native", "native-rdfs-dt"]
-                  default: memory
+                  enum: ["native", "native-rdfs-dt", "memory", "memory-rdfs-dt"]
+                  default: native
                 Repository ID:
                   type: string
-                Repository title:
+                Repository Title:
                   type: string
-                # Persist:
-                #   type: string
+                Persist:
+                  type: boolean
+                  default: true
                 # Sync Delay:
-                #   type: string
-              # required:
-              #   - type
-              #   - Repository ID
-              #   - Repository title
-              example:
-                type: "memory-rdfs-dt"
-                Repository ID: "test"
-                Repository title: "test"
+                #   type: number
+              required:
+                - type
+                - Repository ID
+                - Repository Title
       responses:
         '200':
-          description: Create success
+          description: Create success.
         '400':
-          description: Bad request
-        default:
-          description: TODO (already existing repo ID)
+          description: Bad request.
+        '409':
+          description: Repository already exists.
+        '500':
+          description: Internal Error. Likely configuration error. Possibly bad configuration values.
+  "/rdf4j/management/update":
+    post:
+      tags:
+      - RDF4J
+      deprecated: true
+      summary: Update existing Repository
+      # description: Update existing Repository.
+      requestBody:
+        description: |
+          New configuration values. Only 'Repository ID' cannot be changed. Any other given
+          configuration will replace the previous. **NOTE** if the new configuration is not
+          compatible with the previous **information can be lost**.
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: ["native", "native-rdfs-dt", "memory", "memory-rdfs-dt"]
+                  default: native
+                Repository ID:
+                  type: string
+                Repository Title:
+                  type: string
+                Persist:
+                  type: boolean
+                  default: true
+                # Sync Delay:
+                #   type: number
+              required:
+                - Repository ID
+      responses:
+        '200':
+          description: Create success.
+        '400':
+          description: Bad request.
+        '404':
+          description: Unknown Repository. Repository does not exist.
+        '500':
+          description: Internal Error. Likely configuration error. Possibly bad configuration values.
   "/rdf4j/management/delete/{repository}":
     delete:
       tags:
@@ -251,12 +350,13 @@ paths:
         description: Target Repository
         schema:
           type: string
-          example: "test"
       responses:
         '200':
-          description: Delete success
+          description: Delete success.
         '400':
-          description: Bad request (or the repository does not exist)
+          description: Bad request.
+        '404':
+          description: Unknown Repository. Repository does not exist.
   "/rdf4j/management/delete/{repository}/statements":
     delete:
       tags:
@@ -270,12 +370,13 @@ paths:
         description: Target Repository
         schema:
           type: string
-          example: "test"
       responses:
         '200':
-          description: Clear success
+          description: Clear success.
         '400':
-          description: Bad request (or the repository does not exist)
+          description: Bad request.
+        '404':
+          description: Unknown Repository. Repository does not exist.
   "/rdf4j/management/importFile/{repository}":
     post:
       tags:
@@ -467,47 +568,36 @@ paths:
           text/turtle:
             schema:
               type: string
-              format: binary
           application/x-turtle:
             schema:
               type: string
-              format: binary
           application/rdf+xml:
             schema:
               type: string
-              format: binary
           text/plain:
             schema:
               type: string
-              format: binary
           text/rdf+n3:
             schema:
               type: string
-              format: binary
           text/x-nquads:
             schema:
               type: string
-              format: binary
           application/ld+json:
             schema:
               type: string
-              format: binary
           application/rdf+json:
             schema:
               type: string
-              format: binary
           application/trix:
             schema:
               type: string
-              format: binary
           application/x-trig:
             schema:
               type: string
-              format: binary
           application/x-binary-rdf:
             schema:
               type: string
-              format: binary
       responses:
         '200':
           description: Import success
@@ -546,47 +636,36 @@ paths:
           text/turtle:
             schema:
               type: string
-              format: binary
           application/x-turtle:
             schema:
               type: string
-              format: binary
           application/rdf+xml:
             schema:
               type: string
-              format: binary
           text/plain:
             schema:
               type: string
-              format: binary
           text/rdf+n3:
             schema:
               type: string
-              format: binary
           text/x-nquads:
             schema:
               type: string
-              format: binary
           application/ld+json:
             schema:
               type: string
-              format: binary
           application/rdf+json:
             schema:
               type: string
-              format: binary
           application/trix:
             schema:
               type: string
-              format: binary
           application/x-trig:
             schema:
               type: string
-              format: binary
           application/x-binary-rdf:
             schema:
               type: string
-              format: binary
       responses:
         '200':
           description: Import success

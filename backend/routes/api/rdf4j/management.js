@@ -23,20 +23,44 @@ var rdf4jWorkbench = 'http://'+rdf4j+'/rdf4j-workbench/'
 // get repo list
 router.get('/listRepos', function (req, res) {
   const url = rdf4jServer + 'repositories'
-  const accept = 'application/json' // HARDCODE
-  // const accept = 'text/csv' // HARDCODE option2
-  // const accept = req.headers['accept'] // keep original accept value
-  const config = {headers: {Accept: accept}}
+  // const accept = 'text/csv' // HARDCODE rdf4j default
+  // const accept = 'application/json' // HARDCODE my default
+  var accept = req.headers['accept'] // use req accept value
+  if (accept === "*/*") accept = 'application/json' // if no accept is given use JSON
+  const config = { headers: { Accept: accept }}
   axios.get(url, config)
-    .then(response => res.jsonp(response.data.results.bindings))
-    .catch( () => res.status(400).send());
+    .then(response => {
+      try { res.jsonp(response.data.results.bindings) }
+      catch { res.send(response.data) }
+    })
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(400).send() }
+      }
+    });
+});
+
+
+//// Repo Info ////
+// get repo info
+router.get('/repoInfo/:repo', function (req, res) {
+  const repo = req.params.repo
+  const url = rdf4jServer + 'repositories/' + repo + '/config'
+  // const accept = 'text/plain' // HARDCODE rdf4j default
+  // const accept = 'text/turtle' // HARDCODE option
+  const accept = req.headers['accept'] // use req accept value
+  const config = { headers: { Accept: accept } }
+  axios.get(url, config)
+    .then(response => res.send(response.data))
+    .catch(error => res.status(error.response.status).send(error.response.data));
 });
 
 
 //// Create ////
 // create repository
 // params received inside a form in x-www-form-urlencoded
-// information sent in text/turtle syntax inside body
 router.put('/create', function (req, res) {
   const reqBody = req.body
   const repoID = reqBody["Repository ID"] || "nonamerepo"
@@ -111,10 +135,16 @@ _:node`+ (2 + middleNodes) + ` sail:sailType "openrdf:` + type + `";
     .then(response => res.send())
     .catch(error => {
       // console.log(error.response.data)
-      res.status(400).send(error.response.data)
+      res.status(error.response.status).send(error.response.data)
     });
 });
 
+//// Update/Change ////
+// update/change repository configuration
+// params received inside a form in x-www-form-urlencoded
+router.post('/update', function (req, res) {
+  res.send("TODO")
+});
 
 
 //// Delete ////
