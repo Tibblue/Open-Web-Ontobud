@@ -15,9 +15,9 @@ var rdf4jServer = 'http://'+rdf4j+'/rdf4j-server/'
 var rdf4jWorkbench = 'http://'+rdf4j+'/rdf4j-workbench/'
 
 
-// router.get('/help', function (req, res) {
-//   res.send("hello")
-// });
+router.get('/help', function (req, res) {
+  res.send("hello")
+});
 
 //// List Repos ////
 // get repo list
@@ -54,7 +54,8 @@ router.get('/repoInfo/:repo', function (req, res) {
   const config = { headers: { Accept: accept } }
   axios.get(url, config)
     .then(response => res.send(response.data))
-    .catch(error => res.status(error.response.status).send(error.response.data));
+    .catch(error => res.status(error.response.status).send(error.response.data))
+    .catch(error => res.status(400).send("unknown error :( ..."));
 });
 
 
