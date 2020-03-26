@@ -25,7 +25,7 @@
         </v-row>
 
         <v-row dense>
-          <v-col cols="12">
+          <v-col class="grow">
             <v-textarea outlined auto-grow hide-details
               v-model="queryInput"
               rows="6"
@@ -34,17 +34,21 @@
               placeholder="Place query and Run"
             ></v-textarea>
           </v-col>
-          <v-col cols="3" lg="2">
-            <v-checkbox hide-details class="mt-0 pt-2"
-              v-model="infer"
-              label="Inferencing"
-              color="primary"
-            ></v-checkbox>
-          </v-col>
-          <v-col cols="9" lg="10">
-            <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput,infer)">
-              Run Query
-            </v-btn>
+          <v-col class="shrink">
+            <v-row dense>
+              <v-col cols="12" class="pt-0">
+                <v-checkbox hide-details class="mt-0 pt-0"
+                  v-model="infer"
+                  label="Inferencing"
+                  color="primary"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12">
+                <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput,infer)">
+                  Run Query
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-col>
           <v-col cols="12">
             <v-alert text dismissible type="error" v-model="alert.queryFail">
@@ -52,14 +56,6 @@
             </v-alert>
           </v-col>
         </v-row>
-<!--
-        <v-row dense>
-          <v-col cols="12" md="6">
-            <v-btn block color="success" @click="goToDefaultGraph()">
-              Default Graph
-            </v-btn>
-          </v-col>
-        </v-row> -->
 
         <v-row dense v-if="!this.$session.get('userToken')">
           <v-col cols="12" md="12">
@@ -95,6 +91,9 @@
             </v-alert>
           </v-col>
         </v-row>
+
+        <br/>
+        <v-divider></v-divider>
 
         <v-row dense>
           <v-col cols="6">

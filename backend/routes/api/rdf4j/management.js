@@ -144,6 +144,7 @@ _:node`+ (2 + middleNodes) + ` sail:sailType "openrdf:` + type + `";
 // update/change repository configuration
 // params received inside a form in x-www-form-urlencoded
 router.post('/update', function (req, res) {
+  // TODO
   res.send("TODO")
 });
 
