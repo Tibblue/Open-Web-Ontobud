@@ -97,7 +97,9 @@
                   <div class="flex-grow-1"></div>
                   <v-menu left>
                     <template v-slot:activator="{ on }">
-                      <v-btn icon dark v-on="on" :loading="loading.queryDelete">
+                      <v-btn fab x-small depressed dark v-on="on" color="red"
+                        :loading="loading.queryDelete"
+                      >
                         <v-icon>fas fa-trash</v-icon>
                       </v-btn>
                     </template>
@@ -209,7 +211,7 @@ export default {
         })
     },
     runQuery(query) {
-      this.$emit('runQuery', query)
+      this.$emit('runQuery', query, true)
     },
     savedQueryEdit(queryName,oldQuery) {
       this.editing.queryName = queryName

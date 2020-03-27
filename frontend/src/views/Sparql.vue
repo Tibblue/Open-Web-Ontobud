@@ -24,7 +24,7 @@
           </v-col>
         </v-row>
 
-        <v-row dense>
+        <v-row dense class="pt-2">
           <v-col class="grow">
             <v-textarea outlined auto-grow hide-details
               v-model="queryInput"
@@ -37,7 +37,7 @@
           <v-col class="shrink">
             <v-row dense>
               <v-col cols="12">
-                <v-btn fab small color="primary"
+                <v-btn fab small depressed color="primary"
                   :loading="loading.query"
                   @click="runQuery(queryInput,infer)"
                 >
@@ -47,8 +47,8 @@
               <v-col cols="12">
                 <v-tooltip left>
                   <template v-slot:activator="{ on }">
-                    <v-btn fab small v-on="on"
-                      :color="infer ? 'green' : 'red'"
+                    <v-btn fab small depressed dark v-on="on"
+                      :color="infer ? 'green' : 'orange'"
                       @click="infer=!infer"
                     >
                       <v-icon>
@@ -56,13 +56,75 @@
                       </v-icon>
                     </v-btn>
                   </template>
-                  <span>Infered Triples: {{infer ? "INCLUDED" : "EXCLUDED"}}</span>
+                  <span>Infered Triples: {{infer ? "Included" : "Excluded"}}</span>
                 </v-tooltip>
               </v-col>
               <v-col cols="12">
-                <v-btn fab small color="primary" disabled>
-                  <v-icon>fas fa-save</v-icon>
-                </v-btn>
+                <div v-if="this.$session.get('userToken')">
+                  <v-dialog v-model="dialogSaveQuery" max-width="600px">
+                    <template v-slot:activator="{ on }">
+                      <v-btn fab small depressed color="primary" v-on="on"
+                        :loading="loading.savingQuery"
+                        @click="saving.queryValue = queryInput"
+                      >
+                        <v-icon>fas fa-save</v-icon>
+                      </v-btn>
+                    </template>
+                    <v-card>
+                      <v-card-title>
+                        <span class="headline">
+                          Saving Query
+                        </span>
+                      </v-card-title>
+                      <v-card-text>
+                        <v-text-field dense hide-details
+                          class="mt-0 py-0"
+                          v-model="saving.queryName"
+                          label="Saved Query name"
+                        ></v-text-field>
+                        <v-checkbox hide-details
+                          class="mt-0 pt-2"
+                          v-model="saving.queryGlobal"
+                          label="Global"
+                          color="primary"
+                        ></v-checkbox>
+                        <v-textarea outlined auto-grow hide-details
+                          class="pt-3"
+                          v-model="saving.queryValue"
+                          rows="6"
+                          row-height="20"
+                          label="Edited Query"
+                        ></v-textarea>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-col class="grow">
+                          <v-btn block color="success"
+                            @click="saveQuery(saving.queryName,saving.queryValue,$session.get('userEmail'),saving.queryGlobal);dialogSaveQuery=false"
+                          >
+                            Save
+                          </v-btn>
+                        </v-col>
+                        <v-col class="grow">
+                          <v-btn block color="error" @click="dialogSaveQuery=false">
+                            Cancel
+                          </v-btn>
+                        </v-col>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </div>
+                <div v-else>
+                  <v-tooltip left>
+                    <template v-slot:activator="{ on }">
+                      <div v-on="on">
+                        <v-btn fab small color="primary" disabled>
+                          <v-icon>fas fa-save</v-icon>
+                        </v-btn>
+                      </div>
+                    </template>
+                    <span>Must be Logged In to save queries</span>
+                  </v-tooltip>
+                </div>
               </v-col>
             </v-row>
           </v-col>
@@ -70,38 +132,6 @@
             <v-alert text dismissible type="error" v-model="alert.queryFail">
               Run Query Failed ...
             </v-alert>
-          </v-col>
-        </v-row>
-
-        <v-row dense v-if="!this.$session.get('userToken')">
-          <v-col cols="12" md="12">
-            <v-alert text dismissible type="warning" >
-              Saving queries requires Account Login
-            </v-alert>
-          </v-col>
-        </v-row>
-        <v-row dense v-else>
-          <v-col cols="3" lg="2">
-            <v-checkbox hide-details class="mt-0 pt-2"
-              v-model="newSavedQueryGlobal"
-              label="Global"
-              color="primary"
-            ></v-checkbox>
-          </v-col>
-          <v-col cols="9" lg="10">
-            <v-text-field dense hide-details
-              class="mt-0 py-0"
-              v-model="newSavedQueryName"
-              label="Saved Query name"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="12">
-            <v-btn block color="primary"
-              :loading="loading.querySave"
-              @click="saveQuery(newSavedQueryName,queryInput,$session.get('userEmail'),newSavedQueryGlobal)"
-            >
-              Save Query
-            </v-btn>
             <v-alert text dismissible type="error" v-model="alert.querySaveFail">
               Save query Failed ...
             </v-alert>
@@ -127,6 +157,15 @@
             ></v-checkbox>
           </v-col>
           <v-col cols="12">
+            <v-card-title>
+              <v-text-field single-line hide-details
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+              ></v-text-field>
+            </v-card-title>
+          </v-col>
+          <v-col cols="12">
             <!-- TODO:
                     -add search
                     -fix ordering
@@ -138,6 +177,7 @@
               :items="tableResults"
               :items-per-page="10"
               :items-per-page-options="[5,10,25,100,-1]"
+              :search="search"
               class="elevation-1"
             >
               <template v-slot:item="props">
@@ -181,13 +221,17 @@ export default {
       headers: [],
       items: [],
     },
+    dialogSaveQuery: false,
+    saving: {
+      queryName: "",
+      queryValue: "",
+      queryGlobal: true,
+    },
     defaultNamespace: "",
     defaultNamespaceForQuery: "",
     namespaces: {},
     namespaceON: true,
     prefixON: true,
-    newSavedQueryName: "",
-    newSavedQueryGlobal: true,
     savedQueriesExpand: true,
     savedQueries: [ // temporary visual debug
       { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 200' },
@@ -202,7 +246,7 @@ export default {
     },
     loading: {
       query: false,
-      querySave: false,
+      savingQuery: false,
     },
   }),
   mounted: async function (){
@@ -313,7 +357,7 @@ export default {
         })
     },
     saveQuery(name, query, userEmail, global) {
-      this.loading.saveQuery = true
+      this.loading.savingQuery = true
       var body = {
         'name': name,
         'query': query,
@@ -339,7 +383,7 @@ export default {
           // FIXME: devolver mais feedback de erro
         })
         .finally(() => {
-          this.loading.saveQuery = false
+          this.loading.savingQuery = false
         })
     },
   }
