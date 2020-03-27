@@ -18,7 +18,7 @@
 
         <v-row dense>
           <v-col cols="12" md="12">
-            <v-btn block color="success" @click="goToDefaultGraph()">
+            <v-btn block color="primary" @click="goToDefaultGraph()">
               Default Graph
             </v-btn>
           </v-col>
@@ -29,23 +29,39 @@
             <v-textarea outlined auto-grow hide-details
               v-model="queryInput"
               rows="6"
-              row-height="16"
+              row-height="22"
               label="Query"
               placeholder="Place query and Run"
             ></v-textarea>
           </v-col>
           <v-col class="shrink">
             <v-row dense>
-              <v-col cols="12" class="pt-0">
-                <v-checkbox hide-details class="mt-0 pt-0"
-                  v-model="infer"
-                  label="Inferencing"
-                  color="primary"
-                ></v-checkbox>
+              <v-col cols="12">
+                <v-btn fab small color="primary"
+                  :loading="loading.query"
+                  @click="runQuery(queryInput,infer)"
+                >
+                  <v-icon>mdi-play</v-icon>
+                </v-btn>
               </v-col>
               <v-col cols="12">
-                <v-btn :loading="loading.query" block color="primary" @click="runQuery(queryInput,infer)">
-                  Run Query
+                <v-tooltip left>
+                  <template v-slot:activator="{ on }">
+                    <v-btn fab small v-on="on"
+                      :color="infer ? 'green' : 'red'"
+                      @click="infer=!infer"
+                    >
+                      <v-icon>
+                        {{infer ? 'fas fa-angle-double-right' : 'fas fa-angle-right'}}
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Infered Triples: {{infer ? "INCLUDED" : "EXCLUDED"}}</span>
+                </v-tooltip>
+              </v-col>
+              <v-col cols="12">
+                <v-btn fab small color="primary" disabled>
+                  <v-icon>fas fa-save</v-icon>
                 </v-btn>
               </v-col>
             </v-row>

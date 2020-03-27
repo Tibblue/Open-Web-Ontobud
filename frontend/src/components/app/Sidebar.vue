@@ -11,7 +11,7 @@
           RDF4J Frontend
         </v-list-item-title>
         <!-- <v-list-item-subtitle>
-          subtitle
+          {{this.$vuetify.breakpoint.name}}
         </v-list-item-subtitle> -->
       </v-list-item-content>
     </v-list-item>
@@ -174,10 +174,19 @@ export default {
       userSignUpFail: false,
     },
   }),
-  // mounted: async function (){
-  //   // console.log(process.env) # debug
-  //   // this.loggedIn = !!this.$session.get('userToken')
-  // },
+  mounted: async function (){
+    switch (this.$vuetify.breakpoint.name) {
+      case 'xs':
+      case 'sm':
+        this.sidebar_mini = true
+        break;
+      case 'md':
+      case 'lg':
+      case 'xl':
+        this.sidebar_mini = false
+        break;
+    }
+  },
   methods: {
     goTo: function (id) {
       this.$router.push(id)
