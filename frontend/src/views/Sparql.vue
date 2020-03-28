@@ -142,12 +142,12 @@
 
         <v-row dense>
           <v-col class="grow">
-              <v-text-field single-line hide-details class="mt-0 pt-1"
-                v-model="search"
-                :loading="loading.search"
-                append-icon="mdi-magnify"
-                label="Search"
-              ></v-text-field>
+            <v-text-field single-line hide-details class="mt-0 pt-1"
+              v-model="search"
+              :loading="loading.search"
+              append-icon="mdi-magnify"
+              label="Search"
+            ></v-text-field>
           </v-col>
           <v-col class="shrink">
             <v-checkbox hide-details class="mt-0 pt-1"
@@ -172,7 +172,6 @@
           </v-col>
           <v-col cols="12">
             <!-- TODO:
-                    -add search
                     -fix ordering
                     -customize data footer
                     -change items-per-page

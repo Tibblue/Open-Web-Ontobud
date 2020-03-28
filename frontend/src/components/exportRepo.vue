@@ -94,7 +94,7 @@ export default {
       }
       axios.get(url, headers)
         .then(response => {
-          FileDownload(response.data, 'export.'+fileType)
+          FileDownload(response.data, 'exportRepository.'+fileType)
         })
         .catch(alert => {
           this.alert.exportFileFail = true
