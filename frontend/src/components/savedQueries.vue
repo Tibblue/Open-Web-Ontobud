@@ -161,7 +161,7 @@ export default {
     // console.log(process.env) // debug
     if(this.$session.get('userToken')){
       var currentUserEmail = this.$session.get("userEmail") // email from session
-      var currentRepo = this.$repo.id
+      var currentRepo = this.$session.get("repoID") // this.$repo.id
       this.getSavedQueriesGlobal(currentUserEmail)
       this.getSavedQueriesRepo(currentUserEmail,currentRepo)
     }
