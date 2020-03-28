@@ -16,7 +16,7 @@
         v-model="selectedRepo"
         no-data-text="No Repositories available"
         :items="repoList"
-        label="Selected Repositoy"
+        label="Selected Repository"
         v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
       ></v-combobox>
     </v-col>

@@ -138,32 +138,37 @@
           </v-col>
         </v-row>
 
-        <br/>
         <v-divider></v-divider>
 
         <v-row dense>
-          <v-col cols="6">
-            <v-checkbox hide-details class="mt-0 pt-2"
+          <v-col class="grow">
+              <v-text-field single-line hide-details class="mt-0 pt-1"
+                v-model="search"
+                :loading="loading.search"
+                append-icon="mdi-magnify"
+                label="Search"
+              ></v-text-field>
+          </v-col>
+          <v-col class="shrink">
+            <v-checkbox hide-details class="mt-0 pt-1"
+              v-model="searchCaseSensitive"
+              label="Case Sensitive"
+              color="primary"
+            ></v-checkbox>
+          </v-col>
+          <v-col class="shrink">
+            <v-checkbox hide-details class="mt-0 pt-1"
               v-model="namespaceON"
               label="Show Namespace"
               color="primary"
             ></v-checkbox>
           </v-col>
-          <v-col cols="6">
-            <v-checkbox hide-details class="mt-0 pt-2"
+          <v-col class="shrink">
+            <v-checkbox hide-details class="mt-0 pt-1 pr-2"
               v-model="prefixON"
               label="Use Prefix"
               color="primary"
             ></v-checkbox>
-          </v-col>
-          <v-col cols="12">
-            <v-card-title>
-              <v-text-field single-line hide-details
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-              ></v-text-field>
-            </v-card-title>
           </v-col>
           <v-col cols="12">
             <!-- TODO:
@@ -178,6 +183,10 @@
               :items-per-page="10"
               :items-per-page-options="[5,10,25,100,-1]"
               :search="search"
+              :custom-filter="customSearch"
+              :loading="loading.table"
+              loading-text="Loadind results..."
+              no-results-text="No results for this search."
               class="elevation-1"
             >
               <template v-slot:item="props">
@@ -227,6 +236,8 @@ export default {
       queryValue: "",
       queryGlobal: true,
     },
+    search: "",
+    searchCaseSensitive: true,
     defaultNamespace: "",
     defaultNamespaceForQuery: "",
     namespaces: {},
@@ -247,6 +258,8 @@ export default {
     loading: {
       query: false,
       savingQuery: false,
+      table: false,
+      search: false,
     },
   }),
   mounted: async function (){
@@ -319,6 +332,7 @@ export default {
     },
     runQuery(query, infer) {
       this.loading.query = true
+      this.loading.table = true
       const defaultNamespaceExists = /^ *PREFIX : /m.test(query)
       if(!defaultNamespaceExists) query = this.defaultNamespaceForQuery + query
       var repoID = this.$repo.id
@@ -354,6 +368,7 @@ export default {
         })
         .finally(() => {
           this.loading.query = false
+          this.loading.table = false
         })
     },
     saveQuery(name, query, userEmail, global) {
@@ -385,6 +400,41 @@ export default {
         .finally(() => {
           this.loading.savingQuery = false
         })
+    },
+    customSearch (value, search, item) {
+      // console.log(value) // debug
+      // console.log(search) // debug
+      // console.log(item) // debug
+      if (value == null || search == null) {
+        console.log("Value or Search is NULL")
+        return false
+      }
+      else if (value.uri == null || value.value == null) {
+        console.log("Value URI or VALUE is NULL")
+        return false
+      }
+      else if (typeof value.uri !== 'string' || typeof value.value !== 'string') {
+        console.log("Somehow non-string values are inside the table...")
+        return false
+      }
+      else {
+        var auxURI
+        // var auxValue
+        var auxSearch
+        if(this.searchCaseSensitive){
+          console.log("checking search values... (Case Sensitive)")
+          auxURI = value.uri.toString()
+          auxSearch = search
+        }
+        else{
+          console.log("checking search values... (NOT Case Sensitive)")
+          auxURI = value.uri.toString().toLocaleLowerCase()
+          auxSearch = search.toLocaleLowerCase()
+        }
+
+        if (auxURI.indexOf(auxSearch) == -1) return false
+        else return true
+      }
     },
   }
 }
