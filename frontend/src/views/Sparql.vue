@@ -117,7 +117,7 @@
                   <v-tooltip left>
                     <template v-slot:activator="{ on }">
                       <div v-on="on">
-                        <v-btn fab small color="primary" disabled>
+                        <v-btn fab small depressed color="primary" disabled>
                           <v-icon>fas fa-save</v-icon>
                         </v-btn>
                       </div>

@@ -20,11 +20,11 @@
       >
         <v-container fluid class="pa-0">
           <v-row dense>
-            <v-col cols="6"
+            <v-col :cols="colsSize"
               v-for="savedQuery in savedQueries"
               :key="savedQuery.name"
             >
-              <v-card flat>
+              <v-card>
                 <v-card-title
                   class="fill-height align-end"
                   v-text="savedQuery.name"
@@ -35,7 +35,7 @@
                 ></v-card-text> -->
                 <v-card-actions>
                   <v-btn icon @click="runQuery(savedQuery.query)">
-                    <v-icon>fas fa-play</v-icon>
+                    <v-icon>mdi-play</v-icon>
                   </v-btn>
                   <v-dialog v-model="dialogEditQuery" max-width="600px">
                     <template v-slot:activator="{ on }">
@@ -43,7 +43,7 @@
                         :loading="loading.queryEditSave"
                         @click="savedQueryEdit(savedQuery.name,savedQuery.query)"
                       >
-                        <v-icon>fas fa-edit</v-icon>
+                        <v-icon>mdi-pencil</v-icon>
                       </v-btn>
                     </template>
                     <v-card>
@@ -173,6 +173,27 @@ export default {
     },
     savedQueries: function() {
       return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
+    },
+    colsSize: function() {
+      var cols = 6 // default
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          cols = 12
+          break;
+        case 'sm':
+          cols = 6
+          break;
+        case 'md':
+          cols = 6
+          break;
+        case 'lg':
+          cols = 4
+          break;
+        case 'xl':
+          cols = 3
+          break;
+      }
+      return cols
     }
   },
   methods: {
