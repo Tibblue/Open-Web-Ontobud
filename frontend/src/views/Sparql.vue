@@ -140,7 +140,7 @@
 
         <v-divider></v-divider>
 
-        <v-row dense>
+        <v-row dense align="center" justify="center">
           <v-col class="grow">
             <v-text-field single-line hide-details class="mt-0 pt-1"
               v-model="search"
@@ -150,25 +150,37 @@
             ></v-text-field>
           </v-col>
           <v-col class="shrink">
-            <v-checkbox hide-details class="mt-0 pt-1"
-              v-model="searchCaseSensitive"
-              label="Case Sensitive"
-              color="primary"
-            ></v-checkbox>
+            <v-tooltip left>
+              <template v-slot:activator="{ on }">
+                <v-btn fab small depressed dark v-on="on"
+                  :color="searchCaseSensitive ? 'green' : 'orange'"
+                  @click="searchCaseSensitive=!searchCaseSensitive"
+                >
+                  <v-icon>
+                    {{searchCaseSensitive ? 'mdi-case-sensitive-alt' : 'mdi-case-sensitive-alt'}}
+                  </v-icon>
+                </v-btn>
+              </template>
+              <span>Case Sensitive: {{searchCaseSensitive ? "ON" : "OFF"}}</span>
+            </v-tooltip>
           </v-col>
-          <v-col class="shrink">
-            <v-checkbox hide-details class="mt-0 pt-1"
-              v-model="namespaceON"
-              label="Show Namespace"
-              color="primary"
-            ></v-checkbox>
-          </v-col>
-          <v-col class="shrink">
-            <v-checkbox hide-details class="mt-0 pt-1 pr-2"
-              v-model="prefixON"
-              label="Use Prefix"
-              color="primary"
-            ></v-checkbox>
+          <v-col :class="this.$vuetify.breakpoint.name==='xs' ? 'col-12 py-0' : 'shrink py-0'">
+            <v-row dense align="center" justify="center" class="flex-nowrap">
+              <v-col>
+                <v-checkbox hide-details class="mt-0 pt-0"
+                  v-model="namespaceON"
+                  label="Show Namespace"
+                  color="primary"
+                ></v-checkbox>
+              </v-col>
+              <v-col>
+                <v-checkbox hide-details class="mt-0 pt-0"
+                  v-model="prefixON"
+                  label="Use Prefix"
+                  color="primary"
+                ></v-checkbox>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
         <v-row dense>
@@ -184,7 +196,7 @@
             <v-combobox dense hide-details outlined
               v-model="exportResult.selectedFileType"
               :items="this.exportResult.fileTypeList"
-              label="Export FileType"
+              label="Export File"
             ></v-combobox>
           </v-col>
         </v-row>
