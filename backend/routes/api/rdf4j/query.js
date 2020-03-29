@@ -14,48 +14,54 @@ var rdf4jServer = 'http://'+rdf4j+'/rdf4j-server/'
 router.get('/:repo', function (req, res) {
   const repo = req.params.repo
   const params = req.query
+  // const accept = "text/csv" // HARDCODE text/csv (rdf4j default)
+  // const accept = "application/json" // HARDCODE application/json
+  var accept = req.headers['accept'] // use req accept value
+  if (accept === "*/*") accept = 'application/json' // if no accept is given use JSON
   const url = rdf4jServer + 'repositories/' + repo
-  // const config = { params: params}
-  const config = { params: params, headers: {'Accept': 'text/csv'}}
+  const config = {
+    params: params,
+    headers: {
+      'Accept': accept,
+    }
+  }
   axios.get(url, config)
-    .then(response => res.status(200).send(response.data))
-    .catch( () => res.status(400).send());
+    .then(response => {
+      if (accept === "application/json")
+        res.jsonp(response.data)
+      else
+        res.send(response.data)
+    })
+    .catch(error => res.status(error.response.status).send(error.response.data))
+    .catch(error => res.status(400).send("unknown error :( ..."));
 });
 
+
 // query (POST) (params in x-www-form-urlencoded)
+// query (POST) (accepts text/csv)
 router.post('/:repo', function (req, res) {
   const repo = req.params.repo
+  // const accept = "text/csv" // HARDCODE text/csv (rdf4j default)
+  // const accept = "application/json" // HARDCODE application/json
+  var accept = req.headers['accept'] // use req accept value
+  if (accept === "*/*") accept = 'application/json' // if no accept is given use JSON
   const url = rdf4jServer + 'repositories/' + repo
   const body = qs.stringify(req.body)
   const config = {
     headers: {
-      // 'Accept': 'text/csv',
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Accept': accept,
+      "Content-Type": 'application/x-www-form-urlencoded',
     }
   }
   axios.post(url, body, config)
-    .then(response => res.status(200).send(response.data))
-    .catch( () => res.status(400).send());
+    .then(response => {
+      if(accept==="application/json")
+        res.jsonp(response.data)
+      else
+        res.send(response.data)
+    })
+    .catch(error => res.status(error.response.status).send(error.response.data))
+    .catch(error => res.status(400).send("unknown error :( ..."));
 });
-
-// query (POST) (params in x-www-form-urlencoded)
-// query (POST) (accepts text/csv)
-// router.post('/:repo', function (req, res) {
-//   const repo = req.params.repo
-//   const accept = req.headers['accept'] // keep original content type
-//   const url = rdf4jServer + 'repositories/' + repo
-//   const body = qs.stringify(req.body)
-//   const config = {
-//     headers: {
-//       // 'Accept': accept, // isto torna o pedido sempre text/csv
-//       "Content-Type": 'application/x-www-form-urlencoded',
-//     }
-//   }
-//   axios.post(url, body, config)
-//     .then(response => {
-//         res.jsonp(response.data)
-//     })
-//     .catch(err => res.status(404).send());
-// });
 
 module.exports = router;
