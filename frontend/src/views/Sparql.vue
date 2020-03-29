@@ -170,6 +170,25 @@
               color="primary"
             ></v-checkbox>
           </v-col>
+        </v-row>
+        <v-row dense>
+          <v-col cols="8">
+            <v-btn block color="primary"
+              :disabled="!this.exportResult.lastQuery ? true : false"
+              @click="exportResults($repo.id,exportResult.selectedFileType,exportResult.lastQuery,exportResult.lastInfer)"
+            >
+              Export Results
+            </v-btn>
+          </v-col>
+          <v-col cols="4">
+            <v-combobox dense hide-details outlined
+              v-model="exportResult.selectedFileType"
+              :items="this.exportResult.fileTypeList"
+              label="Export FileType"
+            ></v-combobox>
+          </v-col>
+        </v-row>
+        <v-row dense>
           <v-col cols="12">
             <!-- TODO:
                     -fix ordering
@@ -216,6 +235,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
 const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
+const FileDownload = require('js-file-download')
 
 export default {
   components: {
@@ -250,6 +270,12 @@ export default {
       { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
       { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
     ],
+    exportResult: {
+      fileTypeList: ["json","csv","rdf-xml","binary-rdf"],
+      selectedFileType: "json",
+      lastQuery: null,
+      lastInfer: true,
+    },
     alert: {
       queryFail: false,
       querySaveFail: false,
@@ -365,6 +391,8 @@ export default {
             }
             this.table.items.push(elemAux)
           });
+          this.exportResult.lastQuery = query
+          this.exportResult.lastInfer = infer
           this.alert.queryFail = false
         })
         .catch(alert => {
@@ -403,6 +431,62 @@ export default {
         })
         .finally(() => {
           this.loading.savingQuery = false
+        })
+    },
+    exportResults(repoID, fileType, query, infer) {
+      this.loading.exportFile = true
+      var accept = "application/json"
+      switch(fileType){
+        case 'json':
+          accept = "application/json"
+          break;
+        case 'csv':
+          accept = "text/csv"
+          break;
+        case 'rdf-xml':
+          accept = "application/xml"
+          break;
+        case 'binary-rdf':
+          accept = "application/x-binary-rdf-results-table"
+          break;
+        default:
+      }
+
+      var url = backend_url+'/api/rdf4j/query/'+repoID
+      const config = {
+        headers: {
+          "Accept": accept,
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
+        .then(response => {
+          var fileData = "error processing the export..."
+          var extension = fileType
+          switch(fileType){
+            case 'json':
+              fileData = JSON.stringify(response.data, null, 4)
+              break;
+            case 'csv':
+              fileData = response.data
+              break;
+            case 'rdf-xml':
+              fileData = response.data
+              extension = "xml"
+              break;
+            case 'binary-rdf':
+              fileData = response.data
+              extension = "brt"
+              break;
+            default:
+          }
+          FileDownload(fileData, 'exportQueryResults.'+extension)
+        })
+        .catch(alert => {
+          console.log(alert)
+        })
+        .finally(() => {
+          this.loading.exportFile = false
         })
     },
     customSearch (value, search, item) {
