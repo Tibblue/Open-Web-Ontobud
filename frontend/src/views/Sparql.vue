@@ -141,6 +141,14 @@
         <v-divider></v-divider>
 
         <v-row dense align="center" justify="center">
+          <v-col class="shrink">
+            <v-tooltip right>
+              <template v-slot:activator="{ on }">
+                <v-icon v-on="on">mdi-help-circle-outline</v-icon>
+              </template>
+              <span>Search and Sort look at the complete element (namespace+id)</span>
+            </v-tooltip>
+          </v-col>
           <v-col class="grow">
             <v-text-field single-line hide-details class="mt-0 pt-1"
               v-model="search"
@@ -214,6 +222,7 @@
               :items-per-page-options="[5,10,25,100,-1]"
               :search="search"
               :custom-filter="customSearch"
+              :custom-sort="customSort"
               :loading="loading.table"
               loading-text="Loadind results..."
               no-results-text="No results for this search."
@@ -501,7 +510,7 @@ export default {
           this.loading.exportFile = false
         })
     },
-    customSearch (value, search, item) {
+    customSearch(value, search, item) {
       // console.log(value) // debug
       // console.log(search) // debug
       // console.log(item) // debug
@@ -535,6 +544,21 @@ export default {
         if (auxURI.indexOf(auxSearch) == -1) return false
         else return true
       }
+    },
+    customSort(items, sortBy, sortDesc, locale, customSorters){
+      // console.log(items) // debug
+      // console.log(sortBy) // debug
+      // console.log(sortDesc) // debug
+      items.sort((a, b) => {
+        if (sortBy.length) {
+          if (!sortDesc[0]) {
+            return a[sortBy].uri < b[sortBy].uri ? -1 : 1;
+          } else {
+            return b[sortBy].uri < a[sortBy].uri ? -1 : 1;
+          }
+        }
+      });
+      return items;
     },
   }
 }
