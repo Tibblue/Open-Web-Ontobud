@@ -156,8 +156,13 @@ export default {
       var repoID = this.$session.get("repoID")
       var query = 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }'
       var url = backend_url+'/api/rdf4j/query/'+repoID
-      axios.post(url, qs.stringify({'query': query}),
-        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
+      const config = {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'query': query}), config)
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
@@ -177,8 +182,13 @@ export default {
       var repoID = this.$session.get("repoID")
       var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. }'
       var url = backend_url+'/api/rdf4j/query/'+repoID
-      axios.post(url, qs.stringify({'query': query}),
-        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
+      const config = {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'query': query}), config)
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados

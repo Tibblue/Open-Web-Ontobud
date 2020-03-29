@@ -313,8 +313,13 @@ export default {
       // this.loading.subject = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { <'+resource+'> ?predicate ?object }'
-      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
-        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
+      const config = {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
@@ -345,8 +350,13 @@ export default {
       // this.loading.predicate = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject <'+resource+'> ?object }'
-      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
-        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
+      const config = {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados
@@ -377,8 +387,13 @@ export default {
       // this.loading.object = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject ?predicate <'+resource+'> }'
-      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
-        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
+      const config = {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.results.bindings) // debug resultados

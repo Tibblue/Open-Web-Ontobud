@@ -336,8 +336,13 @@ export default {
       if(!defaultNamespaceExists) query = this.defaultNamespaceForQuery + query
       var repoID = this.$repo.id
       var url = backend_url+'/api/rdf4j/query/'+repoID
-      axios.post(url, qs.stringify({'query': query, 'infer': infer}),
-        {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
+      const config = {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
         .then(response => {
           // console.log(response.data) // debug
           // console.log(response.data.head.vars) // debug Nome de Colunas
