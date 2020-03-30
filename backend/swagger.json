@@ -1249,7 +1249,29 @@
         ],
         "responses": {
           "200": {
-            "description": "Query successful"
+            "description": "Query successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/x-binary-rdf-results-table": {
+                "schema": {
+                  "description": "Binary value"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"
@@ -1302,7 +1324,29 @@
         },
         "responses": {
           "200": {
-            "description": "Query successful"
+            "description": "Query successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/x-binary-rdf-results-table": {
+                "schema": {
+                  "description": "Binary value"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"

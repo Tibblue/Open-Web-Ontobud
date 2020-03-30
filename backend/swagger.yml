@@ -1366,6 +1366,20 @@ paths:
       responses:
         '200':
           description: Query successful
+          content:
+            application/json:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            application/x-binary-rdf-results-table:
+              schema:
+                description: "Binary value"
+                # type: binary
         '400':
           description: Bad request
     post:
@@ -1403,6 +1417,20 @@ paths:
       responses:
         '200':
           description: Query successful
+          content:
+            application/json:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            application/x-binary-rdf-results-table:
+              schema:
+                description: "Binary value"
+                # type: binary
         '400':
           description: Bad request
 
