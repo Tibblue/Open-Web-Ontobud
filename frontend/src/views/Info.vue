@@ -62,11 +62,23 @@
                       :key="classe.name"
                       @click="getClassElems($session.get('repoID'),classe.name)"
                     >
-                      <v-expansion-panel-header>{{classe.name}}</v-expansion-panel-header>
+                      <v-expansion-panel-header>
+                        <v-row no-gutters align="center">
+                          <v-col class="grow">
+                            {{classe.name}}
+                          </v-col>
+                          <v-col class="mx-3 shrink text--secondary">
+                            {{classe.count}}
+                          </v-col>
+                        </v-row>
+                      </v-expansion-panel-header>
                       <v-expansion-panel-content>
+                        <!-- TODO IMPROVE with cards -->
                         <ul>
-                          <li v-for="elem in expandedClassElems" :key="elem">
-                            {{elem.split("#")[1]}}
+                          <li v-for="elem in expandedClassElems" :key="elem"
+                            @click="elemClicked(elem)"
+                          >
+                            <u>{{elem.split("#")[1]}}</u>
                           </li>
                         </ul>
                       </v-expansion-panel-content>
@@ -98,7 +110,7 @@ export default {
     implicitStatementsNumber: "Loading info...",
     expansionRatio: "Loading info...",
     namespaces: [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}],
-    classes: [{name: 'Loading classes...'}],
+    classes: [{name: 'Loading classes...', count: '0'}],
     expandedClassElems: ["Loading elements..."],
   }),
   mounted: async function (){
@@ -154,7 +166,8 @@ export default {
     getClasses(repoID) {
       this.classes = [{name: 'Loading classes...'}]
       var repoID = this.$session.get("repoID")
-      var query = 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }'
+      // var query = 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' // select only classes
+      var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' // select class and its count
       var url = backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
@@ -169,7 +182,7 @@ export default {
           var classArray = []
           var classes = response.data.results.bindings
           classes.forEach(element => {
-            classArray.push({'name': element.class.value})
+            classArray.push({'name': element.class.value, 'count': element.count.value})
           });
           this.classes = classArray
         })
@@ -202,7 +215,10 @@ export default {
         .catch(alert => {
           this.expandedClassElems = ["Get Class Elem FAIL!!!\n" + alert]
         })
-    }
+    },
+    elemClicked(uri) {
+      this.$router.push({path: "resource", query: { uri: uri }})
+    },
   }
 }
 </script>
