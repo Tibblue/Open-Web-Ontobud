@@ -7,16 +7,6 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    // { // not used
-    //   path: '/auth/login',
-    //   name: 'login',
-    //   component: () => import('./views/Login.vue'),
-    // },
-    // { // not used
-    //   path: '/auth/signin',
-    //   name: 'signin',
-    //   component: () => import('./views/SignIn.vue'),
-    // },
     {
       path: '/auth/logout',
       name: 'logout',
@@ -31,8 +21,13 @@ export default new Router({
 
     {
       path: '/',
-      name: 'homepage',
+      name: 'home',
       component: () => import('./views/Home.vue'),
+    },
+    {
+      path: '/repositories',
+      name: 'repositories',
+      component: () => import('./views/Repositories.vue'),
     },
     {
       path: '/manage',
@@ -59,10 +54,5 @@ export default new Router({
     //   name: 'navigation',
     //   component: () => import('./views/Navigation.vue'),
     // },
-    {
-      path: '/repositories',
-      name: 'repositories',
-      component: () => import('./views/Repositories.vue'),
-    },
   ]
 })

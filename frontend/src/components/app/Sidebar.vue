@@ -2,9 +2,10 @@
   <v-navigation-drawer app permanent
     :mini-variant="sidebar_mini"
   >
-    <v-list-item>
+    <v-list-item link to="/">
       <v-list-item-icon>
-        <v-icon>fas fa-flag</v-icon>
+        <v-icon>mdi-graph</v-icon>
+        <!-- <v-icon>fas fa-flag</v-icon> -->
       </v-list-item-icon>
       <v-list-item-content>
         <v-list-item-title class="title">
@@ -13,6 +14,16 @@
         <!-- <v-list-item-subtitle>
           {{this.$vuetify.breakpoint.name}}
         </v-list-item-subtitle> -->
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item @click="goToBackend()">
+      <v-list-item-icon>
+        <v-icon>mdi-api</v-icon>
+      </v-list-item-icon>
+      <v-list-item-content>
+        <v-list-item-title class="title">
+          Backend API
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
@@ -145,23 +156,15 @@ export default {
       // { text: 'TODO User Settings', icon: 'fas fa-user-cog', link: '/auth/usersettings'},
 
       // Navigation
-      { text: 'Home', icon: 'fas fa-home', link: '/'},
+      { text: 'Home', icon: 'fas fa-home', link: '/'}, //FIXME: tirar??
+      { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories'},
       { text: 'Manage Repo', icon: 'fas fa-archive', link: '/manage'},
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
       { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource'},
-      { text: 'TODO Navigation', icon: 'fas fa-project-diagram', link: '/navigation'},
-      { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories'},
+      // { text: 'TODO Navigation', icon: 'fas fa-project-diagram', link: '/navigation'},
       { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
       // { text: 'TODO Settings', icon: 'fas fa-cog', link: '/settings'},
-
-      // Testing DEBUG
-      // { text: 'Settings', icon: 'fas fa-cog',
-      //   subgroup: [
-      //     { text: 'Repositories', icon: 'fas fa-chevron_right', link: '/testing/button1/repos'},
-      //     { text: 'My Settings', icon: 'fas fa-chevron_right', link: '/testing/button2/settings'}
-      //   ]
-      // },
     ],
     userName: "",
     userEmail: "",
@@ -190,6 +193,9 @@ export default {
   methods: {
     goTo: function (id) {
       this.$router.push(id)
+    },
+    goToBackend: function () {
+      window.open("http://epl.di.uminho.pt:8001");
     },
     swapDarkMode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
