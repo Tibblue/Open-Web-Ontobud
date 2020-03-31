@@ -1,20 +1,35 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <v-radio-group hide-details v-model="repoTypeSelected" class="ma-0 pa-0">
-        <v-radio
+      <v-radio-group hide-details
+        v-model="repoTypeSelected"
+        class="ma-0 pa-0"
+      >
+        <div v-for="option in repoTypes" :key="option.value">
+          <v-row class="px-3">
+            <v-radio
+              :label="option.text"
+              :value="option.value"
+              color="primary"
+            ></v-radio>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <div v-on="on" class="px-1">
+                  <v-icon>mdi-help-circle-outline</v-icon>
+                </div>
+              </template>
+              <span>{{option.tooltip}}</span>
+            </v-tooltip>
+          </v-row>
+        </div>
+        <!-- <v-radio
           v-for="option in repoTypes"
           :key="option.value"
           :label="option.text"
           :value="option.value"
           color="info"
-        ></v-radio>
+        ></v-radio> -->
       </v-radio-group>
-      <!-- <v-combobox hide-details :return-object="false"
-        v-model="repoTypeSelected"
-        :items="repoTypes"
-        label="Select the Repository Type"
-      ></v-combobox> -->
     </v-col>
     <v-col cols="12">
       <v-text-field hide-details class="mt-0 mb-3 pt-0"
@@ -52,10 +67,10 @@ export default {
     newRepoName: "",
     repoTypeSelected: 'native',
     repoTypes: [ // TODO: add more
-      { text: 'Hard Drive Store', value: 'native' },
-      { text: 'Hard Drive Store + RDFS and Direct Type Reasoning', value: 'native-rdfs-dt' },
-      { text: 'Memory Store', value: 'memory' },
-      { text: 'Memory Store + RDFS and Direct Type Reasoning', value: 'memory-rdfs-dt' },
+      { text: 'Hard Drive Store', value: 'native', tooltip: 'Hard drive memory is slightly slower'},
+      { text: 'Hard Drive Store + Inference', value: 'native-rdfs-dt', tooltip: 'Inference includes RDFS and Direct Type Reasoning'},
+      { text: 'Memory Store', value: 'memory', tooltip: 'RAM Memory is faster, but limited'},
+      { text: 'Memory Store + Inference', value: 'memory-rdfs-dt', tooltip: 'Inference includes RDFS and Direct Type Reasoning'},
     ],
     loading: {
       createRepo: false,
@@ -99,6 +114,7 @@ export default {
                 this.alert.createRepoSuccess = true
                 this.alert.createRepoAlreadyExists = false
                 this.alert.createRepoFail = false
+                this.repoChange(repoID, repoName)
                 // this.$emit('updateRepos',repoID) // NOTE: isto funcionou
                 this.$router.go(0) // FIXME: reload enquanto nao atualizo só a repoList
               })
@@ -126,6 +142,12 @@ export default {
           this.loading.createRepo = false
           // this.$router.go()
         })
+    },
+    repoChange(id, name) {
+      this.$repo = {id: id, name: name}
+      this.$session.set("repoID",id)
+      this.$session.set("repoName",name)
+      this.$router.go(0)
     },
   },
 };

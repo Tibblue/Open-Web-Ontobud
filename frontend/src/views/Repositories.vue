@@ -2,12 +2,6 @@
   <v-container>
     <alerts/>
     <v-row>
-      <!-- <span>algo tipo a lista de saved queries</span> -->
-      <v-col cols="12">
-        <!-- <repoCardList/> -->
-      </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12" lg="6">
         <createRepo/>
       </v-col>
