@@ -5,7 +5,8 @@
       <v-col cols="12" lg="9">
         <h2>Resource: {{this.uri.split('#')[1]}}</h2>
         <h3>Namespace: {{this.uri.split('#')[0]}}</h3>
-        <p class="mb-0">{{$route.query.uri}}</p>
+        <!-- TODO: allow URI edit -->
+        <span class="mb-0">URI: </span><span class="mb-0">{{this.uri}}</span>
       </v-col>
       <v-col cols="12" lg="3">
         <v-checkbox hide-details class="mt-0 pt-2"
@@ -38,6 +39,7 @@
               :headers="table.headers"
               :items="subjectResults"
               :items-per-page="10"
+              :loading="loading.subject"
             >
               <template v-slot:item="props">
                 <tr>
@@ -65,6 +67,7 @@
               :headers="table.headers"
               :items="predicateResults"
               :items-per-page="10"
+              :loading="loading.predicate"
             >
               <template v-slot:item="props">
                 <tr>
@@ -92,6 +95,7 @@
               :headers="table.headers"
               :items="objectResults"
               :items-per-page="10"
+              :loading="loading.object"
             >
               <template v-slot:item="props">
                 <tr>
@@ -154,7 +158,6 @@ export default {
     alerts,
   },
   data: () => ({
-    uri: "",
     inferON: true,
     table: {
       headers: [
@@ -166,7 +169,7 @@ export default {
       predicateResults: [],
       objectResults: [],
     },
-    activeTab: 1,
+    activeTab: 0,
     namespaces: {},
     namespaceON: true,
     prefixON: true,
@@ -197,19 +200,18 @@ export default {
         break;
     }
     this.getNamespaces(this.$session.get('repoID'))
-    if(this.$route.query.uri){
-      this.uri = this.$route.query.uri
-      this.getSubjectResults(this.$session.get('repoID'), this.uri, this.inferON)
-      this.getPredicateResults(this.$session.get('repoID'), this.uri, this.inferON)
-      this.getObjectResults(this.$session.get('repoID'), this.uri, this.inferON)
-    }
   },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    uri: function() {
+      this.updateResults()
+      return this.$route.query.uri
+    },
     resourceTableURI: function() {
+      // usar this.uri aqui faz milagres. sei vagamente pk mas...
       if(this.namespaceON)
         if(this.prefixON){
           var namespace = this.uri.split('#')[0] + '#'
@@ -301,16 +303,16 @@ export default {
     cellClicked(cellInfo) {
       if(cellInfo.type==='uri'){
         this.$router.push({query: { uri: cellInfo.uri }})
-        this.updateResults()
+        // this.updateResults()
       }
     },
     updateResults() {
-      this.getSubjectResults(this.$repo.id, this.uri, this.inferON)
-      this.getPredicateResults(this.$repo.id, this.uri, this.inferON)
-      this.getObjectResults(this.$repo.id, this.uri, this.inferON)
+      this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
     },
     getSubjectResults(repoID, resource, infer) {
-      // this.loading.subject = true
+      this.loading.subject = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { <'+resource+'> ?predicate ?object }'
       const config = {
@@ -339,15 +341,15 @@ export default {
         })
         .catch(alert => {
           this.table.subjectResults = []
-          console.log("FDS subject" + alert)
+          console.log("RIP subject (it ok if once when opening page, idk why) => " + alert)
           // this.alert.subjectFail = true
         })
-        // .finally(() => {
-        //   this.loading.subject = false
-        // })
+        .finally(() => {
+          this.loading.subject = false
+        })
     },
     getPredicateResults(repoID, resource, infer) {
-      // this.loading.predicate = true
+      this.loading.predicate = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject <'+resource+'> ?object }'
       const config = {
@@ -375,16 +377,15 @@ export default {
           });
         })
         .catch(alert => {
-          console.log("FDS predicate" + alert)
+          console.log("RIP predicate (it ok if once when opening page, idk why) => " + alert)
           // this.alert.predicateFail = true
         })
-        // .finally(() => {
-        //   this.loading.predicate = false
-        //   return items
-        // })
+        .finally(() => {
+          this.loading.predicate = false
+        })
     },
     getObjectResults(repoID, resource, infer) {
-      // this.loading.object = true
+      this.loading.object = true
       const url = backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject ?predicate <'+resource+'> }'
       const config = {
@@ -412,13 +413,12 @@ export default {
           });
         })
         .catch(alert => {
-          console.log("FDS object" + alert)
+          console.log("RIP object (it ok if once when opening page, idk why) => " + alert)
           // this.alert.objectFail = true
         })
-        // .finally(() => {
-        //   this.loading.object = false
-        //   return items
-        // })
+        .finally(() => {
+          this.loading.object = false
+        })
     },
   }
 }
