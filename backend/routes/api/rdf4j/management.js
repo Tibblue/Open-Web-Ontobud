@@ -5,14 +5,13 @@ var qs = require('querystring')
 var router = express.Router();
 
 // Middleware Parsers
-var rawTextParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check limit cap
-var rawFileParser = bodyParser.raw({type: '*/*', limit: '20mb'}) //TODO check limit cap
+var rawTextParser = bodyParser.raw({type: '*/*', limit: '200mb'}) //TODO check limit cap
+var rawFileParser = bodyParser.raw({type: '*/*', limit: '200mb'}) //TODO check limit cap
 
 // RDF4J endpoint
 var urls = require('../../../urls');
 var rdf4j = urls.rdf4j
 var rdf4jServer = 'http://'+rdf4j+'/rdf4j-server/'
-var rdf4jWorkbench = 'http://'+rdf4j+'/rdf4j-workbench/'
 
 
 router.get('/help', function (req, res) {

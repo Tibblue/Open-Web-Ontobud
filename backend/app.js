@@ -62,6 +62,10 @@ app.use(function (req, res, next) {
 //// Routing
 // Public (maybe remove?)
 app.use(express.static(path.join(__dirname, 'public')));
+// HomePage (redirects to API-Docs)
+app.get('/', (req, res) => {
+  res.redirect('/api-docs/')
+});
 // Mongo
 app.use('/api/users', require('./routes/api/mongo/users'));
 app.use('/api/repos', require('./routes/api/mongo/repos'));

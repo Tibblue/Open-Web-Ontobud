@@ -25,7 +25,7 @@
     <v-col cols="12">
       <v-file-input outlined show-size clearable hide-details class="my-2"
         v-model="importFile"
-        label="File to Import"
+        label="File to Import (max 200MB)"
       ></v-file-input>
       <v-btn :loading="loading.importFile" block color="success" @click="importRepoFile($repo.id,fileTypeSelected,importFile,addORreplaceSelected)">
         Import Repo (File)
