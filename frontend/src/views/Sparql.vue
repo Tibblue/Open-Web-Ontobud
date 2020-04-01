@@ -146,7 +146,7 @@
               <template v-slot:activator="{ on }">
                 <v-icon v-on="on">mdi-help-circle-outline</v-icon>
               </template>
-              <span>Search and Sort look at the complete element (namespace+id)</span>
+              <span>Search and Sort look at the current view of the elements</span>
             </v-tooltip>
           </v-col>
           <v-col class="grow">
@@ -532,12 +532,12 @@ export default {
         var auxSearch
         if(this.searchCaseSensitive){
           console.log("checking search values... (Case Sensitive)")
-          auxURI = value.uri.toString()
+          auxURI = value.value.toString()
           auxSearch = search
         }
         else{
           console.log("checking search values... (NOT Case Sensitive)")
-          auxURI = value.uri.toString().toLocaleLowerCase()
+          auxURI = value.value.toString().toLocaleLowerCase()
           auxSearch = search.toLocaleLowerCase()
         }
 
@@ -550,11 +550,12 @@ export default {
       // console.log(sortBy) // debug
       // console.log(sortDesc) // debug
       items.sort((a, b) => {
+        // TODO: a way to order numbers... right now it orders number wrong...
         if (sortBy.length) {
           if (!sortDesc[0]) {
-            return a[sortBy].uri < b[sortBy].uri ? -1 : 1;
+            return a[sortBy].value < b[sortBy].value ? -1 : 1;
           } else {
-            return b[sortBy].uri < a[sortBy].uri ? -1 : 1;
+            return b[sortBy].value < a[sortBy].value ? -1 : 1;
           }
         }
       });

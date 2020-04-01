@@ -19,6 +19,42 @@
         v-show="savedQueriesExpand"
       >
         <v-container fluid class="pa-0">
+          <v-dialog
+            v-model="dialogEditQuery"
+            max-width="600px"
+            :retain-focus="false"
+          >
+            <v-card>
+              <v-card-title>
+                <span class="headline">
+                  {{editing.queryName}}
+                </span>
+              </v-card-title>
+              <v-card-text>
+                <!-- <pre>{{editing.queryNewValue}}</pre> -->
+                <v-textarea outlined auto-grow hide-details
+                  v-model="editing.queryNewValue"
+                  rows="6"
+                  row-height="16"
+                  label="Edited Query"
+                ></v-textarea>
+              </v-card-text>
+              <v-card-actions>
+                <v-col class="grow">
+                  <v-btn block color="success"
+                    @click="savedQueryEditSave(editing.queryName,editing.queryNewValue);dialogEditQuery=false"
+                  >
+                    Save
+                  </v-btn>
+                </v-col>
+                <v-col class="grow">
+                  <v-btn block color="error" @click="dialogEditQuery=false">
+                    Cancel
+                  </v-btn>
+                </v-col>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
           <v-row dense>
             <v-col :cols="colsSize"
               v-for="savedQuery in savedQueries"
@@ -37,47 +73,12 @@
                   <v-btn icon @click="runQuery(savedQuery.query)">
                     <v-icon>mdi-play</v-icon>
                   </v-btn>
-                  <v-dialog v-model="dialogEditQuery" max-width="600px">
-                    <template v-slot:activator="{ on }">
-                      <v-btn icon v-on="on"
-                        :loading="loading.queryEditSave"
-                        @click="savedQueryEdit(savedQuery.name,savedQuery.query)"
-                      >
-                        <v-icon>mdi-pencil</v-icon>
-                      </v-btn>
-                    </template>
-                    <v-card>
-                      <v-card-title>
-                        <span class="headline">
-                          {{editing.queryName}}
-                        </span>
-                      </v-card-title>
-                      <v-card-text>
-                        <pre>{{editing.queryNewValue}}
-                        </pre>
-                        <v-textarea outlined auto-grow hide-details
-                          v-model="editing.queryNewValue"
-                          rows="6"
-                          row-height="16"
-                          label="Edited Query"
-                        ></v-textarea>
-                      </v-card-text>
-                      <v-card-actions>
-                        <v-col class="grow">
-                          <v-btn block color="success"
-                            @click="savedQueryEditSave(editing.queryName,editing.queryNewValue);dialogEditQuery=false"
-                          >
-                            Save
-                          </v-btn>
-                        </v-col>
-                        <v-col class="grow">
-                          <v-btn block color="error" @click="dialogEditQuery=false">
-                            Cancel
-                          </v-btn>
-                        </v-col>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
+                  <v-btn icon
+                    :loading="loading.queryEditSave"
+                    @click="dialogEditQuery=true;savedQueryEdit(savedQuery.name,savedQuery.query)"
+                  >
+                    <v-icon>mdi-pencil</v-icon>
+                  </v-btn>
                   <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
                       <v-btn icon color="primary" dark v-on="on">
@@ -241,7 +242,7 @@ export default {
     savedQueryEditSave(queryName,newQuery) {
       this.loading.queryEditSave = true
       const user_email = this.$session.get("userEmail")
-      const url = backend_url+'/api/queries/'+user_email+'/'+queryName
+      const url = backend_url+'/api/queries/'+encodeURIComponent(user_email)+'/'+encodeURIComponent(queryName)
       const body = {'query': newQuery}
       axios.put(url, body)
         .then(response => {

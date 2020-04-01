@@ -192,8 +192,8 @@ export default {
     getClasses(repoID) {
       this.classes = [{name: 'Loading classes...'}]
       var repoID = this.$session.get("repoID")
-      // var query = 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' // select only classes
-      var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' // select class and its count
+      // var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' // select class and its count
+      var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. FILTER (!isBlank(?class))} GROUP BY ?class' // select class and its count (without blank_nodes)
       var url = backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
