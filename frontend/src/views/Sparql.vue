@@ -130,10 +130,10 @@
           </v-col>
           <v-col cols="12">
             <v-alert text dismissible type="error" v-model="alert.queryFail">
-              Run Query Failed ...
+              {{alert.queryFailText}}
             </v-alert>
             <v-alert text dismissible type="error" v-model="alert.querySaveFail">
-              Save query Failed ...
+              {{alert.querySaveFailText}}
             </v-alert>
           </v-col>
         </v-row>
@@ -299,7 +299,9 @@ export default {
     },
     alert: {
       queryFail: false,
+      queryFailText: "Run Query Failed ... ",
       querySaveFail: false,
+      querySaveFailText: "Save Query Failed ... ",
     },
     loading: {
       query: false,
@@ -352,7 +354,7 @@ export default {
           });
           this.namespaces = auxList
         })
-        .catch(alert => {
+        .catch(error => {
           this.namespaces = {}
         })
     },
@@ -362,7 +364,7 @@ export default {
           this.defaultNamespace = response.data
           this.defaultNamespaceForQuery = "PREFIX : <"+response.data+">\n"
         })
-        .catch(alert => {
+        .catch(error => {
           this.defaultNamespace = ""
           this.defaultNamespaceForQuery = ""
         })
@@ -416,8 +418,9 @@ export default {
           this.exportResult.lastInfer = infer
           this.alert.queryFail = false
         })
-        .catch(alert => {
+        .catch(error => {
           this.alert.queryFail = true
+          this.alert.queryFailText = "Run Query Failed ...\n"+error.response.data
         })
         .finally(() => {
           this.loading.query = false
@@ -445,10 +448,11 @@ export default {
 
           this.alert.querySaveFail = false
         })
-        .catch(alert => {
+        .catch(error => {
+          console.log(error.response.data)
           this.alert.querySaveFail = true
+          this.alert.querySaveFailText = "Save query Failed ... "+error.response.data
           // FIXME: detetar qd falha pk ja existe
-          // FIXME: devolver mais feedback de erro
         })
         .finally(() => {
           this.loading.savingQuery = false
@@ -503,8 +507,8 @@ export default {
           }
           FileDownload(fileData, 'exportQueryResults.'+extension)
         })
-        .catch(alert => {
-          console.log(alert)
+        .catch(error => {
+          console.log(error.response.data)
         })
         .finally(() => {
           this.loading.exportFile = false

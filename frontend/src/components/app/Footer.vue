@@ -8,7 +8,9 @@
         class="mx-3"
         icon
       >
-        <v-icon size="24px" @click="goTo(icon[1])">{{icon[0]}}</v-icon>
+        <v-icon size="24px" @click="goTo(icon[1])">
+          {{icon[0]}}
+        </v-icon>
       </v-btn>
     </v-row>
     <div v-if="expandFooter || varIsAtBottom">
