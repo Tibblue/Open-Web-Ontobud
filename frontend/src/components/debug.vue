@@ -1,34 +1,39 @@
 <template>
   <div class="text-center">
-    <v-btn color="info" @click="snackbarDEBUG=true">
-      Confirm current repo (DEBUG)
-    </v-btn>
     <v-snackbar top v-model="snackbarDEBUG">
       {{ this.$session.get("repoName") }} - {{ this.$session.get("repoID") }}
       <v-btn @click="snackbarDEBUG=false">Close</v-btn>
     </v-snackbar>
+    <v-btn color="info" @click="snackbarDEBUG=true">
+      Confirm current repo (DEBUG)
+    </v-btn>
     <!-- <v-btn color="warning" @click="$session.clear()">
       Clear $session (DEBUG)
     </v-btn> -->
-    <br/>
-    <br/>
-    <span>{{this.$session.get("repoName")}}</span>
-    <br/>
-    <span>{{this.$session.get("repoID")}}</span>
-    <br/>
-    <br/>
-    <span>{{this.$session.get("userToken")}}</span>
-    <br/>
-    <span>{{this.$session.get("userName")}}</span>
-    <br/>
-    <span>{{this.$session.get("userEmail")}}</span>
-    <br/>
-    <!-- <span>{{this.$store.state.$repo}}</span>
-    <br/> -->
-    <br/>
-    <span>{{this.$store.state}}</span>
-    <br/>
-    <v-divider></v-divider>
+
+    <v-divider class="my-2"></v-divider>
+
+    <h2>RANDOM TEMP</h2>
+    <p>{{this.$route.name}}</p>
+    <p>{{}}</p>
+
+    <!-- <v-divider class="my-1"></v-divider>
+    <h2>REPO</h2>
+    <p>{{this.$session.get("repoName")}}</p>
+    <p>{{this.$session.get("repoID")}}</p> -->
+
+    <v-divider class="my-1"></v-divider>
+    <h2>USER</h2>
+    <p>{{this.$session.get("userName")}}</p>
+    <p>{{this.$session.get("userEmail")}}</p>
+    <p>{{this.$session.get("userToken")}}</p>
+
+    <v-divider class="my-1"></v-divider>
+    <h2>VUEX STORE</h2>
+    <p>{{this.$store.state.$repo}}</p>
+    <p>{{this.$store.state}}</p>
+
+    <v-divider class="my-1"></v-divider>
   </div>
 </template>
 
@@ -43,6 +48,11 @@ export default {
     snackbarDEBUG: false,
   }),
   mounted: async function (){
+    // console.log(this.$route) // debug. may fail to print
+    // console.log(this.$route.fullPath) // debug
+    // console.log(this.$route.matched) // debug
+    // console.log(this.$route.name) // debug
+    // console.log(this.$route.path) // debug
   },
   methods:{
   },
