@@ -13,9 +13,9 @@ export default new Router({
       component: () => import('./views/Logout.vue'),
     },
     // {
-    //   path: '/auth/userSettings',
-    //   name: 'userSettings',
-    //   component: () => import('./views/UserSettings.vue'),
+    //   path: '/auth/user',
+    //   name: 'user',
+    //   component: () => import('./views/User.vue'),
     // },
 
 

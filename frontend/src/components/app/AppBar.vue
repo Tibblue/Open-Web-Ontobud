@@ -13,24 +13,69 @@
       <v-icon>fas fa-sync</v-icon>
     </v-btn>
 
-    <div class="flex-grow-1"></div>
+    <!-- <div class="flex-grow-1"></div> -->
 
-    <v-toolbar-title>
-      <v-icon>
-        {{this.$session.get('userEmail') ? "fas fa-user" : "fas fa-user-slash"}}
-      </v-icon>
-      &nbsp;{{this.$session.get('userEmail') ? this.$session.get('userName') : "Not Logged in"}}
-    </v-toolbar-title>
+    <v-row dense align="center" justify="end" v-if="!this.$session.get('userToken')">
+      <v-col class="shrink">
+        <v-dialog
+          v-model="dialogSaveQuery"
+          max-width="600px"
+          overlay-opacity="0.85"
+        >
+          <template v-slot:activator="{ on }">
+            <v-btn rounded large depressed color="secondary" v-on="on">
+              Login&nbsp;
+              <v-icon>fas fa-sign-in-alt</v-icon>
+              <!-- <v-icon>mdi-login-variant</v-icon> -->
+            </v-btn>
+          </template>
+          <login/>
+        </v-dialog>
+      </v-col>
+      <v-col class="shrink">
+        <v-dialog v-model="dialogSaveQuery" max-width="600px">
+          <template v-slot:activator="{ on }">
+            <v-btn fab depressed color="secondary" v-on="on">
+              <v-icon>fas fa-user-plus</v-icon>
+              <!-- <v-icon>mdi-account-plus</v-icon> -->
+            </v-btn>
+          </template>
+          <signIn/>
+        </v-dialog>
+      </v-col>
+    </v-row>
+    <v-row dense align="center" justify="end" v-else>
+      <v-col class="shrink">
+        <v-btn rounded large depressed color="secondary" link to="/auth/user">
+          {{this.$session.get('userName')}}&nbsp;
+          <v-icon>fas fa-user-cog</v-icon>
+          <!-- <v-icon>mdi-cog</v-icon> -->
+        </v-btn>
+      </v-col>
+      <v-col class="shrink">
+        <v-btn fab depressed color="secondary" @click="logout()">
+          <v-icon>fas fa-sign-out-alt</v-icon>
+          <!-- <v-icon>mdi-logout-variant</v-icon> -->
+        </v-btn>
+      </v-col>
+    </v-row>
+
   </v-app-bar>
 </template>
 
 <script>
+import login from '@/components/login_card'
+import signIn from '@/components/signIn_card'
 import Vuex from 'vuex'
 import axios from 'axios'
 // const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
 const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
+  components: {
+    login,
+    signIn,
+  },
   // props: ['update'],
   data: () => ({
     loadingRepos: false,
@@ -48,6 +93,12 @@ export default {
     },
   },
   methods: {
+    logout: function () {
+      this.$session.remove("userToken")
+      this.$session.remove("userEmail")
+      this.$session.flash.set("login", {msg: "Logout Success!!!", color: "success"})
+      this.$router.go()
+    },
     repoChange(id, name) {
       this.$repo = {id: id, name: name}
       // this.$repo.id = id
