@@ -1,18 +1,7 @@
 <template>
   <v-app-bar app color="primary">
-    <v-icon>
-      {{this.$session.get('userEmail') ? "fas fa-user" : "fas fa-user-slash"}}
-    </v-icon>
-    <v-toolbar-title>
-      &nbsp;{{this.$session.get('userEmail') ? this.$session.get('userName') : "Not Logged in"}}
-    </v-toolbar-title>
-
-    <div class="flex-grow-1"></div>
-    <v-btn :loading="loadingRepos" icon @click="getRepositories()">
-      <v-icon>fas fa-sync</v-icon>
-    </v-btn>
-    <v-col cols="4">
-      <v-combobox dense hide-details
+    <v-col cols="6">
+      <v-combobox dense hide-details outlined
         v-model="selectedRepo"
         no-data-text="No Repositories available"
         :items="repoList"
@@ -20,6 +9,18 @@
         v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
       ></v-combobox>
     </v-col>
+    <v-btn :loading="loadingRepos" icon @click="getRepositories()">
+      <v-icon>fas fa-sync</v-icon>
+    </v-btn>
+
+    <div class="flex-grow-1"></div>
+
+    <v-toolbar-title>
+      <v-icon>
+        {{this.$session.get('userEmail') ? "fas fa-user" : "fas fa-user-slash"}}
+      </v-icon>
+      &nbsp;{{this.$session.get('userEmail') ? this.$session.get('userName') : "Not Logged in"}}
+    </v-toolbar-title>
   </v-app-bar>
 </template>
 

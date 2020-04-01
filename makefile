@@ -1,20 +1,20 @@
 build:
-	docker build -t tibblue/tese-rdf4j:dev ./rdf4j
-	docker build -t tibblue/tese-backend:dev ./backend
 	docker build -t tibblue/tese-frontend:dev ./frontend
+	docker build -t tibblue/tese-backend:dev ./backend
+	# docker build -t tibblue/tese-rdf4j:dev ./rdf4j
 	# docker build --build-arg VUE_APP_RDF4J_PORT=8080 -t tibblue/tese-frontend:dev ./frontend
 
 # make tag version=[version]
 tag:
-	docker tag tibblue/tese-rdf4j:dev tibblue/tese-rdf4j:$(version)
-	docker tag tibblue/tese-backend:dev tibblue/tese-backend:$(version)
 	docker tag tibblue/tese-frontend:dev tibblue/tese-frontend:$(version)
+	docker tag tibblue/tese-backend:dev tibblue/tese-backend:$(version)
+	# docker tag tibblue/tese-rdf4j:dev tibblue/tese-rdf4j:$(version)
 
 # make upload version=[version]
 upload:
-	docker push tibblue/tese-rdf4j:$(version)
-	docker push tibblue/tese-backend:$(version)
 	docker push tibblue/tese-frontend:$(version)
+	docker push tibblue/tese-backend:$(version)
+	# docker push tibblue/tese-rdf4j:$(version)
 
 runCompose:
 	docker-compose up

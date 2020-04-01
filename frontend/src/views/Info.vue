@@ -73,14 +73,41 @@
                         </v-row>
                       </v-expansion-panel-header>
                       <v-expansion-panel-content>
-                        <!-- TODO IMPROVE with cards -->
-                        <ul>
-                          <li v-for="elem in expandedClassElems" :key="elem"
-                            @click="elemClicked(elem)"
+                        <v-card>
+                          <v-row dense justify="center">
+                            <v-col class="shrink"
+                              v-for="elem in expandedClassElems.slice(0,elemsShown)"
+                              :key="elem"
+                            >
+                              <v-card flat hover
+                                color="grey darken-3"
+                                @click="elemClicked(elem)"
+                              >
+                                <v-col class="px-2 py-1">
+                                  {{elem.split("#")[1]}}
+                                </v-col>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                          <v-row dense
+                            v-if="elemsShown < expandedClassElems.length"
                           >
-                            <u>{{elem.split("#")[1]}}</u>
-                          </li>
-                        </ul>
+                            <v-col>
+                              <v-btn block color="primary"
+                                @click="elemsShown+=50"
+                              >
+                                Show 50 More
+                              </v-btn>
+                            </v-col>
+                            <v-col>
+                              <v-btn block color="primary"
+                                @click="elemsShown+=500"
+                              >
+                                Show 500 More
+                              </v-btn>
+                            </v-col>
+                          </v-row>
+                        </v-card>
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                   </v-expansion-panels>
@@ -105,20 +132,19 @@ export default {
     alerts,
   },
   data: () => ({
-    currentRepoID: "",
     explicitStatementsNumber: "Loading info...",
     implicitStatementsNumber: "Loading info...",
     expansionRatio: "Loading info...",
     namespaces: [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}],
     classes: [{name: 'Loading classes...', count: '0'}],
     expandedClassElems: ["Loading elements..."],
+    elemsShown: 50,
   }),
   mounted: async function (){
     // console.log(process.env) // debug
-    this.currentRepoID = this.$session.get("repoID")
-    this.getStatementNumber(this.currentRepoID)
-    this.getNamespaces(this.currentRepoID)
-    this.getClasses(this.currentRepoID)
+    this.getStatementNumber(this.$session.get("repoID"))
+    this.getNamespaces(this.$session.get("repoID"))
+    this.getClasses(this.$session.get("repoID"))
   },
   computed: {
     expansionPanelCSS() {
@@ -192,8 +218,10 @@ export default {
     },
     getClassElems(repoID, classe) {
       this.expandedClassElems = ["Loading elements..."]
+      this.elemsShown = 50
       var repoID = this.$session.get("repoID")
-      var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. }'
+      var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. }' // no cap
+      // var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. } LIMIT 100' // soft cap
       var url = backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
