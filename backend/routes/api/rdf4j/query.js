@@ -32,8 +32,13 @@ router.get('/:repo', function (req, res) {
       else
         res.send(response.data)
     })
-    .catch(error => res.status(error.response.status).send(error.response.data))
-    .catch(error => res.status(400).send("unknown error :( ..."));
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
 });
 
 
@@ -60,8 +65,13 @@ router.post('/:repo', function (req, res) {
       else
         res.send(response.data)
     })
-    .catch(error => res.status(error.response.status).send(error.response.data))
-    .catch(error => res.status(400).send("unknown error :( ..."));
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
 });
 
 module.exports = router;

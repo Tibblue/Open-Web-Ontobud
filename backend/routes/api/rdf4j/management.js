@@ -36,25 +36,9 @@ router.get('/listRepos', function (req, res) {
       try { res.status(error.response.status).send(error.response.data) }
       catch {
         try { res.status(400).send(error) }
-        catch { res.status(400).send() }
+        catch { res.status(500).send("unknown error :(") }
       }
     });
-});
-
-
-//// Repo Info ////
-// get repo info
-router.get('/repoInfo/:repo', function (req, res) {
-  const repo = req.params.repo
-  const url = rdf4jServer + 'repositories/' + repo + '/config'
-  // const accept = 'text/plain' // HARDCODE rdf4j default
-  // const accept = 'text/turtle' // HARDCODE option
-  const accept = req.headers['accept'] // use req accept value
-  const config = { headers: { Accept: accept } }
-  axios.get(url, config)
-    .then(response => res.send(response.data))
-    .catch(error => res.status(error.response.status).send(error.response.data))
-    .catch(error => res.status(400).send("unknown error :( ..."));
 });
 
 
@@ -134,8 +118,11 @@ _:node`+ (2 + middleNodes) + ` sail:sailType "openrdf:` + type + `";
   axios.put(url, body, config)
     .then(response => res.send())
     .catch(error => {
-      // console.log(error.response.data)
-      res.status(error.response.status).send(error.response.data)
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
     });
 });
 
@@ -155,7 +142,13 @@ router.delete('/delete/:repo', function (req, res) {
   const url = rdf4jServer + 'repositories/' + repo
   axios.delete(url)
     .then(response => res.status(200).send())
-    .catch(error => res.status(error.response.status).send(error.response.data));
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
 });
 
 // delete all statements from repository
@@ -164,7 +157,13 @@ router.delete('/delete/:repo/statements', function (req, res) {
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
   axios.delete(url)
     .then(response => res.status(200).send())
-    .catch(error => res.status(error.response.status).send(error.response.data));
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
 });
 
 
@@ -179,7 +178,13 @@ router.put('/importFile/:repo', rawFileParser, function (req, res) {
   const config = { headers: { "Content-Type": contentType } }
   axios.put(url, body, config)
     .then( () => res.status(200).send())
-    .catch( () => res.status(400).send());
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
 });
 
 // import file (add)
@@ -191,7 +196,69 @@ router.post('/importFile/:repo', rawFileParser, function (req, res) {
   const config = { headers: { "Content-Type": contentType } }
   axios.post(url, body, config)
     .then( () => res.status(200).send())
-    .catch( () => res.status(400).send());
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
+});
+
+// import text (replace)
+router.put('/importText/:repo', rawTextParser, function (req, res) {
+  const repo = req.params.repo
+  const contentType = req.headers['content-type'] // keep original content type
+  const url = rdf4jServer + 'repositories/' + repo + '/statements'
+  const body = req.body
+  const config = { headers: { "Content-Type": contentType } }
+  axios.put(url, body, config)
+    .then( () => res.status(200).send())
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
+});
+
+// import text (add)
+router.post('/importText/:repo', rawTextParser, function (req, res) {
+  const repo = req.params.repo
+  const contentType = req.headers['content-type'] // keep original content type
+  const url = rdf4jServer + 'repositories/' + repo + '/statements'
+  const body = req.body
+  const config = { headers: { "Content-Type": contentType } }
+  axios.post(url, body, config)
+    .then( () => res.status(200).send())
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
+});
+
+
+//// Export ////
+// export repository
+router.get('/export/:repo', function (req, res) {
+  const repo = req.params.repo
+  const accept = req.headers['accept'] // keep original accept value
+  const params = req.query
+  const url = rdf4jServer + 'repositories/' + repo + '/statements'
+  const config = { params: params, headers: { "Accept": accept }}
+  axios.get(url, config)
+    .then(response => res.status(200).send(response.data))
+    .catch(error => {
+      try { res.status(error.response.status).send(error.response.data) }
+      catch {
+        try { res.status(400).send(error) }
+        catch { res.status(500).send("unknown error :(") }
+      }
+    });
 });
 
 // app.post('/upload/:image', bodyparser.raw({
@@ -206,45 +273,5 @@ router.post('/importFile/:repo', rawFileParser, function (req, res) {
 //     fd.end(req.body);
 //     fd.on('close', () => res.send({status: 'OK'});
 // });
-
-
-// import text (replace)
-router.put('/importText/:repo', rawTextParser, function (req, res) {
-  const repo = req.params.repo
-  const contentType = req.headers['content-type'] // keep original content type
-  const url = rdf4jServer + 'repositories/' + repo + '/statements'
-  const body = req.body
-  const config = { headers: { "Content-Type": contentType } }
-  axios.put(url, body, config)
-    .then( () => res.status(200).send())
-    .catch( () => res.status(400).send());
-});
-
-// import text (add)
-router.post('/importText/:repo', rawTextParser, function (req, res) {
-  const repo = req.params.repo
-  const contentType = req.headers['content-type'] // keep original content type
-  const url = rdf4jServer + 'repositories/' + repo + '/statements'
-  const body = req.body
-  const config = { headers: { "Content-Type": contentType } }
-  axios.post(url, body, config)
-    .then( () => res.status(200).send())
-    .catch( () => res.status(400).send());
-});
-
-
-//// Export ////
-// export repository
-router.get('/export/:repo', function (req, res) {
-  const repo = req.params.repo
-  const accept = req.headers['accept'] // keep original accept value
-  const params = req.query
-  const url = rdf4jServer + 'repositories/' + repo + '/statements'
-  const config = { params: params, headers: { "Accept": accept }}
-  axios.get(url, config)
-    .then(response => res.status(200).send(response.data))
-    .catch( () => res.status(400).send());
-});
-
 
 module.exports = router;
