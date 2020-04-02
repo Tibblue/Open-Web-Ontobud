@@ -234,7 +234,7 @@ export default {
           this.explicitStatementsNumber = response.data.explicit
           this.implicitStatementsNumber = response.data.implicit
           this.expansionRatio = response.data.expansion || 0
-          this.alert.statements = true
+          this.alert.statements = false
         })
         .catch(error => {
           // console.log(error.response)
@@ -288,7 +288,7 @@ export default {
           // console.log(response.data) // debug
           var classesAux = []
           var classes = response.data.results.bindings
-          if (classes.length==1) {
+          if (classes.length==1 && !("class" in classes[0])) {
             this.noClasses = true
             this.classes = [{name: 'No classes exist in this Repository'}]
           }

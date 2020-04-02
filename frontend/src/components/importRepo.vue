@@ -118,7 +118,7 @@ export default {
             this.alert.importFileSuccess = true
             this.alert.importFileFail = false
           })
-          .catch(alert => {
+          .catch(error => {
             this.alert.importFileFail = true
             this.alert.importFileSuccess = false
           })
@@ -131,7 +131,7 @@ export default {
             this.alert.importFileSuccess = true
             this.alert.importFileFail = false
           })
-          .catch(alert => {
+          .catch(error => {
             this.alert.importFileFail = true
             this.alert.importFileSuccess = false
           })
@@ -163,7 +163,7 @@ export default {
             this.alert.importTextSuccess = true
             this.alert.importTextFail = false
           })
-          .catch(alert => {
+          .catch(error => {
             this.alert.importTextFail = true
             this.alert.importTextSuccess = false
           })
@@ -176,7 +176,7 @@ export default {
             this.alert.importTextSuccess = true
             this.alert.importTextFail = false
           })
-          .catch(alert => {
+          .catch(error => {
             this.alert.importTextFail = true
             this.alert.importTextSuccess = false
           })
