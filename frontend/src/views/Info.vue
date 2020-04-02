@@ -234,11 +234,11 @@ export default {
           this.explicitStatementsNumber = response.data.explicit
           this.implicitStatementsNumber = response.data.implicit
           this.expansionRatio = response.data.expansion || 0
-          this.error.statements = true
+          this.alert.statements = true
         })
         .catch(error => {
           // console.log(error.response)
-          this.error.statements = true
+          this.alert.statements = true
           this.explicitStatementsNumber = "Request failed..."
           this.implicitStatementsNumber = "Request failed..."
           this.expansionRatio = "Request failed..."
@@ -259,11 +259,11 @@ export default {
             elemsAux.push({'prefix': element.prefix.value, 'namespace': element.namespace.value})
           });
           this.namespaces = elemsAux
-          this.error.namespaces = false
+          this.alert.namespaces = false
         })
         .catch(error => {
           // console.log(error.response)
-          this.error.namespaces = true
+          this.alert.namespaces = true
           this.namespaces = [{prefix: 'Get Namespaces Failed!', namespace: error}]
         })
         .finally(() => {
@@ -303,7 +303,7 @@ export default {
         })
         .catch(error => {
           // console.log(error.response)
-          this.error.classes = true
+          this.alert.classes = true
           this.classes = [{name: "Get Classes Failed!"}]
         })
         .finally(() => {
