@@ -13,8 +13,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "servers": [
-    {
+  "servers": [{
       "url": "http://epl.di.uminho.pt:8001/api",
       "description": "Main server"
     },
@@ -23,14 +22,17 @@
       "description": "Testing server"
     }
   ],
-  "tags": [
-    {
+  "tags": [{
       "name": "Auth",
       "description": "Requests related to User Authentication"
     },
     {
       "name": "RDF4J",
       "description": "Requests related to RDF4J Server"
+    },
+    {
+      "name": "RDF4J Query",
+      "description": "RDF4J Server SPARQL 1.1 queries"
     },
     {
       "name": "Mongo",
@@ -136,11 +138,9 @@
         ],
         "summary": "Get user info from JWT",
         "description": "Decrypts JWT payload, returning some user account information.\n",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [{
+          "bearerAuth": []
+        }],
         "responses": {
           "200": {
             "description": "Information returned."
@@ -158,22 +158,18 @@
         ],
         "summary": "Delete user account by email",
         "description": "Delete user account with the specified email.\nOnly the user himself or a admin can delete a account.\n",
-        "security": [
-          {
-            "bearerAuth": []
+        "security": [{
+          "bearerAuth": []
+        }],
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email to delete",
+          "schema": {
+            "type": "string"
           }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "Account email to delete",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Account deleted"
@@ -274,99 +270,6 @@
           },
           "400": {
             "description": "Bad request."
-          },
-          "406": {
-            "description": "Invalid accept type."
-          }
-        }
-      }
-    },
-    "/rdf4j/management/repoInfo/{repository}": {
-      "get": {
-        "tags": [
-          "RDF4J"
-        ],
-        "summary": "Repository configuration",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request success",
-            "content": {
-              "text/turtle": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/x-turtle": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/rdf+xml": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/rdf+n3": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/x-nquads": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/ld+json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/rdf+json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/trix": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/x-trig": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/x-binary-rdf": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "404": {
-            "description": "Unknown Repository. Repository does not exist."
-          },
-          "406": {
-            "description": "Invalid accept type."
           }
         }
       }
@@ -482,7 +385,7 @@
             "description": "Bad request."
           },
           "404": {
-            "description": "Unknown Repository. Repository does not exist."
+            "description": "Repository does not exist"
           },
           "500": {
             "description": "Internal Error. Likely configuration error. Possibly bad configuration values."
@@ -496,17 +399,15 @@
           "RDF4J"
         ],
         "summary": "Delete a Repository",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Delete success."
@@ -515,7 +416,7 @@
             "description": "Bad request."
           },
           "404": {
-            "description": "Unknown Repository. Repository does not exist."
+            "description": "Repository does not exist"
           }
         }
       }
@@ -526,17 +427,15 @@
           "RDF4J"
         ],
         "summary": "Clear all Repository statements/triples",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Clear success."
@@ -545,7 +444,7 @@
             "description": "Bad request."
           },
           "404": {
-            "description": "Unknown Repository. Repository does not exist."
+            "description": "Repository does not exist"
           }
         }
       }
@@ -557,17 +456,15 @@
         ],
         "summary": "Import file into a repository (add triples)",
         "description": "Import file into a repository.\nThe statements/triples will be **added** to the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -643,10 +540,10 @@
             "description": "Import success"
           },
           "400": {
-            "description": "Bad request (or the repository does not exist)"
+            "description": "Bad request"
           },
-          "default": {
-            "description": "TODO"
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       },
@@ -656,17 +553,15 @@
         ],
         "summary": "Import file into a repository (replace triples)",
         "description": "Import file into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -742,10 +637,10 @@
             "description": "Import success"
           },
           "400": {
-            "description": "Bad request (or the repository does not exist)"
+            "description": "Bad request"
           },
-          "default": {
-            "description": "TODO"
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -757,17 +652,15 @@
         ],
         "summary": "Import text into a repository (add triples)",
         "description": "Import text into a repository.\nThe statements/triples will be **added** to the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -832,10 +725,10 @@
             "description": "Import success"
           },
           "400": {
-            "description": "Bad request (or the repository does not exist)"
+            "description": "Bad request"
           },
-          "default": {
-            "description": "TODO"
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       },
@@ -845,17 +738,15 @@
         ],
         "summary": "Import text into a repository (replace triples)",
         "description": "Import text into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -920,10 +811,10 @@
             "description": "Import success"
           },
           "400": {
-            "description": "Bad request (or the repository does not exist)"
+            "description": "Bad request"
           },
-          "default": {
-            "description": "TODO"
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -934,8 +825,7 @@
           "RDF4J"
         ],
         "summary": "Export repository",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1028,6 +918,94 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
+          }
+        }
+      }
+    },
+    "/rdf4j/repository/{repository}/config": {
+      "get": {
+        "tags": [
+          "RDF4J"
+        ],
+        "summary": "Repository configuration",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Request success",
+            "content": {
+              "text/turtle": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/x-turtle": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/rdf+xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/rdf+n3": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/x-nquads": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/rdf+json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/trix": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/x-trig": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/x-binary-rdf": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1039,23 +1017,24 @@
         ],
         "summary": "Explicit triples count",
         "description": "Returns the number of explicit triples in the repository.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1068,23 +1047,24 @@
         "deprecated": true,
         "summary": "Total triples count",
         "description": "Returns the total (explicit+implicit) number of triples in the repository.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1096,23 +1076,24 @@
         ],
         "summary": "Explicit and Implicit triples count and Expansion ratio",
         "description": "Returns the number of explicit and implicit triples in the repository and the expansion ratio.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1124,23 +1105,24 @@
         ],
         "summary": "Repository Namespaces",
         "description": "Returns the repository namespaces.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1151,8 +1133,7 @@
           "RDF4J"
         ],
         "summary": "Returns the namespace for a prefix in a repository",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1177,6 +1158,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1188,23 +1172,24 @@
         ],
         "summary": "Repository contexts",
         "description": "Returns the repository contexts.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1212,12 +1197,11 @@
     "/rdf4j/query/{repository}": {
       "get": {
         "tags": [
-          "RDF4J"
+          "RDF4J Query"
         ],
         "summary": "Query a Repository",
         "description": "Run a SPARQL query in a Repository.\nBecause it is a GET request the query size is limited. Use the POST if needed.\n",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1275,26 +1259,27 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       },
       "post": {
         "tags": [
-          "RDF4J"
+          "RDF4J Query"
         ],
         "summary": "Query a Repository",
         "description": "Run a SPARQL query in a Repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Repository to be queried",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Repository to be queried",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "required": true,
           "content": {
@@ -1350,21 +1335,9 @@
           },
           "400": {
             "description": "Bad request"
-          }
-        }
-      }
-    },
-    "/mongo": {
-      "get": {
-        "tags": [
-          "Mongo"
-        ],
-        "deprecated": true,
-        "summary": "TODO",
-        "description": "TODO",
-        "responses": {
-          "default": {
-            "description": "TODO"
+          },
+          "404": {
+            "description": "Repository does not exist"
           }
         }
       }
@@ -1438,8 +1411,14 @@
               }
             }
           },
+          "400": {
+            "description": "Bad request (missing required variable, bad syntax, etc)"
+          },
+          "409": {
+            "description": "Query already exists (Duplicate query name for this user)"
+          },
           "500": {
-            "description": "Internal error. Likely duplicate key (email already exists)"
+            "description": "FIXME there may be more possible errors"
           }
         }
       }
@@ -1451,17 +1430,15 @@
         ],
         "summary": "User information by email",
         "description": "Given a User email, returns the User information",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "User email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "User email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -1483,17 +1460,15 @@
           "Mongo"
         ],
         "summary": "Delete user by email",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "Email from the User to delete",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Email from the User to delete",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "User deleted with success. (or it doesnt exist and returns empty object)",
@@ -1519,17 +1494,15 @@
         "deprecated": true,
         "summary": "TODO",
         "description": "TODO",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "Account email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "default": {
             "description": "TODO"
@@ -1584,10 +1557,13 @@
             "description": "Create success"
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request (missing required variable, bad syntax, etc)"
           },
-          "default": {
-            "description": "TODO (already exists a query with same name from same user)"
+          "409": {
+            "description": "Query already exists (Duplicate query name for this user)"
+          },
+          "500": {
+            "description": "FIXME there may be more possible errors"
           }
         }
       }
@@ -1599,17 +1575,15 @@
         ],
         "summary": "Get saved queries from a user",
         "description": "Given a User email, returns its saved queries",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "User email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "User email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -1626,6 +1600,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "500": {
+            "description": "FIXME there may be more possible errors"
           }
         }
       }
@@ -1637,17 +1614,15 @@
         ],
         "summary": "Get global saved queries from a user",
         "description": "Given a User email, returns its global (not associated to any specific repository) saved queries",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "User email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "User email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -1664,6 +1639,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "500": {
+            "description": "FIXME there may be more possible errors"
           }
         }
       }
@@ -1675,8 +1653,7 @@
         ],
         "summary": "Get saved queries from a user and repository",
         "description": "Given a User email and Repository ID, returns its saved queries",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "email",
@@ -1711,6 +1688,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "500": {
+            "description": "FIXME there may be more possible errors"
           }
         }
       }
@@ -1722,17 +1702,15 @@
         ],
         "summary": "Get a saved query by name.",
         "description": "Given a Query Name, returns it.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "name",
-            "description": "Query name",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "name",
+          "description": "Query name",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -1746,6 +1724,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "500": {
+            "description": "FIXME there may be more possible errors"
           }
         }
       }
@@ -1756,8 +1737,7 @@
           "Mongo"
         ],
         "summary": "Change a Saved Query query value",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "email",
@@ -1808,6 +1788,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "500": {
+            "description": "FIXME there may be more possible errors"
           }
         }
       },
@@ -1816,8 +1799,7 @@
           "Mongo"
         ],
         "summary": "Delete Saved Query",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "email",
@@ -1849,6 +1831,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "500": {
+            "description": "FIXME there may be more possible errors"
           }
         }
       }

@@ -21,9 +21,13 @@ tags:
   description: Requests related to User Authentication
 - name: RDF4J
   description: Requests related to RDF4J Server
+- name: RDF4J Query
+  description: RDF4J Server SPARQL 1.1 queries
 - name: Mongo
   description: Requests related to MongoDB
+
 paths:
+# AUTH SECTION
   "/auth/signup":
     post:
       tags:
@@ -127,7 +131,7 @@ paths:
         # default:
         #   description: Email doesn't exist
 
-  # RDF4J SECTION
+# RDF4J SECTION
   # "/rdf4j":
   #   get:
   #     tags:
@@ -197,64 +201,8 @@ paths:
                 type: string
         '400':
           description: Bad request.
-        '406':
-          description: Invalid accept type.
-  "/rdf4j/management/repoInfo/{repository}":
-    get:
-      tags:
-      - RDF4J
-      summary: Repository configuration
-      # description: Repository configuration
-      parameters:
-      - in: path
-        required: true
-        name: repository
-        description: Target Repository
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Request success
-          content:
-            text/turtle:
-              schema:
-                type: string
-            application/x-turtle:
-              schema:
-                type: string
-            application/rdf+xml:
-              schema:
-                type: string
-            text/plain:
-              schema:
-                type: string
-            text/rdf+n3:
-              schema:
-                type: string
-            text/x-nquads:
-              schema:
-                type: string
-            application/ld+json:
-              schema:
-                type: string
-            application/rdf+json:
-              schema:
-                type: string
-            application/trix:
-              schema:
-                type: string
-            application/x-trig:
-              schema:
-                type: string
-            application/x-binary-rdf:
-              schema:
-                type: string
-        '400':
-          description: Bad request.
-        '404':
-          description: Unknown Repository. Repository does not exist.
-        '406':
-          description: Invalid accept type.
+
+# RDF4J Repo Management SECTION
   "/rdf4j/management/create":
     put:
       tags:
@@ -334,7 +282,7 @@ paths:
         '400':
           description: Bad request.
         '404':
-          description: Unknown Repository. Repository does not exist.
+          description: Repository does not exist
         '500':
           description: Internal Error. Likely configuration error. Possibly bad configuration values.
   "/rdf4j/management/delete/{repository}":
@@ -356,7 +304,7 @@ paths:
         '400':
           description: Bad request.
         '404':
-          description: Unknown Repository. Repository does not exist.
+          description: Repository does not exist
   "/rdf4j/management/delete/{repository}/statements":
     delete:
       tags:
@@ -376,7 +324,7 @@ paths:
         '400':
           description: Bad request.
         '404':
-          description: Unknown Repository. Repository does not exist.
+          description: Repository does not exist
   "/rdf4j/management/importFile/{repository}":
     post:
       tags:
@@ -454,9 +402,9 @@ paths:
         '200':
           description: Import success
         '400':
-          description: Bad request (or the repository does not exist)
-        default:
-          description: TODO
+          description: Bad request
+        '404':
+          description: Repository does not exist
     put:
       tags:
       - RDF4J
@@ -533,9 +481,9 @@ paths:
         '200':
           description: Import success
         '400':
-          description: Bad request (or the repository does not exist)
-        default:
-          description: TODO
+          description: Bad request
+        '404':
+          description: Repository does not exist
   "/rdf4j/management/importText/{repository}":
     post:
       tags:
@@ -602,9 +550,9 @@ paths:
         '200':
           description: Import success
         '400':
-          description: Bad request (or the repository does not exist)
-        default:
-          description: TODO
+          description: Bad request
+        '404':
+          description: Repository does not exist
     put:
       tags:
       - RDF4J
@@ -670,9 +618,9 @@ paths:
         '200':
           description: Import success
         '400':
-          description: Bad request (or the repository does not exist)
-        default:
-          description: TODO
+          description: Bad request
+        '404':
+          description: Repository does not exist
   "/rdf4j/management/export/{repository}":
     get:
       tags:
@@ -1217,6 +1165,64 @@ paths:
                 description: "Binary value"
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
+
+# RDF4J Repo Info SECTION
+  "/rdf4j/repository/{repository}/config":
+    get:
+      tags:
+      - RDF4J
+      summary: Repository configuration
+      # description: Repository configuration
+      parameters:
+      - in: path
+        required: true
+        name: repository
+        description: Target Repository
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request success
+          content:
+            text/turtle:
+              schema:
+                type: string
+            application/x-turtle:
+              schema:
+                type: string
+            application/rdf+xml:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+            text/rdf+n3:
+              schema:
+                type: string
+            text/x-nquads:
+              schema:
+                type: string
+            application/ld+json:
+              schema:
+                type: string
+            application/rdf+json:
+              schema:
+                type: string
+            application/trix:
+              schema:
+                type: string
+            application/x-trig:
+              schema:
+                type: string
+            application/x-binary-rdf:
+              schema:
+                type: string
+        '400':
+          description: Bad request.
+        '404':
+          description: Repository does not exist
   "/rdf4j/repository/{repository}/explicit":
     get:
       tags:
@@ -1235,6 +1241,8 @@ paths:
           description: Request success
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
   "/rdf4j/repository/{repository}/total":
     get:
       tags:
@@ -1254,6 +1262,8 @@ paths:
           description: Request success
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
   "/rdf4j/repository/{repository}/triples":
     get:
       tags:
@@ -1272,6 +1282,8 @@ paths:
           description: Request success
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
   "/rdf4j/repository/{repository}/namespaces":
     get:
       tags:
@@ -1291,6 +1303,8 @@ paths:
           # example: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
   "/rdf4j/repository/{repository}/namespaces/{prefix}":
     get:
       tags:
@@ -1316,6 +1330,8 @@ paths:
           description: Request success
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
   "/rdf4j/repository/{repository}/contexts":
     get:
       tags:
@@ -1334,10 +1350,15 @@ paths:
           description: Request success
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
+
+
+# RDF4J QUERY SECTION
   "/rdf4j/query/{repository}":
     get:
       tags:
-      - RDF4J
+      - RDF4J Query
       summary: Query a Repository
       description: |
         Run a SPARQL query in a Repository.
@@ -1382,9 +1403,11 @@ paths:
                 # type: binary
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
     post:
       tags:
-      - RDF4J
+      - RDF4J Query
       summary: Query a Repository
       description: |
         Run a SPARQL query in a Repository.
@@ -1433,18 +1456,22 @@ paths:
                 # type: binary
         '400':
           description: Bad request
+        '404':
+          description: Repository does not exist
 
-  # MONGO SECTION
-  "/mongo":
-    get:
-      tags:
-      - Mongo
-      deprecated: true
-      summary: TODO
-      description: TODO
-      responses:
-        default:
-          description: TODO
+
+# MONGO SECTION
+  # "/mongo":
+  #   get:
+  #     tags:
+  #     - Mongo
+  #     deprecated: true
+  #     summary: TODO
+  #     description: TODO
+  #     responses:
+  #       default:
+  #         description: TODO
+# MONGO Users SECTION
   "/users":
     get:
       tags:
@@ -1492,10 +1519,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request (missing required variable, bad syntax, etc)
+        '409':
+          description: Query already exists (Duplicate query name for this user)
         '500':
-          description: Internal error. Likely duplicate key (email already exists)
-        # default:
-        #   description: TODO
+          description: FIXME there may be more possible errors
   "/users/{email}":
     get:
       tags:
@@ -1518,8 +1547,8 @@ paths:
                 $ref: '#/components/schemas/User'
         '400':
           description: Bad request
-        # default:
-        #   description: TODO
+        # '404':
+        #   description: User does not exist (returns null)
     delete:
       tags:
       - Mongo
@@ -1541,8 +1570,8 @@ paths:
                 $ref: '#/components/schemas/User'
         '400':
           description: Bad request
-        # default:
-        #   description: Email doesn't exist
+        # '404':
+        #   description: User does not exist (returns null)
   "/users/{email}/password":
     put:
       tags:
@@ -1560,6 +1589,7 @@ paths:
       responses:
         default:
           description: TODO
+# MONGO Queries SECTION
   "/queries":
     get:
       tags:
@@ -1589,26 +1619,15 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/SavedQuery'
-              # properties:
-              #   name:
-              #     type: string
-              #   query:
-              #     type: string
-              #   user_email:
-              #     type: string
-              #   repoID:
-              #     type: string
-              # required:
-              #   - name
-              #   - query
-              #   - user_email
       responses:
         '200':
           description: Create success
         '400':
-          description: Bad request
-        default:
-          description: TODO (already exists a query with same name from same user)
+          description: Bad request (missing required variable, bad syntax, etc)
+        '409':
+          description: Query already exists (Duplicate query name for this user)
+        '500':
+          description: FIXME there may be more possible errors
   "/queries/user/{email}":
     get:
       tags:
@@ -1633,8 +1652,10 @@ paths:
                   $ref: '#/components/schemas/SavedQuery'
         '400':
           description: Bad request
-        # default:
-        #   description: TODO
+        '500':
+          description: FIXME there may be more possible errors
+        # '404':
+        #   description: User does not exist (returns empty list)
   "/queries/user/{email}/global":
     get:
       tags:
@@ -1659,8 +1680,10 @@ paths:
                   $ref: '#/components/schemas/SavedQuery'
         '400':
           description: Bad request
-        # default:
-        #   description: TODO
+        '500':
+          description: FIXME there may be more possible errors
+        # '404':
+        #   description: User does not exist (returns empty list)
   "/queries/user/{email}/{repository}":
     get:
       tags:
@@ -1691,9 +1714,10 @@ paths:
                   $ref: '#/components/schemas/SavedQuery'
         '400':
           description: Bad request
-        # default:
-        #   description: TODO
-  # "/queries/{email}/{name}":
+        '500':
+          description: FIXME there may be more possible errors
+        # '404':
+        #   description: User or Repo does not exist (returns empty list)
   "/queries/{name}":
     get:
       tags:
@@ -1701,12 +1725,6 @@ paths:
       summary: Get a saved query by name.
       description: Given a Query Name, returns it.
       parameters:
-      # - in: path
-      #   required: true
-      #   name: email
-      #   description: User email
-      #   schema:
-      #     type: string
       - in: path
         required: true
         name: name
@@ -1722,8 +1740,10 @@ paths:
                 $ref: '#/components/schemas/SavedQuery'
         '400':
           description: Bad request
-        # default:
-        #   description: TODO
+        '500':
+          description: FIXME there may be more possible errors
+        # '404':
+        #   description: Query does not exist (returns null)
   "/queries/{email}/{name}":
     put:
       tags:
@@ -1765,8 +1785,10 @@ paths:
                 $ref: '#/components/schemas/SavedQuery'
         '400':
           description: Bad request
-        # default:
-        #   description: TODO
+        '500':
+          description: FIXME there may be more possible errors
+        # '404':
+        #   description: User or Query does not exist (returns null)
     delete:
       tags:
       - Mongo
@@ -1794,8 +1816,10 @@ paths:
                 $ref: '#/components/schemas/SavedQuery'
         '400':
           description: Bad request
-        # default:
-        #   description: Email doesn't exist
+        '500':
+          description: FIXME there may be more possible errors
+        # '404':
+        #   description: User or Query does not exist (returns null)
 
 
 components:
