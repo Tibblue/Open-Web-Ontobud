@@ -8,9 +8,27 @@
             <v-expansion-panels :value="0">
               <v-expansion-panel>
                 <v-expansion-panel-header :style="expansionPanelCSS">
-                  <span class="display-1 align-center pa-0">
-                    Statements
-                  </span>
+                  <v-row no-gutters align="center">
+                    <v-col class="grow">
+                      <span class="display-1 align-center pa-0">
+                        Statements
+                      </span>
+                    </v-col>
+                    <v-col class="mx-3 shrink">
+                      <div v-if="loading.statements">
+                        <v-icon>fas fa-spinner fa-spin</v-icon>
+                        <!-- <v-icon>mdi-loading mdi-spin</v-icon> -->
+                      </div>
+                      <div v-else>
+                        <div v-if="alert.statements">
+                          <v-icon>fas fa-times-circle</v-icon>
+                        </div>
+                        <!-- <div v-else>
+                          <v-icon>fas fa-check-circle</v-icon>
+                        </div> -->
+                      </div>
+                    </v-col>
+                  </v-row>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content class="px-4 py-2">
                     <v-card-title class="align-center pt-2">
@@ -29,9 +47,27 @@
             <v-expansion-panels :value="0" class="pt-6">
               <v-expansion-panel>
                 <v-expansion-panel-header :style="expansionPanelCSS">
-                  <span class="display-1 align-center pa-0">
-                    Namespaces
-                  </span>
+                  <v-row no-gutters align="center">
+                    <v-col class="grow">
+                      <span class="display-1 align-center pa-0">
+                        Namespaces
+                      </span>
+                    </v-col>
+                    <v-col class="mx-3 shrink">
+                      <div v-if="loading.namespaces">
+                        <v-icon>fas fa-spinner fa-spin</v-icon>
+                        <!-- <v-icon>mdi-loading mdi-spin</v-icon> -->
+                      </div>
+                      <div v-else>
+                        <div v-if="alert.namespaces">
+                          <v-icon>fas fa-times-circle</v-icon>
+                        </div>
+                        <!-- <div v-else>
+                          <v-icon>fas fa-check-circle</v-icon>
+                        </div> -->
+                      </div>
+                    </v-col>
+                  </v-row>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content class="px-4 py-2">
                   <p class="mb-0"
@@ -51,15 +87,35 @@
             <v-expansion-panels accordion :value="0">
               <v-expansion-panel>
                 <v-expansion-panel-header :style="expansionPanelCSS">
-                  <span class="display-1 align-center pa-0">
-                    Existing Classes
-                  </span>
+                  <v-row no-gutters align="center">
+                    <v-col class="grow">
+                      <span class="display-1 align-center pa-0">
+                        Existing Classes
+                      </span>
+                    </v-col>
+                    <v-col class="mx-3 shrink">
+                      <div v-if="loading.classes">
+                        <v-icon>fas fa-spinner fa-spin</v-icon>
+                        <!-- <v-icon>mdi-loading mdi-spin</v-icon> -->
+                      </div>
+                      <div v-else>
+                        <div v-if="alert.classes">
+                          <v-icon>fas fa-times-circle</v-icon>
+                        </div>
+                        <div v-else>
+                          <v-icon v-if="noClasses">fas fa-minus-circle</v-icon>
+                          <!-- <v-icon v-else>fas fa-check-circle</v-icon> -->
+                        </div>
+                      </div>
+                    </v-col>
+                  </v-row>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <v-expansion-panels accordion focusable>
                     <v-expansion-panel
                       v-for="classe in classes"
                       :key="classe.name"
+                      :disabled="noClasses"
                       @click="getClassElems($session.get('repoID'),classe.name)"
                     >
                       <v-expansion-panel-header>
@@ -139,6 +195,17 @@ export default {
     classes: [{name: 'Loading classes...', count: '0'}],
     expandedClassElems: ["Loading elements..."],
     elemsShown: 50,
+    noClasses: false,
+    alert: {
+      statements: false,
+      namespaces: false,
+      classes: false,
+    },
+    loading: {
+      statements: false,
+      namespaces: false,
+      classes: false,
+    },
   }),
   mounted: async function (){
     // console.log(process.env) // debug
@@ -159,6 +226,7 @@ export default {
   },
   methods: {
     getStatementNumber(repoID) {
+      this.loading.statements = true
       this.explicitStatementsNumber = "Loading info..."
       axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/triples')
         .then(response => {
@@ -166,30 +234,44 @@ export default {
           this.explicitStatementsNumber = response.data.explicit
           this.implicitStatementsNumber = response.data.implicit
           this.expansionRatio = response.data.expansion || 0
+          this.error.statements = true
         })
-        .catch(alert => {
-          this.explicitStatementsNumber = "Servidor indisponivel...\n" + alert
-          this.implicitStatementsNumber = "Servidor indisponivel...\n" + alert
-          this.expansionRatio = "Servidor indisponivel...\n" + alert
+        .catch(error => {
+          // console.log(error.response)
+          this.error.statements = true
+          this.explicitStatementsNumber = "Request failed..."
+          this.implicitStatementsNumber = "Request failed..."
+          this.expansionRatio = "Request failed..."
+        })
+        .finally(() => {
+          this.loading.statements = false
         })
     },
     getNamespaces(repoID) {
+      this.loading.namespaces = true
       this.namespaces = [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}]
       axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
         .then(response => {
           // console.log(response.data)
-          var elemArray = []
+          var elemsAux = []
           var elems = response.data
           elems.forEach(element => {
-            elemArray.push({'prefix': element.prefix.value, 'namespace': element.namespace.value})
+            elemsAux.push({'prefix': element.prefix.value, 'namespace': element.namespace.value})
           });
-          this.namespaces = elemArray
+          this.namespaces = elemsAux
+          this.error.namespaces = false
         })
-        .catch(alert => {
-          this.namespaces = [{prefix: 'Get Namespaces FAIL!!!', namespace: alert}]
+        .catch(error => {
+          // console.log(error.response)
+          this.error.namespaces = true
+          this.namespaces = [{prefix: 'Get Namespaces Failed!', namespace: error}]
+        })
+        .finally(() => {
+          this.loading.namespaces = false
         })
     },
     getClasses(repoID) {
+      this.loading.classes = true
       this.classes = [{name: 'Loading classes...'}]
       var repoID = this.$session.get("repoID")
       // var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' // select class and its count
@@ -204,16 +286,28 @@ export default {
       axios.post(url, qs.stringify({'query': query}), config)
         .then(response => {
           // console.log(response.data) // debug
-          // console.log(response.data.results.bindings) // debug resultados
-          var classArray = []
+          var classesAux = []
           var classes = response.data.results.bindings
-          classes.forEach(element => {
-            classArray.push({'name': element.class.value, 'count': element.count.value})
-          });
-          this.classes = classArray
+          if (classes.length==1) {
+            this.noClasses = true
+            this.classes = [{name: 'No classes exist in this Repository'}]
+          }
+          else {
+            this.noClasses = false
+            classes.forEach(element => {
+              classesAux.push({'name': element.class.value, 'count': element.count.value})
+            });
+            this.classes = classesAux
+          }
+          this.alert.classes = false
         })
-        .catch(alert => {
-          this.classes = [{name: "Get Classes FAIL!!!\n" + alert}]
+        .catch(error => {
+          // console.log(error.response)
+          this.error.classes = true
+          this.classes = [{name: "Get Classes Failed!"}]
+        })
+        .finally(() => {
+          this.loading.classes = false
         })
     },
     getClassElems(repoID, classe) {
@@ -232,16 +326,15 @@ export default {
       axios.post(url, qs.stringify({'query': query}), config)
         .then(response => {
           // console.log(response.data) // debug
-          // console.log(response.data.results.bindings) // debug resultados
-          var elemArray = []
+          var elemsAux = []
           var elems = response.data.results.bindings
           elems.forEach(element => {
-            elemArray.push(element.elem.value)
+            elemsAux.push(element.elem.value)
           });
-          this.expandedClassElems = elemArray
+          this.expandedClassElems = elemsAux
         })
-        .catch(alert => {
-          this.expandedClassElems = ["Get Class Elem FAIL!!!\n" + alert]
+        .catch(error => {
+          this.expandedClassElems = ["Get Class Elements Failed!\n" + error]
         })
     },
     elemClicked(uri) {
