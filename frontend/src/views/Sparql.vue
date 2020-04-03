@@ -194,7 +194,7 @@
         <v-row dense>
           <v-col cols="8">
             <v-btn block color="primary"
-              :disabled="!this.exportResult.lastQuery ? true : false"
+              :disabled="!this.exportResult.lastQuery || this.exportResult.lastQueryType==='ask' ? true : false"
               @click="exportResults($repo.id,exportResult.selectedFileType,exportResult.lastQuery,exportResult.lastInfer)"
             >
               Export Results
@@ -284,17 +284,11 @@ export default {
     namespaceON: true,
     prefixON: true,
     savedQueriesExpand: true,
-    savedQueries: [ // temporary visual debug
-      { name: 'Select All', query: 'select * where { ?s ?p ?o } limit 200' },
-      { name: 'Get classes', query: 'SELECT DISTINCT ?type WHERE { ?class a ?type. }' },
-      { name: 'Get OWL classes only', query: 'SELECT DISTINCT ?class WHERE { ?class a owl:Class. }' },
-      { name: 'Get #classes', query: 'SELECT (count(distinct ?class) as ?numberClasses) WHERE { ?class a owl:Class. }' },
-      { name: 'Get #elements per class', query: 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' },
-    ],
     exportResult: {
       fileTypeList: ["json","csv","rdf-xml","binary-rdf"],
       selectedFileType: "json",
       lastQuery: null,
+      lastQueryType: null,
       lastInfer: true,
     },
     alert: {
@@ -342,6 +336,23 @@ export default {
       });
       return results
     },
+    checkQuery: function() {
+      // SELECT.*WHERE.*\{.*\}
+      const selectPatt = /SELECT/i
+      const constructPatt = /CONSTRUCT/i
+      const askPatt = /ASK/i
+      var queryType = "???"
+      if (selectPatt.test(this.queryInput)) {
+        queryType = "select"
+      }
+      else if (constructPatt.test(this.queryInput)) {
+        queryType = "construct"
+      }
+      else if (askPatt.test(this.queryInput)) {
+        queryType = "ask"
+      }
+      return queryType
+    }
   },
   methods: {
     getNamespaces(repoID) {
@@ -384,41 +395,106 @@ export default {
       const defaultNamespaceExists = /^ *PREFIX : /m.test(query)
       if(!defaultNamespaceExists) query = this.defaultNamespaceForQuery + query
       var repoID = this.$repo.id
+      var accept
+      var queryType = this.checkQuery
+      switch(queryType){
+        case 'select':
+          accept = "application/json"
+          break;
+        case 'construct':
+          accept = "application/rdf+json"
+          break;
+        case 'ask':
+          accept = "text/boolean"
+          break;
+        default:
+          accept = "application/json" // could fail
+      }
       var url = backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
-          "Accept": "application/json",
+          "Accept": accept,
           "Content-Type": "application/x-www-form-urlencoded"
         }
       }
       axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
         .then(response => {
-          // console.log(response.data) // debug
-          // console.log(response.data.head.vars) // debug Nome de Colunas
-          // console.log(response.data.results.bindings) // debug resultados
-          var columnsVars = response.data.head.vars
-          var resultsData = response.data.results.bindings
-          // process results
-          this.table.headers = []
-          columnsVars.forEach(element => {
-            this.table.headers.push({'text': element, 'value': element, sortable: true})
-          });
-          this.table.items = []
-          resultsData.forEach(element => {
-            var elemAux = {}
-            for(const key in element){
-              elemAux[key] = {
-                'value': element[key].value,
-                'type': element[key].type
+          // console.log(queryType) // debug
+          if(queryType==="select"){
+            // console.log(response.data) // debug
+            var columnsVars = response.data.head.vars
+            var resultsData = response.data.results.bindings
+            this.table.headers = []
+            columnsVars.forEach(element => {
+              this.table.headers.push({'text': element, 'value': element, sortable: true})
+            });
+            this.table.items = []
+            resultsData.forEach(element => {
+              var elemAux = {}
+              for(const key in element){
+                elemAux[key] = {
+                  'value': element[key].value,
+                  'type': element[key].type
+                }
               }
-            }
-            this.table.items.push(elemAux)
-          });
+              this.table.items.push(elemAux)
+            });
+          }
+          else if(queryType==="construct"){
+            // console.log(response.data) // debug
+            this.table.headers = [
+              {'text': 'subject', 'value': 'subject', sortable: true},
+              {'text': 'predicate', 'value': 'predicate', sortable: true},
+              {'text': 'object', 'value': 'object', sortable: true}
+            ]
+            var resultsData = response.data
+            this.table.items = []
+            for(const subject in resultsData){
+              for(const predicate in resultsData[subject]){
+                resultsData[subject][predicate].forEach(object => {
+                  // console.log(subject)
+                  // console.log(predicate)
+                  // console.log(object.value)
+                  // console.log(object.type)
+                  this.table.items.push({
+                    'subject': {
+                      'value': subject,
+                      'type': 'uri'
+                    },
+                    'predicate': {
+                      'value': predicate,
+                      'type': 'uri'
+                    },
+                    'object': {
+                      'value': object.value,
+                      'type': object.type
+                    }
+                  })
+                });
+              }
+            };
+          }
+          else if(queryType==="ask"){
+            var result = response.data
+            this.table.headers = [{
+              'text': 'boolean',
+              'value': 'boolean',
+              sortable: false
+            }]
+            this.table.items = [{
+              'boolean': {
+                'value': result,
+                'type': 'literal'
+              }
+            }]
+          }
           this.exportResult.lastQuery = query
+          this.exportResult.lastQueryType = queryType
           this.exportResult.lastInfer = infer
           this.alert.queryFail = false
         })
         .catch(error => {
+          console.log(error)
           this.alert.queryFail = true
           this.alert.queryFailText = "Run Query Failed ...\n"+error.response.data
         })
@@ -449,7 +525,6 @@ export default {
           this.alert.querySaveFail = false
         })
         .catch(error => {
-          console.log(error.response.data)
           this.alert.querySaveFail = true
           this.alert.querySaveFailText = "Save query Failed ... "+error.response.data
           // FIXME: detetar qd falha pk ja existe
@@ -460,23 +535,44 @@ export default {
     },
     exportResults(repoID, fileType, query, infer) {
       this.loading.exportFile = true
-      var accept = "application/json"
-      switch(fileType){
-        case 'json':
-          accept = "application/json"
-          break;
-        case 'csv':
-          accept = "text/csv"
-          break;
-        case 'rdf-xml':
-          accept = "application/xml"
-          break;
-        case 'binary-rdf':
-          accept = "application/x-binary-rdf-results-table"
-          break;
-        default:
+      var accept
+      if(this.exportResult.lastQueryType==="select") {
+        switch(fileType){
+          case 'json':
+            accept = "application/json"
+            break;
+          case 'csv':
+            accept = "text/csv"
+            break;
+          case 'rdf-xml':
+            accept = "application/xml"
+            break;
+          case 'binary-rdf':
+            accept = "application/x-binary-rdf-results-table"
+            break;
+          default:
+            accept = "application/json"
+        }
       }
-
+      else if(this.exportResult.lastQueryType==="construct") {
+        switch(fileType){
+          case 'json':
+            accept = "application/rdf+json"
+            break;
+          case 'csv':
+            accept = "text/plain"
+            break;
+          case 'rdf-xml':
+            accept = "application/rdf+xml"
+            break;
+          case 'binary-rdf':
+            accept = "application/x-binary-rdf"
+            break;
+          default:
+            accept = "application/rdf+json"
+        }
+      }
+      console.log(accept)
       var url = backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {

@@ -9,11 +9,12 @@
       </v-list-item-icon>
       <v-list-item-content>
         <v-list-item-title class="title">
-          RDF4J Frontend
+          OntoWorks
         </v-list-item-title>
-        <!-- <v-list-item-subtitle>
-          {{this.$vuetify.breakpoint.name}}
-        </v-list-item-subtitle> -->
+        <v-list-item-subtitle>
+          a RDF4J Frontend
+          <!-- {{this.$vuetify.breakpoint.name}} -->
+        </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
     <v-list-item @click="goToBackend()">
