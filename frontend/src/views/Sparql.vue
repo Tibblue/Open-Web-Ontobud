@@ -37,6 +37,46 @@
           <v-col class="shrink">
             <v-row dense>
               <v-col cols="12">
+                <v-tooltip left>
+                  <template v-slot:activator="{ on }">
+                    <v-btn fab small depressed color="primary" v-on="on"
+                      @click="queryInput='select *\nwhere {\n  ?s ?p ?o\n}\nlimit 50'"
+                    >
+                      <v-icon>mdi-alpha-s</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Construct Snippet</span>
+                </v-tooltip>
+              </v-col>
+              <v-col cols="12">
+                <v-tooltip left>
+                  <template v-slot:activator="{ on }">
+                    <v-btn fab small depressed color="primary" v-on="on"
+                      @click="queryInput='construct {\n  ?s ?p \'wow\'\n}\nwhere {\n  ?s ?p ?o\n}'"
+                    >
+                      <v-icon>mdi-alpha-c</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Construct Snippet</span>
+                </v-tooltip>
+              </v-col>
+              <v-col cols="12">
+                <v-tooltip left>
+                  <template v-slot:activator="{ on }">
+                    <v-btn fab small depressed color="primary" v-on="on"
+                      @click="queryInput='ask {\n  ?s ?p ?o\n}'"
+                    >
+                      <v-icon>mdi-alpha-a</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Ask Snippet</span>
+                </v-tooltip>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col class="shrink">
+            <v-row dense>
+              <v-col cols="12">
                 <v-btn fab small depressed color="primary"
                   :loading="loading.query"
                   @click="runQuery(queryInput,infer)"
@@ -264,7 +304,7 @@ export default {
     savedQueries,
   },
   data: () => ({
-    queryInput: "select * where { ?s ?p ?o }\nlimit 50",
+    queryInput: "select * where {\n  ?s ?p ?o\n}\nlimit 50",
     infer: true,
     table: {
       headers: [],
