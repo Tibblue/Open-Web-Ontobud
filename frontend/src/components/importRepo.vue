@@ -99,21 +99,25 @@ export default {
       this.loading.importFile = true
       var url = backend_url+'/api/rdf4j/management/importFile/'+repoID
       var data = file
-      var headers = { 'headers' :{}}
+      var config = {
+        headers: { "Content-Type": "text/turtle" },
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+      }
       switch(fileType){
         case 'ttl':
-          headers = { 'headers': { "Content-Type": "text/turtle" }}
+          config["headers"] = { "Content-Type": "text/turtle" }
           break;
         case 'rdf-xml':
-          fileType = "xml"
+          config["headers"] = { "Content-Type": "application/xml" }
           break;
         case 'txt':
-          headers = { 'headers': { "Content-Type": "text/plain" }}
+          config["headers"] = { "Content-Type": "text/plain" }
           break;
         default:
       }
       if(addORreplace==='add')
-        axios.post(url, data, headers)
+        axios.post(url, data, config)
           .then(response => {
             this.alert.importFileSuccess = true
             this.alert.importFileFail = false
@@ -143,22 +147,26 @@ export default {
       this.loading.importText = true
       var url = backend_url+'/api/rdf4j/management/importText/'+repoID
       var data = input
-      var headers = { 'headers' :{}}
+      var config = {
+        headers: { "Content-Type": "text/turtle" },
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+      }
       switch(fileType){
         case 'ttl':
-          headers = { 'headers': { "Content-Type": "text/turtle" }}
+          config["headers"] = { "Content-Type": "text/turtle" }
           break;
         case 'rdf-xml':
-          fileType = "xml"
+          config["headers"] = { "Content-Type": "application/xml" }
           break;
         case 'txt':
-          headers = { 'headers': { "Content-Type": "text/plain" }}
+          config["headers"] = { "Content-Type": "text/plain" }
           break;
         default:
       }
       // headers = { 'headers': { "Content-Type": "application/x-turtle" }}
       if(addORreplace==='add')
-        axios.post(url, data, headers)
+        axios.post(url, data, config)
           .then(response => {
             this.alert.importTextSuccess = true
             this.alert.importTextFail = false

@@ -193,7 +193,13 @@ router.post('/importFile/:repo', rawFileParser, function (req, res) {
   const contentType = req.headers['content-type'] // keep original content type
   const url = rdf4jServer + 'repositories/' + repo + '/statements'
   const body = req.body
-  const config = { headers: { "Content-Type": contentType } }
+  const config = {
+    headers: {
+      "Content-Type": contentType
+    },
+    maxContentLength: Infinity,
+    maxBodyLength: Infinity,
+  }
   axios.post(url, body, config)
     .then( () => res.status(200).send())
     .catch(error => {
