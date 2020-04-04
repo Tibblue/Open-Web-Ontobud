@@ -12,7 +12,7 @@
         </v-row>
         <v-row dense v-else>
           <v-col cols="12" md="12">
-            <savedQueries ref="savedQueriesComp" @runQuery="runQuery"/>
+            <savedQueries ref="savedQueriesComp" @runQuery="run"/>
           </v-col>
         </v-row>
 
@@ -79,7 +79,7 @@
               <v-col cols="12">
                 <v-btn fab small depressed color="primary"
                   :loading="loading.query"
-                  @click="runQuery(queryInput,infer)"
+                  @click="run(queryInput,infer)"
                 >
                   <v-icon>mdi-play</v-icon>
                 </v-btn>
@@ -169,6 +169,9 @@
             </v-row>
           </v-col>
           <v-col cols="12">
+            <v-alert text dismissible type="success" v-model="alert.updateSuccess">
+              {{alert.updateSuccessText}}
+            </v-alert>
             <v-alert text dismissible type="error" v-model="alert.queryFail">
               {{alert.queryFailText}}
             </v-alert>
@@ -332,6 +335,8 @@ export default {
       lastInfer: true,
     },
     alert: {
+      updateSuccess: true,
+      updateSuccessText: "Run Update Success!",
       queryFail: false,
       queryFailText: "Run Query Failed ... ",
       querySaveFail: false,
@@ -377,21 +382,7 @@ export default {
       return results
     },
     checkQuery: function() {
-      // SELECT.*WHERE.*\{.*\}
-      const selectPatt = /SELECT/i
-      const constructPatt = /CONSTRUCT/i
-      const askPatt = /ASK/i
-      var queryType = "???"
-      if (selectPatt.test(this.queryInput)) {
-        queryType = "select"
-      }
-      else if (constructPatt.test(this.queryInput)) {
-        queryType = "construct"
-      }
-      else if (askPatt.test(this.queryInput)) {
-        queryType = "ask"
-      }
-      return queryType
+      return this.checkQueryType(this.queryInput)
     }
   },
   methods: {
@@ -428,6 +419,46 @@ export default {
     cellClicked(cellInfo) {
       if(cellInfo.type==='uri')
         this.$router.push({path: "resource", query: { uri: cellInfo.uri }})
+    },
+    checkQueryType(query) {
+      // SELECT.*WHERE.*\{.*\}
+      const selectPatt = /SELECT/i
+      const constructPatt = /CONSTRUCT/i
+      const askPatt = /ASK/i
+      const insertPatt = /INSERT/i
+      const deletePatt = /DELETE/i
+      var queryType = "???"
+      if (selectPatt.test(query)) {
+        queryType = "select"
+      }
+      else if (constructPatt.test(query)) {
+        queryType = "construct"
+      }
+      else if (askPatt.test(query)) {
+        queryType = "ask"
+      }
+      else if (insertPatt.test(query)) {
+        queryType = "insert"
+      }
+      else if (deletePatt.test(query)) {
+        queryType = "delete"
+      }
+      return queryType
+    },
+    run(query, infer){
+      switch(this.checkQueryType(query)) {
+        case "select":
+        case "construct":
+        case "ask":
+          this.runQuery(query,infer)
+          break;
+        case "insert":
+        case "delete":
+          this.runUpdate(query)
+          break;
+        default:
+          break;
+      }
     },
     runQuery(query, infer) {
       this.loading.query = true
@@ -570,6 +601,9 @@ export default {
           // FIXME: detetar qd falha pk ja existe
         })
         .finally(() => {
+          this.saveQuery.queryName = ""
+          this.saveQuery.queryValue = ""
+          this.saveQuery.queryGlobal = true
           this.loading.savingQuery = false
         })
     },
@@ -648,6 +682,32 @@ export default {
         })
         .finally(() => {
           this.loading.exportFile = false
+        })
+    },
+    runUpdate(update) {
+      this.loading.query = true
+      const defaultNamespaceExists = /^ *PREFIX : /m.test(update)
+      if(!defaultNamespaceExists) update = this.defaultNamespaceForQuery + update
+      var repoID = this.$repo.id
+      var url = backend_url+'/api/rdf4j/update/'+repoID
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+      axios.post(url, qs.stringify({'update': update}), config)
+        .then(response => {
+          this.alert.updateSuccess = true
+          this.alert.queryFail = false
+        })
+        .catch(error => {
+          this.alert.updateSuccess = false
+          this.alert.queryFail = true
+          this.alert.queryFailText = "Run Failed ...\n"+error.response.data
+        })
+        .finally(() => {
+          this.loading.query = false
+          this.loading.table = false
         })
     },
     customSearch(value, search, item) {
