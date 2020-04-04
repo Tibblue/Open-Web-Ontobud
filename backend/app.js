@@ -74,6 +74,7 @@ app.use('/api/queries', require('./routes/api/mongo/queries'));
 app.use('/api/rdf4j/management', require('./routes/api/rdf4j/management'));
 app.use('/api/rdf4j/repository', require('./routes/api/rdf4j/repository'));
 app.use('/api/rdf4j/query', require('./routes/api/rdf4j/query'));
+app.use('/api/rdf4j/update', require('./routes/api/rdf4j/update'));
 // Auth
 app.use('/api/auth', require('./routes/auth'));
 

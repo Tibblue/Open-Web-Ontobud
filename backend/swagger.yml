@@ -1728,6 +1728,44 @@ paths:
         '404':
           description: Repository does not exist
 
+  "/rdf4j/update/{repository}":
+    post:
+      tags:
+      - RDF4J Query
+      summary: Update a Repository
+      description: |
+        Run a SPARQL Update in a Repository.
+        Accepts Insert and Delete.
+      parameters:
+      - in: path
+        required: true
+        name: repository
+        description: Repository to be updated
+        schema:
+          type: string
+      requestBody:
+        # description: Login credentials.
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: SPARQL Update to run
+              required:
+                - query
+              example:
+                query: "PREFIX x: <http://example#> INSERT DATA { x:sub x:pre 'obj'. }"
+                infer: "true"
+      responses:
+        '200':
+          description: Update successful
+        '400':
+          description: Bad request
+        '404':
+          description: Repository does not exist
 
 # MONGO SECTION
   # "/mongo":

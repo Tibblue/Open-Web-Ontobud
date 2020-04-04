@@ -13,8 +13,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "servers": [
-    {
+  "servers": [{
       "url": "http://epl.di.uminho.pt:8001/api",
       "description": "Main server"
     },
@@ -23,8 +22,7 @@
       "description": "Testing server"
     }
   ],
-  "tags": [
-    {
+  "tags": [{
       "name": "Auth",
       "description": "Requests related to User Authentication"
     },
@@ -140,11 +138,9 @@
         ],
         "summary": "Get user info from JWT",
         "description": "Decrypts JWT payload, returning some user account information.\n",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [{
+          "bearerAuth": []
+        }],
         "responses": {
           "200": {
             "description": "Information returned."
@@ -162,22 +158,18 @@
         ],
         "summary": "Delete user account by email",
         "description": "Delete user account with the specified email.\nOnly the user himself or a admin can delete a account.\n",
-        "security": [
-          {
-            "bearerAuth": []
+        "security": [{
+          "bearerAuth": []
+        }],
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email to delete",
+          "schema": {
+            "type": "string"
           }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "Account email to delete",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Account deleted"
@@ -407,17 +399,15 @@
           "RDF4J"
         ],
         "summary": "Delete a Repository",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Delete success."
@@ -437,17 +427,15 @@
           "RDF4J"
         ],
         "summary": "Clear all Repository statements/triples",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Clear success."
@@ -468,17 +456,15 @@
         ],
         "summary": "Import file into a repository (add triples)",
         "description": "Import file into a repository.\nThe statements/triples will be **added** to the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -567,17 +553,15 @@
         ],
         "summary": "Import file into a repository (replace triples)",
         "description": "Import file into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -668,17 +652,15 @@
         ],
         "summary": "Import text into a repository (add triples)",
         "description": "Import text into a repository.\nThe statements/triples will be **added** to the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -756,17 +738,15 @@
         ],
         "summary": "Import text into a repository (replace triples)",
         "description": "Import text into a repository.\n**WARNING** The new statements/triples will **replace** the already existing in the repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "content": {
             "text/turtle": {
@@ -845,8 +825,7 @@
           "RDF4J"
         ],
         "summary": "Export repository",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -952,17 +931,15 @@
           "RDF4J"
         ],
         "summary": "Repository configuration",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success",
@@ -1040,17 +1017,15 @@
         ],
         "summary": "Explicit triples count",
         "description": "Returns the number of explicit triples in the repository.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
@@ -1072,17 +1047,15 @@
         "deprecated": true,
         "summary": "Total triples count",
         "description": "Returns the total (explicit+implicit) number of triples in the repository.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
@@ -1103,17 +1076,15 @@
         ],
         "summary": "Explicit and Implicit triples count and Expansion ratio",
         "description": "Returns the number of explicit and implicit triples in the repository and the expansion ratio.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
@@ -1134,17 +1105,15 @@
         ],
         "summary": "Repository Namespaces",
         "description": "Returns the repository namespaces.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
@@ -1164,8 +1133,7 @@
           "RDF4J"
         ],
         "summary": "Returns the namespace for a prefix in a repository",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1204,17 +1172,15 @@
         ],
         "summary": "Repository contexts",
         "description": "Returns the repository contexts.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Target Repository",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Target Repository",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Request success"
@@ -1235,8 +1201,7 @@
         ],
         "summary": "Query a Repository",
         "description": "Run a SPARQL query in a Repository.\nBecause it is a GET request the query size is limited. Use the POST if needed.\n",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1361,17 +1326,15 @@
         ],
         "summary": "Query a Repository",
         "description": "Run a SPARQL query in a Repository.\n",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "repository",
-            "description": "Repository to be queried",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Repository to be queried",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "requestBody": {
           "required": true,
           "content": {
@@ -1496,8 +1459,7 @@
         ],
         "summary": "Query a Repository (Select)",
         "description": "Run a SPARQL query in a Repository.\nThis route works like the generic route, serving its existence to better document its use.\nAlso may be used in the future\n",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1569,8 +1531,7 @@
         ],
         "summary": "Query a Repository (Construct)",
         "description": "Run a SPARQL query in a Repository.\nThis route works like the generic route, serving its existence to better document its use.\nAlso may be used in the future\n",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1672,8 +1633,7 @@
         ],
         "summary": "Query a Repository (Ask)",
         "description": "Run a SPARQL query in a Repository.\nThis route works like the generic route, serving its existence to better document its use.\nAlso may be used in the future.\n",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "repository",
@@ -1723,6 +1683,58 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Repository does not exist"
+          }
+        }
+      }
+    },
+    "/rdf4j/update/{repository}": {
+      "post": {
+        "tags": [
+          "RDF4J Query"
+        ],
+        "summary": "Update a Repository",
+        "description": "Run a SPARQL Update in a Repository.\nAccepts Insert and Delete.\n",
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "repository",
+          "description": "Repository to be updated",
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "SPARQL Update to run"
+                  }
+                },
+                "required": [
+                  "query"
+                ],
+                "example": {
+                  "query": "PREFIX x: <http://example#> INSERT DATA { x:sub x:pre 'obj'. }",
+                  "infer": "true"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update successful"
           },
           "400": {
             "description": "Bad request"
@@ -1821,17 +1833,15 @@
         ],
         "summary": "User information by email",
         "description": "Given a User email, returns the User information",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "User email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "User email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -1853,17 +1863,15 @@
           "Mongo"
         ],
         "summary": "Delete user by email",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "Email from the User to delete",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Email from the User to delete",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "User deleted with success. (or it doesnt exist and returns empty object)",
@@ -1889,17 +1897,15 @@
         "deprecated": true,
         "summary": "TODO",
         "description": "TODO",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "Account email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "Account email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "default": {
             "description": "TODO"
@@ -1972,17 +1978,15 @@
         ],
         "summary": "Get saved queries from a user",
         "description": "Given a User email, returns its saved queries",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "User email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "User email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -2013,17 +2017,15 @@
         ],
         "summary": "Get global saved queries from a user",
         "description": "Given a User email, returns its global (not associated to any specific repository) saved queries",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "email",
-            "description": "User email",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "email",
+          "description": "User email",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -2054,8 +2056,7 @@
         ],
         "summary": "Get saved queries from a user and repository",
         "description": "Given a User email and Repository ID, returns its saved queries",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "email",
@@ -2104,17 +2105,15 @@
         ],
         "summary": "Get a saved query by name.",
         "description": "Given a Query Name, returns it.",
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "name": "name",
-            "description": "Query name",
-            "schema": {
-              "type": "string"
-            }
+        "parameters": [{
+          "in": "path",
+          "required": true,
+          "name": "name",
+          "description": "Query name",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }],
         "responses": {
           "200": {
             "description": "Operation successful. (or user doesnt exist and returns empty object...)",
@@ -2141,8 +2140,7 @@
           "Mongo"
         ],
         "summary": "Change a Saved Query query value",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "email",
@@ -2204,8 +2202,7 @@
           "Mongo"
         ],
         "summary": "Delete Saved Query",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "path",
             "required": true,
             "name": "email",
