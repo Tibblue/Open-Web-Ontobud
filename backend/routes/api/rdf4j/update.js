@@ -4,7 +4,7 @@ var qs = require('querystring')
 var router = express.Router();
 
 // Aux File
-var aux = require("./aux")
+var aux = require("./help")
 // RDF4J endpoint
 var urls = require('../../../urls');
 var rdf4j = urls.rdf4j
