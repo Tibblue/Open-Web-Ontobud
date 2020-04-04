@@ -1355,6 +1355,28 @@ paths:
 
 
 # RDF4J QUERY SECTION
+  # Table (SELECT)
+  #   Accept:application/sparql-results+xml
+  #   Accept:application/sparql-results+json
+  #   Accept:application/x-binary-rdf-results-table
+  #   Accept:application/json
+  #   Accept:application/xml
+  #   Accept:text/csv
+  # RDF/Triples (CONSTRUCT)
+  #   Accept:application/rdf+json
+  #   Accept:application/ld+json
+  #   Accept:text/plain
+  #   Accept:text/turtle
+  #   Accept:application/rdf+xml
+  #   Accept:text/rdf+n3
+  #   Accept:text/x-nquads
+  #   Accept:application/trix
+  #   Accept:application/x-trig
+  #   Accept:application/x-binary-rdf
+  # Boolean (ASK)
+  #   Accept:text/boolean
+  #   Accept:application/sparql-results+xml
+  #   Accept:application/sparql-results+json
   "/rdf4j/query/{repository}":
     get:
       tags:
@@ -1388,19 +1410,55 @@ paths:
         '200':
           description: Query successful
           content:
-            application/json:
-              schema:
-                type: object
             text/csv:
               schema:
                 type: string
-            application/xml:
+            application/sparql-results+json:
+              schema:
+                type: object
+            application/sparql-results+xml:
               schema:
                 type: string
             application/x-binary-rdf-results-table:
               schema:
                 description: "Binary value"
                 # type: binary
+
+            application/rdf+json:
+              schema:
+                type: object
+            application/ld+json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: string
+            text/turtle:
+              schema:
+                type: string
+            application/rdf+xml:
+              schema:
+                type: string
+            text/rdf+n3:
+              schema:
+                type: string
+            text/x-nquads:
+              schema:
+                type: string
+            application/trix:
+              schema:
+                type: string
+            application/x-trig:
+              schema:
+                type: string
+            application/x-binary-rdf:
+              schema:
+                description: "Binary value"
+                # type: binary
+
+            text/boolean:
+              schema:
+                type: boolean
         '400':
           description: Bad request
         '404':
@@ -1441,19 +1499,230 @@ paths:
         '200':
           description: Query successful
           content:
-            application/json:
-              schema:
-                type: object
             text/csv:
               schema:
                 type: string
-            application/xml:
+            application/sparql-results+json:
+              schema:
+                type: object
+            application/sparql-results+xml:
               schema:
                 type: string
             application/x-binary-rdf-results-table:
               schema:
                 description: "Binary value"
                 # type: binary
+
+            application/rdf+json:
+              schema:
+                type: object
+            application/ld+json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: string
+            text/turtle:
+              schema:
+                type: string
+            application/rdf+xml:
+              schema:
+                type: string
+            text/rdf+n3:
+              schema:
+                type: string
+            text/x-nquads:
+              schema:
+                type: string
+            application/trix:
+              schema:
+                type: string
+            application/x-trig:
+              schema:
+                type: string
+            application/x-binary-rdf:
+              schema:
+                description: "Binary value"
+                # type: binary
+
+            text/boolean:
+              schema:
+                type: boolean
+        '400':
+          description: Bad request
+        '404':
+          description: Repository does not exist
+  "/rdf4j/query/select/{repository}":
+    get:
+      tags:
+      - RDF4J Query
+      summary: Query a Repository (Select)
+      description: |
+        Run a SPARQL query in a Repository.
+        This route works like the generic route, serving its existence to better document its use.
+        Also may be used in the future
+      parameters:
+      - in: path
+        required: true
+        name: repository
+        description: Repository to be queried
+        schema:
+          type: string
+      - in: query
+        required: true
+        name: query
+        description: SPARQL query to run
+        schema:
+          type: string
+          example: "select * where { ?s ?p ?o } limit 20"
+      - in: query
+        name: infer
+        description: Returns infered triples? (default true)
+        schema:
+          type: boolean
+          example: true
+          default: true
+      responses:
+        '200':
+          description: Query successful
+          content:
+            text/csv:
+              schema:
+                type: string
+            application/sparql-results+json:
+              schema:
+                type: object
+            application/sparql-results+xml:
+              schema:
+                type: string
+            application/x-binary-rdf-results-table:
+              schema:
+                description: "Binary value"
+                # type: binary
+            # application/json:
+            #   schema:
+            #     description: "Same as 'sparql-results+json'"
+            #     type: object
+            # application/xml:
+            #   schema:
+            #     description: "Same as 'sparql-results+xml'"
+            #     type: string
+        '400':
+          description: Bad request
+        '404':
+          description: Repository does not exist
+  "/rdf4j/query/construct/{repository}":
+    get:
+      tags:
+      - RDF4J Query
+      summary: Query a Repository (Construct)
+      description: |
+        Run a SPARQL query in a Repository.
+        This route works like the generic route, serving its existence to better document its use.
+        Also may be used in the future
+      parameters:
+      - in: path
+        required: true
+        name: repository
+        description: Repository to be queried
+        schema:
+          type: string
+      - in: query
+        required: true
+        name: query
+        description: SPARQL query to run
+        schema:
+          type: string
+          example: "construct { ?s ?p ?o } where { ?s ?p ?o }"
+      - in: query
+        name: infer
+        description: Returns infered triples? (default true)
+        schema:
+          type: boolean
+          example: true
+          default: true
+      responses:
+        '200':
+          description: Query successful
+          content:
+            application/rdf+json:
+              schema:
+                type: object
+            application/ld+json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: string
+            text/turtle:
+              schema:
+                type: string
+            application/rdf+xml:
+              schema:
+                type: string
+            text/rdf+n3:
+              schema:
+                type: string
+            text/x-nquads:
+              schema:
+                type: string
+            application/trix:
+              schema:
+                type: string
+            application/x-trig:
+              schema:
+                type: string
+            application/x-binary-rdf:
+              schema:
+                description: "Binary value"
+                # type: binary
+        '400':
+          description: Bad request
+        '404':
+          description: Repository does not exist
+  "/rdf4j/query/ask/{repository}":
+    get:
+      tags:
+      - RDF4J Query
+      summary: Query a Repository (Ask)
+      description: |
+        Run a SPARQL query in a Repository.
+        This route works like the generic route, serving its existence to better document its use.
+        Also may be used in the future.
+      parameters:
+      - in: path
+        required: true
+        name: repository
+        description: Repository to be queried
+        schema:
+          type: string
+      - in: query
+        required: true
+        name: query
+        description: SPARQL query to run
+        schema:
+          type: string
+          example: "ask { ?s ?p ?o }"
+      - in: query
+        name: infer
+        description: Returns infered triples? (default true)
+        schema:
+          type: boolean
+          example: true
+          default: true
+      responses:
+        '200':
+          description: Query successful
+          content:
+            text/boolean:
+              schema:
+                type: boolean
+            application/sparql-results+json:
+              schema:
+                type: object
+            application/sparql-results+xml:
+              schema:
+                type: string
         '400':
           description: Bad request
         '404':
@@ -1471,6 +1740,7 @@ paths:
   #     responses:
   #       default:
   #         description: TODO
+
 # MONGO Users SECTION
   "/users":
     get:
@@ -1589,6 +1859,7 @@ paths:
       responses:
         default:
           description: TODO
+
 # MONGO Queries SECTION
   "/queries":
     get:

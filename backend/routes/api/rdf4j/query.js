@@ -69,7 +69,7 @@ router.get('/select/:repo', function (req, res) {
   const params = req.query
   // const accept = "text/csv" // HARDCODE text/csv (rdf4j default)
   var accept = req.headers['accept'] // use req accept value
-  if (accept === "*/*") accept = 'application/json' // if no accept is given use JSON
+  // if (accept === "*/*") accept = 'application/json' // if no accept is given use JSON
   const url = rdf4jServer + 'repositories/' + repo
   const config = {
     params: params,
@@ -93,7 +93,7 @@ router.get('/construct/:repo', function (req, res) {
   const params = req.query
   // const accept = "text/plain" // HARDCODE text/plain (rdf4j default)
   var accept = req.headers['accept'] // use req accept value
-  if (accept === "*/*") accept = 'application/rdf+json' // if no accept is given use JSON
+  // if (accept === "*/*") accept = 'application/rdf+json' // if no accept is given use JSON
   const url = rdf4jServer + 'repositories/' + repo
   const config = {
     params: params,
@@ -117,7 +117,7 @@ router.get('/ask/:repo', function (req, res) {
   const params = req.query
   // const accept = "application/sparql-results+json" // HARDCODE application/sparql-results+json (rdf4j default)
   var accept = req.headers['accept'] // use req accept value
-  if (accept === "*/*") accept = 'text/boolean' // if no accept is given use text/boolean
+  // if (accept === "*/*") accept = 'text/boolean' // if no accept is given use text/boolean
   const url = rdf4jServer + 'repositories/' + repo
   const config = {
     params: params,
