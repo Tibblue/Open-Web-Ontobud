@@ -169,14 +169,11 @@
             </v-row>
           </v-col>
           <v-col cols="12">
-            <v-alert text dismissible type="success" v-model="alert.updateSuccess">
-              {{alert.updateSuccessText}}
-            </v-alert>
-            <v-alert text dismissible type="error" v-model="alert.queryFail">
-              {{alert.queryFailText}}
-            </v-alert>
-            <v-alert text dismissible type="error" v-model="alert.querySaveFail">
-              {{alert.querySaveFailText}}
+            <v-alert text dismissible
+              v-model="alertQuery.visible"
+              :type="alertQuery.color"
+            >
+              {{alertQuery.message}}
             </v-alert>
           </v-col>
         </v-row>
@@ -335,12 +332,11 @@ export default {
       lastInfer: true,
     },
     alert: {
-      updateSuccess: true,
-      updateSuccessText: "Run Update Success!",
-      queryFail: false,
-      queryFailText: "Run Query Failed ... ",
-      querySaveFail: false,
-      querySaveFailText: "Save Query Failed ... ",
+    },
+    alertQuery: {
+      visible: false,
+      color: "warning",
+      message: "",
     },
     loading: {
       query: false,
@@ -446,11 +442,12 @@ export default {
       return queryType
     },
     run(query, infer){
-      switch(this.checkQueryType(query)) {
+      var type = this.checkQueryType(query)
+      switch(type) {
         case "select":
         case "construct":
         case "ask":
-          this.runQuery(query,infer)
+          this.runQuery(query,infer,type)
           break;
         case "insert":
         case "delete":
@@ -460,15 +457,14 @@ export default {
           break;
       }
     },
-    runQuery(query, infer) {
+    runQuery(query, infer, type) {
       this.loading.query = true
       this.loading.table = true
       const defaultNamespaceExists = /^ *PREFIX : /m.test(query)
       if(!defaultNamespaceExists) query = this.defaultNamespaceForQuery + query
       var repoID = this.$repo.id
       var accept
-      var queryType = this.checkQuery
-      switch(queryType){
+      switch(type){
         case 'select':
           accept = "application/json"
           break;
@@ -490,8 +486,7 @@ export default {
       }
       axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
         .then(response => {
-          // console.log(queryType) // debug
-          if(queryType==="select"){
+          if(type==="select"){
             // console.log(response.data) // debug
             var columnsVars = response.data.head.vars
             var resultsData = response.data.results.bindings
@@ -511,7 +506,7 @@ export default {
               this.table.items.push(elemAux)
             });
           }
-          else if(queryType==="construct"){
+          else if(type==="construct"){
             // console.log(response.data) // debug
             this.table.headers = [
               {'text': 'subject', 'value': 'subject', sortable: true},
@@ -545,7 +540,7 @@ export default {
               }
             };
           }
-          else if(queryType==="ask"){
+          else if(type==="ask"){
             var result = response.data
             this.table.headers = [{
               'text': 'boolean',
@@ -560,14 +555,14 @@ export default {
             }]
           }
           this.exportResult.lastQuery = query
-          this.exportResult.lastQueryType = queryType
+          this.exportResult.lastQueryType = type
           this.exportResult.lastInfer = infer
-          this.alert.queryFail = false
+          this.alertQuery.visible = false
         })
         .catch(error => {
-          console.log(error)
-          this.alert.queryFail = true
-          this.alert.queryFailText = "Run Query Failed ...\n"+error.response.data
+          this.alertQuery.visible = true
+          this.alertQuery.color = "warning"
+          this.alertQuery.message = "Query Failed!! \n"+error.response.data
         })
         .finally(() => {
           this.loading.query = false
@@ -593,17 +588,20 @@ export default {
           else
             this.$refs.savedQueriesComp.savedQueriesRepo.push({'name': name, 'query': query, 'global': false})
 
-          this.alert.querySaveFail = false
+          this.alertQuery.visible = true
+          this.alertQuery.color = "success"
+          this.alertQuery.message = "Query Saved! \n"
+
         })
         .catch(error => {
-          this.alert.querySaveFail = true
-          this.alert.querySaveFailText = "Save query Failed ... "+error.response.data
-          // FIXME: detetar qd falha pk ja existe
+          this.alertQuery.visible = true
+          this.alertQuery.color = "warning"
+          this.alertQuery.message = "Query Save Failed!! \n"+error.response.data
         })
         .finally(() => {
-          this.saveQuery.queryName = ""
-          this.saveQuery.queryValue = ""
-          this.saveQuery.queryGlobal = true
+          this.saving.queryName = ""
+          this.saving.queryValue = ""
+          this.saving.queryGlobal = true
           this.loading.savingQuery = false
         })
     },
@@ -646,7 +644,6 @@ export default {
             accept = "application/rdf+json"
         }
       }
-      console.log(accept)
       var url = backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
@@ -679,6 +676,9 @@ export default {
         })
         .catch(error => {
           console.log(error.response.data)
+          this.alertQuery.visible = true
+          this.alertQuery.color = "error"
+          this.alertQuery.message = "Export Failed!! \n"+error.response.data
         })
         .finally(() => {
           this.loading.exportFile = false
@@ -697,13 +697,14 @@ export default {
       }
       axios.post(url, qs.stringify({'update': update}), config)
         .then(response => {
-          this.alert.updateSuccess = true
-          this.alert.queryFail = false
+          this.alertQuery.visible = true
+          this.alertQuery.color = "success"
+          this.alertQuery.message = "Update executed!"
         })
         .catch(error => {
-          this.alert.updateSuccess = false
-          this.alert.queryFail = true
-          this.alert.queryFailText = "Run Failed ...\n"+error.response.data
+          this.alertQuery.visible = true
+          this.alertQuery.color = "warning"
+          this.alertQuery.message = "Update Failed!! \n"+error.response.data
         })
         .finally(() => {
           this.loading.query = false
