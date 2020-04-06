@@ -1,11 +1,10 @@
 <template>
-  <v-navigation-drawer app permanent
+  <v-navigation-drawer app permanent width="270"
     :mini-variant="sidebar_mini"
   >
-    <v-list-item link to="/">
+    <!-- <v-list-item link to="/">
       <v-list-item-icon>
         <v-icon>mdi-graph</v-icon>
-        <!-- <v-icon>fas fa-flag</v-icon> -->
       </v-list-item-icon>
       <v-list-item-content>
         <v-list-item-title class="title">
@@ -13,10 +12,127 @@
         </v-list-item-title>
         <v-list-item-subtitle>
           a RDF4J Frontend
-          <!-- {{this.$vuetify.breakpoint.name}} -->
+          {{this.$vuetify.breakpoint.name}}
+        </v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item> -->
+    <v-list-item link to="/" class="px-2">
+      <v-list-item-icon class="mr-3">
+        <v-btn fab small depressed color="grey darken-2">{{owo}}</v-btn>
+        <!-- <v-btn fab outlined small depressed color="primary">{{owo}}</v-btn> -->
+      </v-list-item-icon>
+      <v-list-item-content class="py-2">
+        <v-list-item-title class="title mb-0">
+          Open Web Ontology
+        </v-list-item-title>
+        <v-list-item-subtitle class="caption">
+          an Open Source RDF4J Frontend
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
+
+    <!-- <v-list-item link to="/" class="px-0">
+      <v-list-item-icon class="my-1">
+        <v-btn fab small depressed color="grey darken-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="blue lighten-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="blue darken-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="grey darken-2">
+          <span class="blue--text">{{owo}}</span>
+        </v-btn>
+        <v-btn fab outlined small depressed color="grey darken-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+      </v-list-item-icon>
+    </v-list-item> -->
+    <!-- <v-list-item link to="/" class="px-0">
+      <v-list-item-icon class="my-1">
+        <v-btn fab small depressed color="grey">{{owo}}</v-btn>
+        <v-btn fab small depressed color="grey darken-2">{{owo}}</v-btn>
+        <v-btn fab small depressed color="primary">{{owo}}</v-btn>
+        <span>|</span>
+        <v-btn fab outlined small depressed color="primary">{{owo}}</v-btn>
+        <v-btn fab outlined small depressed color="grey darken-2 blue--text">{{owo}}</v-btn>
+      </v-list-item-icon>
+    </v-list-item> -->
+    <!-- <v-list-item link to="/" class="px-0">
+      <v-list-item-icon class="my-0">
+        <v-btn fab small depressed color="grey lighten-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="grey lighten-1">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="grey">
+          {{owo}}
+        </v-btn>
+        <v-btn fab small depressed color="grey">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="grey darken-1">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="grey darken-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+      </v-list-item-icon>
+    </v-list-item> -->
+    <!-- <v-list-item link to="/" class="px-0">
+      <v-list-item-icon class="my-0">
+        <v-btn fab small depressed color="blue lighten-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="blue lighten-1">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="blue">
+          {{owo}}
+        </v-btn>
+        <v-btn fab small depressed color="blue">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="blue darken-1">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+        <v-btn fab small depressed color="blue darken-2">
+          <span class="yellow--text">{{owo[0]}}</span>
+          <span class="black--text">{{owo[1]}}</span>
+          <span class="yellow--text">{{owo[2]}}</span>
+        </v-btn>
+      </v-list-item-icon>
+    </v-list-item> -->
+
     <v-list-item @click="goToBackend()">
       <v-list-item-icon>
         <v-icon>mdi-api</v-icon>
@@ -81,6 +197,7 @@ const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.V
 
 export default {
   data: () => ({
+    owo: "OwO",
     model: 1,
     sidebar_mini: false,
     sidebar_items: [
@@ -103,6 +220,9 @@ export default {
     ],
   }),
   mounted: async function (){
+    // this.owoShowcase()
+    this.owo1sec()
+    // this.owoBlink()
     switch (this.$vuetify.breakpoint.name) {
       case 'xs':
       case 'sm':
@@ -116,6 +236,57 @@ export default {
     }
   },
   methods: {
+    owoShowcase: function () {
+      setInterval(() => {
+        if(this.owo==="OwO")
+          this.owo = "UwU"
+        else if(this.owo==="UwU")
+          this.owo = ">w<"
+        else if(this.owo===">w<")
+          this.owo = "^w^"
+        else
+          this.owo = "OwO"
+      }, 1000);
+    },
+    owo1sec: function () {
+      setInterval(() => {
+        var rand = Math.floor(Math.random() * 100)
+        if(rand > 95)
+          this.owo = "^w^"
+        else if(rand > 90)
+          this.owo = ">w<"
+        else if(rand > 60)
+          this.owo = "UwU"
+        else
+          this.owo = "OwO"
+
+      }, 1000);
+    },
+    owoBlink: function () {
+      var blink = Math.floor(Math.random() * 100)
+      if(blink>60) {
+        this.owo = "UwU"
+        setTimeout(owoBlink(), 1);
+      }
+      else{
+        setTimeout(owoBlink(), 1);
+      }
+
+
+
+      setInterval(() => {
+        var rand = Math.floor(Math.random() * 100)
+        if(rand > 90)
+          this.owo = "^w^"
+        else if(rand > 80)
+          this.owo = ">w<"
+        else if(rand > 40)
+          this.owo = "UwU"
+        else
+          this.owo = "OwO"
+
+      }, 1000);
+    },
     goTo: function (id) {
       this.$router.push(id)
     },
