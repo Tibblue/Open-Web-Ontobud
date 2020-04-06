@@ -1,65 +1,73 @@
 <template>
   <v-app-bar app color="primary">
-    <v-col cols="6">
-      <v-combobox dense hide-details outlined
-        v-model="selectedRepo"
-        no-data-text="No Repositories available"
-        :items="repoList"
-        label="Selected Repository"
-        v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
-      ></v-combobox>
-    </v-col>
-    <v-btn :loading="loadingRepos" icon @click="getRepositories()">
-      <v-icon>fas fa-sync</v-icon>
-    </v-btn>
-
-    <!-- <div class="flex-grow-1"></div> -->
-
-    <v-row dense align="center" justify="end" v-if="!this.$session.get('userToken')">
-      <v-col class="shrink">
-        <v-dialog
-          v-model="dialogSaveQuery"
-          max-width="600px"
-          overlay-opacity="0.85"
+    <v-row dense align="center" class="mx-n4">
+      <v-col class="grow">
+        <v-row dense align="center">
+          <v-col class="grow">
+            <v-combobox dense hide-details outlined
+              v-model="selectedRepo"
+              no-data-text="No Repositories available"
+              :items="repoList"
+              label="Selected Repository"
+              v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
+            ></v-combobox>
+          </v-col>
+          <v-col class="shrink">
+            <v-btn icon small :loading="loadingRepos" @click="getRepositories()">
+              <v-icon>fas fa-sync</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col>
+        <v-row dense align="center" justify="end" class="flex-nowrap"
+          v-if="!this.$session.get('userToken')"
         >
-          <template v-slot:activator="{ on }">
-            <v-btn rounded large depressed color="secondary" v-on="on">
-              Login&nbsp;
-              <v-icon>fas fa-sign-in-alt</v-icon>
-              <!-- <v-icon>mdi-login-variant</v-icon> -->
+          <v-col class="shrink">
+            <v-dialog
+              v-model="dialogSaveQuery"
+              max-width="600px"
+              overlay-opacity="0.85"
+            >
+              <template v-slot:activator="{ on }">
+                <v-btn rounded large depressed color="secondary" v-on="on">
+                  Login&nbsp;
+                  <v-icon>fas fa-sign-in-alt</v-icon>
+                  <!-- <v-icon>mdi-login-variant</v-icon> -->
+                </v-btn>
+              </template>
+              <login/>
+            </v-dialog>
+          </v-col>
+          <v-col class="shrink">
+            <v-dialog v-model="dialogSaveQuery" max-width="600px">
+              <template v-slot:activator="{ on }">
+                <v-btn fab depressed color="secondary" v-on="on">
+                  <v-icon>fas fa-user-plus</v-icon>
+                  <!-- <v-icon>mdi-account-plus</v-icon> -->
+                </v-btn>
+              </template>
+              <signIn/>
+            </v-dialog>
+          </v-col>
+        </v-row>
+        <v-row dense align="center" justify="end" v-else class="flex-nowrap">
+          <v-col class="shrink">
+            <v-btn rounded large depressed color="secondary" link to="/auth/user">
+              {{this.$session.get('userName')}}&nbsp;
+              <v-icon>fas fa-user-cog</v-icon>
+              <!-- <v-icon>mdi-cog</v-icon> -->
             </v-btn>
-          </template>
-          <login/>
-        </v-dialog>
-      </v-col>
-      <v-col class="shrink">
-        <v-dialog v-model="dialogSaveQuery" max-width="600px">
-          <template v-slot:activator="{ on }">
-            <v-btn fab depressed color="secondary" v-on="on">
-              <v-icon>fas fa-user-plus</v-icon>
-              <!-- <v-icon>mdi-account-plus</v-icon> -->
+          </v-col>
+          <v-col class="shrink">
+            <v-btn fab depressed color="secondary" @click="logout()">
+              <v-icon>fas fa-sign-out-alt</v-icon>
+              <!-- <v-icon>mdi-logout-variant</v-icon> -->
             </v-btn>
-          </template>
-          <signIn/>
-        </v-dialog>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
-    <v-row dense align="center" justify="end" v-else>
-      <v-col class="shrink">
-        <v-btn rounded large depressed color="secondary" link to="/auth/user">
-          {{this.$session.get('userName')}}&nbsp;
-          <v-icon>fas fa-user-cog</v-icon>
-          <!-- <v-icon>mdi-cog</v-icon> -->
-        </v-btn>
-      </v-col>
-      <v-col class="shrink">
-        <v-btn fab depressed color="secondary" @click="logout()">
-          <v-icon>fas fa-sign-out-alt</v-icon>
-          <!-- <v-icon>mdi-logout-variant</v-icon> -->
-        </v-btn>
-      </v-col>
-    </v-row>
-
   </v-app-bar>
 </template>
 

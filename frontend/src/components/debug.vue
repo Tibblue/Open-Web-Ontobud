@@ -16,6 +16,7 @@
     <h2>RANDOM TEMP</h2>
     <p>{{this.$route.name}}</p>
     <p>{{}}</p>
+    <!-- <p>{{this.$vuetify.breakpoint.name}}</p> -->
 
     <!-- <v-divider class="my-1"></v-divider>
     <h2>REPO</h2>
