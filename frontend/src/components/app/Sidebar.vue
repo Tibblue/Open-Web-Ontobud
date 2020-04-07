@@ -2,20 +2,6 @@
   <v-navigation-drawer app permanent width="270"
     :mini-variant="sidebar_mini"
   >
-    <!-- <v-list-item link to="/">
-      <v-list-item-icon>
-        <v-icon>mdi-graph</v-icon>
-      </v-list-item-icon>
-      <v-list-item-content>
-        <v-list-item-title class="title">
-          OntoWorks
-        </v-list-item-title>
-        <v-list-item-subtitle>
-          a RDF4J Frontend
-          {{this.$vuetify.breakpoint.name}}
-        </v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item> -->
     <v-list-item link to="/" class="px-2">
       <v-list-item-icon class="mr-3">
         <v-btn fab small depressed color="grey darken-2">{{owo}}</v-btn>
@@ -23,7 +9,7 @@
       </v-list-item-icon>
       <v-list-item-content class="py-2">
         <v-list-item-title class="title mb-0">
-          Open Web Ontology
+          Open Web Ontobud
         </v-list-item-title>
         <v-list-item-subtitle class="caption">
           an Open Source RDF4J Frontend
@@ -57,14 +43,15 @@
           <span class="yellow--text">{{owo[2]}}</span>
         </v-btn>
       </v-list-item-icon>
-    </v-list-item> -->
-    <!-- <v-list-item link to="/" class="px-0">
+    </v-list-item>
+    <v-list-item link to="/" class="px-0">
       <v-list-item-icon class="my-1">
         <v-btn fab small depressed color="grey">{{owo}}</v-btn>
         <v-btn fab small depressed color="grey darken-2">{{owo}}</v-btn>
         <v-btn fab small depressed color="primary">{{owo}}</v-btn>
         <span>|</span>
         <v-btn fab outlined small depressed color="primary">{{owo}}</v-btn>
+        <v-btn fab outlined small depressed color="pink lighten-1">osu!</v-btn>
         <v-btn fab outlined small depressed color="grey darken-2 blue--text">{{owo}}</v-btn>
       </v-list-item-icon>
     </v-list-item> -->
@@ -201,12 +188,6 @@ export default {
     model: 1,
     sidebar_mini: false,
     sidebar_items: [
-      // Auth related
-      // { text: 'Login', icon: 'fas fa-sign-in-alt', link: '/auth/login'},
-      // { text: 'Sign Up', icon: 'fas fa-user-plus', link: '/auth/signup'},
-      // { text: 'Logout', icon: 'fas fa-sign-out-alt', link: '/auth/logout'},
-      // { text: 'TODO User Settings', icon: 'fas fa-user-cog', link: '/auth/usersettings'},
-
       // Navigation
       { text: 'Home', icon: 'fas fa-home', link: '/'}, //FIXME: tirar??
       { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories'},
@@ -216,7 +197,6 @@ export default {
       { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource'},
       // { text: 'TODO Navigation', icon: 'fas fa-project-diagram', link: '/navigation'},
       { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
-      // { text: 'TODO Settings', icon: 'fas fa-cog', link: '/settings'},
     ],
   }),
   mounted: async function (){
@@ -263,6 +243,7 @@ export default {
       }, 1000);
     },
     owoBlink: function () {
+      // TODO
       var blink = Math.floor(Math.random() * 100)
       if(blink>60) {
         this.owo = "UwU"
@@ -271,21 +252,6 @@ export default {
       else{
         setTimeout(owoBlink(), 1);
       }
-
-
-
-      setInterval(() => {
-        var rand = Math.floor(Math.random() * 100)
-        if(rand > 90)
-          this.owo = "^w^"
-        else if(rand > 80)
-          this.owo = ">w<"
-        else if(rand > 40)
-          this.owo = "UwU"
-        else
-          this.owo = "OwO"
-
-      }, 1000);
     },
     goTo: function (id) {
       this.$router.push(id)
