@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="8">
+    <v-col cols="6">
       <v-radio-group hide-details v-model="fileTypeSelected" class="ma-0 pa-0">
         <v-radio
           v-for="type in fileTypes"
@@ -11,7 +11,7 @@
         ></v-radio>
       </v-radio-group>
     </v-col>
-    <v-col cols="4">
+    <v-col cols="6">
       <v-checkbox hide-details class="mt-0 pt-2"
         v-model="infer"
         label="Inferencing"
