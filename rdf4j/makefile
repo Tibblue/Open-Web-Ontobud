@@ -8,7 +8,9 @@ runCatalina:
 
 startup:
 	export JAVA_OPTS='-Dorg.eclipse.rdf4j.appdata.basedir=/mnt/c/Users/KIKO/Desktop/GIT/TESE/rdf4j/rdf_save_state' && \
-# 	echo $$JAVA_OPTS && \
+	# echo $$JAVA_OPTS && \
+	# export CATALINA_OPTS="$$CATALINA_OPTS -Xms512m -Xmx4096m -XX:PermSize=256m -XX:MaxPermSize=1024m" && \
+	# echo $$CATALINA_OPTS && \
 	cd programs/apache-tomcat-9.0.22/bin/ && \
 	./startup.sh
 
