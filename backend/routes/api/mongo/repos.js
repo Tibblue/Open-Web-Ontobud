@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Repos = require("../../../controllers/repo")
 
+// Aux File
+var aux = require("./mongo_help")
+
 router.get('/', function (req, res) {
   Repos.list()
     .then(data => res.jsonp(data))
