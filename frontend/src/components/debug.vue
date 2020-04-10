@@ -59,3 +59,18 @@ export default {
   },
 };
 </script>
+
+<style>
+/* .wrap-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  hyphens: auto;
+} */
+p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+</style>

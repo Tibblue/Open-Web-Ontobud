@@ -120,7 +120,7 @@
                     >
                       <v-expansion-panel-header>
                         <v-row no-gutters align="center">
-                          <v-col class="grow">
+                          <v-col class="grow wrap-text">
                             {{classe.name}}
                           </v-col>
                           <v-col class="mx-3 shrink text--secondary">
@@ -350,5 +350,13 @@ export default {
 }
 .v-expansion-panel-header {
   background-color: var(--primary-color);
+}
+
+.wrap-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  /* white-space: normal; */
+  /* hyphens: auto; */
 }
 </style>
