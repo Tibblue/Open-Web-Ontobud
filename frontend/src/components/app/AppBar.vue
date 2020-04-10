@@ -1,5 +1,10 @@
 <template>
-  <v-app-bar app color="primary">
+  <v-app-bar app color="primary"
+    :hide-on-scroll="this.$vuetify.breakpoint.name==='xs' ? true : false"
+  >
+    <!-- scroll-threshold="5"
+    :prominent="this.$vuetify.breakpoint.name==='xs' ? true : false"
+  > -->
     <v-row dense align="center" class="mx-n4">
       <v-col class="grow">
         <v-row dense align="center">
@@ -19,6 +24,7 @@
           </v-col>
         </v-row>
       </v-col>
+      <!-- <v-col :cols="this.$vuetify.breakpoint.name==='xs' ? 12 : ''"> -->
       <v-col>
         <v-row dense align="center" justify="end" class="flex-nowrap"
           v-if="!this.$session.get('userToken')"

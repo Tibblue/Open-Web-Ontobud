@@ -20,6 +20,14 @@
           <v-col cols="12" md="12">
             <v-btn block color="primary" @click="goToDefaultGraph()">
               Default Graph
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <div v-on="on" class="px-1">
+                    <v-icon>mdi-help-circle-outline</v-icon>
+                  </div>
+                </template>
+                <span>Returns triples where Subject is rdf:type of some element from the default namespace</span>
+              </v-tooltip>
             </v-btn>
           </v-col>
         </v-row>
