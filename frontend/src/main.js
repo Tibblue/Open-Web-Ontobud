@@ -12,8 +12,10 @@ Vue.use(VueSession, {persist: true})
 const store = new Vuex.Store({
   state: {
     $repo: {
-      id: "No id",
-      name: "No name",
+      // id: "No id",
+      // name: "No name",
+      id: undefined,
+      name: undefined,
     }
   },
   mutations: {

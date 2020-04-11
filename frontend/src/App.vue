@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <AppBar/>
-
     <Sidebar/>
 
     <v-content>

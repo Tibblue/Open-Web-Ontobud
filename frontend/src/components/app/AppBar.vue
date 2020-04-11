@@ -29,7 +29,6 @@
         >
           <v-col class="shrink">
             <v-dialog
-              v-model="dialogSaveQuery"
               max-width="600px"
               overlay-opacity="0.85"
             >
@@ -44,7 +43,7 @@
             </v-dialog>
           </v-col>
           <v-col class="shrink">
-            <v-dialog v-model="dialogSaveQuery" max-width="600px">
+            <v-dialog max-width="600px">
               <template v-slot:activator="{ on }">
                 <v-btn fab depressed color="secondary" v-on="on">
                   <v-icon>fas fa-user-plus</v-icon>
