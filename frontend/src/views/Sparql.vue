@@ -303,8 +303,8 @@ import savedQueries from '@/components/savedQueries'
 import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 const FileDownload = require('js-file-download')
+const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   components: {
@@ -354,7 +354,6 @@ export default {
     },
   }),
   mounted: async function (){
-    // console.log(process.env) // debug
     var currentRepoID = this.$session.get('repoID')
     this.getNamespaces(currentRepoID)
     this.getDefaultNamespace(currentRepoID)
@@ -364,6 +363,15 @@ export default {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    // backend_url1: function() {
+    //   // var BACKEND_HOST = this.$session.get("BACKEND_HOST") || process.env.VUE_APP_BACKEND_HOST
+    //   // var BACKEND_PORT = this.$session.get("BACKEND_PORT") || process.env.VUE_APP_BACKEND_PORT
+    //   return "http://"+this.$backurl.host+":"+this.$backurl.port
+    // },
     tableResults: function() {
       var results = []
       this.table.items.forEach(element => {
@@ -385,9 +393,9 @@ export default {
       });
       return results
     },
-    checkQuery: function() {
-      return this.checkQueryType(this.queryInput)
-    }
+    // checkQuery: function() {
+    //   return this.checkQueryType(this.queryInput)
+    // }
   },
   methods: {
     getNamespaces(repoID) {

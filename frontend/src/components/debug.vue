@@ -14,8 +14,10 @@
     <v-divider class="my-2"></v-divider>
 
     <!-- <h2>RANDOM TEMP</h2> -->
+    <!-- <p>{{
+
+    }}</p> -->
     <!-- <p>{{this.$route.name}}</p> -->
-    <!-- <p>{{}}</p> -->
     <!-- <p>{{this.$vuetify.breakpoint.name}}</p> -->
 
     <!-- <v-divider class="my-1"></v-divider>
@@ -40,6 +42,7 @@
 
 <script>
 import alerts from '@/components/alerts'
+import Vuex from 'vuex'
 
 export default {
   components: {
@@ -54,8 +57,19 @@ export default {
     // console.log(this.$route.matched) // debug
     // console.log(this.$route.name) // debug
     // console.log(this.$route.path) // debug
+  computed: {
+    test: {
+      get: Vuex.mapState(['test']).test,
+      set: Vuex.mapMutations(['updatetest']).updatetest,
+    },
   },
   methods:{
+    // notesAboutPersistantState(){
+    //   // $store.commit('reset') // commits work good
+    //   // $store.commit('updatetest','nhe') // commits work good
+    //   // $store.state.test='1' // direct changes dont work
+    //   // test='2' // combined with a computed get/set it seems to work
+    // }
   },
 };
 </script>
