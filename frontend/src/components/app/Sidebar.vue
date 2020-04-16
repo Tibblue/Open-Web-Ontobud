@@ -1,6 +1,8 @@
 <template>
-  <v-navigation-drawer app permanent width="270"
+  <v-navigation-drawer app width="270"
+    v-model="sidebarVisible"
     :mini-variant="sidebar_mini"
+    :permanent="this.$vuetify.breakpoint.name==='xs' ? false : true"
   >
     <v-list-item link to="/" class="px-2">
       <v-list-item-icon class="mr-3">
@@ -185,7 +187,7 @@ const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.V
 export default {
   data: () => ({
     owo: "OwO",
-    model: 1,
+    sidebarVisible: false,
     sidebar_mini: false,
     sidebar_items: [
       // Navigation
@@ -215,6 +217,11 @@ export default {
         this.sidebar_mini = false
         break;
     }
+  },
+  computed: {
+    // sidebarVisible: function() {
+    //   return true
+    // }
   },
   methods: {
     owoShowcase: function () {

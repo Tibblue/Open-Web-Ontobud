@@ -28,6 +28,11 @@
           v-if="!this.$session.get('userToken')"
         >
           <v-col class="shrink">
+            <v-btn fab depressed color="secondary" @click="toggleSidebarON()" :disabled="this.$vuetify.breakpoint.name==='xs' ? false : true">
+              <v-icon>fas fa-bars</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col class="shrink">
             <v-dialog
               max-width="600px"
               overlay-opacity="0.85"
@@ -54,7 +59,14 @@
             </v-dialog>
           </v-col>
         </v-row>
-        <v-row dense align="center" justify="end" v-else class="flex-nowrap">
+        <v-row dense align="center" justify="end" class="flex-nowrap"
+          v-else
+        >
+          <v-col class="shrink">
+            <v-btn fab depressed color="secondary" @click="toggleSidebarON()" :disabled="this.$vuetify.breakpoint.name==='xs' ? false : true">
+              <v-icon>fas fa-bars</v-icon>
+            </v-btn>
+          </v-col>
           <v-col class="shrink">
             <v-btn rounded large depressed color="secondary" link to="/auth/user">
               {{this.$session.get('userName')}}&nbsp;
@@ -109,6 +121,9 @@ export default {
       this.$session.remove("userEmail")
       this.$session.flash.set("login", {msg: "Logout Success!!!", color: "success"})
       this.$router.go()
+    },
+    toggleSidebarON() {
+      this.$emit('toggleSidebarON')
     },
     repoChange(id, name) {
       this.$repo = {id: id, name: name}

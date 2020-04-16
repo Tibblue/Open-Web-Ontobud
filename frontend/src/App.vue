@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <AppBar/>
-    <Sidebar/>
+    <AppBar @toggleSidebarON="toggleSidebarON"/>
+    <Sidebar ref="refSidebar"/>
 
     <v-content>
       <router-view />
@@ -27,7 +27,10 @@ export default {
   // }),
   // mounted: async function (){
   // },
-  // methods: {
-  // },
+  methods: {
+    toggleSidebarON() {
+      this.$refs.refSidebar.sidebarVisible = true
+    },
+  },
 };
 </script>
