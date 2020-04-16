@@ -11,6 +11,13 @@
       Clear $session (DEBUG)
     </v-btn> -->
 
+    <!-- <v-btn color="warning" @click="test='2'">
+      test
+    </v-btn>
+    <v-btn color="warning" @click="$store.commit('reset')">
+      reset
+    </v-btn> -->
+
     <v-divider class="my-2"></v-divider>
 
     <!-- <h2>RANDOM TEMP</h2> -->
@@ -58,6 +65,10 @@ export default {
     // console.log(this.$route.name) // debug
     // console.log(this.$route.path) // debug
   computed: {
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
     test: {
       get: Vuex.mapState(['test']).test,
       set: Vuex.mapMutations(['updatetest']).updatetest,
@@ -69,7 +80,7 @@ export default {
     //   // $store.commit('updatetest','nhe') // commits work good
     //   // $store.state.test='1' // direct changes dont work
     //   // test='2' // combined with a computed get/set it seems to work
-    // }
+    // },
   },
 };
 </script>
