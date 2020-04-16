@@ -42,6 +42,7 @@
     <h2>VUEX STORE</h2>
     <p>{{this.$store.state}}</p>
     <!-- <p>{{this.$store.state.$repo}}</p> -->
+    <!-- <p>{{this.$store.state.$backurl}}</p> -->
 
     <v-divider class="my-1"></v-divider>
   </div>

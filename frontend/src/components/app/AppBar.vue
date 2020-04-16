@@ -24,13 +24,27 @@
         </v-row>
       </v-col>
       <v-col :cols="this.$vuetify.breakpoint.name==='xs' ? 12 : ''">
-        <v-row no-gutters>
-          <v-col v-if="this.$vuetify.breakpoint.name==='xs'">
+        <v-row no-gutters align="center">
+          <v-col>
             <v-row dense align="center" justify="start" class="flex-nowrap">
-              <v-col>
+              <v-col class="shrink" v-if="this.$vuetify.breakpoint.name==='xs'">
                 <v-btn fab depressed color="secondary" @click="toggleSidebarON()">
                   <v-icon>fas fa-bars</v-icon>
                 </v-btn>
+              </v-col>
+              <v-col class="shrink">
+                <v-dialog
+                  max-width="600px"
+                  overlay-opacity="0.85"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-btn rounded large depressed color="secondary" v-on="on">
+                      <v-icon>fas fa-wrench</v-icon>
+                      &nbsp;Backend
+                    </v-btn>
+                  </template>
+                  <changeBackendURL/>
+                </v-dialog>
               </v-col>
             </v-row>
           </v-col>
@@ -88,6 +102,7 @@
 <script>
 import login from '@/components/login_card'
 import signIn from '@/components/signIn_card'
+import changeBackendURL from '@/components/changeBackendURL'
 import Vuex from 'vuex'
 import axios from 'axios'
 // const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
@@ -97,6 +112,7 @@ export default {
   components: {
     login,
     signIn,
+    changeBackendURL,
   },
   // props: ['update'],
   data: () => ({
