@@ -24,61 +24,60 @@
         </v-row>
       </v-col>
       <v-col :cols="this.$vuetify.breakpoint.name==='xs' ? 12 : ''">
-        <v-row dense align="center" justify="end" class="flex-nowrap"
-          v-if="!this.$session.get('userToken')"
-        >
-          <v-col class="shrink">
-            <v-btn fab depressed color="secondary" @click="toggleSidebarON()" :disabled="this.$vuetify.breakpoint.name==='xs' ? false : true">
-              <v-icon>fas fa-bars</v-icon>
-            </v-btn>
+        <v-row no-gutters>
+          <v-col v-if="this.$vuetify.breakpoint.name==='xs'">
+            <v-row dense align="center" justify="start" class="flex-nowrap">
+              <v-col>
+                <v-btn fab depressed color="secondary" @click="toggleSidebarON()">
+                  <v-icon>fas fa-bars</v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-col>
-          <v-col class="shrink">
-            <v-dialog
-              max-width="600px"
-              overlay-opacity="0.85"
+          <v-col>
+            <v-row dense align="center" justify="end" class="flex-nowrap"
+              v-if="!this.$session.get('userToken')"
             >
-              <template v-slot:activator="{ on }">
-                <v-btn rounded large depressed color="secondary" v-on="on">
-                  Login&nbsp;
-                  <v-icon>fas fa-sign-in-alt</v-icon>
-                  <!-- <v-icon>mdi-login-variant</v-icon> -->
+              <v-col class="shrink">
+                <v-dialog
+                  max-width="600px"
+                  overlay-opacity="0.85"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-btn rounded large depressed color="secondary" v-on="on">
+                      Login&nbsp;
+                      <v-icon>fas fa-sign-in-alt</v-icon>
+                    </v-btn>
+                  </template>
+                  <login/>
+                </v-dialog>
+              </v-col>
+              <v-col class="shrink">
+                <v-dialog max-width="600px">
+                  <template v-slot:activator="{ on }">
+                    <v-btn fab depressed color="secondary" v-on="on">
+                      <v-icon>fas fa-user-plus</v-icon>
+                    </v-btn>
+                  </template>
+                  <signIn/>
+                </v-dialog>
+              </v-col>
+            </v-row>
+            <v-row dense align="center" justify="end" class="flex-nowrap"
+              v-else
+            >
+              <v-col class="shrink">
+                <v-btn rounded large depressed color="secondary" link to="/auth/user">
+                  {{this.$session.get('userName')}}&nbsp;
+                  <v-icon>fas fa-user-cog</v-icon>
                 </v-btn>
-              </template>
-              <login/>
-            </v-dialog>
-          </v-col>
-          <v-col class="shrink">
-            <v-dialog max-width="600px">
-              <template v-slot:activator="{ on }">
-                <v-btn fab depressed color="secondary" v-on="on">
-                  <v-icon>fas fa-user-plus</v-icon>
-                  <!-- <v-icon>mdi-account-plus</v-icon> -->
+              </v-col>
+              <v-col class="shrink">
+                <v-btn fab depressed color="secondary" @click="logout()">
+                  <v-icon>fas fa-sign-out-alt</v-icon>
                 </v-btn>
-              </template>
-              <signIn/>
-            </v-dialog>
-          </v-col>
-        </v-row>
-        <v-row dense align="center" justify="end" class="flex-nowrap"
-          v-else
-        >
-          <v-col class="shrink">
-            <v-btn fab depressed color="secondary" @click="toggleSidebarON()" :disabled="this.$vuetify.breakpoint.name==='xs' ? false : true">
-              <v-icon>fas fa-bars</v-icon>
-            </v-btn>
-          </v-col>
-          <v-col class="shrink">
-            <v-btn rounded large depressed color="secondary" link to="/auth/user">
-              {{this.$session.get('userName')}}&nbsp;
-              <v-icon>fas fa-user-cog</v-icon>
-              <!-- <v-icon>mdi-cog</v-icon> -->
-            </v-btn>
-          </v-col>
-          <v-col class="shrink">
-            <v-btn fab depressed color="secondary" @click="logout()">
-              <v-icon>fas fa-sign-out-alt</v-icon>
-              <!-- <v-icon>mdi-logout-variant</v-icon> -->
-            </v-btn>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-col>
