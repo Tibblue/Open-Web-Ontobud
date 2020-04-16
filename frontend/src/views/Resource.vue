@@ -151,7 +151,6 @@ import alerts from '@/components/alerts'
 import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   components: {
@@ -205,6 +204,14 @@ export default {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
+    },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
     },
     uri: function() {
       this.updateResults()
@@ -290,7 +297,7 @@ export default {
   },
   methods: {
     getNamespaces(repoID) {
-      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
         .then(response => {
           response.data.forEach(elem => {
             this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
@@ -313,7 +320,7 @@ export default {
     },
     getSubjectResults(repoID, resource, infer) {
       this.loading.subject = true
-      const url = backend_url+'/api/rdf4j/query/'+repoID
+      const url = this.backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { <'+resource+'> ?predicate ?object }'
       const config = {
         headers: {
@@ -350,7 +357,7 @@ export default {
     },
     getPredicateResults(repoID, resource, infer) {
       this.loading.predicate = true
-      const url = backend_url+'/api/rdf4j/query/'+repoID
+      const url = this.backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject <'+resource+'> ?object }'
       const config = {
         headers: {
@@ -386,7 +393,7 @@ export default {
     },
     getObjectResults(repoID, resource, infer) {
       this.loading.object = true
-      const url = backend_url+'/api/rdf4j/query/'+repoID
+      const url = this.backend_url+'/api/rdf4j/query/'+repoID
       const query = 'select * where { ?subject ?predicate <'+resource+'> }'
       const config = {
         headers: {

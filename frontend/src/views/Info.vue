@@ -179,9 +179,9 @@
 
 <script>
 import alerts from '@/components/alerts'
+import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   components: {
@@ -222,13 +222,21 @@ export default {
       return {
         '--primary-color': primaryColor,
       }
-    }
+    },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
+    },
   },
   methods: {
     getStatementNumber(repoID) {
       this.loading.statements = true
       this.explicitStatementsNumber = "Loading info..."
-      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/triples')
+      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/triples')
         .then(response => {
           // console.log(response.data)
           this.explicitStatementsNumber = response.data.explicit
@@ -250,7 +258,7 @@ export default {
     getNamespaces(repoID) {
       this.loading.namespaces = true
       this.namespaces = [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}]
-      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
         .then(response => {
           // console.log(response.data)
           var elemsAux = []
@@ -276,7 +284,7 @@ export default {
       var repoID = this.$session.get("repoID")
       // var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' // select class and its count
       var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. FILTER (!isBlank(?class))} GROUP BY ?class' // select class and its count (without blank_nodes)
-      var url = backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
           "Accept": "application/json",
@@ -316,7 +324,7 @@ export default {
       var repoID = this.$session.get("repoID")
       var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. }' // no cap
       // var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. } LIMIT 100' // soft cap
-      var url = backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
           "Accept": "application/json",

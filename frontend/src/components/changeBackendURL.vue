@@ -54,6 +54,7 @@ export default {
         host: newHost,
         port: newPort
       }
+      this.$router.go()
     },
     resetBackendURL(){
       this.newHost = ""
@@ -62,6 +63,7 @@ export default {
         host: process.env.VUE_APP_BACKEND_HOST,
         port: process.env.VUE_APP_BACKEND_PORT,
       }
+      this.$router.go()
     },
   },
 };

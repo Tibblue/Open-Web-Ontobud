@@ -180,10 +180,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-const qs = require('querystring')
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
-
 export default {
   data: () => ({
     owo: "OwO",
@@ -198,14 +194,13 @@ export default {
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
       { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource'},
       // { text: 'TODO Navigation', icon: 'fas fa-project-diagram', link: '/navigation'},
-      // { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
       { text: 'Feedback', icon: 'fas fa-comment-dots', link: '/feedback'},
+      // { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
     ],
   }),
   mounted: async function (){
     // this.owoShowcase()
     this.owo1sec()
-    // this.owoBlink()
     switch (this.$vuetify.breakpoint.name) {
       case 'xs':
       case 'sm':
@@ -247,25 +242,14 @@ export default {
           this.owo = "UwU"
         else
           this.owo = "OwO"
-
       }, 1000);
-    },
-    owoBlink: function () {
-      // TODO
-      var blink = Math.floor(Math.random() * 100)
-      if(blink>60) {
-        this.owo = "UwU"
-        setTimeout(owoBlink(), 1);
-      }
-      else{
-        setTimeout(owoBlink(), 1);
-      }
     },
     goTo: function (id) {
       this.$router.push(id)
     },
     goToBackend: function () {
-      window.open("http://epl.di.uminho.pt:8001");
+      // window.open("http://epl.di.uminho.pt:8001");
+      window.open("http://"+this.$store.state.$backurl.host+":"+this.$store.state.$backurl.port);
     },
     swapDarkMode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark

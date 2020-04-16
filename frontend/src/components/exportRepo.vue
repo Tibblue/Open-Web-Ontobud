@@ -45,7 +45,6 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 const FileDownload = require('js-file-download')
 
 export default {
@@ -73,11 +72,19 @@ export default {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
+    },
   },
   methods: {
     exportRepoFile(repoID, fileType, infer) {
       this.loading.exportFile = true
-      var url = backend_url+'/api/rdf4j/management/export/'+repoID
+      var url = this.backend_url+'/api/rdf4j/management/export/'+repoID
       var headers = {}
       headers['params'] = { 'infer': infer}
       switch(fileType){
@@ -105,7 +112,7 @@ export default {
     },
     exportRepoText(repoID, fileType, infer) {
       this.loading.exportText = true
-      var url = backend_url+'/api/rdf4j/management/export/'+repoID
+      var url = this.backend_url+'/api/rdf4j/management/export/'+repoID
       var headers = {}
       headers['params'] = { 'infer': infer}
       switch(fileType){

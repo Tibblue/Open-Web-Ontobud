@@ -36,9 +36,9 @@
 </template>
 
 <script>
+import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -56,13 +56,23 @@ export default {
   // mounted: async function (){
   //   // console.log(process.env) # debug
   // },
+  computed: {
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
+    },
+  },
   methods: {
     feedback(message, rating) {
       this.loading.feedbackSubmit = true
       var form = {}
       form['message'] = message
       form['rating'] = rating
-      axios.post(backend_url+'/api/feedback', qs.stringify(form),
+      axios.post(this.backend_url+'/api/feedback', qs.stringify(form),
         {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
       )
         .then(response => {

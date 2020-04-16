@@ -57,9 +57,9 @@
 </template>
 
 <script>
+import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -88,10 +88,20 @@ export default {
     // console.log(process.env) # debug
     // this.getRepositories()
   },
+  computed: {
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
+    },
+  },
   methods: {
     newRepo(repoID, repoName, repoType) {
       this.loading.createRepo = true
-      axios.get(backend_url+'/api/rdf4j/management/listRepos')
+      axios.get(this.backend_url+'/api/rdf4j/management/listRepos')
         .then(response => {
           // console.log(response.data.head) // debug column names
           // console.log(response.data.results.bindings) // debug results
@@ -107,7 +117,7 @@ export default {
             form['type'] = repoType
             form['Repository ID'] = repoID
             form['Repository Title'] = repoName
-            axios.put(backend_url+'/api/rdf4j/management/create', qs.stringify(form),
+            axios.put(this.backend_url+'/api/rdf4j/management/create', qs.stringify(form),
               {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
             )
               .then(response => {

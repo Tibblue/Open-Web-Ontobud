@@ -105,8 +105,6 @@ import signIn from '@/components/signIn_card'
 import changeBackendURL from '@/components/changeBackendURL'
 import Vuex from 'vuex'
 import axios from 'axios'
-// const rdf4j_url = "http://localhost:"+process.env.VUE_APP_RDF4J_PORT
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   components: {
@@ -121,13 +119,22 @@ export default {
     repoList: undefined,
   }),
   mounted: async function (){
-    // console.log(process.env) // debug
     this.getRepositories()
   },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
+    },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      console.log(backend_url)
+      // this.getRepositories(backend_url)
+      return backend_url
     },
   },
   methods: {
@@ -152,7 +159,7 @@ export default {
     },
     getRepositories() {
       this.loadingRepos = true
-      axios.get(backend_url+'/api/rdf4j/management/listRepos')
+      axios.get(this.backend_url+'/api/rdf4j/management/listRepos')
         .then(response => {
           // console.log(response.data) // debug
           var repoList = response.data

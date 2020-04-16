@@ -59,7 +59,6 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -93,11 +92,19 @@ export default {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
+    },
   },
   methods: {
     importRepoFile(repoID, fileType, file, addORreplace) {
       this.loading.importFile = true
-      var url = backend_url+'/api/rdf4j/management/importFile/'+repoID
+      var url = this.backend_url+'/api/rdf4j/management/importFile/'+repoID
       var data = file
       var config = {
         headers: { "Content-Type": "text/turtle" },
@@ -145,7 +152,7 @@ export default {
     },
     importRepoText(repoID, fileType, input, addORreplace) {
       this.loading.importText = true
-      var url = backend_url+'/api/rdf4j/management/importText/'+repoID
+      var url = this.backend_url+'/api/rdf4j/management/importText/'+repoID
       var data = input
       var config = {
         headers: { "Content-Type": "text/turtle" },

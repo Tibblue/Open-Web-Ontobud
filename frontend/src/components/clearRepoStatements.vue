@@ -17,7 +17,6 @@
 <script>
 import Vuex from 'vuex'
 import axios from 'axios'
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   data: () => ({
@@ -34,11 +33,19 @@ export default {
       get: Vuex.mapState(['$repo']).$repo,
       set: Vuex.mapMutations(['update$repo']).update$repo,
     },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+    },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
+    },
   },
   methods: {
     clearStatements(repoID) {
       this.loading.clear = true
-      axios.delete(backend_url+'/api/rdf4j/management/delete/'+repoID+'/statements')
+      axios.delete(this.backend_url+'/api/rdf4j/management/delete/'+repoID+'/statements')
         .then(response => {
           this.alert.clearSuccess = true
           this.alert.clearFail = false

@@ -304,7 +304,6 @@ import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
 const FileDownload = require('js-file-download')
-const backend_url = "http://"+process.env.VUE_APP_BACKEND_HOST+":"+process.env.VUE_APP_BACKEND_PORT
 
 export default {
   components: {
@@ -367,11 +366,10 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl,
     },
-    // backend_url1: function() {
-    //   // var BACKEND_HOST = this.$session.get("BACKEND_HOST") || process.env.VUE_APP_BACKEND_HOST
-    //   // var BACKEND_PORT = this.$session.get("BACKEND_PORT") || process.env.VUE_APP_BACKEND_PORT
-    //   return "http://"+this.$backurl.host+":"+this.$backurl.port
-    // },
+    backend_url: function() {
+      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+      return backend_url
+    },
     tableResults: function() {
       var results = []
       this.table.items.forEach(element => {
@@ -399,7 +397,7 @@ export default {
   },
   methods: {
     getNamespaces(repoID) {
-      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
         .then(response => {
           // puting results directly into this.namespaces usually results in a empty list
           var auxList = {} // for safety
@@ -413,7 +411,7 @@ export default {
         })
     },
     getDefaultNamespace(repoID) {
-      axios.get(backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces/ /')
+      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces/ /')
         .then(response => {
           this.defaultNamespace = response.data
           this.defaultNamespaceForQuery = "PREFIX : <"+response.data+">\n"
@@ -493,7 +491,7 @@ export default {
         default:
           accept = "application/json" // could fail
       }
-      var url = backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
           "Accept": accept,
@@ -594,7 +592,7 @@ export default {
       }
       if(!global) body['repoID'] = this.$repo.id
 
-      var url = backend_url+'/api/queries'
+      var url = this.backend_url+'/api/queries'
       axios.post(url, body)
         .then(response => {
           // console.log(response.data) // debug
@@ -660,7 +658,7 @@ export default {
             accept = "application/rdf+json"
         }
       }
-      var url = backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url+'/api/rdf4j/query/'+repoID
       const config = {
         headers: {
           "Accept": accept,
@@ -705,7 +703,7 @@ export default {
       const defaultNamespaceExists = /^ *PREFIX : /m.test(update)
       if(!defaultNamespaceExists) update = this.defaultNamespaceForQuery + update
       var repoID = this.$repo.id
-      var url = backend_url+'/api/rdf4j/update/'+repoID
+      var url = this.backend_url+'/api/rdf4j/update/'+repoID
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
