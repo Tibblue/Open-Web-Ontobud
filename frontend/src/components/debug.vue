@@ -65,6 +65,7 @@ export default {
     // console.log(this.$route.matched) // debug
     // console.log(this.$route.name) // debug
     // console.log(this.$route.path) // debug
+  },
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
