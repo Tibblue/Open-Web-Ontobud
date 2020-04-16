@@ -1,23 +1,24 @@
 <template>
   <v-card class="pa-3">
-    <v-text-field hide-details class="mt-0 mb-4 pt-0"
+    <v-text-field filled required
       v-model="userEmail"
       label="Email"
-      required
-      filled
+      :rules="[rules.required, rules.email]"
     ></v-text-field>
-    <v-text-field hide-details class="mt-0 mb-4 pt-0"
+    <!-- <div class="mb-4"></div> -->
+    <v-text-field filled required counter
       v-model="userPass"
       label="Password"
+      :rules="[rules.required, rules.counter]"
       :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
       :type="showPass ? 'text' : 'password'"
       @click:append="showPass = !showPass"
-      required
-      filled
     ></v-text-field>
+    <!-- <div class="mb-2"></div> -->
     <v-btn :loading="loading.login" block color="primary" @click="login(userEmail, userPass)">
       Login
     </v-btn>
+    <div class="mb-2"></div>
     <v-alert text dismissible type="success" v-model="alert.loginSuccess">
       Login Successful!!!
     </v-alert>
@@ -37,6 +38,14 @@ export default {
     userEmail: "",
     userPass: "",
     showPass: false,
+    rules: {
+      required: value => !!value || 'Required',
+      counter: value => value.length >= 4 || 'Min 4 characters',
+      email: value => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(value) || 'Invalid e-mail'
+      },
+    },
     loading: {
       login: false,
     },
