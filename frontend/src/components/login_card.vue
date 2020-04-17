@@ -35,8 +35,8 @@ const qs = require('querystring')
 
 export default {
   data: () => ({
-    userEmail: "",
-    userPass: "",
+    userEmail: '',
+    userPass: '',
     showPass: false,
     rules: {
       required: value => !!value || 'Required',
@@ -44,16 +44,16 @@ export default {
       email: value => {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         return pattern.test(value) || 'Invalid e-mail'
-      },
+      }
     },
     loading: {
-      login: false,
+      login: false
     },
     alert: {
       loginSuccess: false,
       loginFail: false,
-      loginFailMessage: "Login Failed...",
-    },
+      loginFailMessage: 'Login Failed...'
+    }
   }),
   // mounted: async function (){
   //   // console.log(process.env) # debug
@@ -61,37 +61,36 @@ export default {
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    login(userEmail, userPass) {
-      if( !this.userEmail || !this.userPass ){
+    login (userEmail, userPass) {
+      if (!this.userEmail || !this.userPass) {
         this.alert.loginSuccess = false
         this.alert.loginFail = true
-        this.alert.loginFailMessage = "All fields are required"
-      }
-      else{
+        this.alert.loginFailMessage = 'All fields are required'
+      } else {
         this.loading.login = true
         var form = {}
-        form['email'] = userEmail
-        form['password'] = userPass
-        axios.post(this.backend_url+'/api/auth/login', qs.stringify(form),
-          {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+        form.email = userEmail
+        form.password = userPass
+        axios.post(this.backend_url + '/api/auth/login', qs.stringify(form),
+          { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
         )
           .then(response => {
             // console.log(response.data.head) // debug column names
             // console.log(response.data.results.bindings) // debug results
             var token = response.data.token
             var userInfo = response.data.userInfo
-            this.$session.set("userToken", token)
-            this.$session.set("userName", userInfo.name)
-            this.$session.set("userEmail", userInfo.email)
-            this.$session.flash.set("login", {msg: "Login Success!!!", color: "success"})
+            this.$session.set('userToken', token)
+            this.$session.set('userName', userInfo.name)
+            this.$session.set('userEmail', userInfo.email)
+            this.$session.flash.set('login', { msg: 'Login Success!!!', color: 'success' })
 
             this.alert.loginSuccess = true
             this.alert.loginFail = false
@@ -101,13 +100,13 @@ export default {
             // console.log(alert.response.data) // debug
             this.alert.loginSuccess = false
             this.alert.loginFail = true
-            this.alert.loginFailMessage = "Login Failed..."
+            this.alert.loginFailMessage = 'Login Failed...'
           })
           .finally(() => {
             this.loading.login = false
           })
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

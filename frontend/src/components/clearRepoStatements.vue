@@ -21,31 +21,31 @@ import axios from 'axios'
 export default {
   data: () => ({
     loading: {
-      clear: false,
+      clear: false
     },
     alert: {
       clearSuccess: false,
-      clearFail: false,
-    },
+      clearFail: false
+    }
   }),
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
-      set: Vuex.mapMutations(['update$repo']).update$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo
     },
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    clearStatements(repoID) {
+    clearStatements (repoID) {
       this.loading.clear = true
-      axios.delete(this.backend_url+'/api/rdf4j/management/delete/'+repoID+'/statements')
+      axios.delete(this.backend_url + '/api/rdf4j/management/delete/' + repoID + '/statements')
         .then(response => {
           this.alert.clearSuccess = true
           this.alert.clearFail = false
@@ -57,7 +57,7 @@ export default {
         .finally(() => {
           this.loading.clear = false
         })
-    },
-  },
-};
+    }
+  }
+}
 </script>

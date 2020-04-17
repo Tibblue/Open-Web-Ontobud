@@ -308,51 +308,51 @@ const FileDownload = require('js-file-download')
 export default {
   components: {
     alerts,
-    savedQueries,
+    savedQueries
   },
   data: () => ({
-    queryInput: "select * where {\n  ?s ?p ?o\n}\nlimit 50",
+    queryInput: 'select * where {\n  ?s ?p ?o\n}\nlimit 50',
     infer: true,
     table: {
       headers: [],
-      items: [],
+      items: []
     },
     dialogSaveQuery: false,
     saving: {
-      queryName: "",
-      queryValue: "",
-      queryGlobal: true,
+      queryName: '',
+      queryValue: '',
+      queryGlobal: true
     },
-    search: "",
+    search: '',
     searchCaseSensitive: true,
-    defaultNamespace: "",
-    defaultNamespaceForQuery: "",
+    defaultNamespace: '',
+    defaultNamespaceForQuery: '',
     namespaces: {},
     namespaceON: true,
     prefixON: true,
     savedQueriesExpand: true,
     exportResult: {
-      fileTypeList: ["json","csv","rdf-xml","binary-rdf"],
-      selectedFileType: "json",
+      fileTypeList: ['json', 'csv', 'rdf-xml', 'binary-rdf'],
+      selectedFileType: 'json',
       lastQuery: null,
       lastQueryType: null,
-      lastInfer: true,
+      lastInfer: true
     },
     alert: {
     },
     alertQuery: {
       visible: false,
-      color: "warning",
-      message: "",
+      color: 'warning',
+      message: ''
     },
     loading: {
       query: false,
       savingQuery: false,
       table: false,
-      search: false,
-    },
+      search: false
+    }
   }),
-  mounted: async function (){
+  mounted: async function () {
     var currentRepoID = this.$session.get('repoID')
     this.getNamespaces(currentRepoID)
     this.getDefaultNamespace(currentRepoID)
@@ -360,211 +360,203 @@ export default {
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
-      set: Vuex.mapMutations(['update$repo']).update$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo
     },
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
     },
-    tableResults: function() {
+    tableResults: function () {
       var results = []
       this.table.items.forEach(element => {
         var elemAux = {}
-        for(const key in element){
-          if(this.namespaceON || element[key].type=='literal')
-            if(this.prefixON && element[key].type!='literal'){
+        for (const key in element) {
+          if (this.namespaceON || element[key].type === 'literal') {
+            if (this.prefixON && element[key].type !== 'literal') {
               var namespace = element[key].value.split('#')[0] + '#'
               var prefix = this.namespaces[namespace] || namespace
               var resource = element[key].value.split('#')[1] || ''
-              elemAux[key] = {'value': prefix + resource, 'uri': element[key].value, 'type': element[key].type}
-            }
-            else
-              elemAux[key] = {'value': element[key].value, 'uri': element[key].value, 'type': element[key].type}
-          else
-            elemAux[key] = {'value': element[key].value.split('#')[1], 'uri': element[key].value, 'type': element[key].type}
+              elemAux[key] = { value: prefix + resource, uri: element[key].value, type: element[key].type }
+            } else { elemAux[key] = { value: element[key].value, uri: element[key].value, type: element[key].type } }
+          } else { elemAux[key] = { value: element[key].value.split('#')[1], uri: element[key].value, type: element[key].type } }
         }
         results.push(elemAux)
-      });
+      })
       return results
-    },
+    }
     // checkQuery: function() {
     //   return this.checkQueryType(this.queryInput)
     // }
   },
   methods: {
-    getNamespaces(repoID) {
-      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+    getNamespaces (repoID) {
+      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
           // puting results directly into this.namespaces usually results in a empty list
           var auxList = {} // for safety
           response.data.forEach(elem => {
             auxList[elem.namespace.value] = elem.prefix.value + ':'
-          });
+          })
           this.namespaces = auxList
         })
         .catch(error => {
+          console.log(error.response)
           this.namespaces = {}
         })
     },
-    getDefaultNamespace(repoID) {
-      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces/ /')
+    getDefaultNamespace (repoID) {
+      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/namespaces/ /')
         .then(response => {
           this.defaultNamespace = response.data
-          this.defaultNamespaceForQuery = "PREFIX : <"+response.data+">\n"
+          this.defaultNamespaceForQuery = 'PREFIX : <' + response.data + '>\n'
         })
         .catch(error => {
-          this.defaultNamespace = ""
-          this.defaultNamespaceForQuery = ""
+          console.log(error.response)
+          this.defaultNamespace = ''
+          this.defaultNamespaceForQuery = ''
         })
     },
-    goToDefaultGraph() {
-      var query = 'select ?s ?p ?o where {\nvalues ?p { rdf:type }\n?s a ?o.\nFILTER (STRSTARTS(str(?s), "'+this.defaultNamespace+'"))\n}'
+    goToDefaultGraph () {
+      var query = 'select ?s ?p ?o where {\nvalues ?p { rdf:type }\n?s a ?o.\nFILTER (STRSTARTS(str(?s), "' + this.defaultNamespace + '"))\n}'
       // console.log(query) // debug
       this.runQuery(query, true)
     },
-    cellClicked(cellInfo) {
-      if(cellInfo.type==='uri')
-        this.$router.push({path: "resource", query: { uri: cellInfo.uri }})
+    cellClicked (cellInfo) {
+      if (cellInfo.type === 'uri') { this.$router.push({ path: 'resource', query: { uri: cellInfo.uri } }) }
     },
-    checkQueryType(query) {
+    checkQueryType (query) {
       // SELECT.*WHERE.*\{.*\}
       const selectPatt = /SELECT/i
       const constructPatt = /CONSTRUCT/i
       const askPatt = /ASK/i
       const insertPatt = /INSERT/i
       const deletePatt = /DELETE/i
-      var queryType = "???"
+      var queryType = '???'
       if (selectPatt.test(query)) {
-        queryType = "select"
-      }
-      else if (constructPatt.test(query)) {
-        queryType = "construct"
-      }
-      else if (askPatt.test(query)) {
-        queryType = "ask"
-      }
-      else if (insertPatt.test(query)) {
-        queryType = "insert"
-      }
-      else if (deletePatt.test(query)) {
-        queryType = "delete"
+        queryType = 'select'
+      } else if (constructPatt.test(query)) {
+        queryType = 'construct'
+      } else if (askPatt.test(query)) {
+        queryType = 'ask'
+      } else if (insertPatt.test(query)) {
+        queryType = 'insert'
+      } else if (deletePatt.test(query)) {
+        queryType = 'delete'
       }
       return queryType
     },
-    run(query, infer){
+    run (query, infer) {
       var type = this.checkQueryType(query)
-      switch(type) {
-        case "select":
-        case "construct":
-        case "ask":
-          this.runQuery(query,infer,type)
-          break;
-        case "insert":
-        case "delete":
+      switch (type) {
+        case 'select':
+        case 'construct':
+        case 'ask':
+          this.runQuery(query, infer, type)
+          break
+        case 'insert':
+        case 'delete':
           this.runUpdate(query)
-          break;
+          break
         default:
-          break;
+          break
       }
     },
-    runQuery(query, infer, type) {
+    runQuery (query, infer, type) {
       this.loading.query = true
       this.loading.table = true
       const defaultNamespaceExists = /^ *PREFIX : /m.test(query)
-      if(!defaultNamespaceExists) query = this.defaultNamespaceForQuery + query
+      if (!defaultNamespaceExists) query = this.defaultNamespaceForQuery + query
       var repoID = this.$repo.id
       var accept
-      switch(type){
+      switch (type) {
         case 'select':
-          accept = "application/json"
-          break;
+          accept = 'application/json'
+          break
         case 'construct':
-          accept = "application/rdf+json"
-          break;
+          accept = 'application/rdf+json'
+          break
         case 'ask':
-          accept = "text/boolean"
-          break;
+          accept = 'text/boolean'
+          break
         default:
-          accept = "application/json" // could fail
+          accept = 'application/json' // could fail
       }
-      var url = this.backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
-          "Accept": accept,
-          "Content-Type": "application/x-www-form-urlencoded"
+          Accept: accept,
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
-      axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
+      axios.post(url, qs.stringify({ query: query, infer: infer }), config)
         .then(response => {
-          if(type==="select"){
+          if (type === 'select') {
             // console.log(response.data) // debug
             var columnsVars = response.data.head.vars
             var resultsData = response.data.results.bindings
             this.table.headers = []
             columnsVars.forEach(element => {
-              this.table.headers.push({'text': element, 'value': element, sortable: true})
-            });
+              this.table.headers.push({ text: element, value: element, sortable: true })
+            })
             this.table.items = []
             resultsData.forEach(element => {
               var elemAux = {}
-              for(const key in element){
+              for (const key in element) {
                 elemAux[key] = {
-                  'value': element[key].value,
-                  'type': element[key].type
+                  value: element[key].value,
+                  type: element[key].type
                 }
               }
               this.table.items.push(elemAux)
-            });
-          }
-          else if(type==="construct"){
+            })
+          } else if (type === 'construct') {
             // console.log(response.data) // debug
             this.table.headers = [
-              {'text': 'subject', 'value': 'subject', sortable: true},
-              {'text': 'predicate', 'value': 'predicate', sortable: true},
-              {'text': 'object', 'value': 'object', sortable: true}
+              { text: 'subject', value: 'subject', sortable: true },
+              { text: 'predicate', value: 'predicate', sortable: true },
+              { text: 'object', value: 'object', sortable: true }
             ]
             var resultsData = response.data
             this.table.items = []
-            for(const subject in resultsData){
-              for(const predicate in resultsData[subject]){
+            for (const subject in resultsData) {
+              for (const predicate in resultsData[subject]) {
                 resultsData[subject][predicate].forEach(object => {
                   // console.log(subject)
                   // console.log(predicate)
                   // console.log(object.value)
                   // console.log(object.type)
                   this.table.items.push({
-                    'subject': {
-                      'value': subject,
-                      'type': 'uri'
+                    subject: {
+                      value: subject,
+                      type: 'uri'
                     },
-                    'predicate': {
-                      'value': predicate,
-                      'type': 'uri'
+                    predicate: {
+                      value: predicate,
+                      type: 'uri'
                     },
-                    'object': {
-                      'value': object.value,
-                      'type': object.type
+                    object: {
+                      value: object.value,
+                      type: object.type
                     }
                   })
-                });
+                })
               }
             };
-          }
-          else if(type==="ask"){
+          } else if (type === 'ask') {
             var result = response.data
             this.table.headers = [{
-              'text': 'boolean',
-              'value': 'boolean',
+              text: 'boolean',
+              value: 'boolean',
               sortable: false
             }]
             this.table.items = [{
-              'boolean': {
-                'value': result,
-                'type': 'literal'
+              boolean: {
+                value: result,
+                type: 'literal'
               }
             }]
           }
@@ -575,192 +567,183 @@ export default {
         })
         .catch(error => {
           this.alertQuery.visible = true
-          this.alertQuery.color = "warning"
-          this.alertQuery.message = "Query Failed!! \n"+error.response.data
+          this.alertQuery.color = 'warning'
+          this.alertQuery.message = 'Query Failed!! \n' + error.response.data
         })
         .finally(() => {
           this.loading.query = false
           this.loading.table = false
         })
     },
-    saveQuery(name, query, userEmail, global) {
+    saveQuery (name, query, userEmail, global) {
       this.loading.savingQuery = true
       var body = {
-        'name': name,
-        'query': query,
-        'user_email': userEmail, // TODO: use user email when auth gets done
+        name: name,
+        query: query,
+        user_email: userEmail // TODO: use user email when auth gets done
       }
-      if(!global) body['repoID'] = this.$repo.id
+      if (!global) body.repoID = this.$repo.id
 
-      var url = this.backend_url+'/api/queries'
+      var url = this.backend_url + '/api/queries'
       axios.post(url, body)
         .then(response => {
           // console.log(response.data) // debug
           // console.log(this.$refs.savedQueriesComp) // debug to check child component variable
-          if(global)
-            this.$refs.savedQueriesComp.savedQueriesGlobal.push({'name': name, 'query': query, 'global': true})
-          else
-            this.$refs.savedQueriesComp.savedQueriesRepo.push({'name': name, 'query': query, 'global': false})
+          if (global) { this.$refs.savedQueriesComp.savedQueriesGlobal.push({ name: name, query: query, global: true }) } else { this.$refs.savedQueriesComp.savedQueriesRepo.push({ name: name, query: query, global: false }) }
 
           this.alertQuery.visible = true
-          this.alertQuery.color = "success"
-          this.alertQuery.message = "Query Saved! \n"
-
+          this.alertQuery.color = 'success'
+          this.alertQuery.message = 'Query Saved! \n'
         })
         .catch(error => {
           this.alertQuery.visible = true
-          this.alertQuery.color = "warning"
-          this.alertQuery.message = "Query Save Failed!! \n"+error.response.data
+          this.alertQuery.color = 'warning'
+          this.alertQuery.message = 'Query Save Failed!! \n' + error.response.data
         })
         .finally(() => {
-          this.saving.queryName = ""
-          this.saving.queryValue = ""
+          this.saving.queryName = ''
+          this.saving.queryValue = ''
           this.saving.queryGlobal = true
           this.loading.savingQuery = false
         })
     },
-    exportResults(repoID, fileType, query, infer) {
+    exportResults (repoID, fileType, query, infer) {
       this.loading.exportFile = true
       var accept
-      if(this.exportResult.lastQueryType==="select") {
-        switch(fileType){
+      if (this.exportResult.lastQueryType === 'select') {
+        switch (fileType) {
           case 'json':
-            accept = "application/json"
-            break;
+            accept = 'application/json'
+            break
           case 'csv':
-            accept = "text/csv"
-            break;
+            accept = 'text/csv'
+            break
           case 'rdf-xml':
-            accept = "application/xml"
-            break;
+            accept = 'application/xml'
+            break
           case 'binary-rdf':
-            accept = "application/x-binary-rdf-results-table"
-            break;
+            accept = 'application/x-binary-rdf-results-table'
+            break
           default:
-            accept = "application/json"
+            accept = 'application/json'
+        }
+      } else if (this.exportResult.lastQueryType === 'construct') {
+        switch (fileType) {
+          case 'json':
+            accept = 'application/rdf+json'
+            break
+          case 'csv':
+            accept = 'text/plain'
+            break
+          case 'rdf-xml':
+            accept = 'application/rdf+xml'
+            break
+          case 'binary-rdf':
+            accept = 'application/x-binary-rdf'
+            break
+          default:
+            accept = 'application/rdf+json'
         }
       }
-      else if(this.exportResult.lastQueryType==="construct") {
-        switch(fileType){
-          case 'json':
-            accept = "application/rdf+json"
-            break;
-          case 'csv':
-            accept = "text/plain"
-            break;
-          case 'rdf-xml':
-            accept = "application/rdf+xml"
-            break;
-          case 'binary-rdf':
-            accept = "application/x-binary-rdf"
-            break;
-          default:
-            accept = "application/rdf+json"
-        }
-      }
-      var url = this.backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
-          "Accept": accept,
-          "Content-Type": "application/x-www-form-urlencoded"
+          Accept: accept,
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
-      axios.post(url, qs.stringify({'query': query, 'infer': infer}), config)
+      axios.post(url, qs.stringify({ query: query, infer: infer }), config)
         .then(response => {
-          var fileData = "error processing the export..."
+          var fileData = 'error processing the export...'
           var extension = fileType
-          switch(fileType){
+          switch (fileType) {
             case 'json':
               fileData = JSON.stringify(response.data, null, 4)
-              break;
+              break
             case 'csv':
               fileData = response.data
-              break;
+              break
             case 'rdf-xml':
               fileData = response.data
-              extension = "xml"
-              break;
+              extension = 'xml'
+              break
             case 'binary-rdf':
               fileData = response.data
-              extension = "brt"
-              break;
+              extension = 'brt'
+              break
             default:
           }
-          FileDownload(fileData, 'exportQueryResults.'+extension)
+          FileDownload(fileData, 'exportQueryResults.' + extension)
         })
         .catch(error => {
           console.log(error.response.data)
           this.alertQuery.visible = true
-          this.alertQuery.color = "error"
-          this.alertQuery.message = "Export Failed!! \n"+error.response.data
+          this.alertQuery.color = 'error'
+          this.alertQuery.message = 'Export Failed!! \n' + error.response.data
         })
         .finally(() => {
           this.loading.exportFile = false
         })
     },
-    runUpdate(update) {
+    runUpdate (update) {
       this.loading.query = true
       const defaultNamespaceExists = /^ *PREFIX : /m.test(update)
-      if(!defaultNamespaceExists) update = this.defaultNamespaceForQuery + update
+      if (!defaultNamespaceExists) update = this.defaultNamespaceForQuery + update
       var repoID = this.$repo.id
-      var url = this.backend_url+'/api/rdf4j/update/'+repoID
+      var url = this.backend_url + '/api/rdf4j/update/' + repoID
       const config = {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
-      axios.post(url, qs.stringify({'update': update}), config)
+      axios.post(url, qs.stringify({ update: update }), config)
         .then(response => {
           this.alertQuery.visible = true
-          this.alertQuery.color = "success"
-          this.alertQuery.message = "Update executed!"
+          this.alertQuery.color = 'success'
+          this.alertQuery.message = 'Update executed!'
         })
         .catch(error => {
           this.alertQuery.visible = true
-          this.alertQuery.color = "warning"
-          this.alertQuery.message = "Update Failed!! \n"+error.response.data
+          this.alertQuery.color = 'warning'
+          this.alertQuery.message = 'Update Failed!! \n' + error.response.data
         })
         .finally(() => {
           this.loading.query = false
           this.loading.table = false
         })
     },
-    customSearch(value, search, item) {
+    customSearch (value, search, item) {
       // console.log(value) // debug
       // console.log(search) // debug
       // console.log(item) // debug
       if (value == null || search == null) {
-        console.log("Value or Search is NULL")
+        console.log('Value or Search is NULL')
         return false
-      }
-      else if (value.uri == null || value.value == null) {
-        console.log("Value URI or VALUE is NULL")
+      } else if (value.uri == null || value.value == null) {
+        console.log('Value URI or VALUE is NULL')
         return false
-      }
-      else if (typeof value.uri !== 'string' || typeof value.value !== 'string') {
-        console.log("Somehow non-string values are inside the table...")
+      } else if (typeof value.uri !== 'string' || typeof value.value !== 'string') {
+        console.log('Somehow non-string values are inside the table...')
         return false
-      }
-      else {
+      } else {
         var auxURI
         // var auxValue
         var auxSearch
-        if(this.searchCaseSensitive){
-          console.log("checking search values... (Case Sensitive)")
+        if (this.searchCaseSensitive) {
+          console.log('checking search values... (Case Sensitive)')
           auxURI = value.value.toString()
           auxSearch = search
-        }
-        else{
-          console.log("checking search values... (NOT Case Sensitive)")
+        } else {
+          console.log('checking search values... (NOT Case Sensitive)')
           auxURI = value.value.toString().toLocaleLowerCase()
           auxSearch = search.toLocaleLowerCase()
         }
 
-        if (auxURI.indexOf(auxSearch) == -1) return false
+        if (auxURI.indexOf(auxSearch) === -1) return false
         else return true
       }
     },
-    customSort(items, sortBy, sortDesc, locale, customSorters){
+    customSort (items, sortBy, sortDesc, locale, customSorters) {
       // console.log(items) // debug
       // console.log(sortBy) // debug
       // console.log(sortDesc) // debug
@@ -768,14 +751,14 @@ export default {
         // TODO: a way to order numbers... right now it orders number wrong...
         if (sortBy.length) {
           if (!sortDesc[0]) {
-            return a[sortBy].value < b[sortBy].value ? -1 : 1;
+            return a[sortBy].value < b[sortBy].value ? -1 : 1
           } else {
-            return b[sortBy].value < a[sortBy].value ? -1 : 1;
+            return b[sortBy].value < a[sortBy].value ? -1 : 1
           }
         }
-      });
-      return items;
-    },
+      })
+      return items
+    }
   }
 }
 </script>

@@ -10,7 +10,7 @@ export default new Router({
     {
       path: '/auth/logout',
       name: 'logout',
-      component: () => import('./views/Logout.vue'),
+      component: () => import('./views/Logout.vue')
     },
     // {
     //   path: '/auth/user',
@@ -18,36 +18,35 @@ export default new Router({
     //   component: () => import('./views/User.vue'),
     // },
 
-
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/Home.vue'),
+      component: () => import('./views/Home.vue')
     },
     {
       path: '/repositories',
       name: 'repositories',
-      component: () => import('./views/Repositories.vue'),
+      component: () => import('./views/Repositories.vue')
     },
     {
       path: '/manage',
       name: 'manageRepo',
-      component: () => import('./views/Manage.vue'),
+      component: () => import('./views/Manage.vue')
     },
     {
       path: '/info',
       name: 'repoInfo',
-      component: () => import('./views/Info.vue'),
+      component: () => import('./views/Info.vue')
     },
     {
       path: '/sparql',
       name: 'sparql',
-      component: () => import('./views/Sparql.vue'),
+      component: () => import('./views/Sparql.vue')
     },
     {
       path: '/resource',
       name: 'resource',
-      component: () => import('./views/Resource.vue'),
+      component: () => import('./views/Resource.vue')
     },
     // {
     //   path: '/navigation',
@@ -58,7 +57,7 @@ export default new Router({
     {
       path: '/feedback',
       name: 'feedback',
-      component: () => import('./views/Feedback.vue'),
-    },
+      component: () => import('./views/Feedback.vue')
+    }
   ]
 })

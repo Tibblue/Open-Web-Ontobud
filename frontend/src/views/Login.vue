@@ -9,8 +9,8 @@ import login from '@/components/login'
 
 export default {
   components: {
-    login,
-  },
+    login
+  }
   // data: () => ({
   // }),
   // mounted: async function (){

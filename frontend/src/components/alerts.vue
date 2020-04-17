@@ -15,18 +15,18 @@ export default {
   data: () => ({
     snackbarLogin: false,
     snackbarLoginValue: null,
-    snackbarLoginColor: "",
-    snackbarLoginMsg: "",
+    snackbarLoginColor: '',
+    snackbarLoginMsg: ''
   }),
-  mounted: async function (){
-    this.snackbarLoginValue = this.$session.flash.get("login")
-    if(this.snackbarLoginValue){
+  mounted: async function () {
+    this.snackbarLoginValue = this.$session.flash.get('login')
+    if (this.snackbarLoginValue) {
       this.snackbarLoginColor = this.snackbarLoginValue.color
       this.snackbarLoginMsg = this.snackbarLoginValue.msg
       this.snackbarLogin = true
     }
   },
-  methods:{
-  },
-};
+  methods: {
+  }
+}
 </script>

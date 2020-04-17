@@ -130,7 +130,7 @@ import axios from 'axios'
 
 export default {
   data: () => ({
-    newSavedQueryName: "",
+    newSavedQueryName: '',
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,
     savedQueriesGlobal: [],
@@ -144,117 +144,117 @@ export default {
     // ],
     dialogEditQuery: false,
     editing: {
-      queryName: "",
-      queryNewValue: "",
+      queryName: '',
+      queryNewValue: ''
     },
     alert: {
       queryEditFail: false,
-      queryDeleteFail: false,
+      queryDeleteFail: false
     },
     loading: {
       savedQueries: false,
       queryEditSave: false,
-      queryDelete: false,
-    },
+      queryDelete: false
+    }
   }),
-  mounted: async function (){
-    if(this.$session.get('userToken')){
-      var currentUserEmail = this.$session.get("userEmail") // email from session
-      var currentRepo = this.$session.get("repoID") // this.$repo.id
+  mounted: async function () {
+    if (this.$session.get('userToken')) {
+      var currentUserEmail = this.$session.get('userEmail') // email from session
+      var currentRepo = this.$session.get('repoID') // this.$repo.id
       this.getSavedQueriesGlobal(currentUserEmail)
-      this.getSavedQueriesRepo(currentUserEmail,currentRepo)
+      this.getSavedQueriesRepo(currentUserEmail, currentRepo)
     }
   },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
-      set: Vuex.mapMutations(['update$repo']).update$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo
     },
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
     },
-    savedQueries: function() {
       return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
+    savedQueries: function () {
     },
-    colsSize: function() {
+    colsSize: function () {
       var cols = 6 // default
       switch (this.$vuetify.breakpoint.name) {
         case 'xs':
           cols = 12
-          break;
+          break
         case 'sm':
           cols = 6
-          break;
+          break
         case 'md':
           cols = 6
-          break;
+          break
         case 'lg':
           cols = 4
-          break;
+          break
         case 'xl':
           cols = 3
-          break;
+          break
       }
       return cols
     }
   },
   methods: {
-    getSavedQueriesGlobal(currentUserEmail) {
-      this.savedQueriesGlobal = [{'name': 'Loading Global Queries...', 'query': 'Please wait', 'global': true}]
-      var url = this.backend_url+'/api/queries/user/'+currentUserEmail+'/global'
+    getSavedQueriesGlobal (currentUserEmail) {
+      this.savedQueriesGlobal = [{ name: 'Loading Global Queries...', query: 'Please wait', global: true }]
+      var url = this.backend_url + '/api/queries/user/' + currentUserEmail + '/global'
       axios.get(url)
         .then(response => {
           // console.log(response.data) // debug
           var savedQueriesArray = []
           var savedQueriesAux = response.data
           savedQueriesAux.forEach(element => {
-            savedQueriesArray.push({'name': element.name, 'query': element.query, 'global': true})
-          });
+            savedQueriesArray.push({ name: element.name, query: element.query, global: true })
+          })
           this.savedQueriesGlobal = savedQueriesArray
         })
         .catch(alert => {
-          this.savedQueriesGlobal = [{'name': "Get Repo Queries FAIL!!!", 'query': alert, 'global': true}]
+          this.savedQueriesGlobal = [{ name: 'Get Repo Queries FAIL!!!', query: alert, global: true }]
         })
     },
-    getSavedQueriesRepo(currentUserEmail, currentRepo) {
-      this.savedQueriesRepo = [{'name': 'Loading Repo Queries...', 'query': 'Please wait', 'global': false}]
-      var url = this.backend_url+'/api/queries/user/'+currentUserEmail+'/'+currentRepo
+    getSavedQueriesRepo (currentUserEmail, currentRepo) {
+      this.savedQueriesRepo = [{ name: 'Loading Repo Queries...', query: 'Please wait', global: false }]
+      var url = this.backend_url + '/api/queries/user/' + currentUserEmail + '/' + currentRepo
       axios.get(url)
         .then(response => {
           // console.log(response.data) // debug
           var savedQueriesArray = []
           var savedQueriesAux = response.data
           savedQueriesAux.forEach(element => {
-            savedQueriesArray.push({'name': element.name, 'query': element.query, 'global': false})
-          });
+            savedQueriesArray.push({ name: element.name, query: element.query, global: false })
+          })
           this.savedQueriesRepo = savedQueriesArray
         })
         .catch(alert => {
-          this.savedQueriesRepo = [{'name': "Get Repo Queries FAIL!!!", 'query': alert, 'global': false}]
+          this.savedQueriesRepo = [{ name: 'Get Repo Queries FAIL!!!', query: alert, global: false }]
         })
     },
-    runQuery(query) {
+    runQuery (query) {
       this.$emit('runQuery', query, true)
     },
-    savedQueryEdit(queryName,oldQuery) {
+    savedQueryEdit (queryName, oldQuery) {
       this.editing.queryName = queryName
       this.editing.queryNewValue = oldQuery
     },
-    savedQueryEditSave(queryName,newQuery) {
+    savedQueryEditSave (queryName, newQuery) {
       this.loading.queryEditSave = true
-      const user_email = this.$session.get("userEmail")
-      const url = this.backend_url+'/api/queries/'+encodeURIComponent(user_email)+'/'+encodeURIComponent(queryName)
-      const body = {'query': newQuery}
+      const userEmail = this.$session.get('userEmail')
+      const url = this.backend_url + '/api/queries/' + encodeURIComponent(userEmail) + '/' + encodeURIComponent(queryName)
+      const body = { query: newQuery }
       axios.put(url, body)
         .then(response => {
           // console.log(response.data) // debug
           for (let index = 0; index < this.savedQueries.length; index++) {
-            if(this.savedQueries[index].name===queryName){
+            if (this.savedQueries[index].name === queryName) {
               this.savedQueries[index].query = newQuery
               this.loading.queryEditSave = false
               return
@@ -267,24 +267,23 @@ export default {
           this.alert.queryEditFail = true
         })
     },
-    deleteSavedQuery(name, global) {
+    deleteSavedQuery (name, global) {
       this.loading.queryDelete = true
-      const user_email = this.$session.get("userEmail")
-      const url = this.backend_url+'/api/queries/'+user_email+'/'+name
+      const userEmail = this.$session.get('userEmail')
+      const url = this.backend_url + '/api/queries/' + userEmail + '/' + name
       axios.delete(url)
         .then(response => {
           // console.log(response.data) // debug
           for (let index = 0; index < this.savedQueries.length; index++) {
-            if(global){
-              if(this.savedQueriesGlobal[index].name===name){
-                this.savedQueriesGlobal.splice(index,1)
+            if (global) {
+              if (this.savedQueriesGlobal[index].name === name) {
+                this.savedQueriesGlobal.splice(index, 1)
                 this.loading.queryDelete = false
                 return index
               }
-            }
-            else{
-              if(this.savedQueriesRepo[index].name===name){
-                this.savedQueriesRepo.splice(index,1)
+            } else {
+              if (this.savedQueriesRepo[index].name === name) {
+                this.savedQueriesRepo.splice(index, 1)
                 this.loading.queryDelete = false
                 return index
               }
@@ -296,7 +295,7 @@ export default {
           this.alert.queryDeleteFail = true
           // FIXME: detetar qd falha pk ja existe
         })
-    },
+    }
   }
-};
+}
 </script>

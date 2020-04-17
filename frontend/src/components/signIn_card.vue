@@ -40,18 +40,18 @@ const qs = require('querystring')
 
 export default {
   data: () => ({
-    userName: "",
-    userEmail: "",
-    userPass: "",
+    userName: '',
+    userEmail: '',
+    userPass: '',
     showPass: false,
     loading: {
-      userSignUp: false,
+      userSignUp: false
     },
     alert: {
       userSignUpSuccess: false,
       userSignUpFail: false,
-      userSignUpFailMessage: "Sign Up Failed...",
-    },
+      userSignUpFailMessage: 'Sign Up Failed...'
+    }
   }),
   // mounted: async function (){
   //   // console.log(process.env) # debug
@@ -59,28 +59,27 @@ export default {
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    signUp(userName, userEmail, userPass) {
-      if( !this.userName || !this.userEmail || !this.userPass ){
+    signUp (userName, userEmail, userPass) {
+      if (!this.userName || !this.userEmail || !this.userPass) {
         this.alert.userSignUpSuccess = false
         this.alert.userSignUpFail = true
-        this.alert.userSignUpFailMessage = "All fields are required"
-      }
-      else{
+        this.alert.userSignUpFailMessage = 'All fields are required'
+      } else {
         this.loading.userSignUp = true
         var form = {}
-        form['name'] = userName
-        form['email'] = userEmail
-        form['password'] = userPass
-        axios.post(this.backend_url+'/api/auth/signup', qs.stringify(form),
-          {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+        form.name = userName
+        form.email = userEmail
+        form.password = userPass
+        axios.post(this.backend_url + '/api/auth/signup', qs.stringify(form),
+          { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
         )
           .then(response => {
             // console.log(response.data.head) // debug column names
@@ -92,13 +91,13 @@ export default {
             console.log(alert.response.data)
             this.alert.userSignUpSuccess = false
             this.alert.userSignUpFail = true
-            this.alert.userSignUpFailMessage = "Sign Up Failed..."
+            this.alert.userSignUpFailMessage = 'Sign Up Failed...'
           })
           .finally(() => {
             this.loading.userSignUp = false
           })
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

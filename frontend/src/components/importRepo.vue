@@ -62,143 +62,149 @@ import axios from 'axios'
 
 export default {
   data: () => ({
-    fileTypeSelected: "ttl",
+    fileTypeSelected: 'ttl',
     // TODO: confirm if no error exists when importing/exporting from other file types (example rdf-xml)
     fileTypes: [ // TODO: add more
       { text: 'Turtle', value: 'ttl' },
       { text: 'RDF/XML', value: 'rdf-xml' },
-      { text: 'Plain Text', value: 'txt' },
+      { text: 'Plain Text', value: 'txt' }
     ],
     addORreplaceSelected: 'add',
     addORreplace: [ // TODO: add more
       { text: 'Add to Ontology', value: 'add' },
-      { text: 'Replace Ontology', value: 'replace' },
+      { text: 'Replace Ontology', value: 'replace' }
     ],
     importFile: undefined,
-    importText: "",
+    importText: '',
     loading: {
       importFile: false,
-      importText: false,
+      importText: false
     },
     alert: {
       importFileSuccess: false,
       importFileFail: false,
       importTextSuccess: false,
-      importTextFail: false,
-    },
+      importTextFail: false
+    }
   }),
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
-      set: Vuex.mapMutations(['update$repo']).update$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo
     },
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    importRepoFile(repoID, fileType, file, addORreplace) {
+    importRepoFile (repoID, fileType, file, addORreplace) {
       this.loading.importFile = true
-      var url = this.backend_url+'/api/rdf4j/management/importFile/'+repoID
+      var url = this.backend_url + '/api/rdf4j/management/importFile/' + repoID
       var data = file
       var config = {
-        headers: { "Content-Type": "text/turtle" },
+        headers: { 'Content-Type': 'text/turtle' },
         maxContentLength: Infinity,
         maxBodyLength: Infinity
       }
-      switch(fileType){
+      switch (fileType) {
         case 'ttl':
-          config["headers"] = { "Content-Type": "text/turtle" }
-          break;
+          config.headers = { 'Content-Type': 'text/turtle' }
+          break
         case 'rdf-xml':
-          config["headers"] = { "Content-Type": "application/xml" }
-          break;
+          config.headers = { 'Content-Type': 'application/xml' }
+          break
         case 'txt':
-          config["headers"] = { "Content-Type": "text/plain" }
-          break;
+          config.headers = { 'Content-Type': 'text/plain' }
+          break
         default:
       }
-      if(addORreplace==='add')
+      if (addORreplace === 'add') {
         axios.post(url, data, config)
           .then(response => {
             this.alert.importFileSuccess = true
             this.alert.importFileFail = false
           })
           .catch(error => {
+            console.log(error)
             this.alert.importFileFail = true
             this.alert.importFileSuccess = false
           })
           .finally(() => {
             this.loading.importFile = false
           })
-      else
-        axios.put(url, data, headers)
+      } else {
+        axios.put(url, data, config)
           .then(response => {
             this.alert.importFileSuccess = true
             this.alert.importFileFail = false
           })
           .catch(error => {
+            console.log(error)
             this.alert.importFileFail = true
             this.alert.importFileSuccess = false
           })
           .finally(() => {
             this.loading.importFile = false
           })
+      }
     },
-    importRepoText(repoID, fileType, input, addORreplace) {
+    importRepoText (repoID, fileType, input, addORreplace) {
       this.loading.importText = true
-      var url = this.backend_url+'/api/rdf4j/management/importText/'+repoID
+      var url = this.backend_url + '/api/rdf4j/management/importText/' + repoID
       var data = input
       var config = {
-        headers: { "Content-Type": "text/turtle" },
+        headers: { 'Content-Type': 'text/turtle' },
         maxContentLength: Infinity,
         maxBodyLength: Infinity
       }
-      switch(fileType){
+      switch (fileType) {
         case 'ttl':
-          config["headers"] = { "Content-Type": "text/turtle" }
-          break;
+          config.headers = { 'Content-Type': 'text/turtle' }
+          break
         case 'rdf-xml':
-          config["headers"] = { "Content-Type": "application/xml" }
-          break;
+          config.headers = { 'Content-Type': 'application/xml' }
+          break
         case 'txt':
-          config["headers"] = { "Content-Type": "text/plain" }
-          break;
+          config.headers = { 'Content-Type': 'text/plain' }
+          break
         default:
       }
       // headers = { 'headers': { "Content-Type": "application/x-turtle" }}
-      if(addORreplace==='add')
+      if (addORreplace === 'add') {
         axios.post(url, data, config)
           .then(response => {
             this.alert.importTextSuccess = true
             this.alert.importTextFail = false
           })
           .catch(error => {
+            console.log(error)
             this.alert.importTextFail = true
             this.alert.importTextSuccess = false
           })
           .finally(() => {
             this.loading.importText = false
           })
-      else
-        axios.put(url, data, headers)
+      } else {
+        axios.put(url, data, config)
           .then(response => {
             this.alert.importTextSuccess = true
             this.alert.importTextFail = false
           })
           .catch(error => {
+            console.log(error)
             this.alert.importTextFail = true
             this.alert.importTextSuccess = false
           })
           .finally(() => {
             this.loading.importText = false
           })
-    },
-  },
-};
+      }
+    }
+  }
+}
 </script>

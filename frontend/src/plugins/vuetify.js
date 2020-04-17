@@ -1,16 +1,16 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
+import Vue from 'vue'
+import Vuetify from 'vuetify/lib'
 import '@fortawesome/fontawesome-free/css/all.css'
-import colors from 'vuetify/lib/util/colors'
+// import colors from 'vuetify/lib/util/colors'
 
-Vue.use(Vuetify);
+Vue.use(Vuetify)
 
 export default new Vuetify({
   icons: {
-    iconfont: 'fa',
+    iconfont: 'fa'
   },
   theme: {
-    dark: true,
+    dark: true
     // themes: {
     //   light: {
     //     primary: colors.purple,
@@ -22,5 +22,5 @@ export default new Vuetify({
     //     primary: colors.blue.lighten3,
     //   },
     // },
-  },
-});
+  }
+})

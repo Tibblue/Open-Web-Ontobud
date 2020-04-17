@@ -21,8 +21,8 @@ export default {
   components: {
     alerts,
     createRepo,
-    deleteRepo,
-  },
+    deleteRepo
+  }
   // data: () => ({
   // }),
   // mounted: async function (){

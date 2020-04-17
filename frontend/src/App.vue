@@ -21,16 +21,16 @@ export default {
   components: {
     AppBar,
     Sidebar,
-    Footer,
+    Footer
   },
   // data: () => ({
   // }),
   // mounted: async function (){
   // },
   methods: {
-    toggleSidebarON() {
+    toggleSidebarON () {
       this.$refs.refSidebar.sidebarVisible = true
-    },
-  },
-};
+    }
+  }
+}
 </script>

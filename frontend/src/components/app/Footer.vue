@@ -31,33 +31,35 @@ export default {
   data: () => ({
     footer_icons: [
       // ['home','http://localhost:8080'],
-      ['fab fa-github','http://www.github.com/Tibblue'],
-      ['fab fa-linkedin','https://www.linkedin.com/in/kiko-oliveira/'],
-      ['fas fa-university','https://www.uminho.pt'],
+      ['fab fa-github', 'http://www.github.com/Tibblue'],
+      ['fab fa-linkedin', 'https://www.linkedin.com/in/kiko-oliveira/'],
+      ['fas fa-university', 'https://www.uminho.pt']
     ],
-    varIsAtBottom: false,
+    varIsAtBottom: false
   }),
-  mounted: async function (){
+  mounted: async function () {
     // this.isAtBottom("")
   },
   computed: {
     expandFooter: function () {
+      var expand
       switch (this.$route.name) {
         // this pages will have the complete footer
-        case "home":
-          return true
-          break;
+        case 'home':
+          expand = true
+          break
         // the others will have the short version
         default:
-          return false
-          break;
+          expand = false
+          break
       }
-    },
+      return expand
+    }
   },
   methods: {
     goTo: function (link) {
       // window.location = link; // opens in same tab
-      window.open(link); // opens another tab
+      window.open(link) // opens another tab
     },
     isAtBottom: function (event) {
       // console.log(window.pageYOffset) // debug
@@ -76,13 +78,13 @@ export default {
       // console.log(condition) // debug
       this.varIsAtBottom = condition
       return condition
-    },
+    }
   },
   created: function () {
-    window.addEventListener('scroll', this.isAtBottom);
+    window.addEventListener('scroll', this.isAtBottom)
   },
   destroyed: function () {
-    window.removeEventListener('scroll', this.isAtBottom);
+    window.removeEventListener('scroll', this.isAtBottom)
   }
 }
 </script>

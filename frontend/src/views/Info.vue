@@ -185,58 +185,55 @@ const qs = require('querystring')
 
 export default {
   components: {
-    alerts,
+    alerts
   },
   data: () => ({
-    explicitStatementsNumber: "Loading info...",
-    implicitStatementsNumber: "Loading info...",
-    expansionRatio: "Loading info...",
-    namespaces: [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}],
-    classes: [{name: 'Loading classes...', count: '0'}],
-    expandedClassElems: ["Loading elements..."],
+    explicitStatementsNumber: 'Loading info...',
+    implicitStatementsNumber: 'Loading info...',
+    expansionRatio: 'Loading info...',
+    namespaces: [{ prefix: 'Loading namespaces...', namespace: 'Wait a moment :)' }],
+    classes: [{ name: 'Loading classes...', count: '0' }],
+    expandedClassElems: ['Loading elements...'],
     elemsShown: 50,
     noClasses: false,
     alert: {
       statements: false,
       namespaces: false,
-      classes: false,
+      classes: false
     },
     loading: {
       statements: false,
       namespaces: false,
-      classes: false,
-    },
+      classes: false
+    }
   }),
-  mounted: async function (){
+  mounted: async function () {
     // console.log(process.env) // debug
-    this.getStatementNumber(this.$session.get("repoID"))
-    this.getNamespaces(this.$session.get("repoID"))
-    this.getClasses(this.$session.get("repoID"))
+    this.getStatementNumber(this.$session.get('repoID'))
+    this.getNamespaces(this.$session.get('repoID'))
+    this.getClasses(this.$session.get('repoID'))
   },
   computed: {
-    expansionPanelCSS() {
-      if(this.$vuetify.theme.dark)
-        var primaryColor = "#2196F3"
-      else
-        var primaryColor = "#1976D2"
+    expansionPanelCSS () {
+      if (this.$vuetify.theme.dark) { var primaryColor = '#2196F3' } else { var primaryColor = '#1976D2' }
       return {
-        '--primary-color': primaryColor,
+        '--primary-color': primaryColor
       }
     },
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    getStatementNumber(repoID) {
+    getStatementNumber (repoID) {
       this.loading.statements = true
-      this.explicitStatementsNumber = "Loading info..."
-      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/triples')
+      this.explicitStatementsNumber = 'Loading info...'
+      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/triples')
         .then(response => {
           // console.log(response.data)
           this.explicitStatementsNumber = response.data.explicit
@@ -245,109 +242,108 @@ export default {
           this.alert.statements = false
         })
         .catch(error => {
-          // console.log(error.response)
+          console.log(error.response)
           this.alert.statements = true
-          this.explicitStatementsNumber = "Request failed..."
-          this.implicitStatementsNumber = "Request failed..."
-          this.expansionRatio = "Request failed..."
+          this.explicitStatementsNumber = 'Request failed...'
+          this.implicitStatementsNumber = 'Request failed...'
+          this.expansionRatio = 'Request failed...'
         })
         .finally(() => {
           this.loading.statements = false
         })
     },
-    getNamespaces(repoID) {
+    getNamespaces (repoID) {
       this.loading.namespaces = true
-      this.namespaces = [{prefix: 'Loading namespaces...', namespace: 'Wait a moment :)'}]
-      axios.get(this.backend_url+'/api/rdf4j/repository/'+repoID+'/namespaces')
+      this.namespaces = [{ prefix: 'Loading namespaces...', namespace: 'Wait a moment :)' }]
+      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
           // console.log(response.data)
           var elemsAux = []
           var elems = response.data
           elems.forEach(element => {
-            elemsAux.push({'prefix': element.prefix.value, 'namespace': element.namespace.value})
-          });
+            elemsAux.push({ prefix: element.prefix.value, namespace: element.namespace.value })
+          })
           this.namespaces = elemsAux
           this.alert.namespaces = false
         })
         .catch(error => {
           // console.log(error.response)
           this.alert.namespaces = true
-          this.namespaces = [{prefix: 'Get Namespaces Failed!', namespace: error}]
+          this.namespaces = [{ prefix: 'Get Namespaces Failed!', namespace: error }]
         })
         .finally(() => {
           this.loading.namespaces = false
         })
     },
-    getClasses(repoID) {
+    getClasses (repoID) {
       this.loading.classes = true
-      this.classes = [{name: 'Loading classes...'}]
-      var repoID = this.$session.get("repoID")
+      this.classes = [{ name: 'Loading classes...' }]
+      // var repoID = this.$session.get('repoID')
       // var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' // select class and its count
       var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. FILTER (!isBlank(?class))} GROUP BY ?class' // select class and its count (without blank_nodes)
-      var url = this.backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
-      axios.post(url, qs.stringify({'query': query}), config)
+      axios.post(url, qs.stringify({ query: query }), config)
         .then(response => {
           // console.log(response.data) // debug
           var classesAux = []
           var classes = response.data.results.bindings
-          if (classes.length==1 && !("class" in classes[0])) {
+          if (classes.length === 1 && !('class' in classes[0])) {
             this.noClasses = true
-            this.classes = [{name: 'No classes exist in this Repository'}]
-          }
-          else {
+            this.classes = [{ name: 'No classes exist in this Repository' }]
+          } else {
             this.noClasses = false
             classes.forEach(element => {
-              classesAux.push({'name': element.class.value, 'count': element.count.value})
-            });
+              classesAux.push({ name: element.class.value, count: element.count.value })
+            })
             this.classes = classesAux
           }
           this.alert.classes = false
         })
         .catch(error => {
-          // console.log(error.response)
+          console.log(error.response)
           this.alert.classes = true
-          this.classes = [{name: "Get Classes Failed!"}]
+          this.classes = [{ name: 'Get Classes Failed!' }]
         })
         .finally(() => {
           this.loading.classes = false
         })
     },
-    getClassElems(repoID, classe) {
-      this.expandedClassElems = ["Loading elements..."]
+    getClassElems (repoID, classe) {
+      this.expandedClassElems = ['Loading elements...']
       this.elemsShown = 50
-      var repoID = this.$session.get("repoID")
-      var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. }' // no cap
+      // var repoID = this.$session.get('repoID')
+      var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <' + classe + '>. }' // no cap
       // var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. } LIMIT 100' // soft cap
-      var url = this.backend_url+'/api/rdf4j/query/'+repoID
+      var url = this.backend_url + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
-      axios.post(url, qs.stringify({'query': query}), config)
+      axios.post(url, qs.stringify({ query: query }), config)
         .then(response => {
           // console.log(response.data) // debug
           var elemsAux = []
           var elems = response.data.results.bindings
           elems.forEach(element => {
             elemsAux.push(element.elem.value)
-          });
+          })
           this.expandedClassElems = elemsAux
         })
         .catch(error => {
-          this.expandedClassElems = ["Get Class Elements Failed!\n" + error]
+          this.expandedClassElems = ['Get Class Elements Failed!\n' + error]
         })
     },
-    elemClicked(uri) {
-      this.$router.push({path: "resource", query: { uri: uri }})
-    },
+    elemClicked (uri) {
+      this.$router.push({ path: 'resource', query: { uri: uri } })
+    }
   }
 }
 </script>

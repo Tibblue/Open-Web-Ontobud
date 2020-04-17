@@ -110,97 +110,96 @@ export default {
   components: {
     login,
     signIn,
-    changeBackendURL,
+    changeBackendURL
   },
   // props: ['update'],
   data: () => ({
     loadingRepos: false,
-    selectedRepo: "Loading Repositories",
-    repoList: undefined,
+    selectedRepo: 'Loading Repositories',
+    repoList: undefined
   }),
-  mounted: async function (){
+  mounted: async function () {
     this.getRepositories()
   },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
-      set: Vuex.mapMutations(['update$repo']).update$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo
     },
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       console.log(backend_url)
       // this.getRepositories(backend_url)
       return backend_url
-    },
+    }
   },
   methods: {
     logout: function () {
-      this.$session.remove("userToken")
-      this.$session.remove("userEmail")
-      this.$session.flash.set("login", {msg: "Logout Success!!!", color: "success"})
+      this.$session.remove('userToken')
+      this.$session.remove('userEmail')
+      this.$session.flash.set('login', { msg: 'Logout Success!!!', color: 'success' })
       this.$router.go()
     },
-    toggleSidebarON() {
+    toggleSidebarON () {
       this.$emit('toggleSidebarON')
     },
-    repoChange(id, name) {
-      this.$repo = {id: id, name: name}
+    repoChange (id, name) {
+      this.$repo = { id: id, name: name }
       // this.$repo.id = id
       // this.$repo.name = name
       // console.log(this.$store.state.$repo) // debug
-      this.$session.set("repoID",id)
-      this.$session.set("repoName",name)
+      this.$session.set('repoID', id)
+      this.$session.set('repoName', name)
       // this.$emit('repoChanged',name) # NOTE: isto funcionou
       this.$router.go(0)
     },
-    getRepositories() {
+    getRepositories () {
       this.loadingRepos = true
-      axios.get(this.backend_url+'/api/rdf4j/management/listRepos')
+      axios.get(this.backend_url + '/api/rdf4j/management/listRepos')
         .then(response => {
           // console.log(response.data) // debug
           var repoList = response.data
           var repoListText = []
           repoList.forEach(elem => {
-            repoListText.push(elem.title.value+" ID:"+elem.id.value)
-          });
+            repoListText.push(elem.title.value + ' ID:' + elem.id.value)
+          })
           this.repoList = repoListText.sort()
-          if(this.$session.has("repoName")){ // NOTE: mudar de session pra VUEX
+          if (this.$session.has('repoName')) { // NOTE: mudar de session pra VUEX
             // TODO verificar se o repo guardado ainda existe
-            this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
+            this.selectedRepo = this.$session.get('repoName') + ' ID:' + this.$session.get('repoID')
             this.$repo = {
-              id: this.$session.get("repoID"),
-              name: this.$session.get("repoName"),
+              id: this.$session.get('repoID'),
+              name: this.$session.get('repoName')
             }
-          }
-          else{
+          } else {
           // if(this.selectedRepo==="Loading Repositories"){
             this.selectedRepo = repoListText[0]
-            this.$session.set("repoID",this.getRepoID(repoListText[0]))
-            this.$session.set("repoName",this.getRepoName(repoListText[0]))
+            this.$session.set('repoID', this.getRepoID(repoListText[0]))
+            this.$session.set('repoName', this.getRepoName(repoListText[0]))
             this.$repo = {
               id: this.getRepoID(repoListText[0]),
-              name: this.getRepoName(repoListText[0]),
+              name: this.getRepoName(repoListText[0])
             }
           }
         })
         .catch(alert => {
           // this.alert = error // debug
-          this.selectedRepo = "No Repositories available" + alert
+          this.selectedRepo = 'No Repositories available' + alert
         })
         .finally(() => {
           this.loadingRepos = false
         })
     },
-    getRepoName(string) {
-      return string.split(" ID:")[0]
+    getRepoName (string) {
+      return string.split(' ID:')[0]
     },
-    getRepoID(string) {
-      return string.split(" ID:")[1]
-    },
-  },
-};
+    getRepoID (string) {
+      return string.split(' ID:')[1]
+    }
+  }
+}
 </script>

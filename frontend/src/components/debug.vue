@@ -49,17 +49,15 @@
 </template>
 
 <script>
-import alerts from '@/components/alerts'
 import Vuex from 'vuex'
 
 export default {
-  components: {
-    alerts,
-  },
+  // components: {
+  // },
   data: () => ({
-    snackbarDEBUG: false,
+    snackbarDEBUG: false
   }),
-  mounted: async function (){
+  mounted: async function () {
     // console.log(this.$route) // debug. may fail to print
     // console.log(this.$route.fullPath) // debug
     // console.log(this.$route.matched) // debug
@@ -69,22 +67,22 @@ export default {
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
     test: {
       get: Vuex.mapState(['test']).test,
-      set: Vuex.mapMutations(['updatetest']).updatetest,
-    },
+      set: Vuex.mapMutations(['updatetest']).updatetest
+    }
   },
-  methods:{
+  methods: {
     // notesAboutPersistantState(){
     //   // $store.commit('reset') // commits work good
     //   // $store.commit('updatetest','nhe') // commits work good
     //   // $store.state.test='1' // direct changes dont work
     //   // test='2' // combined with a computed get/set it seems to work
     // },
-  },
-};
+  }
+}
 </script>
 
 <style>

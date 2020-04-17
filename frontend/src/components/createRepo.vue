@@ -63,62 +63,62 @@ const qs = require('querystring')
 
 export default {
   data: () => ({
-    newRepoID: "",
-    newRepoName: "",
+    newRepoID: '',
+    newRepoName: '',
     repoTypeSelected: 'native',
     repoTypes: [ // TODO: add more
-      { text: 'Hard Drive Store', value: 'native', tooltip: 'Hard drive memory is slightly slower'},
-      { text: 'Hard Drive Store + Inference', value: 'native-rdfs-dt', tooltip: 'Inference includes RDFS and Direct Type Reasoning'},
-      { text: 'Memory Store', value: 'memory', tooltip: 'RAM Memory is faster, but limited'},
-      { text: 'Memory Store + Inference', value: 'memory-rdfs-dt', tooltip: 'Inference includes RDFS and Direct Type Reasoning'},
+      { text: 'Hard Drive Store', value: 'native', tooltip: 'Hard drive memory is slightly slower' },
+      { text: 'Hard Drive Store + Inference', value: 'native-rdfs-dt', tooltip: 'Inference includes RDFS and Direct Type Reasoning' },
+      { text: 'Memory Store', value: 'memory', tooltip: 'RAM Memory is faster, but limited' },
+      { text: 'Memory Store + Inference', value: 'memory-rdfs-dt', tooltip: 'Inference includes RDFS and Direct Type Reasoning' }
     ],
     loading: {
       createRepo: false,
-      deleteRepo: false,
+      deleteRepo: false
     },
     alert: {
       createRepoSuccess: false,
       createRepoAlreadyExists: false,
       createRepoFail: false,
       deleteRepoSuccess: false,
-      deleteRepoFail: false,
-    },
+      deleteRepoFail: false
+    }
   }),
-  mounted: async function (){
+  mounted: async function () {
     // console.log(process.env) # debug
     // this.getRepositories()
   },
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    newRepo(repoID, repoName, repoType) {
+    newRepo (repoID, repoName, repoType) {
       this.loading.createRepo = true
-      axios.get(this.backend_url+'/api/rdf4j/management/listRepos')
+      axios.get(this.backend_url + '/api/rdf4j/management/listRepos')
         .then(response => {
           // console.log(response.data.head) // debug column names
           // console.log(response.data.results.bindings) // debug results
           var isNew = true
           var repoList = response.data
           repoList.forEach(elem => {
-            if( repoID === elem.id.value){
+            if (repoID === elem.id.value) {
               isNew = false
             }
           })
-          if(isNew){
+          if (isNew) {
             var form = {}
-            form['type'] = repoType
+            form.type = repoType
             form['Repository ID'] = repoID
             form['Repository Title'] = repoName
-            axios.put(this.backend_url+'/api/rdf4j/management/create', qs.stringify(form),
-              {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+            axios.put(this.backend_url + '/api/rdf4j/management/create', qs.stringify(form),
+              { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
             )
               .then(response => {
                 this.alert.createRepoSuccess = true
@@ -136,8 +136,7 @@ export default {
               // .finally(() => {
               //   this.loading.createRepo = false
               // })
-          }
-          else{
+          } else {
             this.alert.createRepoSuccess = false
             this.alert.createRepoAlreadyExists = true
             this.alert.createRepoFail = false
@@ -153,12 +152,12 @@ export default {
           // this.$router.go()
         })
     },
-    repoChange(id, name) {
-      this.$repo = {id: id, name: name}
-      this.$session.set("repoID",id)
-      this.$session.set("repoName",name)
+    repoChange (id, name) {
+      this.$repo = { id: id, name: name }
+      this.$session.set('repoID', id)
+      this.$session.set('repoName', name)
       this.$router.go(0)
-    },
-  },
-};
+    }
+  }
+}
 </script>

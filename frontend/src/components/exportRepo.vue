@@ -49,59 +49,59 @@ const FileDownload = require('js-file-download')
 
 export default {
   data: () => ({
-    fileTypeSelected: "ttl",
+    fileTypeSelected: 'ttl',
     // TODO: confirm if no error exists when importing/exporting from other file types (example rdf-xml)
     fileTypes: [ // TODO: add more
       { text: 'Turtle', value: 'ttl' },
       { text: 'RDF/XML', value: 'rdf-xml' },
-      { text: 'Plain Text', value: 'txt' },
+      { text: 'Plain Text', value: 'txt' }
     ],
     infer: true,
-    exportResponse: "",
+    exportResponse: '',
     loading: {
       exportFile: false,
-      exportText: false,
+      exportText: false
     },
     alert: {
       exportFileFail: false,
-      exportTextFail: false,
-    },
+      exportTextFail: false
+    }
   }),
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
-      set: Vuex.mapMutations(['update$repo']).update$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo
     },
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    exportRepoFile(repoID, fileType, infer) {
+    exportRepoFile (repoID, fileType, infer) {
       this.loading.exportFile = true
-      var url = this.backend_url+'/api/rdf4j/management/export/'+repoID
+      var url = this.backend_url + '/api/rdf4j/management/export/' + repoID
       var headers = {}
-      headers['params'] = { 'infer': infer}
-      switch(fileType){
+      headers.params = { infer: infer }
+      switch (fileType) {
         case 'ttl':
-          headers['headers'] = { Accept: "text/turtle" }
-          break;
+          headers.headers = { Accept: 'text/turtle' }
+          break
         case 'rdf-xml':
-          fileType = "xml"
-          break;
+          fileType = 'xml'
+          break
         case 'txt':
-          headers['headers'] = { Accept: "text/plain" }
-          break;
+          headers.headers = { Accept: 'text/plain' }
+          break
         default:
       }
       axios.get(url, headers)
         .then(response => {
-          FileDownload(response.data, 'exportRepository.'+fileType)
+          FileDownload(response.data, 'exportRepository.' + fileType)
         })
         .catch(alert => {
           this.alert.exportFileFail = true
@@ -110,21 +110,21 @@ export default {
           this.loading.exportFile = false
         })
     },
-    exportRepoText(repoID, fileType, infer) {
+    exportRepoText (repoID, fileType, infer) {
       this.loading.exportText = true
-      var url = this.backend_url+'/api/rdf4j/management/export/'+repoID
+      var url = this.backend_url + '/api/rdf4j/management/export/' + repoID
       var headers = {}
-      headers['params'] = { 'infer': infer}
-      switch(fileType){
+      headers.params = { infer: infer }
+      switch (fileType) {
         case 'ttl':
-          headers['headers'] = { Accept: "text/turtle" }
-          break;
+          headers.headers = { Accept: 'text/turtle' }
+          break
         case 'rdf-xml':
-          fileType = "xml"
-          break;
+          fileType = 'xml'
+          break
         case 'txt':
-          headers['headers'] = { Accept: "text/plain" }
-          break;
+          headers.headers = { Accept: 'text/plain' }
+          break
         default:
       }
       axios.get(url, headers)
@@ -138,7 +138,7 @@ export default {
         .finally(() => {
           this.loading.exportText = false
         })
-    },
-  },
-};
+    }
+  }
+}
 </script>

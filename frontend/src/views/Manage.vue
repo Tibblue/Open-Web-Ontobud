@@ -30,8 +30,8 @@ export default {
     importRepo,
     exportRepo,
     clearRepoStatements,
-    deleteCurrentRepo,
-  },
+    deleteCurrentRepo
+  }
   // data: () => ({
   // }),
   // mounted: async function (){

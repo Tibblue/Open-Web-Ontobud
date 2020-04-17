@@ -12,8 +12,8 @@ import debug from '@/components/debug'
 export default {
   components: {
     alerts,
-    debug,
-  },
+    debug
+  }
   // data: () => ({
   // }),
   // mounted: async function (){

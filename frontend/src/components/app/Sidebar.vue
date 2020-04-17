@@ -182,35 +182,35 @@
 <script>
 export default {
   data: () => ({
-    owo: "OwO",
+    owo: 'OwO',
     sidebarVisible: false,
     sidebar_mini: false,
     sidebar_items: [
       // Navigation
-      { text: 'Home', icon: 'fas fa-home', link: '/'}, //FIXME: tirar??
-      { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories'},
-      { text: 'Manage Repo', icon: 'fas fa-archive', link: '/manage'},
-      { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info'},
-      { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql'},
-      { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource'},
+      { text: 'Home', icon: 'fas fa-home', link: '/' }, // FIXME: tirar??
+      { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories' },
+      { text: 'Manage Repo', icon: 'fas fa-archive', link: '/manage' },
+      { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info' },
+      { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql' },
+      { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource' },
       // { text: 'TODO Navigation', icon: 'fas fa-project-diagram', link: '/navigation'},
-      { text: 'Feedback', icon: 'fas fa-comment-dots', link: '/feedback'},
+      { text: 'Feedback', icon: 'fas fa-comment-dots', link: '/feedback' }
       // { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
-    ],
+    ]
   }),
-  mounted: async function (){
+  mounted: async function () {
     // this.owoShowcase()
     this.owo1sec()
     switch (this.$vuetify.breakpoint.name) {
       case 'xs':
       case 'sm':
         this.sidebar_mini = true
-        break;
+        break
       case 'md':
       case 'lg':
       case 'xl':
         this.sidebar_mini = false
-        break;
+        break
     }
   },
   computed: {
@@ -221,39 +221,25 @@ export default {
   methods: {
     owoShowcase: function () {
       setInterval(() => {
-        if(this.owo==="OwO")
-          this.owo = "UwU"
-        else if(this.owo==="UwU")
-          this.owo = ">w<"
-        else if(this.owo===">w<")
-          this.owo = "^w^"
-        else
-          this.owo = "OwO"
-      }, 1000);
+        if (this.owo === 'OwO') { this.owo = 'UwU' } else if (this.owo === 'UwU') { this.owo = '>w<' } else if (this.owo === '>w<') { this.owo = '^w^' } else { this.owo = 'OwO' }
+      }, 1000)
     },
     owo1sec: function () {
       setInterval(() => {
         var rand = Math.floor(Math.random() * 100)
-        if(rand > 95)
-          this.owo = "^w^"
-        else if(rand > 90)
-          this.owo = ">w<"
-        else if(rand > 60)
-          this.owo = "UwU"
-        else
-          this.owo = "OwO"
-      }, 1000);
+        if (rand > 95) { this.owo = '^w^' } else if (rand > 90) { this.owo = '>w<' } else if (rand > 60) { this.owo = 'UwU' } else { this.owo = 'OwO' }
+      }, 1000)
     },
     goTo: function (id) {
       this.$router.push(id)
     },
     goToBackend: function () {
       // window.open("http://epl.di.uminho.pt:8001");
-      window.open("http://"+this.$store.state.$backurl.host+":"+this.$store.state.$backurl.port);
+      window.open('http://' + this.$store.state.$backurl.host + ':' + this.$store.state.$backurl.port)
     },
     swapDarkMode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-    },
+    }
   }
 }
 </script>

@@ -29,15 +29,15 @@ const qs = require('querystring')
 
 export default {
   data: () => ({
-    loginEmail: "",
-    loginPass: "",
+    loginEmail: '',
+    loginPass: '',
     loading: {
-      userLogin: false,
+      userLogin: false
     },
     alert: {
       userLoginSuccess: false,
-      userLoginFail: false,
-    },
+      userLoginFail: false
+    }
   }),
   // mounted: async function (){
   //   // console.log(process.env) # debug
@@ -45,28 +45,28 @@ export default {
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    login(userEmail, userPass) {
+    login (userEmail, userPass) {
       this.loading.userLogin = true
       var form = {}
-      form['email'] = userEmail
-      form['password'] = userPass
-      axios.post(this.backend_url+'/api/auth/login', qs.stringify(form),
-        {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+      form.email = userEmail
+      form.password = userPass
+      axios.post(this.backend_url + '/api/auth/login', qs.stringify(form),
+        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
       )
         .then(response => {
           // console.log(response.data.head) // debug column names
           // console.log(response.data.results.bindings) // debug results
           var token = response.data
-          this.$session.set("userToken", token)
-          this.$session.set("userEmail", userEmail)
+          this.$session.set('userToken', token)
+          this.$session.set('userEmail', userEmail)
 
           this.alert.userLoginSuccess = true
           this.alert.userLoginFail = false
@@ -80,7 +80,7 @@ export default {
         .finally(() => {
           this.loading.userLogin = false
         })
-    },
-  },
-};
+    }
+  }
+}
 </script>

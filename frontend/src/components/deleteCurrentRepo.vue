@@ -55,36 +55,36 @@ import axios from 'axios'
 
 export default {
   data: () => ({
-    deleteRepoIDConfirm: "",
+    deleteRepoIDConfirm: '',
     disableDialogConfirmDelete: true,
     alert: {
       deleteSuccess: false,
-      deleteFail: false,
+      deleteFail: false
     },
-    dialogDeleteRepo: false,
+    dialogDeleteRepo: false
   }),
-  mounted: async function (){
+  mounted: async function () {
     // console.log(process.env) # debug
     // this.getRepositories()
   },
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    deleteCurrentRepo(repoID) {
-      axios.delete(this.backend_url+'/api/rdf4j/management/delete/'+repoID)
+    deleteCurrentRepo (repoID) {
+      axios.delete(this.backend_url + '/api/rdf4j/management/delete/' + repoID)
         .then(response => {
           this.alert.deleteSuccess = true
           this.alert.deleteFail = false
-          this.$session.remove("repoID")
-          this.$session.remove("repoName")
+          this.$session.remove('repoID')
+          this.$session.remove('repoName')
           this.$router.go(0)
         })
         .catch(alert => {
@@ -92,16 +92,15 @@ export default {
           this.alert.deleteSuccess = false
         })
     },
-    deleteConfirm(value) {
-      if(value===this.$session.get("repoID")){
-        this.disableDialogConfirmDelete=false
+    deleteConfirm (value) {
+      if (value === this.$session.get('repoID')) {
+        this.disableDialogConfirmDelete = false
         return true
-      }
-      else {
-        this.disableDialogConfirmDelete=true
+      } else {
+        this.disableDialogConfirmDelete = true
         return 'ID must be the same'
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

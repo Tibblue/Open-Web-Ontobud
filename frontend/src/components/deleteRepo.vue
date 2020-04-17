@@ -26,41 +26,41 @@ export default {
   data: () => ({
     // selectedRepo: "Loading Repositories",
     // repoList: undefined,
-    deleteRepoID: "",
-    deleteRepoResponse: "",
+    deleteRepoID: '',
+    deleteRepoResponse: '',
     alert: {
       deleteRepoSuccess: false,
-      deleteRepoFail: false,
+      deleteRepoFail: false
     },
     loading: {
-      deleteRepo: false,
-    },
+      deleteRepo: false
+    }
   }),
-  mounted: async function (){
+  mounted: async function () {
     // console.log(process.env) # debug
     // this.getRepositories()
   },
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    deleteRepo(repoID) {
+    deleteRepo (repoID) {
       this.loading.deleteRepo = true
-      axios.delete(this.backend_url+'/api/rdf4j/management/delete/'+repoID)
+      axios.delete(this.backend_url + '/api/rdf4j/management/delete/' + repoID)
         .then(response => {
           this.alert.deleteRepoSuccess = true
           this.alert.deleteRepoFail = false
           // this.$emit('updateRepos',repoID) // NOTE: isto funcionou
-          if(repoID===this.$session.get("repoID")){
-            this.$session.remove("repoID")
-            this.$session.remove("repoName")
+          if (repoID === this.$session.get('repoID')) {
+            this.$session.remove('repoID')
+            this.$session.remove('repoName')
           }
           this.$router.go(0) // FIXME: reload enquanto nao atualizo só a repoList
         })
@@ -71,7 +71,7 @@ export default {
         .finally(() => {
           this.loading.deleteRepo = false
         })
-    },
-  },
-};
+    }
+  }
+}
 </script>

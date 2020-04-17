@@ -44,14 +44,14 @@ export default {
   data: () => ({
     // satisfactionEmojis: ['😭', '😢', '☹️', '🙁', '😐', '🙂', '😊', '😁', '😄', '😍'],
     rating: 5,
-    message: "",
+    message: '',
     loading: {
-      feedbackSubmit: false,
+      feedbackSubmit: false
     },
     alert: {
       feedbackSubmitSuccess: false,
-      feedbackSubmitFail: false,
-    },
+      feedbackSubmitFail: false
+    }
   }),
   // mounted: async function (){
   //   // console.log(process.env) # debug
@@ -59,21 +59,21 @@ export default {
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
-      set: Vuex.mapMutations(['update_backurl']).update_backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function() {
-      var backend_url = "http://"+this.$backurl.host+":"+this.$backurl.port
+    backend_url: function () {
+      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
-    },
+    }
   },
   methods: {
-    feedback(message, rating) {
+    feedback (message, rating) {
       this.loading.feedbackSubmit = true
       var form = {}
-      form['message'] = message
-      form['rating'] = rating
-      axios.post(this.backend_url+'/api/feedback', qs.stringify(form),
-        {headers: {"Content-Type": 'application/x-www-form-urlencoded'}}
+      form.message = message
+      form.rating = rating
+      axios.post(this.backend_url + '/api/feedback', qs.stringify(form),
+        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
       )
         .then(response => {
           // console.log(response.data.head) // debug column names
@@ -89,7 +89,7 @@ export default {
         .finally(() => {
           this.loading.feedbackSubmit = false
         })
-    },
-  },
-};
+    }
+  }
+}
 </script>

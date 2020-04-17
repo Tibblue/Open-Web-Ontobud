@@ -12,8 +12,8 @@ import feedback from '@/components/feedback'
 export default {
   components: {
     alerts,
-    feedback,
-  },
+    feedback
+  }
   // data: () => ({
   // }),
   // mounted: async function (){
