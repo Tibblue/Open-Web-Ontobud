@@ -178,8 +178,8 @@ export default {
       var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backend_url
     },
-      return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
     savedQueries: function () {
+      return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
     },
     colsSize: function () {
       var cols = 6 // default
