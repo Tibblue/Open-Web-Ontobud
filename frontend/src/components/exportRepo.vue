@@ -76,15 +76,15 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     }
   },
   methods: {
     exportRepoFile (repoID, fileType, infer) {
       this.loading.exportFile = true
-      var url = this.backend_url + '/api/rdf4j/management/export/' + repoID
+      var url = this.backendURL + '/api/rdf4j/management/export/' + repoID
       var headers = {}
       headers.params = { infer: infer }
       switch (fileType) {
@@ -112,7 +112,7 @@ export default {
     },
     exportRepoText (repoID, fileType, infer) {
       this.loading.exportText = true
-      var url = this.backend_url + '/api/rdf4j/management/export/' + repoID
+      var url = this.backendURL + '/api/rdf4j/management/export/' + repoID
       var headers = {}
       headers.params = { infer: infer }
       switch (fileType) {

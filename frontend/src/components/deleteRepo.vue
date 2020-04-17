@@ -45,15 +45,15 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     }
   },
   methods: {
     deleteRepo (repoID) {
       this.loading.deleteRepo = true
-      axios.delete(this.backend_url + '/api/rdf4j/management/delete/' + repoID)
+      axios.delete(this.backendURL + '/api/rdf4j/management/delete/' + repoID)
         .then(response => {
           this.alert.deleteRepoSuccess = true
           this.alert.deleteRepoFail = false

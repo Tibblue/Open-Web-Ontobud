@@ -209,9 +209,9 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     },
     uri: function () {
       this.updateResults()
@@ -285,7 +285,7 @@ export default {
   },
   methods: {
     getNamespaces (repoID) {
-      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/namespaces')
+      axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
           response.data.forEach(elem => {
             this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
@@ -308,7 +308,7 @@ export default {
     },
     getSubjectResults (repoID, resource, infer) {
       this.loading.subject = true
-      const url = this.backend_url + '/api/rdf4j/query/' + repoID
+      const url = this.backendURL + '/api/rdf4j/query/' + repoID
       const query = 'select * where { <' + resource + '> ?predicate ?object }'
       const config = {
         headers: {
@@ -345,7 +345,7 @@ export default {
     },
     getPredicateResults (repoID, resource, infer) {
       this.loading.predicate = true
-      const url = this.backend_url + '/api/rdf4j/query/' + repoID
+      const url = this.backendURL + '/api/rdf4j/query/' + repoID
       const query = 'select * where { ?subject <' + resource + '> ?object }'
       const config = {
         headers: {
@@ -381,7 +381,7 @@ export default {
     },
     getObjectResults (repoID, resource, infer) {
       this.loading.object = true
-      const url = this.backend_url + '/api/rdf4j/query/' + repoID
+      const url = this.backendURL + '/api/rdf4j/query/' + repoID
       const query = 'select * where { ?subject ?predicate <' + resource + '> }'
       const config = {
         headers: {

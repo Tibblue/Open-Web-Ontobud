@@ -93,15 +93,15 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     }
   },
   methods: {
     newRepo (repoID, repoName, repoType) {
       this.loading.createRepo = true
-      axios.get(this.backend_url + '/api/rdf4j/management/listRepos')
+      axios.get(this.backendURL + '/api/rdf4j/management/listRepos')
         .then(response => {
           // console.log(response.data.head) // debug column names
           // console.log(response.data.results.bindings) // debug results
@@ -117,7 +117,7 @@ export default {
             form.type = repoType
             form['Repository ID'] = repoID
             form['Repository Title'] = repoName
-            axios.put(this.backend_url + '/api/rdf4j/management/create', qs.stringify(form),
+            axios.put(this.backendURL + '/api/rdf4j/management/create', qs.stringify(form),
               { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
             )
               .then(response => {

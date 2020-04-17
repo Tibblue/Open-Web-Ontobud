@@ -63,9 +63,9 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     }
   },
   methods: {
@@ -79,7 +79,7 @@ export default {
         var form = {}
         form.email = userEmail
         form.password = userPass
-        axios.post(this.backend_url + '/api/auth/login', qs.stringify(form),
+        axios.post(this.backendURL + '/api/auth/login', qs.stringify(form),
           { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
         )
           .then(response => {

@@ -96,15 +96,15 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     }
   },
   methods: {
     importRepoFile (repoID, fileType, file, addORreplace) {
       this.loading.importFile = true
-      var url = this.backend_url + '/api/rdf4j/management/importFile/' + repoID
+      var url = this.backendURL + '/api/rdf4j/management/importFile/' + repoID
       var data = file
       var config = {
         headers: { 'Content-Type': 'text/turtle' },
@@ -155,7 +155,7 @@ export default {
     },
     importRepoText (repoID, fileType, input, addORreplace) {
       this.loading.importText = true
-      var url = this.backend_url + '/api/rdf4j/management/importText/' + repoID
+      var url = this.backendURL + '/api/rdf4j/management/importText/' + repoID
       var data = input
       var config = {
         headers: { 'Content-Type': 'text/turtle' },

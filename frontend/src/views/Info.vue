@@ -215,7 +215,8 @@ export default {
   },
   computed: {
     expansionPanelCSS () {
-      if (this.$vuetify.theme.dark) { var primaryColor = '#2196F3' } else { var primaryColor = '#1976D2' }
+      var primaryColor
+      if (this.$vuetify.theme.dark) { primaryColor = '#2196F3' } else { primaryColor = '#1976D2' }
       return {
         '--primary-color': primaryColor
       }
@@ -224,16 +225,16 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     }
   },
   methods: {
     getStatementNumber (repoID) {
       this.loading.statements = true
       this.explicitStatementsNumber = 'Loading info...'
-      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/triples')
+      axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/triples')
         .then(response => {
           // console.log(response.data)
           this.explicitStatementsNumber = response.data.explicit
@@ -255,7 +256,7 @@ export default {
     getNamespaces (repoID) {
       this.loading.namespaces = true
       this.namespaces = [{ prefix: 'Loading namespaces...', namespace: 'Wait a moment :)' }]
-      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/namespaces')
+      axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
           // console.log(response.data)
           var elemsAux = []
@@ -281,7 +282,7 @@ export default {
       // var repoID = this.$session.get('repoID')
       // var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class' // select class and its count
       var query = 'SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. FILTER (!isBlank(?class))} GROUP BY ?class' // select class and its count (without blank_nodes)
-      var url = this.backend_url + '/api/rdf4j/query/' + repoID
+      var url = this.backendURL + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
           Accept: 'application/json',
@@ -320,7 +321,7 @@ export default {
       // var repoID = this.$session.get('repoID')
       var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <' + classe + '>. }' // no cap
       // var query = 'SELECT DISTINCT ?elem WHERE { ?elem a <'+classe+'>. } LIMIT 100' // soft cap
-      var url = this.backend_url + '/api/rdf4j/query/' + repoID
+      var url = this.backendURL + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
           Accept: 'application/json',

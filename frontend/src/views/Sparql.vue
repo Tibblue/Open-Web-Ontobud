@@ -366,9 +366,9 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     },
     tableResults: function () {
       var results = []
@@ -394,7 +394,7 @@ export default {
   },
   methods: {
     getNamespaces (repoID) {
-      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/namespaces')
+      axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
           // puting results directly into this.namespaces usually results in a empty list
           var auxList = {} // for safety
@@ -409,7 +409,7 @@ export default {
         })
     },
     getDefaultNamespace (repoID) {
-      axios.get(this.backend_url + '/api/rdf4j/repository/' + repoID + '/namespaces/ /')
+      axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces/ /')
         .then(response => {
           this.defaultNamespace = response.data
           this.defaultNamespaceForQuery = 'PREFIX : <' + response.data + '>\n'
@@ -485,7 +485,7 @@ export default {
         default:
           accept = 'application/json' // could fail
       }
-      var url = this.backend_url + '/api/rdf4j/query/' + repoID
+      var url = this.backendURL + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
           Accept: accept,
@@ -494,71 +494,76 @@ export default {
       }
       axios.post(url, qs.stringify({ query: query, infer: infer }), config)
         .then(response => {
-          if (type === 'select') {
-            // console.log(response.data) // debug
-            var columnsVars = response.data.head.vars
-            var resultsData = response.data.results.bindings
-            this.table.headers = []
-            columnsVars.forEach(element => {
-              this.table.headers.push({ text: element, value: element, sortable: true })
-            })
-            this.table.items = []
-            resultsData.forEach(element => {
-              var elemAux = {}
-              for (const key in element) {
-                elemAux[key] = {
-                  value: element[key].value,
-                  type: element[key].type
+          var responseData = response.data
+          switch (type) {
+            case 'select':
+              var columnsVars = responseData.head.vars
+              var resultsVars = responseData.results.bindings
+              this.table.headers = []
+              columnsVars.forEach(element => {
+                this.table.headers.push({ text: element, value: element, sortable: true })
+              })
+              this.table.items = []
+              resultsVars.forEach(element => {
+                var elemAux = {}
+                for (const key in element) {
+                  elemAux[key] = {
+                    value: element[key].value,
+                    type: element[key].type
+                  }
                 }
-              }
-              this.table.items.push(elemAux)
-            })
-          } else if (type === 'construct') {
-            // console.log(response.data) // debug
-            this.table.headers = [
-              { text: 'subject', value: 'subject', sortable: true },
-              { text: 'predicate', value: 'predicate', sortable: true },
-              { text: 'object', value: 'object', sortable: true }
-            ]
-            var resultsData = response.data
-            this.table.items = []
-            for (const subject in resultsData) {
-              for (const predicate in resultsData[subject]) {
-                resultsData[subject][predicate].forEach(object => {
-                  // console.log(subject)
-                  // console.log(predicate)
-                  // console.log(object.value)
-                  // console.log(object.type)
-                  this.table.items.push({
-                    subject: {
-                      value: subject,
-                      type: 'uri'
-                    },
-                    predicate: {
-                      value: predicate,
-                      type: 'uri'
-                    },
-                    object: {
-                      value: object.value,
-                      type: object.type
-                    }
+                this.table.items.push(elemAux)
+              })
+              break
+            case 'construct':
+              this.table.headers = [
+                { text: 'subject', value: 'subject', sortable: true },
+                { text: 'predicate', value: 'predicate', sortable: true },
+                { text: 'object', value: 'object', sortable: true }
+              ]
+              var results = responseData
+              this.table.items = []
+              for (const subject in results) {
+                for (const predicate in results[subject]) {
+                  results[subject][predicate].forEach(object => {
+                    // console.log(subject)
+                    // console.log(predicate)
+                    // console.log(object.value)
+                    // console.log(object.type)
+                    this.table.items.push({
+                      subject: {
+                        value: subject,
+                        type: 'uri'
+                      },
+                      predicate: {
+                        value: predicate,
+                        type: 'uri'
+                      },
+                      object: {
+                        value: object.value,
+                        type: object.type
+                      }
+                    })
                   })
-                })
-              }
-            };
-          } else if (type === 'ask') {
-            var result = response.data
-            this.table.headers = [{
-              text: 'boolean',
-              value: 'boolean',
-              sortable: false
-            }]
-            this.table.items = [{
-              boolean: {
-                value: result,
-                type: 'literal'
-              }
-            }]
+                }
+              };
+              break
+            case 'ask':
+              var result = responseData
+              this.table.headers = [{
+                text: 'boolean',
+                value: 'boolean',
+                sortable: false
+              }]
+              this.table.items = [{
+                boolean: {
+                  value: result,
+                  type: 'literal'
+                }
+              }]
+              break
+            default:
+              break
           }
           this.exportResult.lastQuery = query
           this.exportResult.lastQueryType = type
@@ -584,7 +589,7 @@ export default {
       }
       if (!global) body.repoID = this.$repo.id
 
-      var url = this.backend_url + '/api/queries'
+      var url = this.backendURL + '/api/queries'
       axios.post(url, body)
         .then(response => {
           // console.log(response.data) // debug
@@ -645,7 +650,7 @@ export default {
             accept = 'application/rdf+json'
         }
       }
-      var url = this.backend_url + '/api/rdf4j/query/' + repoID
+      var url = this.backendURL + '/api/rdf4j/query/' + repoID
       const config = {
         headers: {
           Accept: accept,
@@ -690,7 +695,7 @@ export default {
       const defaultNamespaceExists = /^ *PREFIX : /m.test(update)
       if (!defaultNamespaceExists) update = this.defaultNamespaceForQuery + update
       var repoID = this.$repo.id
-      var url = this.backend_url + '/api/rdf4j/update/' + repoID
+      var url = this.backendURL + '/api/rdf4j/update/' + repoID
       const config = {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'

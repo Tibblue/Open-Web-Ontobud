@@ -174,9 +174,9 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
     },
     savedQueries: function () {
       return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
@@ -206,7 +206,7 @@ export default {
   methods: {
     getSavedQueriesGlobal (currentUserEmail) {
       this.savedQueriesGlobal = [{ name: 'Loading Global Queries...', query: 'Please wait', global: true }]
-      var url = this.backend_url + '/api/queries/user/' + currentUserEmail + '/global'
+      var url = this.backendURL + '/api/queries/user/' + currentUserEmail + '/global'
       axios.get(url)
         .then(response => {
           // console.log(response.data) // debug
@@ -223,7 +223,7 @@ export default {
     },
     getSavedQueriesRepo (currentUserEmail, currentRepo) {
       this.savedQueriesRepo = [{ name: 'Loading Repo Queries...', query: 'Please wait', global: false }]
-      var url = this.backend_url + '/api/queries/user/' + currentUserEmail + '/' + currentRepo
+      var url = this.backendURL + '/api/queries/user/' + currentUserEmail + '/' + currentRepo
       axios.get(url)
         .then(response => {
           // console.log(response.data) // debug
@@ -248,7 +248,7 @@ export default {
     savedQueryEditSave (queryName, newQuery) {
       this.loading.queryEditSave = true
       const userEmail = this.$session.get('userEmail')
-      const url = this.backend_url + '/api/queries/' + encodeURIComponent(userEmail) + '/' + encodeURIComponent(queryName)
+      const url = this.backendURL + '/api/queries/' + encodeURIComponent(userEmail) + '/' + encodeURIComponent(queryName)
       const body = { query: newQuery }
       axios.put(url, body)
         .then(response => {
@@ -270,7 +270,7 @@ export default {
     deleteSavedQuery (name, global) {
       this.loading.queryDelete = true
       const userEmail = this.$session.get('userEmail')
-      const url = this.backend_url + '/api/queries/' + userEmail + '/' + name
+      const url = this.backendURL + '/api/queries/' + userEmail + '/' + name
       axios.delete(url)
         .then(response => {
           // console.log(response.data) // debug

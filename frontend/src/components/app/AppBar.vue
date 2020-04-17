@@ -130,11 +130,11 @@ export default {
       get: Vuex.mapState(['$backurl']).$backurl,
       set: Vuex.mapMutations(['update_backurl']).update_backurl
     },
-    backend_url: function () {
-      var backend_url = 'http://' + this.$backurl.host + ':' + this.$backurl.port
-      console.log(backend_url)
-      // this.getRepositories(backend_url)
-      return backend_url
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      console.log(backendURL)
+      // this.getRepositories(backendURL)
+      return backendURL
     }
   },
   methods: {
@@ -159,7 +159,7 @@ export default {
     },
     getRepositories () {
       this.loadingRepos = true
-      axios.get(this.backend_url + '/api/rdf4j/management/listRepos')
+      axios.get(this.backendURL + '/api/rdf4j/management/listRepos')
         .then(response => {
           // console.log(response.data) // debug
           var repoList = response.data
