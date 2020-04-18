@@ -2,30 +2,26 @@
   <v-app-bar app color="primary"
     :prominent="this.$vuetify.breakpoint.name==='xs' ? true : false"
   >
-    <v-row dense align="center" class="mx-n4">
-      <v-col order="last" order-sm="first" class="grow">
-        <v-row dense align="center">
-          <v-col class="grow">
-            <v-combobox dense hide-details outlined
+    <v-row dense align="center" class="mx-n4 my-n1">
+      <v-col order="last" order-sm="first" sm="6">
+        <v-row no-gutters align="center" class="flex-nowrap">
+          <v-col class="mx-1">
+            <v-select filled hide-details dense color="secondary" background-color="secondary" dark
               v-model="selectedRepo"
-              no-data-text="No Repositories available"
               :items="repoList"
+              no-data-text="No Repositories available"
               label="Selected Repository"
-              v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
-            ></v-combobox>
-          </v-col>
-          <v-col class="shrink">
-            <v-btn fab small depressed color="secondary"
+              :suffix="`ID: ${getRepoID(selectedRepo)}`"
+              append-outer-icon="fas fa-sync"
+              @click:append-outer="getRepositories()"
               :loading="loadingRepos"
-              @click="getRepositories()"
-            >
-              <v-icon>fas fa-sync</v-icon>
-            </v-btn>
+              v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
+            ></v-select>
           </v-col>
         </v-row>
       </v-col>
-      <v-col order="first" order-sm="last" :cols="this.$vuetify.breakpoint.name==='xs' ? 12 : ''">
-        <v-row no-gutters align="center">
+      <v-col order="first" order-sm="last" cols="12" sm="6">
+        <v-row no-gutters align="center" class="flex-nowrap">
           <v-col>
             <v-row dense align="center" justify="start" class="flex-nowrap">
               <v-col class="shrink" v-if="this.$vuetify.breakpoint.name==='xs'">
