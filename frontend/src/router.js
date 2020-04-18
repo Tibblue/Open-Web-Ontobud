@@ -7,11 +7,6 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/auth/logout',
-      name: 'logout',
-      component: () => import('./views/Logout.vue')
-    },
     // {
     //   path: '/auth/user',
     //   name: 'user',

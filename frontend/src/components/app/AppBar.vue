@@ -136,6 +136,53 @@ export default {
       // this.getRepositories(backendURL)
       return backendURL
     }
+    // getRepositories: {
+    //   get(state) {
+    //     var backendURL = state.backendURL
+    //     // var backendURL = this.backendURL
+    //     // console.log(backendURL)
+    //     this.loadingRepos = true
+    //     axios.get(backendURL+'/api/rdf4j/management/listRepos')
+    //       .then(response => {
+    //         // console.log(response.data) // debug
+    //         var repoList = response.data
+    //         var repoListText = []
+    //         repoList.forEach(elem => {
+    //           repoListText.push(elem.title.value+" ID:"+elem.id.value)
+    //         });
+    //         this.repoList = repoListText.sort()
+    //         if(this.$session.has("repoName")){ // NOTE: mudar de session pra VUEX
+    //           // TODO verificar se o repo guardado ainda existe
+    //           this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
+    //           this.$repo = {
+    //             id: this.$session.get("repoID"),
+    //             name: this.$session.get("repoName"),
+    //           }
+    //         }
+    //         else{
+    //         // if(this.selectedRepo==="Loading Repositories"){
+    //           this.selectedRepo = repoListText[0]
+    //           this.$session.set("repoID",this.getRepoID(repoListText[0]))
+    //           this.$session.set("repoName",this.getRepoName(repoListText[0]))
+    //           this.$repo = {
+    //             id: this.getRepoID(repoListText[0]),
+    //             name: this.getRepoName(repoListText[0]),
+    //           }
+    //         }
+    //       })
+    //       .catch(alert => {
+    //         // this.alert = error // debug
+    //         this.selectedRepo = "No Repositories available" + alert
+    //       })
+    //       .finally(() => {
+    //         this.loadingRepos = false
+    //       })
+    //     return this.repoList
+    //   },
+    //   set(newList){
+    //     return newList
+    //   },
+    // },
   },
   methods: {
     logout: function () {
