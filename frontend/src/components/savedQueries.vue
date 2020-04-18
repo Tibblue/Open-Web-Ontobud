@@ -215,6 +215,23 @@ export default {
       return backendURL
     },
     savedQueries: function () {
+      // if (this.$repo.id) {
+      //   if (this.$session.get('userToken')) {
+      //     // this.loading.savedQueries = true
+      //     // var currentUserEmail = this.$session.get('userEmail') // email from session
+      //     // var currentRepo = this.$repo.id
+
+      //     // var savedQueriesGlobal = await this.getSavedQueriesGlobal(currentUserEmail)
+      //     // console.log(savedQueriesGlobal)
+
+      //     // this.loading.savedQueries = false
+      //   }
+      //   // return savedQueriesGlobal
+      //   return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
+      // } else {
+      //   console.log('uhmm i forgot the current repo :( welp ' + this.$repo.id)
+      //   return []
+      // }
       return this.savedQueriesGlobal.concat(this.savedQueriesRepo)
     },
     colsSize: function () {

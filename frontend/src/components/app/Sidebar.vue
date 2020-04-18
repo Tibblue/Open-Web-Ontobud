@@ -6,7 +6,7 @@
   >
     <v-list-item link to="/" class="px-2">
       <v-list-item-icon class="mr-3">
-        <v-btn fab small depressed color="grey darken-2">{{owo}}</v-btn>
+        <v-btn fab small depressed color="grey darken-1">{{owo}}</v-btn>
         <!-- <v-btn fab outlined small depressed color="primary">{{owo}}</v-btn> -->
       </v-list-item-icon>
       <v-list-item-content class="py-2">
@@ -203,6 +203,8 @@ export default {
     this.owo1sec()
     switch (this.$vuetify.breakpoint.name) {
       case 'xs':
+        this.sidebar_mini = false
+        break
       case 'sm':
         this.sidebar_mini = true
         break

@@ -1,6 +1,6 @@
 <template>
 <v-footer app padless inset>
-  <v-col class="pa-2">
+  <v-col class="pa-1">
     <v-row align="center" justify="center">
       <v-btn
         v-for="icon in footer_icons"
@@ -13,7 +13,8 @@
         </v-icon>
       </v-btn>
     </v-row>
-    <div v-if="expandFooter || varIsAtBottom">
+    <!-- <div v-if="expandFooter || varIsAtBottom"> -->
+    <div v-if="expandFooter">
       <v-divider class="my-1"></v-divider>
       <v-row align="center" justify="center">
         <span class="text-center">
@@ -46,6 +47,7 @@ export default {
       switch (this.$route.name) {
         // this pages will have the complete footer
         case 'home':
+        case 'feedback':
           expand = true
           break
         // the others will have the short version

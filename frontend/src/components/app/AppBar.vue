@@ -1,11 +1,9 @@
 <template>
   <v-app-bar app color="primary"
-    :hide-on-scroll="this.$vuetify.breakpoint.name==='xs' ? true : false"
-    scroll-threshold="5"
     :prominent="this.$vuetify.breakpoint.name==='xs' ? true : false"
   >
     <v-row dense align="center" class="mx-n4">
-      <v-col class="grow">
+      <v-col order="last" order-sm="first" class="grow">
         <v-row dense align="center">
           <v-col class="grow">
             <v-combobox dense hide-details outlined
@@ -17,13 +15,16 @@
             ></v-combobox>
           </v-col>
           <v-col class="shrink">
-            <v-btn icon small :loading="loadingRepos" @click="getRepositories()">
+            <v-btn fab small depressed color="secondary"
+              :loading="loadingRepos"
+              @click="getRepositories()"
+            >
               <v-icon>fas fa-sync</v-icon>
             </v-btn>
           </v-col>
         </v-row>
       </v-col>
-      <v-col :cols="this.$vuetify.breakpoint.name==='xs' ? 12 : ''">
+      <v-col order="first" order-sm="last" :cols="this.$vuetify.breakpoint.name==='xs' ? 12 : ''">
         <v-row no-gutters align="center">
           <v-col>
             <v-row dense align="center" justify="start" class="flex-nowrap">

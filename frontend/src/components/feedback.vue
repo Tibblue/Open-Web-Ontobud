@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row dense>
     <v-col cols="12">
       <v-textarea outlined auto-grow hide-details
         v-model="message"
@@ -8,7 +8,9 @@
         label="Feedback"
         placeholder="Feedback message"
       ></v-textarea>
-      <v-slider
+    </v-col>
+    <v-col cols="12" class="px-3">
+      <v-slider hide-details
         v-model="rating"
         label="Rate 0-10⭐"
         min="0"
@@ -22,6 +24,8 @@
           {{ satisfactionEmojis[Math.min(Math.floor(value / 10), 9)] }}
         </template> -->
       </v-slider>
+    </v-col>
+    <v-col cols="12">
       <v-btn :loading="loading.feedbackSubmit" block color="primary" @click="feedback(message, rating)">
         Submit Feedback
       </v-btn>
