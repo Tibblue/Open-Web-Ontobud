@@ -1,30 +1,36 @@
 <template>
   <v-card class="pa-3">
-    <v-text-field filled required
-      v-model="userEmail"
-      label="Email"
-      :rules="[rules.required, rules.email]"
-    ></v-text-field>
-    <!-- <div class="mb-4"></div> -->
-    <v-text-field filled required counter
-      v-model="userPass"
-      label="Password"
-      :rules="[rules.required, rules.counter]"
-      :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="showPass ? 'text' : 'password'"
-      @click:append="showPass = !showPass"
-    ></v-text-field>
-    <!-- <div class="mb-2"></div> -->
-    <v-btn :loading="loading.login" block color="primary" @click="login(userEmail, userPass)">
-      Login
-    </v-btn>
-    <div class="mb-2"></div>
-    <v-alert text dismissible type="success" v-model="alert.loginSuccess">
-      Login Successful!!!
-    </v-alert>
-    <v-alert text dismissible type="error" v-model="alert.loginFail">
-      {{this.alert.loginFailMessage}}
-    </v-alert>
+    <v-form v-model="validForm" ref="form">
+      <v-text-field filled required
+        v-model="userEmail"
+        label="Email"
+        :rules="[rules.required, rules.email]"
+      ></v-text-field>
+      <!-- <div class="mb-4"></div> -->
+      <v-text-field filled required counter
+        v-model="userPass"
+        label="Password"
+        :rules="[rules.required, rules.counter]"
+        :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="showPass ? 'text' : 'password'"
+        @click:append="showPass = !showPass"
+      ></v-text-field>
+      <div class="mb-2"></div>
+      <v-btn block color="primary"
+        :disabled="!validForm"
+        :loading="loading.login"
+        @click="login(userEmail, userPass)"
+      >
+        Login
+      </v-btn>
+      <div class="mb-2"></div>
+      <v-alert text dismissible type="success" v-model="alert.loginSuccess">
+        Login Successful!!!
+      </v-alert>
+      <v-alert text dismissible type="error" v-model="alert.loginFail">
+        {{this.alert.loginFailMessage}}
+      </v-alert>
+    </v-form>
   </v-card>
 </template>
 
@@ -35,6 +41,7 @@ const qs = require('querystring')
 
 export default {
   data: () => ({
+    validForm: false,
     userEmail: '',
     userPass: '',
     showPass: false,
