@@ -61,54 +61,89 @@
               :key="savedQuery.name"
             >
               <v-card>
-                <v-card-title
-                  class="fill-height align-end"
-                  v-text="savedQuery.name"
-                ></v-card-title>
-                <!-- <v-card-text
-                  class="fill-height align-end"
-                  v-text="savedQuery.name"
-                ></v-card-text> -->
-                <v-card-actions>
-                  <v-btn icon @click="runQuery(savedQuery.query)">
-                    <v-icon>mdi-play</v-icon>
-                  </v-btn>
-                  <v-btn icon
-                    :loading="loading.queryEditSave"
-                    @click="dialogEditQuery=true;savedQueryEdit(savedQuery.name,savedQuery.query)"
-                  >
-                    <v-icon>mdi-pencil</v-icon>
-                  </v-btn>
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                      <v-btn icon color="primary" dark v-on="on">
-                        <v-icon>fas fa-info</v-icon>
+                <v-container class="pa-1">
+                  <v-row no-gutters align="center">
+                    <v-col class="grow title px-1 py-1">
+                      <span>
+                        {{savedQuery.name}}
+                      </span>
+                    </v-col>
+                    <v-col class="shrink px-1 py-1">
+                      <v-btn rounded outlined depressed small disabled color="primary">
+                        {{checkQuery(savedQuery.query).type}}
                       </v-btn>
-                    </template>
-                    <span>{{savedQuery.query}}</span>
-                  </v-tooltip>
-                  <v-tooltip bottom v-if="savedQuery.global">
-                    <template v-slot:activator="{ on }">
-                      <v-btn icon color="primary" dark v-on="on">
-                        <v-icon>fas fa-globe</v-icon>
-                      </v-btn>
-                    </template>
-                    <span>User global query</span>
-                  </v-tooltip>
-                  <div class="flex-grow-1"></div>
-                  <v-menu left>
-                    <template v-slot:activator="{ on }">
-                      <v-btn fab x-small depressed dark v-on="on" color="red"
-                        :loading="loading.queryDelete"
+                    </v-col>
+                  </v-row>
+                  <v-row no-gutters align="center" class="flex-nowrap">
+                    <v-col class="shrink px-1 py-1">
+                      <v-btn fab x-small depressed color="primary"
+                        @click="runQuery(savedQuery.query,infer)"
                       >
-                        <v-icon>fas fa-trash</v-icon>
+                        <v-icon>mdi-play</v-icon>
                       </v-btn>
-                    </template>
-                    <v-btn color="error" @click="deleteSavedQuery(savedQuery.name, savedQuery.global)">
-                      Confirm
-                    </v-btn>
-                  </v-menu>
-                </v-card-actions>
+                    </v-col>
+                    <v-col class="shrink px-1 py-1"
+                      v-if="checkQuery(savedQuery.query).mode==='query'"
+                    >
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                          <v-btn fab x-small depressed dark v-on="on"
+                            :color="infer ? 'green' : 'orange'"
+                            @click="infer=!infer"
+                          >
+                            <v-icon>
+                              {{infer ? 'fas fa-angle-double-right' : 'fas fa-angle-right'}}
+                            </v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Infered Triples: {{infer ? "Included" : "Excluded"}}</span>
+                      </v-tooltip>
+                    </v-col>
+                    <v-col class="shrink px-1 py-1">
+                      <v-btn fab x-small depressed color="primary"
+                        :loading="loading.queryEditSave"
+                        @click="dialogEditQuery=true;savedQueryEdit(savedQuery.name,savedQuery.query)"
+                      >
+                        <v-icon>mdi-pencil</v-icon>
+                      </v-btn>
+                    </v-col>
+                    <v-col class="shrink px-1 py-1">
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                          <v-btn icon x-small  v-on="on">
+                            <v-icon>fas fa-info</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>{{savedQuery.query}}</span>
+                      </v-tooltip>
+                    </v-col>
+                    <v-col class="shrink px-1 py-1" v-if="savedQuery.global">
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                          <v-btn icon x-small  v-on="on">
+                            <v-icon>fas fa-globe</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>User global query</span>
+                      </v-tooltip>
+                    </v-col>
+                    <v-col class="grow"></v-col>
+                    <v-col class="shrink px-1 py-1">
+                      <v-menu left offset-x>
+                        <template v-slot:activator="{ on }">
+                          <v-btn fab x-small depressed dark v-on="on" color="red"
+                            :loading="loading.queryDelete"
+                          >
+                            <v-icon>fas fa-trash</v-icon>
+                          </v-btn>
+                        </template>
+                        <v-btn small color="error" @click="deleteSavedQuery(savedQuery.name, savedQuery.global)">
+                          Confirm?
+                        </v-btn>
+                      </v-menu>
+                    </v-col>
+                  </v-row>
+                </v-container>
               </v-card>
             </v-col>
           </v-row>
@@ -130,6 +165,7 @@ import axios from 'axios'
 
 export default {
   data: () => ({
+    infer: false,
     newSavedQueryName: '',
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,
@@ -204,6 +240,37 @@ export default {
     }
   },
   methods: {
+    checkQuery (query) {
+      // SELECT.*WHERE.*\{.*\}
+      const selectPatt = /SELECT/i
+      const constructPatt = /CONSTRUCT/i
+      const askPatt = /ASK/i
+      const describePatt = /DESCRIBE/i
+      const insertPatt = /INSERT/i
+      const deletePatt = /DELETE/i
+      var type = '???'
+      var mode = '???'
+      if (selectPatt.test(query)) {
+        type = 'select'
+        mode = 'query'
+      } else if (constructPatt.test(query)) {
+        type = 'construct'
+        mode = 'query'
+      } else if (askPatt.test(query)) {
+        type = 'ask'
+        mode = 'query'
+      } else if (describePatt.test(query)) {
+        type = 'describe'
+        mode = 'query'
+      } else if (insertPatt.test(query)) {
+        type = 'insert'
+        mode = 'update'
+      } else if (deletePatt.test(query)) {
+        type = 'delete'
+        mode = 'update'
+      }
+      return { type, mode }
+    },
     getSavedQueriesGlobal (currentUserEmail) {
       this.savedQueriesGlobal = [{ name: 'Loading Global Queries...', query: 'Please wait', global: true }]
       var url = this.backendURL + '/api/queries/user/' + currentUserEmail + '/global'
@@ -238,8 +305,8 @@ export default {
           this.savedQueriesRepo = [{ name: 'Get Repo Queries FAIL!!!', query: alert, global: false }]
         })
     },
-    runQuery (query) {
-      this.$emit('runQuery', query, true)
+    runQuery (query, infer) {
+      this.$emit('runQuery', query, infer)
     },
     savedQueryEdit (queryName, oldQuery) {
       this.editing.queryName = queryName

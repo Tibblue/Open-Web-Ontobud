@@ -389,7 +389,7 @@ export default {
       return results
     }
     // checkQuery: function() {
-    //   return this.checkQueryType(this.queryInput)
+    //   return this.checkQuery(this.queryInput)
     // }
   },
   methods: {
@@ -428,29 +428,39 @@ export default {
     cellClicked (cellInfo) {
       if (cellInfo.type === 'uri') { this.$router.push({ path: 'resource', query: { uri: cellInfo.uri } }) }
     },
-    checkQueryType (query) {
+    checkQuery (query) {
       // SELECT.*WHERE.*\{.*\}
       const selectPatt = /SELECT/i
       const constructPatt = /CONSTRUCT/i
       const askPatt = /ASK/i
+      const describePatt = /DESCRIBE/i
       const insertPatt = /INSERT/i
       const deletePatt = /DELETE/i
-      var queryType = '???'
+      var type = '???'
+      var mode = '???'
       if (selectPatt.test(query)) {
-        queryType = 'select'
+        type = 'select'
+        mode = 'query'
       } else if (constructPatt.test(query)) {
-        queryType = 'construct'
+        type = 'construct'
+        mode = 'query'
       } else if (askPatt.test(query)) {
-        queryType = 'ask'
+        type = 'ask'
+        mode = 'query'
+      } else if (describePatt.test(query)) {
+        type = 'describe'
+        mode = 'query'
       } else if (insertPatt.test(query)) {
-        queryType = 'insert'
+        type = 'insert'
+        mode = 'update'
       } else if (deletePatt.test(query)) {
-        queryType = 'delete'
+        type = 'delete'
+        mode = 'update'
       }
-      return queryType
+      return { type, mode }
     },
     run (query, infer) {
-      var type = this.checkQueryType(query)
+      var type = this.checkQuery(query).type
       switch (type) {
         case 'select':
         case 'construct':
