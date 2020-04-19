@@ -123,13 +123,29 @@
     </v-list-item> -->
 
     <v-list-item @click="goToBackend()">
-      <v-list-item-icon>
+      <v-list-item-icon class="my-3">
         <v-icon>mdi-api</v-icon>
       </v-list-item-icon>
-      <v-list-item-content>
+      <v-list-item-content class="py-2">
         <v-list-item-title class="title">
           Backend API&nbsp;
           <v-icon>mdi-open-in-new</v-icon>
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list-item @click="dialog_backendURL=!dialog_backendURL">
+      <v-list-item-icon class="my-3">
+        <v-icon>fas fa-wrench</v-icon>
+      </v-list-item-icon>
+      <v-list-item-content class="py-2">
+        <v-list-item-title class="title">
+          Backend URL
+          <v-dialog v-model="dialog_backendURL"
+            max-width="600px"
+            overlay-opacity="0.85"
+          >
+            <changeBackendURL/>
+          </v-dialog>
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
@@ -137,22 +153,22 @@
     <v-divider></v-divider>
 
     <v-list-item @click="sidebar_mini = !sidebar_mini">
-      <v-list-item-icon>
+      <v-list-item-icon class="my-3">
         <v-icon v-if="!sidebar_mini">fas fa-chevron-left</v-icon>
         <v-icon v-else>fas fa-chevron-right</v-icon>
       </v-list-item-icon>
-      <v-list-item-content>
+      <v-list-item-content class="py-2">
         <v-list-item-title class="title">
           Minimize Sidebar
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
     <v-list-item @click="swapDarkMode()">
-      <v-list-item-icon>
+      <v-list-item-icon class="my-3">
         <v-icon v-if="!this.$vuetify.theme.dark">fas fa-sun</v-icon>
         <v-icon v-else>fas fa-moon</v-icon>
       </v-list-item-icon>
-      <v-list-item-content>
+      <v-list-item-content class="py-2">
         <v-list-item-title class="title">
           Light/Dark Mode
         </v-list-item-title>
@@ -180,9 +196,15 @@
 </template>
 
 <script>
+import changeBackendURL from '@/components/changeBackendURL'
+
 export default {
+  components: {
+    changeBackendURL
+  },
   data: () => ({
     owo: 'OwO',
+    dialog_backendURL: false,
     sidebarVisible: false,
     sidebar_mini: false,
     sidebar_items: [
@@ -193,6 +215,7 @@ export default {
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info' },
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql' },
       { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource' },
+      // { text: 'Explore', icon: 'fas fa-project-diagram', link: '/resource' },
       // { text: 'TODO Navigation', icon: 'fas fa-project-diagram', link: '/navigation'},
       { text: 'Feedback', icon: 'fas fa-comment-dots', link: '/feedback' }
       // { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},

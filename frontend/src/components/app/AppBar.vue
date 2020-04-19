@@ -29,20 +29,6 @@
                   <v-icon>fas fa-bars</v-icon>
                 </v-btn>
               </v-col>
-              <v-col class="shrink">
-                <v-dialog
-                  max-width="600px"
-                  overlay-opacity="0.85"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-btn rounded large depressed color="secondary" v-on="on">
-                      <v-icon>fas fa-wrench</v-icon>
-                      &nbsp;Backend
-                    </v-btn>
-                  </template>
-                  <changeBackendURL/>
-                </v-dialog>
-              </v-col>
             </v-row>
           </v-col>
           <v-col>
@@ -99,15 +85,13 @@
 <script>
 import login from '@/components/login_card'
 import signIn from '@/components/signIn_card'
-import changeBackendURL from '@/components/changeBackendURL'
 import Vuex from 'vuex'
 import axios from 'axios'
 
 export default {
   components: {
     login,
-    signIn,
-    changeBackendURL
+    signIn
   },
   // props: ['update'],
   data: () => ({
