@@ -2,20 +2,18 @@
 
 Master's Dissertation - FrontEnd for RDF4J
 
-
 ## Description
 
-(TODO)
+Open Web Ontobud is an open source RDF4J frontend
 
 
 ## Requirements
 
-Requirements to run this project:
+Requirements to run the entire project:
   * Docker and Docker-Compose
 Or:
   * Mongo
-  * RDF4J
-  * Apache Tomcat (or similar)
+  * RDF4J + Apache Tomcat (or similar)
   * Node.JS
   * Vue
 
@@ -39,10 +37,10 @@ Google is your best friend :)
 
 Google is your best friend :)
 
-#### RDF4J (TODO)
+#### RDF4J + Apache Tomcat (TODO)
 
 Download RDF4J server (TODO add link)
-Install Apache Tomcat Server.
+Install Apache Tomcat Server. (RDF4J should have information on recomendations for Apache Tomcat)
 
 Before any execution, a few programs need to be installed.
 For the programs needed use the Download Guide:
