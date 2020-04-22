@@ -86,6 +86,7 @@
             <v-row dense>
               <v-col cols="12">
                 <v-btn fab small depressed color="primary"
+                  :disabled="warningQuery.visible"
                   :loading="loading.query"
                   @click="run(queryInput,infer)"
                 >
@@ -112,6 +113,7 @@
                   <v-dialog v-model="dialogSaveQuery" max-width="600px">
                     <template v-slot:activator="{ on }">
                       <v-btn fab small depressed color="primary" v-on="on"
+                        :disabled="warningQuery.visible"
                         :loading="loading.savingQuery"
                         @click="saving.queryValue = queryInput"
                       >
@@ -175,6 +177,14 @@
                 </div>
               </v-col>
             </v-row>
+          </v-col>
+          <v-col cols="12">
+            <v-alert text
+              v-model="warningQuery.visible"
+              :type="warningQuery.color"
+            >
+              {{warningQuery.message}}
+            </v-alert>
           </v-col>
           <v-col cols="12">
             <v-alert text dismissible
@@ -300,6 +310,7 @@
 <script>
 import alerts from '@/components/alerts'
 import savedQueries from '@/components/savedQueries'
+import sparqlParser from '@/plugins/sparqlParser.js'
 import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
@@ -369,6 +380,25 @@ export default {
     backendURL: function () {
       var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
       return backendURL
+    },
+    warningQuery: function () {
+      var warningQuery = {
+        visible: false,
+        color: 'warning',
+        message: 'OK'
+      }
+      try {
+        // console.log('parsing QUERY')
+        sparqlParser.parse(this.queryInput)
+        // console.log('parse OK')
+        warningQuery.visible = false
+      } catch (error) {
+        // console.log('parse NOT OK')
+        // console.log(warningQuery)
+        warningQuery.visible = true
+        warningQuery.message = error
+      }
+      return warningQuery
     },
     tableResults: function () {
       var results = []
