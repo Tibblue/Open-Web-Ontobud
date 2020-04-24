@@ -2,8 +2,8 @@
 openapi: '3.0.0'
 info:
   version: 1.0.0
-  title: OntoWorks Application API
-  description: OntoWorks Backend Application API documentation
+  title: Ontobud Application API
+  description: Ontobud Backend Application API documentation
   contact:
     name: Francisco Oliveira
     email: a78416@alunos.uminho.pt
@@ -2130,6 +2130,71 @@ paths:
         # '404':
         #   description: User or Query does not exist (returns null)
 
+# MONGO Feedback SECTION
+  "/feedback":
+    get:
+      tags:
+      - Mongo
+      summary: Feedbacks list
+      description: Returns a JSON list with all the feedbacks.
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feedback'
+        default:
+          description: Unexpected error
+    post:
+      tags:
+      - Mongo
+      summary: Submit a new Feedback
+      requestBody:
+        description: Feedback details.
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                rating:
+                  type: number
+                  minimum: 0
+                  maximum: 10
+                intuitive:
+                  type: number
+                  minimum: 1
+                  maximum: 5
+                style:
+                  type: number
+                  minimum: 1
+                  maximum: 5
+                anyBugs:
+                  type: number
+                  minimum: -1
+                  maximum: 1
+                useAgain:
+                  type: number
+                  minimum: -1
+                  maximum: 1
+              required:
+                - rating
+                - intuitive
+                - style
+                - anyBugs
+                - useAgain
+      responses:
+        '200':
+          description: Create success
+        '400':
+          description: Bad request (missing required variable, bad syntax, etc)
+        '500':
+          description: FIXME there may be more possible errors
 
 components:
   securitySchemes:
@@ -2190,6 +2255,41 @@ components:
           type: string
           description: "Contains the repoID of the repository associated with this query. Doesnt exist if the query is global (not associated to a specific repository)"
           example: "repo"
+    Feedback:
+      required:
+      - _id
+      - rating
+      - intuitive
+      - style
+      - anyBugs
+      - useAgain
+      - __v
+      properties:
+        _id:
+          type: string
+          uniqueItems: true
+          example: "5da988f5204a53011f3b3e49"
+        message:
+          type: string
+          example: "feedback message"
+        rating:
+          type: number
+          example: 5
+        intuitive:
+          type: number
+          example: 3
+        style:
+          type: number
+          example: 3
+        anyBugs:
+          type: number
+          example: 0
+        useAgain:
+          type: number
+          example: 0
+        __v:
+          type: number
+          example: 0
     Repository:
       required:
       - id
