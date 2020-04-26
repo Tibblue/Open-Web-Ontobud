@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row dense>
     <v-col cols="12">
       <v-text-field hide-details class="mb-3 pt-0"
         v-model="deleteRepoID"

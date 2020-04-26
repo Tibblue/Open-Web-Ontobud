@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <alerts/>
-    <v-card flat color="transparent" class="ma-3">
+    <v-card flat color="transparent">
       <v-container fluid class="pa-0">
         <v-row>
           <v-col cols="12" lg="6">

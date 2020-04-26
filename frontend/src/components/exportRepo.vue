@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row dense>
     <v-col cols="6">
       <v-radio-group hide-details v-model="fileTypeSelected" class="ma-0 pa-0">
         <v-radio

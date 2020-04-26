@@ -1,6 +1,6 @@
 <template>
   <v-col class="pa-0">
-    <v-row>
+    <v-row dense>
       <v-col cols="12">
         <v-btn block color="primary" @click="savedQueriesExpand=!savedQueriesExpand">
           <div v-if="savedQueriesExpand==true">
@@ -87,8 +87,8 @@
                     >
                       <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
-                          <v-btn fab x-small depressed dark v-on="on"
-                            :color="infer ? 'green' : 'orange'"
+                          <v-btn fab outlined x-small depressed dark v-on="on"
+                            :color="infer ? 'green' : 'red'"
                             @click="infer=!infer"
                           >
                             <v-icon>
@@ -165,7 +165,7 @@ import axios from 'axios'
 
 export default {
   data: () => ({
-    infer: false,
+    infer: true,
     newSavedQueryName: '',
     newSavedQueryGlobal: true,
     savedQueriesExpand: true,

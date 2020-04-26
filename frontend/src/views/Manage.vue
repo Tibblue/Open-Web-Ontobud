@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <alerts/>
-    <v-row>
+    <v-row dense>
       <v-col cols="12" lg="6">
         <importRepo/>
       </v-col>

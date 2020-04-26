@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <alerts/>
-    <v-row>
+    <v-row dense>
       <v-col>
         <v-row dense v-if="!this.$session.get('userToken')">
           <v-col cols="12" md="12">
@@ -32,7 +32,7 @@
           </v-col>
         </v-row>
 
-        <v-row dense class="pt-2">
+        <v-row dense class="pt-1">
           <v-col class="grow">
             <v-textarea outlined auto-grow hide-details
               v-model="queryInput"
@@ -96,8 +96,8 @@
               <v-col cols="12">
                 <v-tooltip left>
                   <template v-slot:activator="{ on }">
-                    <v-btn fab small depressed dark v-on="on"
-                      :color="infer ? 'green' : 'orange'"
+                    <v-btn fab outlined small depressed dark v-on="on"
+                      :color="infer ? 'green' : 'red'"
                       @click="infer=!infer"
                     >
                       <v-icon>
@@ -178,7 +178,7 @@
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="12">
+          <v-col cols="12" v-if="warningQuery.visible">
             <v-alert text
               v-model="warningQuery.visible"
               :type="warningQuery.color"
@@ -186,7 +186,7 @@
               {{warningQuery.message}}
             </v-alert>
           </v-col>
-          <v-col cols="12">
+          <v-col cols="12" v-if="alertQuery.visible">
             <v-alert text dismissible
               v-model="alertQuery.visible"
               :type="alertQuery.color"
@@ -195,8 +195,6 @@
             </v-alert>
           </v-col>
         </v-row>
-
-        <v-divider></v-divider>
 
         <v-row dense align="center" justify="center">
           <v-col class="shrink">
@@ -218,8 +216,8 @@
           <v-col class="shrink">
             <v-tooltip left>
               <template v-slot:activator="{ on }">
-                <v-btn fab small depressed dark v-on="on"
-                  :color="searchCaseSensitive ? 'green' : 'orange'"
+                <v-btn icon outlined depressed dark v-on="on"
+                  :color="searchCaseSensitive ? 'green' : 'red'"
                   @click="searchCaseSensitive=!searchCaseSensitive"
                 >
                   <v-icon>
@@ -230,21 +228,23 @@
               <span>Case Sensitive: {{searchCaseSensitive ? "ON" : "OFF"}}</span>
             </v-tooltip>
           </v-col>
-          <v-col :class="this.$vuetify.breakpoint.name==='xs' ? 'col-12 py-0' : 'shrink py-0'">
+          <v-col cols="12" md="6" class="py-0">
             <v-row dense align="center" justify="center" class="flex-nowrap">
               <v-col>
-                <v-checkbox hide-details class="mt-0 pt-0"
-                  v-model="namespaceON"
-                  label="Show Namespace"
-                  color="primary"
-                ></v-checkbox>
+                <v-btn block outlined depressed dark v-on="on"
+                  :color="namespaceON ? 'green' : 'red'"
+                  @click="namespaceON=!namespaceON"
+                >
+                  Show Namespace
+                </v-btn>
               </v-col>
               <v-col>
-                <v-checkbox hide-details class="mt-0 pt-0"
-                  v-model="prefixON"
-                  label="Use Prefix"
-                  color="primary"
-                ></v-checkbox>
+                <v-btn block outlined depressed dark v-on="on"
+                  :color="prefixON ? 'green' : 'red'"
+                  @click="prefixON=!prefixON"
+                >
+                  Use Prefix
+                </v-btn>
               </v-col>
             </v-row>
           </v-col>

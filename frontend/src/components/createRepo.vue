@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row dense>
     <v-col cols="12">
       <v-radio-group hide-details
         v-model="repoTypeSelected"

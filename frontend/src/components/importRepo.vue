@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row dense>
     <v-col cols="6">
       <v-radio-group hide-details v-model="fileTypeSelected" class="ma-0 pa-0">
         <v-radio
@@ -38,7 +38,7 @@
       </v-alert>
     </v-col>
     <v-col cols="12">
-      <v-textarea outlined hide-details class="mb-3"
+      <v-textarea outlined hide-details class="mb-2 mt-1"
         v-model="importText"
         label="Import Text"
         placeholder="Import Text"

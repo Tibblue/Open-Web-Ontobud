@@ -78,7 +78,7 @@
         Submit Feedback
       </v-btn>
       <v-alert text dismissible type="success" v-model="alert.feedbackSubmitSuccess">
-        Submit Successful!!!
+        Submit Successful!!! Thank you for your feedback ^w^
       </v-alert>
       <v-alert text dismissible type="error" v-model="alert.feedbackSubmitFail">
         Submit Failed...
