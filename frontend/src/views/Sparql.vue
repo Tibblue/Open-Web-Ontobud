@@ -86,7 +86,7 @@
             <v-row dense>
               <v-col cols="12">
                 <v-btn fab small depressed color="primary"
-                  :disabled="warningQuery.visible"
+                  :disabled="warningQuery.visible && checkQuery(queryInput).mode!=='update'"
                   :loading="loading.query"
                   @click="run(queryInput,infer)"
                 >
@@ -113,7 +113,7 @@
                   <v-dialog v-model="dialogSaveQuery" max-width="600px">
                     <template v-slot:activator="{ on }">
                       <v-btn fab small depressed color="primary" v-on="on"
-                        :disabled="warningQuery.visible"
+                        :disabled="warningQuery.visible && checkQuery(queryInput).mode!=='update'"
                         :loading="loading.savingQuery"
                         @click="saving.queryValue = queryInput"
                       >
@@ -179,7 +179,7 @@
             </v-row>
           </v-col>
           <v-col cols="12" v-if="warningQuery.visible">
-            <v-alert text
+            <v-alert text class="mb-0"
               v-model="warningQuery.visible"
               :type="warningQuery.color"
             >
@@ -388,10 +388,15 @@ export default {
         message: 'OK'
       }
       try {
-        // console.log('parsing QUERY')
-        sparqlParser.parse(this.queryInput)
-        // console.log('parse OK')
-        warningQuery.visible = false
+        if (this.checkQuery(this.queryInput).mode === 'update') {
+          warningQuery.visible = true
+          warningQuery.message = 'Cannot verify Insert or Delete'
+        } else {
+          // console.log('parsing QUERY')
+          sparqlParser.parse(this.queryInput)
+          // console.log('parse OK')
+          warningQuery.visible = false
+        }
       } catch (error) {
         // console.log('parse NOT OK')
         // console.log(warningQuery)
