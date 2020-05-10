@@ -456,9 +456,9 @@ export default {
         })
     },
     goToDefaultGraph () {
-      var query = 'select ?s ?p ?o where {\nvalues ?p { rdf:type }\n?s a ?o.\nFILTER (STRSTARTS(str(?s), "' + this.defaultNamespace + '"))\n}'
+      var query = 'select ?s ?p ?o where { values ?p { rdf:type }. ?s a ?o. FILTER (STRSTARTS(str(?s), "' + this.defaultNamespace + '")) }'
       // console.log(query) // debug
-      this.runQuery(query, true)
+      this.run(query, false)
     },
     cellClicked (cellInfo) {
       if (cellInfo.type === 'uri') { this.$router.push({ path: 'resource', query: { uri: cellInfo.uri } }) }
