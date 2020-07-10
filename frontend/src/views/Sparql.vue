@@ -231,7 +231,7 @@
           <v-col cols="12" md="6" class="py-0">
             <v-row dense align="center" justify="center" class="flex-nowrap">
               <v-col>
-                <v-btn block outlined depressed dark v-on="on"
+                <v-btn block outlined depressed dark
                   :color="namespaceON ? 'green' : 'red'"
                   @click="namespaceON=!namespaceON"
                 >
@@ -239,7 +239,7 @@
                 </v-btn>
               </v-col>
               <v-col>
-                <v-btn block outlined depressed dark v-on="on"
+                <v-btn block outlined depressed dark
                   :color="prefixON ? 'green' : 'red'"
                   @click="prefixON=!prefixON"
                 >

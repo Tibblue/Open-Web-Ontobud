@@ -43,12 +43,11 @@ export default new Router({
       name: 'resource',
       component: () => import('./views/Resource.vue')
     },
-    // {
-    //   path: '/navigation',
-    //   name: 'navigation',
-    //   component: () => import('./views/Navigation.vue'),
-    // },
-
+    {
+      path: '/navigation',
+      name: 'navigation',
+      component: () => import('./views/Navigation.vue')
+    },
     {
       path: '/feedback',
       name: 'feedback',
