@@ -2,13 +2,42 @@
   <v-container>
     <alerts/>
     <v-row>
-      <v-col cols="12" lg="9">
-        <h2>Resource: {{this.uri.split('#')[1]}}</h2>
-        <h3>Namespace: {{this.uri.split('#')[0]}}</h3>
-        <!-- TODO: allow URI edit -->
-        <span class="mb-0">URI: </span><span class="mb-0">{{this.uri}}</span>
+      <v-col cols="12" lg="9" v-if="editing">
+        <h2 class="wrap-text">Resource&nbsp;</h2>
+        <v-textarea outlined dense hide-details
+          auto-grow no-resize rows="1"
+          v-model="resource"
+        ></v-textarea>
+        <h2 class="wrap-text">Namespace&nbsp;</h2>
+        <v-textarea outlined dense hide-details
+          auto-grow no-resize rows="1"
+          v-model="namespace"
+        ></v-textarea>
+        <h3>URI&nbsp;</h3><p class="wrap-text ml-3 my-2">{{this.namespace}}#{{this.resource}}</p>
+      </v-col>
+      <v-col cols="12" lg="9" v-else>
+        <h2>Resource&nbsp; </h2><p class="wrap-text ml-3 my-2">{{this.resource}}</p>
+        <h2>Namespace&nbsp;</h2><p class="wrap-text ml-3 my-2">{{this.namespace}}</p>
+        <h3>URI&nbsp;</h3><p class="wrap-text ml-3 my-2">{{this.namespace}}#{{this.resource}}</p>
       </v-col>
       <v-col cols="12" lg="3">
+        <div v-if="!editing">
+          <v-btn block color="primary" @click="editing=!editing">
+            Edit URI
+          </v-btn>
+        </div>
+        <v-row no-gutters v-else>
+          <v-col cols="6">
+            <v-btn block color="success" @click="editConfirm()">
+              <v-icon>mdi-check</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="6">
+            <v-btn block color="error" @click="editCancel()">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
         <v-checkbox hide-details class="mt-0 pt-2"
           v-model="namespaceON"
           label="Show Namespace"
@@ -25,6 +54,11 @@
           color="primary"
           @change="updateResults()"
         ></v-checkbox>
+      </v-col>
+      <v-col cols="12" md="12">
+        <v-btn block color="primary" @click="goToGraph()">
+          Open Graph
+        </v-btn>
       </v-col>
       <v-col cols="12">
         <v-tabs grow background-color="darken-1 primary"
@@ -157,6 +191,9 @@ export default {
     alerts
   },
   data: () => ({
+    namespace: '',
+    resource: '',
+    editing: false,
     inferON: true,
     table: {
       headers: [
@@ -184,6 +221,10 @@ export default {
     }
   }),
   mounted: async function () {
+    try {
+      this.namespace = this.uri.split('#')[0]
+      this.resource = this.uri.split('#')[1]
+    } catch {}
     switch (this.$route.query.position) {
       case 'subject':
         this.activeTab = 0
@@ -215,6 +256,7 @@ export default {
     },
     uri: function () {
       this.updateResults()
+      // return this.namespace + '#' + this.resource
       return this.$route.query.uri
     },
     resourceTableURI: function () {
@@ -295,6 +337,22 @@ export default {
           this.namespaces = {}
         })
     },
+    editConfirm () {
+      var uriNovo = this.namespace + '#' + this.resource
+      if (this.$route.query.uri !== uriNovo) {
+        this.$router.push({ query: { uri: uriNovo } })
+      }
+      this.editing = false
+      this.updateResults()
+    },
+    editCancel () {
+      this.namespace = this.uri.split('#')[0]
+      this.resource = this.uri.split('#')[1]
+      this.editing = false
+    },
+    goToGraph (resource) {
+      this.$router.push({ path: 'navigation', query: { uri: this.$route.query.uri } })
+    },
     cellClicked (cellInfo) {
       if (cellInfo.type === 'uri') {
         this.$router.push({ query: { uri: cellInfo.uri } })
@@ -302,9 +360,11 @@ export default {
       }
     },
     updateResults () {
-      this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      if (this.$route.query.uri !== undefined) {
+        this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      }
     },
     getSubjectResults (repoID, resource, infer) {
       this.loading.subject = true
@@ -336,7 +396,8 @@ export default {
         })
         .catch(alert => {
           this.table.subjectResults = []
-          console.log('RIP subject (it ok if once when opening page, idk why) => ' + alert)
+          console.log('Subject Column Fetch failed')
+          console.log(alert)
           // this.alert.subjectFail = true
         })
         .finally(() => {
@@ -372,7 +433,9 @@ export default {
           })
         })
         .catch(alert => {
-          console.log('RIP predicate (it ok if once when opening page, idk why) => ' + alert)
+          this.table.subjectResults = []
+          console.log('Predicate Column Fetch failed')
+          console.log(alert)
           // this.alert.predicateFail = true
         })
         .finally(() => {
@@ -408,7 +471,9 @@ export default {
           })
         })
         .catch(alert => {
-          console.log('RIP object (it ok if once when opening page, idk why) => ' + alert)
+          this.table.objectResults = []
+          console.log('Object Column Fetch failed')
+          console.log(alert)
           // this.alert.objectFail = true
         })
         .finally(() => {
@@ -418,3 +483,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.wrap-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  /* white-space: normal; */
+  /* hyphens: auto; */
+}
+</style>
