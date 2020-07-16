@@ -2,13 +2,42 @@
   <v-container>
     <alerts/>
     <v-row>
-      <v-col cols="12" lg="9">
-        <h2>Resource: {{this.uri.split('#')[1]}}</h2>
-        <h3>Namespace: {{this.uri.split('#')[0]}}</h3>
-        <!-- TODO: allow URI edit -->
-        <span class="mb-0">URI: </span><span class="mb-0">{{this.uri}}</span>
+      <v-col cols="12" lg="9" v-if="editing">
+        <h2 class="wrap-text">Resource&nbsp;</h2>
+        <v-textarea outlined dense hide-details
+          auto-grow no-resize rows="1"
+          v-model="resource"
+        ></v-textarea>
+        <h2 class="wrap-text">Namespace&nbsp;</h2>
+        <v-textarea outlined dense hide-details
+          auto-grow no-resize rows="1"
+          v-model="namespace"
+        ></v-textarea>
+        <h3>URI&nbsp;</h3><p class="wrap-text ml-3 my-2">{{this.namespace}}#{{this.resource}}</p>
+      </v-col>
+      <v-col cols="12" lg="9" v-else>
+        <h2>Resource&nbsp; </h2><p class="wrap-text ml-3 my-2">{{this.resource}}</p>
+        <h2>Namespace&nbsp;</h2><p class="wrap-text ml-3 my-2">{{this.namespace}}</p>
+        <h3>URI&nbsp;</h3><p class="wrap-text ml-3 my-2">{{this.namespace}}#{{this.resource}}</p>
       </v-col>
       <v-col cols="12" lg="3">
+        <div v-if="!editing">
+          <v-btn block color="primary" @click="editing=!editing">
+            Edit URI
+          </v-btn>
+        </div>
+        <v-row no-gutters v-else>
+          <v-col cols="6">
+            <v-btn block color="success" @click="editConfirm()">
+              <v-icon>mdi-check</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="6">
+            <v-btn block color="error" @click="editCancel()">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
         <v-checkbox hide-details class="mt-0 pt-2"
           v-model="namespaceON"
           label="Show Namespace"
@@ -26,12 +55,11 @@
           @change="updateResults()"
         ></v-checkbox>
       </v-col>
-      <v-col cols="12">
-        nhe
+
+      <v-col>
+        <p>TODO: insert D3.JS magic here</p>
       </v-col>
-      <v-col cols="12">
-        <div id="graph" ></div>
-      </v-col>
+
       <v-col cols="12">
         <v-tabs grow background-color="darken-1 primary"
           :value="this.activeTab"
@@ -156,7 +184,6 @@
 import alerts from '@/components/alerts'
 import Vuex from 'vuex'
 import axios from 'axios'
-import * as d3 from 'd3'
 const qs = require('querystring')
 
 export default {
@@ -164,6 +191,9 @@ export default {
     alerts
   },
   data: () => ({
+    namespace: '',
+    resource: '',
+    editing: false,
     inferON: true,
     table: {
       headers: [
@@ -191,6 +221,10 @@ export default {
     }
   }),
   mounted: async function () {
+    try {
+      this.namespace = this.uri.split('#')[0]
+      this.resource = this.uri.split('#')[1]
+    } catch {}
     switch (this.$route.query.position) {
       case 'subject':
         this.activeTab = 0
@@ -206,8 +240,6 @@ export default {
         break
     }
     this.getNamespaces(this.$session.get('repoID'))
-    this.graph()
-    console.log('NHEEE')
   },
   computed: {
     $repo: {
@@ -224,6 +256,7 @@ export default {
     },
     uri: function () {
       this.updateResults()
+      // return this.namespace + '#' + this.resource
       return this.$route.query.uri
     },
     resourceTableURI: function () {
@@ -293,29 +326,6 @@ export default {
     }
   },
   methods: {
-    async graph () {
-      // if (cellInfo.type === 'uri') {
-      //   this.$router.push({ query: { uri: cellInfo.uri } })
-      //   // this.updateResults()
-      // }
-      var dot = ` digraph Diagrama {
-rankdir=LR ;
-node [style="filled"];
-start [label="lc1" shape=box color=black fillcolor=gold2];
-ftype0 [label="Resource",href="/Resource" color=black fillcolor=gold2];
-start -> ftype0 [label="type" color=black];
-ftype1 [label="ListaConsolidada",href="/ListaConsolidada" color=black fillcolor=gold2];
-start -> ftype1 [label="type" color=black];
-ftype2 [label="ReferencialClassificativo",href="/ReferencialClassificativo" color=black fillcolor=gold2];
-start -> ftype2 [label="type" color=black];
-fcomment0 [label="Estrutura hierárquica de classes que representam a" style="filled,dashed" color=black fillcolor=forestgreen];
-start -> fcomment0 [label="comment"];
-flabel0 [label="Lista Consolidada para classificação e avaliação d" style="filled,dashed" color=black fillcolor=forestgreen];
-start -> flabel0 [label="label"];
-}`
-      var data = await d3.select('#graph').graphviz().renderDot(dot)
-      console.log(data)
-    },
     getNamespaces (repoID) {
       axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
@@ -327,6 +337,22 @@ start -> flabel0 [label="label"];
           this.namespaces = {}
         })
     },
+    editConfirm () {
+      var uriNovo = this.namespace + '#' + this.resource
+      if (this.$route.query.uri !== uriNovo) {
+        this.$router.push({ query: { uri: uriNovo } })
+      }
+      this.editing = false
+      this.updateResults()
+    },
+    editCancel () {
+      this.namespace = this.uri.split('#')[0]
+      this.resource = this.uri.split('#')[1]
+      this.editing = false
+    },
+    goToGraph (resource) {
+      this.$router.push({ path: 'navigation', query: { uri: this.$route.query.uri } })
+    },
     cellClicked (cellInfo) {
       if (cellInfo.type === 'uri') {
         this.$router.push({ query: { uri: cellInfo.uri } })
@@ -334,9 +360,11 @@ start -> flabel0 [label="label"];
       }
     },
     updateResults () {
-      this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
-      this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      if (this.$route.query.uri !== undefined) {
+        this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+      }
     },
     getSubjectResults (repoID, resource, infer) {
       this.loading.subject = true
@@ -368,7 +396,8 @@ start -> flabel0 [label="label"];
         })
         .catch(alert => {
           this.table.subjectResults = []
-          console.log('RIP subject (it ok if once when opening page, idk why) => ' + alert)
+          console.log('Subject Column Fetch failed')
+          console.log(alert)
           // this.alert.subjectFail = true
         })
         .finally(() => {
@@ -404,7 +433,9 @@ start -> flabel0 [label="label"];
           })
         })
         .catch(alert => {
-          console.log('RIP predicate (it ok if once when opening page, idk why) => ' + alert)
+          this.table.subjectResults = []
+          console.log('Predicate Column Fetch failed')
+          console.log(alert)
           // this.alert.predicateFail = true
         })
         .finally(() => {
@@ -440,7 +471,9 @@ start -> flabel0 [label="label"];
           })
         })
         .catch(alert => {
-          console.log('RIP object (it ok if once when opening page, idk why) => ' + alert)
+          this.table.objectResults = []
+          console.log('Object Column Fetch failed')
+          console.log(alert)
           // this.alert.objectFail = true
         })
         .finally(() => {
@@ -450,3 +483,13 @@ start -> flabel0 [label="label"];
   }
 }
 </script>
+
+<style>
+.wrap-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  /* white-space: normal; */
+  /* hyphens: auto; */
+}
+</style>

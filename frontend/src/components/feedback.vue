@@ -1,6 +1,21 @@
 <template>
   <v-row dense>
     <v-col cols="12">
+      <p class="text-center text-h3 text-md-h2 font-weight-bold">
+        Share your Feedback!!!
+      </p>
+      <p class="text-center text-h6 text-md-h5">
+        Any comments or ideas? Send me feedback here, or to my email fjmo_1997@hotmail.com
+      </p>
+    </v-col>
+    <v-col cols="12" class="mb-4">
+      <a href="mailto:fjmo_1997@hotmail.com?subject=[Ontobud]" class="text-decoration-none">
+        <v-btn block :color="emailColor" @click=";">
+          Send me Email 📧
+        </v-btn>
+      </a>
+    </v-col>
+    <v-col cols="12">
       <v-textarea outlined auto-grow hide-details
         v-model="message"
         rows="6"
@@ -94,6 +109,7 @@ const qs = require('querystring')
 
 export default {
   data: () => ({
+    emailColor: 'primary',
     // emojisSatisfaction10: ['😭', '😢', '☹️', '🙁', '😐', '🙂', '😊', '😁', '😄', '😍'],
     emojisSatisfaction5: ['😭', '☹️', '😐', '😁', '😍'],
     emojisYesNo: ['👎', '🤔', '👍'],
@@ -111,9 +127,9 @@ export default {
       feedbackSubmitFail: false
     }
   }),
-  // mounted: async function (){
-  //   // console.log(process.env) # debug
-  // },
+  mounted: async function () {
+    this.email1sec()
+  },
   computed: {
     $backurl: {
       get: Vuex.mapState(['$backurl']).$backurl,
@@ -125,6 +141,24 @@ export default {
     }
   },
   methods: {
+    email1sec: function () {
+      setInterval(() => {
+        var rand = Math.floor(Math.random() * 10)
+        if (rand > 8) {
+          this.emailColor = 'blue'
+        } else if (rand > 6) {
+          this.emailColor = 'green'
+        } else if (rand > 4) {
+          this.emailColor = 'red'
+        } else if (rand > 2) {
+          this.emailColor = 'pink'
+        } else if (rand > 1) {
+          this.emailColor = 'cyan'
+        } else {
+          this.emailColor = 'yellow darken-2'
+        }
+      }, 1000)
+    },
     feedback () {
       this.loading.feedbackSubmit = true
       var form = {}

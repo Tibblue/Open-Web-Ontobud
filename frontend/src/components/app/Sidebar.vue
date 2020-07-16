@@ -245,13 +245,29 @@ export default {
   methods: {
     owoShowcase: function () {
       setInterval(() => {
-        if (this.owo === 'OwO') { this.owo = 'UwU' } else if (this.owo === 'UwU') { this.owo = '>w<' } else if (this.owo === '>w<') { this.owo = '^w^' } else { this.owo = 'OwO' }
+        if (this.owo === 'OwO') {
+          this.owo = 'UwU'
+        } else if (this.owo === 'UwU') {
+          this.owo = '>w<'
+        } else if (this.owo === '>w<') {
+          this.owo = '^w^'
+        } else {
+          this.owo = 'OwO'
+        }
       }, 1000)
     },
     owo1sec: function () {
       setInterval(() => {
         var rand = Math.floor(Math.random() * 100)
-        if (rand > 95) { this.owo = '^w^' } else if (rand > 90) { this.owo = '>w<' } else if (rand > 60) { this.owo = 'UwU' } else { this.owo = 'OwO' }
+        if (rand > 95) {
+          this.owo = '^w^'
+        } else if (rand > 90) {
+          this.owo = '>w<'
+        } else if (rand > 60) {
+          this.owo = 'UwU'
+        } else {
+          this.owo = 'OwO'
+        }
       }, 1000)
     },
     goTo: function (id) {

@@ -3,9 +3,9 @@
     <AppBar @toggleSidebarON="toggleSidebarON"/>
     <Sidebar ref="refSidebar"/>
 
-    <v-content>
+    <v-main>
       <router-view />
-    </v-content>
+    </v-main>
 
     <Footer/>
   </v-app>
