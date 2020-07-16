@@ -11,6 +11,7 @@ backend/views/
 
 # Mongo ignores
 **/mongoData/
+mongo/*.out
 
 # Frontend ignores
 **/node_modules/

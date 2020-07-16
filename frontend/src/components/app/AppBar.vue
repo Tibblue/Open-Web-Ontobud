@@ -11,7 +11,6 @@
               :items="repoList"
               no-data-text="No Repositories available"
               label="Selected Repository"
-              :suffix="`ID: ${getRepoID(selectedRepo)}`"
               append-outer-icon="fas fa-sync"
               @click:append-outer="getRepositories()"
               :loading="loadingRepos"

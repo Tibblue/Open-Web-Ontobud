@@ -1,6 +1,0 @@
-{"_id":{"$oid":"5dac835e64fd110c3c84d8fc"},"name":"Select All","query":"select * where { ?s ?p ?o } limit 20","user_email":"kiko@kiko.pt"}
-{"_id":{"$oid":"5dad80c564fd110c3c84d8fd"},"name":"Get classes","query":"SELECT DISTINCT ?s WHERE { ?s a owl:Class. }","user_email":"kiko@kiko.pt"}
-{"_id":{"$oid":"5dad813764fd110c3c84d8fe"},"name":"Get #elements per class","query":"SELECT ?class (COUNT(?class) as ?count) WHERE { ?elem a ?class. ?class a owl:Class. } GROUP BY ?class","user_email":"kiko@kiko.pt"}
-{"_id":{"$oid":"5e51768552db6203db4bc97c"},"name":"All Animes","query":"PREFIX : \u003chttp://www.semanticweb.org/kiko/ontologies/2019/projeto#\u003e\nselect ?id ?title where {\n    ?anime a :Anime .\n    ?anime :id ?id .\n    ?anime :title ?title .\n}","user_email":"kiko@kiko.pt","repoID":"animePRC","__v":0}
-{"_id":{"$oid":"5f090b90b762de0019dde76d"},"name":"Insert","query":"PREFIX x: \u003chttp://www.example.org/\u003e\nINSERT DATA {\n x:s x:p x:o\n}","user_email":"kiko@kiko.pt","__v":0}
-{"_id":{"$oid":"5f090bbbb762de0019dde76e"},"name":"Delete","query":"PREFIX x: \u003chttp://www.example.org/\u003e\nDELETE DATA {\n x:s x:p x:o\n}","user_email":"kiko@kiko.pt","__v":0}
