@@ -1,10 +1,14 @@
 <template>
   <v-app>
-    <AppBar @toggleSidebarON="toggleSidebarON"/>
+    <AppBar
+      @toggleSidebarON="toggleSidebarON"
+      @changedRepoList="updateRepoList"
+      @changedCurrentRepo="updateCurrentRepo"
+    />
     <Sidebar ref="refSidebar"/>
 
     <v-main>
-      <router-view />
+      <router-view v-bind="myProps"/>
     </v-main>
 
     <Footer/>
@@ -23,13 +27,40 @@ export default {
     Sidebar,
     Footer
   },
-  // data: () => ({
-  // }),
-  // mounted: async function (){
+  data: () => ({
+    currentRepo: {},
+    repoList: []
+  }),
+  // mounted: async function () {
   // },
   methods: {
     toggleSidebarON () {
       this.$refs.refSidebar.sidebarVisible = true
+    },
+    updateRepoList (list) {
+      // console.log('update REPOLIST')
+      // console.log(list)
+      this.repoList = list
+    },
+    updateCurrentRepo (repo) {
+      // console.log('update CURRENT')
+      // console.log(repo)
+      this.currentRepo = repo
+    }
+  },
+  computed: {
+    myProps () {
+      // console.log(this.$route.name)
+      if (this.$route.name === 'home') {
+        return {
+          currentRepo: this.currentRepo,
+          repoList: this.repoList
+        }
+      // } else if (this.$route.name === 'b') {
+      //   return { repoList: this.repoList }
+      } else {
+        return {}
+      }
     }
   }
 }

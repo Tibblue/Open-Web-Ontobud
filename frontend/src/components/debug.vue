@@ -1,5 +1,9 @@
 <template>
   <div class="text-center">
+    <v-divider class="my-2"></v-divider>
+    <h1>DEBUG</h1>
+    <v-divider class="my-2"></v-divider>
+
     <!-- <v-snackbar top v-model="snackbarDEBUG">
       {{ this.$session.get("repoName") }} - {{ this.$session.get("repoID") }}
       <v-btn @click="snackbarDEBUG=false">Close</v-btn>
@@ -19,8 +23,8 @@
     </v-btn> -->
 
     <v-divider class="my-2"></v-divider>
-
-    <!-- <h2>RANDOM TEMP</h2> -->
+    <h2>RANDOM</h2>
+    <p>{{props}}</p>
     <!-- <p>{{
 
     }}</p> -->
@@ -33,16 +37,12 @@
     <p>{{this.$session.get("repoID")}}</p> -->
 
     <v-divider class="my-1"></v-divider>
-    <h2>USER</h2>
-    <p>{{this.$session.get("userName")}}</p>
-    <p>{{this.$session.get("userEmail")}}</p>
+    <h2>USERNAME || EMAIL</h2>
+    <p>{{this.$session.get("userName")}} || {{this.$session.get("userEmail")}}</p>
     <!-- <p>{{this.$session.get("userToken")}}</p> -->
 
-    <v-divider class="my-1"></v-divider>
     <h2>VUEX STORE</h2>
     <p>{{this.$store.state}}</p>
-    <!-- <p>{{this.$store.state.$repo}}</p> -->
-    <!-- <p>{{this.$store.state.$backurl}}</p> -->
 
     <v-divider class="my-1"></v-divider>
   </div>
@@ -54,6 +54,7 @@ import Vuex from 'vuex'
 export default {
   // components: {
   // },
+  props: ['props'],
   data: () => ({
     snackbarDEBUG: false
   }),

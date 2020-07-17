@@ -14,7 +14,7 @@
               append-outer-icon="fas fa-sync"
               @click:append-outer="getRepositories()"
               :loading="loadingRepos"
-              v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo))"
+              v-on:change="repoChange(getRepoID(selectedRepo),getRepoName(selectedRepo), true)"
             ></v-select>
           </v-col>
         </v-row>
@@ -92,11 +92,10 @@ export default {
     login,
     signIn
   },
-  // props: ['update'],
   data: () => ({
     loadingRepos: false,
     selectedRepo: 'Loading Repositories',
-    repoList: undefined
+    repoList: []
   }),
   mounted: async function () {
     this.getRepositories()
@@ -116,53 +115,6 @@ export default {
       // this.getRepositories(backendURL)
       return backendURL
     }
-    // getRepositories: {
-    //   get(state) {
-    //     var backendURL = state.backendURL
-    //     // var backendURL = this.backendURL
-    //     // console.log(backendURL)
-    //     this.loadingRepos = true
-    //     axios.get(backendURL+'/api/rdf4j/management/listRepos')
-    //       .then(response => {
-    //         // console.log(response.data) // debug
-    //         var repoList = response.data
-    //         var repoListText = []
-    //         repoList.forEach(elem => {
-    //           repoListText.push(elem.title.value+" ID:"+elem.id.value)
-    //         });
-    //         this.repoList = repoListText.sort()
-    //         if(this.$session.has("repoName")){ // NOTE: mudar de session pra VUEX
-    //           // TODO verificar se o repo guardado ainda existe
-    //           this.selectedRepo = this.$session.get("repoName")+" ID:"+this.$session.get("repoID")
-    //           this.$repo = {
-    //             id: this.$session.get("repoID"),
-    //             name: this.$session.get("repoName"),
-    //           }
-    //         }
-    //         else{
-    //         // if(this.selectedRepo==="Loading Repositories"){
-    //           this.selectedRepo = repoListText[0]
-    //           this.$session.set("repoID",this.getRepoID(repoListText[0]))
-    //           this.$session.set("repoName",this.getRepoName(repoListText[0]))
-    //           this.$repo = {
-    //             id: this.getRepoID(repoListText[0]),
-    //             name: this.getRepoName(repoListText[0]),
-    //           }
-    //         }
-    //       })
-    //       .catch(alert => {
-    //         // this.alert = error // debug
-    //         this.selectedRepo = "No Repositories available" + alert
-    //       })
-    //       .finally(() => {
-    //         this.loadingRepos = false
-    //       })
-    //     return this.repoList
-    //   },
-    //   set(newList){
-    //     return newList
-    //   },
-    // },
   },
   methods: {
     logout: function () {
@@ -174,15 +126,19 @@ export default {
     toggleSidebarON () {
       this.$emit('toggleSidebarON')
     },
-    repoChange (id, name) {
+    async updateSession (id, name) {
+      this.$session.set('repoID', id)
+      this.$session.set('repoName', name)
+      return true
+    },
+    async repoChange (id, name, reload) {
+      this.$emit('changedCurrentRepo', { id: id, name: name }) // NOTE: isto funcionou
       this.$repo = { id: id, name: name }
+      await this.updateSession(id, name)
       // this.$repo.id = id
       // this.$repo.name = name
       // console.log(this.$store.state.$repo) // debug
-      this.$session.set('repoID', id)
-      this.$session.set('repoName', name)
-      // this.$emit('repoChanged',name) # NOTE: isto funcionou
-      this.$router.go(0)
+      if (reload) this.$router.go(0)
     },
     getRepositories () {
       this.loadingRepos = true
@@ -195,29 +151,24 @@ export default {
             repoListText.push(elem.title.value + ' ID:' + elem.id.value)
           })
           this.repoList = repoListText.sort()
-          if (this.$session.has('repoName')) { // NOTE: mudar de session pra VUEX
+          if (this.$session.has('repoName')) {
+            // NOTE mudar de session pra VUEX
             // TODO verificar se o repo guardado ainda existe
             this.selectedRepo = this.$session.get('repoName') + ' ID:' + this.$session.get('repoID')
-            this.$repo = {
-              id: this.$session.get('repoID'),
-              name: this.$session.get('repoName')
-            }
+            this.repoChange(this.getRepoID(this.selectedRepo), this.getRepoName(this.selectedRepo), false)
           } else {
-          // if(this.selectedRepo==="Loading Repositories"){
             this.selectedRepo = repoListText[0]
-            this.$session.set('repoID', this.getRepoID(repoListText[0]))
-            this.$session.set('repoName', this.getRepoName(repoListText[0]))
-            this.$repo = {
-              id: this.getRepoID(repoListText[0]),
-              name: this.getRepoName(repoListText[0])
-            }
+            this.repoChange(this.getRepoID(repoListText[0]), this.getRepoName(repoListText[0]), false)
           }
         })
         .catch(alert => {
           // this.alert = error // debug
+          this.$emit('changedCurrentRepo', { id: undefined, name: undefined }) // NOTE: isto funcionou
+          this.$emit('changedRepoList', [])
           this.selectedRepo = 'No Repositories available' + alert
         })
         .finally(() => {
+          this.$emit('changedRepoList', this.repoList)
           this.loadingRepos = false
         })
     },

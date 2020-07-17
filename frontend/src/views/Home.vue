@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <alerts/>
-    <debug/>
+    <debug v-bind:props="debugProps"/>
   </v-container>
 </template>
 
@@ -13,13 +13,22 @@ export default {
   components: {
     alerts,
     debug
-  }
-  // data: () => ({
-  // }),
+  },
+  props: ['currentRepo', 'repoList'],
+  data: () => ({
+  }),
   // mounted: async function (){
   //   console.log(process.env)
   // },
   // methods: {
   // }
+  computed: {
+    debugProps () {
+      return {
+        currentRepo: this.currentRepo,
+        repoList: this.repoList
+      }
+    }
+  }
 }
 </script>
