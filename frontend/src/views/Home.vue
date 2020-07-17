@@ -1,17 +1,20 @@
 <template>
   <v-container>
     <alerts/>
+    <homepage v-bind="homepageProps" @changedCurrentRepo="updateCurrentRepo"/>
     <debug v-bind:props="debugProps"/>
   </v-container>
 </template>
 
 <script>
 import alerts from '@/components/alerts'
+import homepage from '@/components/homepage'
 import debug from '@/components/debug'
 
 export default {
   components: {
     alerts,
+    homepage,
     debug
   },
   props: ['currentRepo', 'repoList'],
@@ -20,9 +23,18 @@ export default {
   // mounted: async function (){
   //   console.log(process.env)
   // },
-  // methods: {
-  // }
+  methods: {
+    updateCurrentRepo (id, name) {
+      this.$emit('changedCurrentRepo', { id: id, name: name })
+    }
+  },
   computed: {
+    homepageProps () {
+      return {
+        currentRepo: this.currentRepo,
+        repoList: this.repoList
+      }
+    },
     debugProps () {
       return {
         currentRepo: this.currentRepo,

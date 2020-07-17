@@ -126,18 +126,18 @@ export default {
     toggleSidebarON () {
       this.$emit('toggleSidebarON')
     },
-    async updateSession (id, name) {
+    async updateState (id, name) {
       this.$session.set('repoID', id)
       this.$session.set('repoName', name)
+      this.$repo = { id: id, name: name }
+      // this.$repo.id = id
+      // this.$repo.name = name
+      // console.log(this.$store.state.$repo) // debug
       return true
     },
     async repoChange (id, name, reload) {
       this.$emit('changedCurrentRepo', { id: id, name: name }) // NOTE: isto funcionou
-      this.$repo = { id: id, name: name }
-      await this.updateSession(id, name)
-      // this.$repo.id = id
-      // this.$repo.name = name
-      // console.log(this.$store.state.$repo) // debug
+      await this.updateState(id, name)
       if (reload) this.$router.go(0)
     },
     getRepositories () {
