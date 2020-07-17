@@ -88,7 +88,7 @@
         </template>
       </v-slider>
     </v-col>
-    <v-col cols="12">
+    <v-col cols="12" class="mb-14">
       <v-btn :loading="loading.feedbackSubmit" block color="primary" @click="feedback()">
         Submit Feedback
       </v-btn>
