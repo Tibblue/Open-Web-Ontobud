@@ -3,6 +3,11 @@
     <alerts/>
     <v-row dense>
       <v-col>
+        <v-row dense>
+          <v-col cols="12" md="12">
+            <sparqlHelp/>
+          </v-col>
+        </v-row>
         <v-row dense v-if="!this.$session.get('userToken')">
           <v-col cols="12" md="12">
             <v-alert text dismissible type="warning" >
@@ -325,6 +330,7 @@
 
 <script>
 import alerts from '@/components/alerts'
+import sparqlHelp from '@/components/sparqlHelp'
 import savedQueries from '@/components/savedQueries'
 import sparqlParser from '@/plugins/sparqlParser.js'
 import Vuex from 'vuex'
@@ -335,6 +341,7 @@ const FileDownload = require('js-file-download')
 export default {
   components: {
     alerts,
+    sparqlHelp,
     savedQueries
   },
   data: () => ({
