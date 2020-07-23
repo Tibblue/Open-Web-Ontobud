@@ -56,9 +56,13 @@
         ></v-checkbox>
       </v-col>
 
-      <v-col>
-        <p>TODO: insert D3.JS magic here</p>
+      <v-col cols="12">
+        <d3graph/>
       </v-col>
+      <!-- <p>{{table.subjectResults}}</p> -->
+      <!-- <p>{{subjectResults}}</p> -->
+      <!-- <p>{{table.objectResults}}</p> -->
+      <!-- <p>{{objectResults}}</p> -->
 
       <v-col cols="12">
         <v-tabs grow background-color="darken-1 primary"
@@ -154,41 +158,21 @@
           </v-tab-item>
         </v-tabs>
       </v-col>
-
-      <!-- <v-col cols="12">
-        <v-data-table
-          :headers="table.headers"
-          :items="subjectResults"
-          :items-per-page="10"
-        >
-          <template v-slot:item="props">
-            <tr>
-              <td>
-                {{resourceTableURI}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[1].text])">
-                {{props.item[table.headers[1].text]}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[2].text])">
-                {{props.item[table.headers[2].text]}}
-              </td>
-            </tr>
-          </template>
-        </v-data-table>
-      </v-col> -->
     </v-row>
   </v-container>
 </template>
 
 <script>
 import alerts from '@/components/alerts'
+import d3graph from '@/components/d3graph'
 import Vuex from 'vuex'
 import axios from 'axios'
 const qs = require('querystring')
 
 export default {
   components: {
-    alerts
+    alerts,
+    d3graph
   },
   data: () => ({
     namespace: '',
