@@ -16,9 +16,10 @@ export default {
   data () {
     return {
       graph: {},
-      height: 500,
-      width: 500
-      // width: this.graphSize()
+      height: 400,
+      width: 800,
+      // width: this.graphSize(),
+      nodeRadius: 10
     }
   },
   mounted () {
@@ -36,9 +37,10 @@ export default {
       const links = this.graph.links.map(d => Object.create(d))
 
       const simulation = d3.forceSimulation(nodes)
+        .force('center', d3.forceCenter(this.width / 2, this.height / 2))
         .force('link', d3.forceLink(links).id(d => d.id))
         .force('charge', d3.forceManyBody())
-        .force('center', d3.forceCenter(this.width / 2, this.height / 2))
+        .force('collide', d3.forceCollide(this.nodeRadius))
 
       const svg = d3.select('#graph')
         .attr('height', this.height)
@@ -53,25 +55,29 @@ export default {
         .attr('stroke-width', d => Math.sqrt(d.value))
 
       const node = svg.append('g')
-        .attr('stroke', '#fff')
-        .attr('stroke-width', 1.5)
-        .selectAll('circle')
+        .selectAll('g')
         .data(nodes)
-        .join('circle')
-        .attr('r', 5)
-        .attr('fill', d => this.color(d))
+        .join('g')
         .call(this.drag(simulation))
 
-      node.append('title')
+      node.append('circle')
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 1)
+        .attr('r', this.nodeRadius)
+        .attr('fill', d => this.color(d))
+
+      node.append('text')
+        // .style('fill', 'blue')
+        .attr('font-size', '0.8em')
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
+        .attr('dy', 5)
         .text(d => d.id)
 
       simulation.on('tick', () => {
-        link.attr('x1', d => d.source.x)
-          .attr('y1', d => d.source.y)
-          .attr('x2', d => d.target.x)
-          .attr('y2', d => d.target.y)
-        node.attr('cx', d => d.x)
-          .attr('cy', d => d.y)
+        link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x).attr('y2', d => d.target.y)
+        node.attr('transform', d => `translate(${d.x}, ${d.y})`)
       })
 
       // invalidation.then(() => simulation.stop())
