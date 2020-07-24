@@ -57,7 +57,7 @@
       </v-col>
 
       <v-col cols="12">
-        <d3graph/>
+        <d3graph :elem="resourceTableURI" :results="subjectResults"/>
       </v-col>
       <!-- <p>{{table.subjectResults}}</p> -->
       <!-- <p>{{subjectResults}}</p> -->
@@ -362,21 +362,9 @@ export default {
       }
       axios.post(url, qs.stringify({ query: query, infer: infer }), config)
         .then(response => {
-          // console.log(response.data) // debug
-          // console.log(response.data.results.bindings) // debug resultados
+          // console.log(response.data.results.bindings) // debug results
           var resultsData = response.data.results.bindings
-
-          this.table.subjectResults = []
-          resultsData.forEach(element => {
-            var elemAux = {}
-            for (const key in element) {
-              elemAux[key] = {
-                value: element[key].value,
-                type: element[key].type
-              }
-            }
-            this.table.subjectResults.push(elemAux)
-          })
+          this.table.subjectResults = resultsData
         })
         .catch(alert => {
           this.table.subjectResults = []
@@ -400,21 +388,9 @@ export default {
       }
       axios.post(url, qs.stringify({ query: query, infer: infer }), config)
         .then(response => {
-          // console.log(response.data) // debug
-          // console.log(response.data.results.bindings) // debug resultados
+          // console.log(response.data.results.bindings) // debug results
           var resultsData = response.data.results.bindings
-
-          this.table.predicateResults = []
-          resultsData.forEach(element => {
-            var elemAux = {}
-            for (const key in element) {
-              elemAux[key] = {
-                value: element[key].value,
-                type: element[key].type
-              }
-            }
-            this.table.predicateResults.push(elemAux)
-          })
+          this.table.predicateResults = resultsData
         })
         .catch(alert => {
           this.table.subjectResults = []
@@ -438,21 +414,9 @@ export default {
       }
       axios.post(url, qs.stringify({ query: query, infer: infer }), config)
         .then(response => {
-          // console.log(response.data) // debug
-          // console.log(response.data.results.bindings) // debug resultados
+          // console.log(response.data.results.bindings) // debug results
           var resultsData = response.data.results.bindings
-
-          this.table.objectResults = []
-          resultsData.forEach(element => {
-            var elemAux = {}
-            for (const key in element) {
-              elemAux[key] = {
-                value: element[key].value,
-                type: element[key].type
-              }
-            }
-            this.table.objectResults.push(elemAux)
-          })
+          this.table.objectResults = resultsData
         })
         .catch(alert => {
           this.table.objectResults = []

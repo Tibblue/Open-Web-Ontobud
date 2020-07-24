@@ -2,6 +2,8 @@
   <div>
     <h2 class='text-center'>Graph in D3</h2>
     <svg id='graph'></svg>
+    <h2>{{elem}}</h2>
+    <h3>{{results}}</h3>
   </div>
 </template>
 
@@ -10,12 +12,12 @@ import * as d3 from 'd3'
 
 export default {
   name: 'Graph',
-  // props: ['results'],
+  props: ['elem', 'results'],
   data () {
     return {
       graph: {},
       height: 500,
-      width: 1000
+      width: 500
       // width: this.graphSize()
     }
   },
