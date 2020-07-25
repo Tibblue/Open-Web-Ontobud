@@ -209,15 +209,16 @@ export default {
     sidebar_mini: false,
     sidebar_items: [
       // Navigation
-      { text: 'Home', icon: 'fas fa-home', link: '/' }, // FIXME: tirar??
+      { text: 'Home (BETA)', icon: 'fas fa-home', link: '/' },
       { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories' },
       { text: 'Manage Repo', icon: 'fas fa-archive', link: '/manage' },
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info' },
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql' },
-      { text: 'Resource', icon: 'fas fa-project-diagram', link: '/resource' },
-      { text: 'Navigation (TODO)', icon: 'fas fa-project-diagram', link: '/navigation' },
+      { text: 'Resource', icon: 'fas fa-table', link: '/resource' },
+      { text: 'Navigation (BETA)', icon: 'fas fa-project-diagram', link: '/navigation' },
+      // { text: 'Statistics (TODO)', icon: 'fas fa-chart-pie', link: '/navigation' },
       { text: 'Feedback', icon: 'fas fa-comment-dots', link: '/feedback' }
-      // { text: 'TODO Admin', icon: 'fas fa-user-shield', link: '/admin'},
+      // { text: 'Admin (TODO)', icon: 'fas fa-user-shield', link: '/admin'},
     ]
   }),
   mounted: async function () {

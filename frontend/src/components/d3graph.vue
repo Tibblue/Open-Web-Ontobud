@@ -1,16 +1,10 @@
 <template>
   <div>
-    <!-- <h2 class='text-center'>Graph in D3</h2> -->
-    <v-card outlined id='container' class='svg-container'>
+    <v-card outlined id='container' :style='svgContainerCSS'>
       <svg id='d3svg' class='svg-content'>
         {{drawGraph}}
       </svg>
     </v-card>
-    <!-- <v-row>
-      <v-col cols='12'><h2 class="text-center">{{elem}}</h2></v-col>
-      <v-col cols='3'><p>{{parseResults.nodes}}</p></v-col>
-      <v-col cols='9'><p>{{parseResults.links}}</p></v-col>
-    </v-row> -->
   </div>
 </template>
 
@@ -64,24 +58,67 @@ export default {
     }
   },
   computed: {
+    svgContainerCSS () {
+      const paddingBottom = (this.svgSize.ratio * 100).toString() + '%'
+      return {
+        display: 'inline-block',
+        position: 'relative',
+        width: '100%',
+        'padding-bottom': paddingBottom,
+        'vertical-align': 'top',
+        overflow: 'hidden'
+      }
+    },
+    svgSize: function () {
+      var width = 800 // default: 800
+      var height = 400 // default: 400
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          width = 400
+          height = 600
+          break
+        case 'sm':
+          width = 500
+          height = 600
+          break
+        case 'md':
+          width = 600
+          height = 600
+          break
+        case 'lg':
+          width = 800
+          height = 600
+          break
+        case 'xl':
+          width = 1200
+          height = 600
+          break
+      }
+      var ratio = height / width // default: 50%
+      // console.log(width, height, ratio)
+      return { width, height, ratio }
+    },
     parseResults () {
-      // console.log('parsing...')
       // console.log(this.elem)
       // console.log(this.results)
-
       var nodes = []
-      // nodes.push({ id: this.elem, group: 0 })
       var nodesAux = {}
       nodesAux[this.elem] = 0
 
       this.results.forEach(elem => {
-        // TODO: needs improvements
-        // TODO check type (uri/literal)
+        // FIXME: needs improvements
+        // FIXME: double check Literals for bugs
         if (elem.subject) {
-          if (!nodesAux[elem.subject.value]) nodesAux[elem.subject.value] = 1
+          if (!nodesAux[elem.subject.value]) {
+            if (elem.subject.type === 'uri') nodesAux[elem.subject.value] = 1
+            else nodesAux[elem.subject.value] = 2
+          }
         }
         if (elem.object) {
-          if (!nodesAux[elem.object.value]) nodesAux[elem.object.value] = 1
+          if (!nodesAux[elem.object.value]) {
+            if (elem.object.type === 'uri') nodesAux[elem.object.value] = 1
+            else nodesAux[elem.object.value] = 2
+          }
         }
       })
       for (const id in nodesAux) {
@@ -91,7 +128,7 @@ export default {
 
       var links = []
       this.results.forEach(elem => {
-        // TODO: needs improvements
+        // FIXME: needs improvements
         var source = this.elem
         var target = this.elem
         if (elem.subject) source = elem.subject.value
@@ -102,21 +139,25 @@ export default {
       return { nodes, links }
     },
     drawGraph () {
-      // console.log('draw graph')
       var results = this.parseResults
       var nodes = results.nodes
       var links = results.links
 
+      var svgSize = this.svgSize
+      const width = svgSize.width
+      const height = svgSize.height
+
       const simulation = d3.forceSimulation(nodes)
-        .force('center', d3.forceCenter(this.width / 2, this.height / 2))
+        .force('center', d3.forceCenter(width / 2, height / 2))
         .force('collide', d3.forceCollide(this.nodeRadius).strength(this.collisionStrength))
         .force('link', d3.forceLink(links).id(d => d.id).distance(this.linkDistance))
         .force('charge', d3.forceManyBody())
+        // TODO: add click for navigation
+        // TODO: add scrool zoom
 
       const svg = d3.select('#d3svg')
-        .attr('preserveAspectRatio', 'xMinYMin slice')
-        // TODO maybe swap altura e largura no tel pra ficar melhor
-        .attr('viewBox', `0 0 ${this.width} ${this.height}`)
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('viewBox', `0 0 ${width} ${height}`)
 
       // clear existing svg content (prevents redraw overlap)
       svg.selectAll('*').remove()
@@ -162,15 +203,14 @@ export default {
 </script>
 
 <style>
-.svg-container {
+/* .svg-container {
   display: inline-block;
   position: relative;
   width: 100%;
-  /* TODO: fazer um padding dinamico dependendo da largura e altura */
   padding-bottom: 50%;
   vertical-align: top;
   overflow: hidden;
-}
+} */
 .svg-content {
   display: inline-block;
   position: absolute;

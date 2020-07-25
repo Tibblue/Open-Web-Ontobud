@@ -215,8 +215,8 @@ export default {
   },
   computed: {
     expansionPanelCSS () {
-      var primaryColor
-      if (this.$vuetify.theme.dark) { primaryColor = '#2196F3' } else { primaryColor = '#1976D2' }
+      var primaryColor = '#1976D2' // default white theme
+      if (this.$vuetify.theme.dark) primaryColor = '#2196F3'
       return {
         '--primary-color': primaryColor
       }
