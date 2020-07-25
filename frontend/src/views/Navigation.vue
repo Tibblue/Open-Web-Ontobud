@@ -66,10 +66,6 @@
           :results="subjectResults.concat(objectResults)"
         />
       </v-col>
-      <!-- <p>{{table.subjectResults}}</p> -->
-      <!-- <p>{{subjectResults}}</p> -->
-      <!-- <p>{{table.objectResults}}</p> -->
-      <!-- <p>{{objectResults}}</p> -->
 
       <v-col cols="12">
         <v-tabs grow background-color="darken-1 primary"
@@ -213,8 +209,8 @@ export default {
   }),
   mounted: async function () {
     try {
-      this.namespace = this.uri.split('#')[0]
-      this.resource = this.uri.split('#')[1]
+      this.namespace = this.$route.query.uri.split('#')[0]
+      this.resource = this.$route.query.uri.split('#')[1]
     } catch {}
     switch (this.$route.query.position) {
       case 'subject':
@@ -231,6 +227,7 @@ export default {
         break
     }
     this.getNamespaces(this.$session.get('repoID'))
+    this.updateResults()
   },
   computed: {
     $repo: {
@@ -255,12 +252,12 @@ export default {
       // usar this.uri aqui faz milagres. sei vagamente pk mas...
       if (this.namespaceON) {
         if (this.prefixON) {
-          var namespace = this.uri.split('#')[0] + '#'
+          var namespace = this.$route.query.uri.split('#')[0] + '#'
           var prefix = this.namespaces[namespace] || namespace
-          var resource = this.uri.split('#')[1] || ''
+          var resource = this.$route.query.uri.split('#')[1] || ''
           return prefix + resource
-        } else { return this.uri }
-      } else { return this.uri.split('#')[1] }
+        } else { return this.$route.query.uri }
+      } else { return this.$route.query.uri.split('#')[1] }
     },
     subjectResults: function () {
       var results = []
@@ -338,8 +335,8 @@ export default {
       this.updateResults()
     },
     editCancel () {
-      this.namespace = this.uri.split('#')[0]
-      this.resource = this.uri.split('#')[1]
+      this.namespace = this.$route.query.uri.split('#')[0]
+      this.resource = this.$route.query.uri.split('#')[1]
       this.editing = false
     },
     goToGraph (resource) {
