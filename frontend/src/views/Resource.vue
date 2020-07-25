@@ -57,7 +57,7 @@
       </v-col>
       <v-col cols="12" md="12">
         <v-btn block color="primary" @click="goToGraph()">
-          Open Graph
+          Open Navigation Graph
         </v-btn>
       </v-col>
       <v-col cols="12">

@@ -55,7 +55,11 @@
           @change="updateResults()"
         ></v-checkbox>
       </v-col>
-
+      <v-col cols="12" md="12">
+        <v-btn block color="primary" @click="goToResource()">
+          Open Resource Table
+        </v-btn>
+      </v-col>
       <v-col cols="12" class="pb-0">
         <d3graph ref="d3graph"
           :elem="resourceTableURI"
@@ -343,8 +347,8 @@ export default {
       this.resource = this.$route.query.uri.split('#')[1]
       this.editing = false
     },
-    goToGraph (resource) {
-      this.$router.push({ path: 'navigation', query: { uri: this.$route.query.uri } })
+    goToResource (resource) {
+      this.$router.push({ path: 'resource', query: { uri: this.$route.query.uri } })
     },
     cellClicked (cellInfo) {
       if (cellInfo.type === 'uri') {
