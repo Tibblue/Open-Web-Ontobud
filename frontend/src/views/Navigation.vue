@@ -56,18 +56,14 @@
         ></v-checkbox>
       </v-col>
 
-      <v-col cols="12">
-        <!-- <d3graph ref="d3graph"
-          :elem="resourceTableURI"
-          :results="subjectResults"
-        /> -->
+      <v-col cols="12" class="pb-0">
         <d3graph ref="d3graph"
           :elem="resourceTableURI"
-          :results="subjectResults.concat(objectResults)"
+          :results="graphResults"
         />
       </v-col>
 
-      <v-col cols="12">
+      <!-- <v-col cols="12">
         <v-tabs grow background-color="darken-1 primary"
           :value="this.activeTab"
         >
@@ -160,7 +156,7 @@
             </v-data-table>
           </v-tab-item>
         </v-tabs>
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -312,6 +308,14 @@ export default {
         results.push(elemAux)
       })
       return results
+    },
+    graphResults () {
+      // var graphResults = this.subjectResults
+      // var graphResults = this.predicateResults
+      // var graphResults = this.objectResults
+      // var graphResults = this.subjectResults.concat(this.objectResults)
+      var graphResults = this.subjectResults.concat(this.objectResults).concat(this.predicateResults)
+      return graphResults
     }
   },
   methods: {
@@ -350,20 +354,19 @@ export default {
     },
     updateResults () {
       if (this.$route.query.uri !== undefined) {
-        // console.log('starting requests')
-        // FIXME: currently is doing the request twice IDK WHY
-        Promise.all([
-          this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON),
-          this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON),
-          this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-        ]).then(result => {
-          console.log(result)
-          this.$refs.d3graph.drawGraph()
-          // console.log('requests done')
-        }).catch(error => {
-          console.log('requests failed')
-          console.log(error)
-        })
+        this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        // Promise.all([
+        //   this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON),
+        //   this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON),
+        //   this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        // ]).then(result => {
+        //   // console.log('requests done')
+        // }).catch(error => {
+        //   console.log('requests failed')
+        //   console.log(error)
+        // })
       }
     },
     async getSubjectResults (repoID, resource, infer) {
