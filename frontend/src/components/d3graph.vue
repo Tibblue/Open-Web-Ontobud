@@ -2,8 +2,10 @@
   <div>
     <h2 class='text-center'>Graph in D3</h2>
     <svg id='graph'></svg>
+    <p>{{nodes}}</p>
+    <p>{{links}}</p>
     <h2>{{elem}}</h2>
-    <h3>{{results}}</h3>
+    <!-- <p>{{results}}</p> -->
   </div>
 </template>
 
@@ -19,32 +21,32 @@ export default {
       height: 400,
       width: 800,
       // width: this.graphSize(),
-      nodeRadius: 10
+      collisionStrength: 0.7,
+      nodeRadius: 30,
+      linkDistance: 100
     }
   },
   mounted () {
-    this.fetchData()
-      .then(result => this.drawGraph())
-      // .catch(error => console.log(error))
   },
   methods: {
-    async fetchData () {
-      this.graph = await d3.json('./miserables.json')
-      return this.graph
-    },
     drawGraph () {
-      const nodes = this.graph.nodes.map(d => Object.create(d))
-      const links = this.graph.links.map(d => Object.create(d))
+      // const nodes = this.graph.nodes.map(d => Object.create(d))
+      // const links = this.graph.links.map(d => Object.create(d))
+      const nodes = this.nodes
+      const links = this.links
 
       const simulation = d3.forceSimulation(nodes)
         .force('center', d3.forceCenter(this.width / 2, this.height / 2))
-        .force('link', d3.forceLink(links).id(d => d.id))
+        .force('collide', d3.forceCollide(this.nodeRadius).strength(this.collisionStrength))
+        .force('link', d3.forceLink(links).id(d => d.id).distance(this.linkDistance))
         .force('charge', d3.forceManyBody())
-        .force('collide', d3.forceCollide(this.nodeRadius))
 
       const svg = d3.select('#graph')
         .attr('height', this.height)
         .attr('width', this.width)
+
+      // clear existing graph (prevents redraw overlap)
+      svg.selectAll('*').remove()
 
       const link = svg.append('g')
         .attr('stroke', '#999')
@@ -112,30 +114,46 @@ export default {
       // console.log(d3.schemeCategory10[d.group])
       return d3.schemeCategory10[d.group]
     }
+  },
+  computed: {
+    nodes: function () {
+      var nodes = []
+      // nodes.push({ id: this.elem, group: 0 })
+      var nodesAux = {}
+      nodesAux[this.elem] = 0
+
+      this.results.forEach(elem => {
+        // TODO: needs improvements
+        // TODO check type (uri/literal)
+        if (elem.subject) {
+          if (!nodesAux[elem.subject.value]) nodesAux[elem.subject.value] = 1
+        }
+        if (elem.object) {
+          if (!nodesAux[elem.object.value]) nodesAux[elem.object.value] = 1
+        }
+      })
+
+      for (const id in nodesAux) {
+        const value = nodesAux[id]
+        nodes.push({ id: id, group: value })
+      }
+      return nodes
+    },
+    links: function () {
+      var links = []
+      // links.push({ id: this.elem, group: 0 })
+
+      this.results.forEach(elem => {
+        // TODO: needs improvements
+        var source = this.elem
+        var target = this.elem
+        if (elem.subject) source = elem.subject.value
+        if (elem.object) target = elem.object.value
+        links.push({ source: source, target: target, value: 3 })
+      })
+
+      return links
+    }
   }
-  // computed: {
-  //   graphSize: function () {
-  //     var width = 1000 // default
-  //     switch (this.$vuetify.breakpoint.name) {
-  //       case 'xs':
-  //         width = 200
-  //         break
-  //       case 'sm':
-  //         width = 400
-  //         break
-  //       case 'md':
-  //         width = 800
-  //         break
-  //       case 'lg':
-  //         width = 1000
-  //         break
-  //       case 'xl':
-  //         width = 1200
-  //         break
-  //     }
-  //     console.log(width)
-  //     return width
-  //   }
-  // }
 }
 </script>

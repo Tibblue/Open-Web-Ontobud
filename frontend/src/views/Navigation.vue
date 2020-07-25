@@ -57,7 +57,14 @@
       </v-col>
 
       <v-col cols="12">
-        <d3graph :elem="resourceTableURI" :results="subjectResults"/>
+        <!-- <d3graph ref="d3graph"
+          :elem="resourceTableURI"
+          :results="subjectResults"
+        /> -->
+        <d3graph ref="d3graph"
+          :elem="resourceTableURI"
+          :results="subjectResults.concat(objectResults)"
+        />
       </v-col>
       <!-- <p>{{table.subjectResults}}</p> -->
       <!-- <p>{{subjectResults}}</p> -->
@@ -239,6 +246,7 @@ export default {
       return backendURL
     },
     uri: function () {
+      // this update is making graph update twice. IDK WHY
       this.updateResults()
       // return this.namespace + '#' + this.resource
       return this.$route.query.uri
@@ -345,12 +353,23 @@ export default {
     },
     updateResults () {
       if (this.$route.query.uri !== undefined) {
-        this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-        this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
-        this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        // console.log('starting requests')
+        // FIXME: currently is doing the request twice IDK WHY
+        Promise.all([
+          this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON),
+          this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON),
+          this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
+        ]).then(result => {
+          console.log(result)
+          this.$refs.d3graph.drawGraph()
+          // console.log('requests done')
+        }).catch(error => {
+          console.log('requests failed')
+          console.log(error)
+        })
       }
     },
-    getSubjectResults (repoID, resource, infer) {
+    async getSubjectResults (repoID, resource, infer) {
       this.loading.subject = true
       const url = this.backendURL + '/api/rdf4j/query/' + repoID
       const query = 'select * where { <' + resource + '> ?predicate ?object }'
@@ -376,7 +395,7 @@ export default {
           this.loading.subject = false
         })
     },
-    getPredicateResults (repoID, resource, infer) {
+    async getPredicateResults (repoID, resource, infer) {
       this.loading.predicate = true
       const url = this.backendURL + '/api/rdf4j/query/' + repoID
       const query = 'select * where { ?subject <' + resource + '> ?object }'
@@ -402,7 +421,7 @@ export default {
           this.loading.predicate = false
         })
     },
-    getObjectResults (repoID, resource, infer) {
+    async getObjectResults (repoID, resource, infer) {
       this.loading.object = true
       const url = this.backendURL + '/api/rdf4j/query/' + repoID
       const query = 'select * where { ?subject ?predicate <' + resource + '> }'
