@@ -122,6 +122,7 @@
       </v-list-item-icon>
     </v-list-item> -->
 
+    <img :src="`${publicPath}favicon sources/faviconOntobud1.ico`">
     <v-list-item @click="goToBackend()">
       <v-list-item-icon class="my-3">
         <v-icon>mdi-api</v-icon>
@@ -203,6 +204,7 @@ export default {
     changeBackendURL
   },
   data: () => ({
+    publicPath: process.env.BASE_URL,
     owo: 'OwO',
     dialog_backendURL: false,
     sidebarVisible: false,
