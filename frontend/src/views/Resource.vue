@@ -221,6 +221,7 @@ export default {
     }
   }),
   mounted: async function () {
+    this.getNamespaces(this.$session.get('repoID'))
     try {
       this.namespace = this.uri.split('#')[0]
       this.resource = this.uri.split('#')[1]
@@ -239,7 +240,6 @@ export default {
         this.activeTab = 0
         break
     }
-    this.getNamespaces(this.$session.get('repoID'))
   },
   computed: {
     $repo: {
@@ -329,9 +329,12 @@ export default {
     getNamespaces (repoID) {
       axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
+          var namespacesAux = {}
           response.data.forEach(elem => {
-            this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
+            const prefix = elem.prefix.value + ':'
+            namespacesAux[elem.namespace.value] = prefix
           })
+          this.namespaces = namespacesAux
         })
         .catch(alert => {
           this.namespaces = {}

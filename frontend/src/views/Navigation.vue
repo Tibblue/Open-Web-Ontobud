@@ -66,101 +66,6 @@
           :results="graphResults"
         />
       </v-col>
-
-      <!-- <v-col cols="12">
-        <v-tabs grow background-color="darken-1 primary"
-          :value="this.activeTab"
-        >
-          <v-tab>Subject</v-tab>
-          <v-tab>Predicate</v-tab>
-          <v-tab>Object</v-tab>
-
-          <v-tab-item>
-            <v-data-table
-              :headers="table.headers"
-              :items="subjectResults"
-              :items-per-page="10"
-              :loading="loading.subject"
-            >
-              <template v-slot:item="props">
-                <tr>
-                  <td>
-                    <b>{{resourceTableURI}}</b>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    <span v-if="props.item[table.headers[1].text].type==='uri'">
-                      <u>{{props.item[table.headers[1].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[1].text].value}}</span>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    <span v-if="props.item[table.headers[2].text].type==='uri'">
-                      <u>{{props.item[table.headers[2].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[2].text].value}}</span>
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-tab-item>
-          <v-tab-item>
-            <v-data-table
-              :headers="table.headers"
-              :items="predicateResults"
-              :items-per-page="10"
-              :loading="loading.predicate"
-            >
-              <template v-slot:item="props">
-                <tr>
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    <span v-if="props.item[table.headers[0].text].type==='uri'">
-                      <u>{{props.item[table.headers[0].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[0].text].value}}</span>
-                  </td>
-                  <td>
-                    <b>{{resourceTableURI}}</b>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    <span v-if="props.item[table.headers[2].text].type==='uri'">
-                      <u>{{props.item[table.headers[2].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[2].text].value}}</span>
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-tab-item>
-          <v-tab-item>
-            <v-data-table
-              :headers="table.headers"
-              :items="objectResults"
-              :items-per-page="10"
-              :loading="loading.object"
-            >
-              <template v-slot:item="props">
-                <tr>
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    <span v-if="props.item[table.headers[0].text].type==='uri'">
-                      <u>{{props.item[table.headers[0].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[0].text].value}}</span>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    <span v-if="props.item[table.headers[1].text].type==='uri'">
-                      <u>{{props.item[table.headers[1].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[1].text].value}}</span>
-                  </td>
-                  <td>
-                    <b>{{resourceTableURI}}</b>
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-tab-item>
-        </v-tabs>
-      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -208,6 +113,8 @@ export default {
     }
   }),
   mounted: async function () {
+    this.getNamespaces(this.$session.get('repoID'))
+    this.updateResults()
     try {
       this.namespace = this.$route.query.uri.split('#')[0]
       this.resource = this.$route.query.uri.split('#')[1]
@@ -226,8 +133,6 @@ export default {
         this.activeTab = 0
         break
     }
-    this.getNamespaces(this.$session.get('repoID'))
-    this.updateResults()
   },
   computed: {
     $repo: {
@@ -326,9 +231,12 @@ export default {
     getNamespaces (repoID) {
       axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
+          var namespacesAux = {}
           response.data.forEach(elem => {
-            this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
+            const prefix = elem.prefix.value + ':'
+            namespacesAux[elem.namespace.value] = prefix
           })
+          this.namespaces = namespacesAux
         })
         .catch(alert => {
           this.namespaces = {}
