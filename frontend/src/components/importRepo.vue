@@ -30,11 +30,11 @@
       <v-btn :loading="loading.importFile" block color="success" @click="importRepoFile($repo.id,fileTypeSelected,importFile,addORreplaceSelected)">
         Import Repo (File)
       </v-btn>
-      <v-alert text dismissible type="success" v-model="alert.importFileSuccess">
-        File Import Successful!!! Updated {{ $repo.name }}
-      </v-alert>
-      <v-alert text dismissible type="error" v-model="alert.importFileFail">
-        File Import Failed... Not Updated {{ $repo.name }}
+      <v-alert text dismissible
+        v-model="alert.importFile.visible"
+        :type="alert.importFile.color"
+      >
+        {{ alert.importFile.message }}
       </v-alert>
     </v-col>
     <v-col cols="12">
@@ -46,11 +46,11 @@
       <v-btn :loading="loading.importText" block color="success" @click="importRepoText($repo.id,fileTypeSelected,importText,addORreplaceSelected)">
         Import Repo (Input Text)
       </v-btn>
-      <v-alert text dismissible type="success" v-model="alert.importTextSuccess">
-        Text Import Successful!!! Updated {{ $repo.name }}
-      </v-alert>
-      <v-alert text dismissible type="error" v-model="alert.importTextFail">
-        Text Import Failed... Not Updated {{ $repo.name }}
+      <v-alert text dismissible
+        v-model="alert.importText.visible"
+        :type="alert.importText.color"
+      >
+        {{ alert.importText.message }}
       </v-alert>
     </v-col>
   </v-row>
@@ -81,10 +81,18 @@ export default {
       importText: false
     },
     alert: {
-      importFileSuccess: false,
-      importFileFail: false,
       importTextSuccess: false,
-      importTextFail: false
+      importTextFail: false,
+      importFile: {
+        visible: false,
+        color: 'warning',
+        message: ''
+      },
+      importText: {
+        visible: false,
+        color: 'warning',
+        message: ''
+      }
     }
   }),
   computed: {
@@ -106,104 +114,91 @@ export default {
       this.loading.importFile = true
       var url = this.backendURL + '/api/rdf4j/management/importFile/' + repoID
       var data = file
-      var config = {
-        headers: { 'Content-Type': 'text/turtle' },
-        maxContentLength: Infinity,
-        maxBodyLength: Infinity
-      }
+      var headers = { 'Content-Type': 'text/turtle' }
       switch (fileType) {
         case 'ttl':
-          config.headers = { 'Content-Type': 'text/turtle' }
+          headers['Content-Type'] = 'text/turtle'
           break
         case 'rdf-xml':
-          config.headers = { 'Content-Type': 'application/xml' }
+          headers['Content-Type'] = 'application/xml'
           break
         case 'txt':
-          config.headers = { 'Content-Type': 'text/plain' }
+          headers['Content-Type'] = 'text/plain'
           break
         default:
+          headers['Content-Type'] = 'text/turtle'
       }
-      if (addORreplace === 'add') {
-        axios.post(url, data, config)
-          .then(response => {
-            this.alert.importFileSuccess = true
-            this.alert.importFileFail = false
-          })
-          .catch(error => {
-            console.log(error)
-            this.alert.importFileFail = true
-            this.alert.importFileSuccess = false
-          })
-          .finally(() => {
-            this.loading.importFile = false
-          })
-      } else {
-        axios.put(url, data, config)
-          .then(response => {
-            this.alert.importFileSuccess = true
-            this.alert.importFileFail = false
-          })
-          .catch(error => {
-            console.log(error)
-            this.alert.importFileFail = true
-            this.alert.importFileSuccess = false
-          })
-          .finally(() => {
-            this.loading.importFile = false
-          })
-      }
+      var method
+      if (addORreplace === 'add') method = 'post'
+      else method = 'put'
+
+      axios({
+        method,
+        url,
+        data,
+        headers,
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+      })
+        .then(response => {
+          this.alert.importFile.visible = true
+          this.alert.importFile.color = 'success'
+          this.alert.importFile.message = 'File Import Successful!!!'
+        })
+        .catch(error => {
+          // console.log(error)
+          this.alert.importFile.visible = true
+          this.alert.importFile.color = 'error'
+          this.alert.importFile.message = 'File Import Failed... \n' + error.response.data
+        })
+        .finally(() => {
+          this.loading.importFile = false
+        })
     },
     importRepoText (repoID, fileType, input, addORreplace) {
       this.loading.importText = true
       var url = this.backendURL + '/api/rdf4j/management/importText/' + repoID
       var data = input
-      var config = {
-        headers: { 'Content-Type': 'text/turtle' },
-        maxContentLength: Infinity,
-        maxBodyLength: Infinity
-      }
+      var headers = { 'Content-Type': 'text/turtle' }
       switch (fileType) {
         case 'ttl':
-          config.headers = { 'Content-Type': 'text/turtle' }
+          headers['Content-Type'] = 'text/turtle'
           break
         case 'rdf-xml':
-          config.headers = { 'Content-Type': 'application/xml' }
+          headers['Content-Type'] = 'application/xml'
           break
         case 'txt':
-          config.headers = { 'Content-Type': 'text/plain' }
+          headers['Content-Type'] = 'text/plain'
           break
         default:
+          headers['Content-Type'] = 'text/turtle'
       }
-      // headers = { 'headers': { "Content-Type": "application/x-turtle" }}
-      if (addORreplace === 'add') {
-        axios.post(url, data, config)
-          .then(response => {
-            this.alert.importTextSuccess = true
-            this.alert.importTextFail = false
-          })
-          .catch(error => {
-            console.log(error)
-            this.alert.importTextFail = true
-            this.alert.importTextSuccess = false
-          })
-          .finally(() => {
-            this.loading.importText = false
-          })
-      } else {
-        axios.put(url, data, config)
-          .then(response => {
-            this.alert.importTextSuccess = true
-            this.alert.importTextFail = false
-          })
-          .catch(error => {
-            console.log(error)
-            this.alert.importTextFail = true
-            this.alert.importTextSuccess = false
-          })
-          .finally(() => {
-            this.loading.importText = false
-          })
-      }
+      var method
+      if (addORreplace === 'add') method = 'post'
+      else method = 'put'
+
+      axios({
+        method,
+        url,
+        data,
+        headers,
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
+      })
+        .then(response => {
+          this.alert.importText.visible = true
+          this.alert.importText.color = 'success'
+          this.alert.importText.message = 'Text Import Successful!!!'
+        })
+        .catch(error => {
+          // console.log(error)
+          this.alert.importText.visible = true
+          this.alert.importText.color = 'error'
+          this.alert.importText.message = 'Text Import Failed... \n' + error.response.data
+        })
+        .finally(() => {
+          this.loading.importText = false
+        })
     }
   }
 }
