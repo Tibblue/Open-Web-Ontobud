@@ -19,25 +19,42 @@
       ></v-checkbox>
     </v-col>
     <v-col cols="12">
-      <v-btn :loading="loading.exportFile" block color="success" @click="exportRepoFile($repo.id,fileTypeSelected,infer)" class="mt-3">
-        Export Repo (Download File)
-      </v-btn>
-      <v-alert text dismissible type="error" v-model="alert.exportFileFail">
-        File Export Failed...
-      </v-alert>
-    </v-col>
-    <v-col cols="12">
-      <v-btn :loading="loading.exportText" block color="success" @click="exportRepoText($repo.id,fileTypeSelected,infer)">
-        Export Repo (InScreen Text)
-      </v-btn>
-      <v-alert text dismissible type="error" v-model="alert.exportTextFail">
-        Text Export Failed...
-      </v-alert>
-      <v-textarea outlined auto-grow readonly hide-details class="mt-3"
-        v-model="exportResponse"
-        label="InScreen Text"
-        placeholder="InScreen Text"
-        ></v-textarea>
+      <v-tabs grow background-color="darken-3 green" color="white">
+        <v-tab>Export File</v-tab>
+        <v-tab>Export Raw Text</v-tab>
+
+        <v-tab-item>
+          <v-col cols="12">
+            <v-btn block color="success"
+              :loading="loading.exportFile"
+              @click="exportRepoFile($repo.id,fileTypeSelected,infer)" class="mt-3"
+            >
+              Export File (Download File)
+            </v-btn>
+            <v-alert text dismissible type="error" v-model="alert.exportFileFail">
+              File Export Failed...
+            </v-alert>
+          </v-col>
+        </v-tab-item>
+        <v-tab-item>
+          <v-col cols="12">
+            <v-btn block color="success"
+              :loading="loading.exportText"
+              @click="exportRepoText($repo.id,fileTypeSelected,infer)"
+            >
+              Export Raw Text
+            </v-btn>
+            <v-alert text dismissible type="error" v-model="alert.exportTextFail">
+              Text Export Failed...
+            </v-alert>
+            <v-textarea outlined readonly hide-details class="mt-3"
+              v-model="exportRawText"
+              label="Raw Text"
+              placeholder="Raw Text"
+            ></v-textarea>
+          </v-col>
+        </v-tab-item>
+      </v-tabs>
     </v-col>
   </v-row>
 </template>
@@ -57,7 +74,7 @@ export default {
       { text: 'Plain Text', value: 'txt' }
     ],
     infer: true,
-    exportResponse: '',
+    exportRawText: '',
     loading: {
       exportFile: false,
       exportText: false
@@ -130,7 +147,7 @@ export default {
       axios.get(url, headers)
         .then(response => {
           // FIXME: needs visual upgrades
-          this.exportResponse = response.data
+          this.exportRawText = response.data
         })
         .catch(alert => {
           this.alert.exportTextFail = true

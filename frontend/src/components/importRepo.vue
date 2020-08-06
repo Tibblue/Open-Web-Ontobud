@@ -23,35 +23,52 @@
       </v-radio-group>
     </v-col>
     <v-col cols="12">
-      <v-file-input outlined show-size clearable hide-details class="my-2"
-        v-model="importFile"
-        label="File to Import (max 200MB)"
-      ></v-file-input>
-      <v-btn :loading="loading.importFile" block color="success" @click="importRepoFile($repo.id,fileTypeSelected,importFile,addORreplaceSelected)">
-        Import Repo (File)
-      </v-btn>
-      <v-alert text dismissible
-        v-model="alert.importFile.visible"
-        :type="alert.importFile.color"
-      >
-        {{ alert.importFile.message }}
-      </v-alert>
-    </v-col>
-    <v-col cols="12">
-      <v-textarea outlined hide-details class="mb-2 mt-1"
-        v-model="importText"
-        label="Import Text"
-        placeholder="Import Text"
-      ></v-textarea>
-      <v-btn :loading="loading.importText" block color="success" @click="importRepoText($repo.id,fileTypeSelected,importText,addORreplaceSelected)">
-        Import Repo (Input Text)
-      </v-btn>
-      <v-alert text dismissible
-        v-model="alert.importText.visible"
-        :type="alert.importText.color"
-      >
-        {{ alert.importText.message }}
-      </v-alert>
+      <v-tabs grow background-color="darken-3 green" color="white">
+        <v-tab>Import File</v-tab>
+        <v-tab>Import Raw Text</v-tab>
+
+        <v-tab-item>
+          <v-col cols="12">
+            <v-file-input outlined show-size clearable hide-details class="my-2"
+              v-model="file"
+              label="File to Import (max 200MB)"
+            ></v-file-input>
+            <v-btn block color="success"
+              :loading="loading.importFile"
+              @click="importRepoFile($repo.id,fileTypeSelected,file,addORreplaceSelected)"
+            >
+              Import File
+            </v-btn>
+            <v-alert text dismissible class="my-2"
+              v-model="alert.importFile.visible"
+              :type="alert.importFile.color"
+            >
+              {{ alert.importFile.message }}
+            </v-alert>
+          </v-col>
+        </v-tab-item>
+        <v-tab-item>
+          <v-col cols="12">
+            <v-textarea outlined hide-details class="mb-2 mt-1"
+              v-model="rawText"
+              label="Raw Text"
+              placeholder="Raw Text"
+            ></v-textarea>
+            <v-btn block color="success"
+              :loading="loading.importText"
+              @click="importRepoText($repo.id,fileTypeSelected,rawText,addORreplaceSelected)"
+            >
+              Import Raw Text
+            </v-btn>
+            <v-alert text dismissible class="my-2"
+              v-model="alert.importText.visible"
+              :type="alert.importText.color"
+            >
+              {{ alert.importText.message }}
+            </v-alert>
+          </v-col>
+        </v-tab-item>
+      </v-tabs>
     </v-col>
   </v-row>
 </template>
@@ -74,8 +91,8 @@ export default {
       { text: 'Add to Ontology', value: 'add' },
       { text: 'Replace Ontology', value: 'replace' }
     ],
-    importFile: undefined,
-    importText: '',
+    file: undefined,
+    rawText: '',
     loading: {
       importFile: false,
       importText: false
@@ -155,10 +172,10 @@ export default {
           this.loading.importFile = false
         })
     },
-    importRepoText (repoID, fileType, input, addORreplace) {
+    importRepoText (repoID, fileType, rawText, addORreplace) {
       this.loading.importText = true
       var url = this.backendURL + '/api/rdf4j/management/importText/' + repoID
-      var data = input
+      var data = rawText
       var headers = { 'Content-Type': 'text/turtle' }
       switch (fileType) {
         case 'ttl':
