@@ -25,9 +25,14 @@
 
         <v-tab-item>
           <v-col cols="12">
+            <v-text-field outlined clearable hide-details class="my-2"
+              prepend-icon="fas fa-paperclip"
+              v-model="exportFileName"
+              label="Filename (Defaults to Repo ID)"
+            ></v-text-field>
             <v-btn block color="success"
               :loading="loading.exportFile"
-              @click="exportRepoFile($repo.id,fileTypeSelected,infer)" class="mt-3"
+              @click="exportRepoFile($repo.id,fileTypeSelected,infer,exportFileName)"
             >
               Export File (Download File)
             </v-btn>
@@ -80,6 +85,7 @@ export default {
       { text: 'Plain Text', value: 'txt' }
     ],
     infer: true,
+    exportFileName: '',
     exportRawText: '',
     loading: {
       exportFile: false,
@@ -99,6 +105,9 @@ export default {
       }
     }
   }),
+  mounted () {
+    this.exportFileName = this.$repo.id
+  },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
@@ -114,7 +123,7 @@ export default {
     }
   },
   methods: {
-    exportRepoFile (repoID, fileType, infer) {
+    exportRepoFile (repoID, fileType, infer, filename) {
       this.loading.exportFile = true
       var url = this.backendURL + '/api/rdf4j/management/export/' + repoID
       var headers = {}
@@ -131,11 +140,12 @@ export default {
           break
         default:
       }
+      if (!filename) filename = this.$repo.id
       axios.get(url, headers)
         .then(response => {
           this.alert.exportFile.visible = false
           this.alert.exportFile.message = ''
-          FileDownload(response.data, 'exportRepository.' + fileType)
+          FileDownload(response.data, filename + '.' + fileType)
         })
         .catch(error => {
           this.alert.exportFile.visible = true
