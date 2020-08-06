@@ -122,7 +122,19 @@
       </v-list-item-icon>
     </v-list-item> -->
 
-    <img :src="`${publicPath}favicon sources/faviconOntobud1.ico`">
+    <!-- <img :src="`${publicPath}favicon sources/faviconOntobud1.ico`"> -->
+    <v-list-item @click="openManual()">
+      <v-list-item-icon class="my-3">
+        <v-icon>fas fa-book</v-icon>
+      </v-list-item-icon>
+      <v-list-item-content class="py-2">
+        <v-list-item-title class="title">
+          User Manual&nbsp;
+          <v-icon>mdi-open-in-new</v-icon>
+          (BETA)
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
     <v-list-item @click="goToBackend()">
       <v-list-item-icon class="my-3">
         <v-icon>mdi-api</v-icon>
@@ -279,6 +291,10 @@ export default {
     goToBackend: function () {
       // window.open("http://epl.di.uminho.pt:8001");
       window.open('http://' + this.$store.state.$backurl.host + ':' + this.$store.state.$backurl.port)
+    },
+    openManual: function () {
+      const publicPath = process.env.BASE_URL
+      window.open(publicPath + 'manual/Open_Web_Ontobud___Manual.pdf')
     },
     swapDarkMode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
