@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <v-btn :loading="loading.clear" block color="warning" @click="clearStatements($repo.id)">
+      <v-btn :loading="loading.clear" block color="error" @click="clearStatements($repo.id)">
         Clear ALL Repo Statements
       </v-btn>
       <v-alert text dismissible type="success" v-model="alert.clearSuccess">

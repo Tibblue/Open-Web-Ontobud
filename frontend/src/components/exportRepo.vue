@@ -19,7 +19,7 @@
       ></v-checkbox>
     </v-col>
     <v-col cols="12">
-      <v-tabs grow background-color="darken-3 green" color="white">
+      <v-tabs grow background-color="darken-1 green" color="white">
         <v-tab>Export File</v-tab>
         <v-tab>Export Raw Text</v-tab>
 
@@ -31,8 +31,11 @@
             >
               Export File (Download File)
             </v-btn>
-            <v-alert text dismissible type="error" v-model="alert.exportFileFail">
-              File Export Failed...
+            <v-alert text dismissible class="my-2"
+              v-model="alert.exportFile.visible"
+              :type="alert.exportFile.color"
+            >
+              {{ alert.exportFile.message }}
             </v-alert>
           </v-col>
         </v-tab-item>
@@ -44,8 +47,11 @@
             >
               Export Raw Text
             </v-btn>
-            <v-alert text dismissible type="error" v-model="alert.exportTextFail">
-              Text Export Failed...
+            <v-alert text dismissible class="my-2"
+              v-model="alert.exportText.visible"
+              :type="alert.exportText.color"
+            >
+              {{ alert.exportText.message }}
             </v-alert>
             <v-textarea outlined readonly hide-details class="mt-3"
               v-model="exportRawText"
@@ -80,8 +86,17 @@ export default {
       exportText: false
     },
     alert: {
-      exportFileFail: false,
-      exportTextFail: false
+      exportTextFail: false,
+      exportFile: {
+        visible: false,
+        color: 'error',
+        message: ''
+      },
+      exportText: {
+        visible: false,
+        color: 'error',
+        message: ''
+      }
     }
   }),
   computed: {
@@ -118,10 +133,13 @@ export default {
       }
       axios.get(url, headers)
         .then(response => {
+          this.alert.exportFile.visible = false
+          this.alert.exportFile.message = ''
           FileDownload(response.data, 'exportRepository.' + fileType)
         })
-        .catch(alert => {
-          this.alert.exportFileFail = true
+        .catch(error => {
+          this.alert.exportFile.visible = true
+          this.alert.exportFile.message = 'File Export Failed... \n' + error.response.data
         })
         .finally(() => {
           this.loading.exportFile = false
@@ -146,11 +164,13 @@ export default {
       }
       axios.get(url, headers)
         .then(response => {
-          // FIXME: needs visual upgrades
+          this.alert.exportText.visible = false
+          this.alert.exportText.message = 'qwe'
           this.exportRawText = response.data
         })
-        .catch(alert => {
-          this.alert.exportTextFail = true
+        .catch(error => {
+          this.alert.exportText.visible = true
+          this.alert.exportText.message = 'Raw Text Export Failed... \n' + error.response.data
         })
         .finally(() => {
           this.loading.exportText = false

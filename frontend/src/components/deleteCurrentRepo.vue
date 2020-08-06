@@ -4,7 +4,7 @@
       <!-- <span>wow {{this.$session.get('repoID')}}</span> -->
       <v-dialog v-model="dialogDeleteRepo" max-width="600px">
         <template v-slot:activator="{ on }">
-          <v-btn block color="warning" v-on="on">
+          <v-btn block color="error" v-on="on">
             Delete Current Repo
           </v-btn>
         </template>

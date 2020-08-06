@@ -23,7 +23,7 @@
       </v-radio-group>
     </v-col>
     <v-col cols="12">
-      <v-tabs grow background-color="darken-3 green" color="white">
+      <v-tabs grow background-color="darken-1 green" color="white">
         <v-tab>Import File</v-tab>
         <v-tab>Import Raw Text</v-tab>
 
@@ -98,16 +98,14 @@ export default {
       importText: false
     },
     alert: {
-      importTextSuccess: false,
-      importTextFail: false,
       importFile: {
         visible: false,
-        color: 'warning',
+        color: 'error',
         message: ''
       },
       importText: {
         visible: false,
-        color: 'warning',
+        color: 'error',
         message: ''
       }
     }
@@ -205,13 +203,13 @@ export default {
         .then(response => {
           this.alert.importText.visible = true
           this.alert.importText.color = 'success'
-          this.alert.importText.message = 'Text Import Successful!!!'
+          this.alert.importText.message = 'Raw Text Import Successful!!!'
         })
         .catch(error => {
           // console.log(error)
           this.alert.importText.visible = true
           this.alert.importText.color = 'error'
-          this.alert.importText.message = 'Text Import Failed... \n' + error.response.data
+          this.alert.importText.message = 'Raw Text Import Failed... \n' + error.response.data
         })
         .finally(() => {
           this.loading.importText = false
