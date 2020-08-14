@@ -1,16 +1,15 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <!-- <span>wow {{this.$session.get('repoID')}}</span> -->
       <v-dialog v-model="dialogDeleteRepo" max-width="600px">
         <template v-slot:activator="{ on }">
           <v-btn block color="error" v-on="on">
-            Delete Current Repo
+            Delete Current Repository
           </v-btn>
         </template>
         <v-card>
           <v-card-title>
-            <span class="headline">
+            <span class="text-h4">
               Please type the repository name below
             </span>
           </v-card-title>
@@ -55,6 +54,9 @@ import axios from 'axios'
 
 export default {
   data: () => ({
+    loading: {
+      delete: false
+    },
     deleteRepoIDConfirm: '',
     disableDialogConfirmDelete: true,
     alert: {
@@ -79,6 +81,7 @@ export default {
   },
   methods: {
     deleteCurrentRepo (repoID) {
+      this.loading.delete = true
       axios.delete(this.backendURL + '/api/rdf4j/management/delete/' + repoID)
         .then(response => {
           this.alert.deleteSuccess = true
@@ -90,6 +93,9 @@ export default {
         .catch(alert => {
           this.alert.deleteFail = true
           this.alert.deleteSuccess = false
+        })
+        .finally(() => {
+          this.loading.delete = false
         })
     },
     deleteConfirm (value) {
