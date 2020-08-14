@@ -2,6 +2,7 @@
   <v-container>
     <alerts/>
     <homepage v-bind="homepageProps" @changedCurrentRepo="updateCurrentRepo"/>
+    <v-divider class="my-2"></v-divider>
     <debug v-bind:props="debugProps"/>
   </v-container>
 </template>
@@ -25,7 +26,7 @@ export default {
   // },
   methods: {
     updateCurrentRepo (id, name) {
-      this.$emit('changedCurrentRepo', { id: id, name: name })
+      this.$emit('changedCurrentRepo', id, name)
     }
   },
   computed: {
