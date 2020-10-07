@@ -13,8 +13,26 @@ tagpush:
 	docker push tibblue/tese-backend:$(v)
 	# docker push tibblue/tese-rdf4j:$(v)
 
+
+
 runCompose:
 	docker-compose up
+
+restart:
+	docker container stop ontoworks_frontend_1 ontoworks_backend_1 ontoworks_rdf4j_1 ontoworks_mongo_1
+	docker-compose up -d
+
+stop:
+	docker container stop ontoworks_frontend_1 ontoworks_backend_1 ontoworks_rdf4j_1 ontoworks_mongo_1
+start:
+	docker-compose up -d
+
+pull:
+	docker pull tibblue/tese-frontend:latest
+	docker pull tibblue/tese-backend:latest
+	#docker pull tibblue/tese-rdf4j:latest
+
+
 
 debugRunMongo:
 	docker run -it --rm --name mongo -p 27017:27017 mongo:latest
