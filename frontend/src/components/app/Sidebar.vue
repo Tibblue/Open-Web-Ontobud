@@ -223,7 +223,7 @@ export default {
     sidebar_mini: false,
     sidebar_items: [
       // Navigation
-      { text: 'Home (BETA)', icon: 'fas fa-home', link: '/' },
+      { text: 'Home', icon: 'fas fa-home', link: '/' },
       { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories' },
       { text: 'Manage Repo', icon: 'fas fa-archive', link: '/manage' },
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info' },

@@ -2,7 +2,7 @@
   <div>
     <v-col class="pa-0">
       <v-row no-gutters justify="center">
-        <v-col cols="12" md="10" lg="8">
+        <v-col cols="12" md="10" lg="8" xl="7">
           <v-img contain
             :src="`${publicPath}favicon sources/logoOntobud_big.png`"
           ></v-img>
@@ -103,7 +103,6 @@
         Failed to Delete repo ...
       </v-alert>
     </v-col>
-    <v-divider class="my-2"></v-divider>
   </div>
 </template>
 
