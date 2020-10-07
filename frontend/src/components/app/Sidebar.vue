@@ -229,7 +229,7 @@ export default {
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info' },
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql' },
       { text: 'Resource', icon: 'fas fa-table', link: '/resource' },
-      { text: 'Navigation (BETA)', icon: 'fas fa-project-diagram', link: '/navigation' },
+      { text: 'Navigation', icon: 'fas fa-project-diagram', link: '/navigation' },
       // { text: 'Statistics (TODO)', icon: 'fas fa-chart-pie', link: '/navigation' },
       { text: 'Feedback', icon: 'fas fa-comment-dots', link: '/feedback' }
       // { text: 'Admin (TODO)', icon: 'fas fa-user-shield', link: '/admin'},

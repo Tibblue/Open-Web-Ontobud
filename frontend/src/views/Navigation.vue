@@ -55,7 +55,7 @@
           @change="updateResults()"
         ></v-checkbox>
       </v-col>
-      <v-col cols="12" md="12">
+      <v-col cols="12" md="12" class="py-0">
         <v-btn block color="primary" @click="goToResource()">
           Open Resource Table
         </v-btn>
@@ -114,25 +114,25 @@ export default {
   }),
   mounted: async function () {
     this.getNamespaces(this.$session.get('repoID'))
-    this.updateResults()
-    try {
-      this.namespace = this.$route.query.uri.split('#')[0]
-      this.resource = this.$route.query.uri.split('#')[1]
-    } catch {}
-    switch (this.$route.query.position) {
-      case 'subject':
-        this.activeTab = 0
-        break
-      case 'predicate':
-        this.activeTab = 1
-        break
-      case 'object':
-        this.activeTab = 2
-        break
-      default:
-        this.activeTab = 0
-        break
-    }
+    // this.updateResults()
+    // try {
+    //   this.namespace = this.uri.split('#')[0]
+    //   this.resource = this.uri.split('#')[1]
+    // } catch {}
+    // switch (this.$route.query.position) {
+    //   case 'subject':
+    //     this.activeTab = 0
+    //     break
+    //   case 'predicate':
+    //     this.activeTab = 1
+    //     break
+    //   case 'object':
+    //     this.activeTab = 2
+    //     break
+    //   default:
+    //     this.activeTab = 0
+    //     break
+    // }
   },
   computed: {
     $repo: {
@@ -150,19 +150,18 @@ export default {
     uri: function () {
       // this update is making graph update twice. IDK WHY
       this.updateResults()
-      // return this.namespace + '#' + this.resource
-      return this.$route.query.uri
+      return this.$route.query.uri || ''
     },
     resourceTableURI: function () {
       // usar this.uri aqui faz milagres. sei vagamente pk mas...
       if (this.namespaceON) {
         if (this.prefixON) {
-          var namespace = this.$route.query.uri.split('#')[0] + '#'
+          var namespace = this.uri.split('#')[0] + '#'
           var prefix = this.namespaces[namespace] || namespace
-          var resource = this.$route.query.uri.split('#')[1] || ''
+          var resource = this.uri.split('#')[1] || ''
           return prefix + resource
-        } else { return this.$route.query.uri }
-      } else { return this.$route.query.uri.split('#')[1] }
+        } else { return this.uri }
+      } else { return this.uri.split('#')[1] }
     },
     subjectResults: function () {
       var results = []
@@ -251,8 +250,8 @@ export default {
       this.updateResults()
     },
     editCancel () {
-      this.namespace = this.$route.query.uri.split('#')[0]
-      this.resource = this.$route.query.uri.split('#')[1]
+      this.namespace = this.uri.split('#')[0]
+      this.resource = this.uri.split('#')[1]
       this.editing = false
     },
     goToResource (resource) {
@@ -269,16 +268,6 @@ export default {
         this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
         this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
         this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-        // Promise.all([
-        //   this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON),
-        //   this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON),
-        //   this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-        // ]).then(result => {
-        //   // console.log('requests done')
-        // }).catch(error => {
-        //   console.log('requests failed')
-        //   console.log(error)
-        // })
       }
     },
     async getSubjectResults (repoID, resource, infer) {
