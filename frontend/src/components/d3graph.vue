@@ -21,7 +21,7 @@ export default {
       collisionStrength: 0.7,
       nodeRadius: 30,
       linkDistance: 100,
-      lineWidth: 5
+      lineWidth: 10
     }
   },
   mounted () {
@@ -103,7 +103,7 @@ export default {
       // console.log(this.results)
       var nodes = []
       var nodesAux = {}
-      nodesAux[this.elem] = 0
+      nodesAux[this.elem] = 1
 
       this.results.forEach(elem => {
         // FIXME: needs improvements
@@ -163,8 +163,8 @@ export default {
       svg.selectAll('*').remove()
 
       const link = svg.append('g')
-        .attr('stroke', '#999')
-        .attr('stroke-opacity', 0.6)
+        .attr('stroke', '#2196F3')
+        .attr('stroke-opacity', 0.8)
         .selectAll('line')
         .data(links)
         .join('line')

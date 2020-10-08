@@ -1,21 +1,21 @@
 <template>
-  <v-container>
+  <v-container class="pb-8">
     <alerts/>
     <homepage v-bind="homepageProps" @changedCurrentRepo="updateCurrentRepo"/>
-    <debug v-bind:props="debugProps"/>
+    <!-- <debug v-bind:props="debugProps"/> -->
   </v-container>
 </template>
 
 <script>
 import alerts from '@/components/alerts'
 import homepage from '@/components/homepage'
-import debug from '@/components/debug'
+// import debug from '@/components/debug'
 
 export default {
   components: {
     alerts,
-    homepage,
-    debug
+    homepage
+    // debug
   },
   props: ['currentRepo', 'repoList'],
   data: () => ({
@@ -25,7 +25,7 @@ export default {
   // },
   methods: {
     updateCurrentRepo (id, name) {
-      this.$emit('changedCurrentRepo', { id: id, name: name })
+      this.$emit('changedCurrentRepo', id, name)
     }
   },
   computed: {
@@ -34,13 +34,13 @@ export default {
         currentRepo: this.currentRepo,
         repoList: this.repoList
       }
-    },
-    debugProps () {
-      return {
-        currentRepo: this.currentRepo,
-        repoList: this.repoList
-      }
     }
+    // debugProps () {
+    //   return {
+    //     currentRepo: this.currentRepo,
+    //     repoList: this.repoList
+    //   }
+    // }
   }
 }
 </script>

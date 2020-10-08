@@ -19,25 +19,53 @@
       ></v-checkbox>
     </v-col>
     <v-col cols="12">
-      <v-btn :loading="loading.exportFile" block color="success" @click="exportRepoFile($repo.id,fileTypeSelected,infer)" class="mt-3">
-        Export Repo (Download File)
-      </v-btn>
-      <v-alert text dismissible type="error" v-model="alert.exportFileFail">
-        File Export Failed...
-      </v-alert>
-    </v-col>
-    <v-col cols="12">
-      <v-btn :loading="loading.exportText" block color="success" @click="exportRepoText($repo.id,fileTypeSelected,infer)">
-        Export Repo (InScreen Text)
-      </v-btn>
-      <v-alert text dismissible type="error" v-model="alert.exportTextFail">
-        Text Export Failed...
-      </v-alert>
-      <v-textarea outlined auto-grow readonly hide-details class="mt-3"
-        v-model="exportResponse"
-        label="InScreen Text"
-        placeholder="InScreen Text"
-        ></v-textarea>
+      <v-tabs grow background-color="darken-1 green" color="white">
+        <v-tab>Export File</v-tab>
+        <v-tab>Export Raw Text</v-tab>
+
+        <v-tab-item>
+          <v-col cols="12">
+            <v-text-field outlined clearable hide-details class="my-2"
+              prepend-icon="fas fa-paperclip"
+              v-model="exportFileName"
+              label="Filename (Defaults to Repo ID)"
+            ></v-text-field>
+            <v-btn block color="success"
+              :loading="loading.exportFile"
+              @click="exportRepoFile($repo.id,fileTypeSelected,infer,exportFileName)"
+            >
+              Export File (Download File)
+            </v-btn>
+            <v-alert text dismissible class="my-2"
+              v-model="alert.exportFile.visible"
+              :type="alert.exportFile.color"
+            >
+              {{ alert.exportFile.message }}
+            </v-alert>
+          </v-col>
+        </v-tab-item>
+        <v-tab-item>
+          <v-col cols="12">
+            <v-btn block color="success"
+              :loading="loading.exportText"
+              @click="exportRepoText($repo.id,fileTypeSelected,infer)"
+            >
+              Export Raw Text
+            </v-btn>
+            <v-alert text dismissible class="my-2"
+              v-model="alert.exportText.visible"
+              :type="alert.exportText.color"
+            >
+              {{ alert.exportText.message }}
+            </v-alert>
+            <v-textarea outlined readonly hide-details class="mt-3"
+              v-model="exportRawText"
+              label="Raw Text"
+              placeholder="Raw Text"
+            ></v-textarea>
+          </v-col>
+        </v-tab-item>
+      </v-tabs>
     </v-col>
   </v-row>
 </template>
@@ -57,16 +85,29 @@ export default {
       { text: 'Plain Text', value: 'txt' }
     ],
     infer: true,
-    exportResponse: '',
+    exportFileName: '',
+    exportRawText: '',
     loading: {
       exportFile: false,
       exportText: false
     },
     alert: {
-      exportFileFail: false,
-      exportTextFail: false
+      exportTextFail: false,
+      exportFile: {
+        visible: false,
+        color: 'error',
+        message: ''
+      },
+      exportText: {
+        visible: false,
+        color: 'error',
+        message: ''
+      }
     }
   }),
+  mounted () {
+    this.exportFileName = this.$repo.id
+  },
   computed: {
     $repo: {
       get: Vuex.mapState(['$repo']).$repo,
@@ -82,7 +123,7 @@ export default {
     }
   },
   methods: {
-    exportRepoFile (repoID, fileType, infer) {
+    exportRepoFile (repoID, fileType, infer, filename) {
       this.loading.exportFile = true
       var url = this.backendURL + '/api/rdf4j/management/export/' + repoID
       var headers = {}
@@ -99,12 +140,16 @@ export default {
           break
         default:
       }
+      if (!filename) filename = this.$repo.id
       axios.get(url, headers)
         .then(response => {
-          FileDownload(response.data, 'exportRepository.' + fileType)
+          this.alert.exportFile.visible = false
+          this.alert.exportFile.message = ''
+          FileDownload(response.data, filename + '.' + fileType)
         })
-        .catch(alert => {
-          this.alert.exportFileFail = true
+        .catch(error => {
+          this.alert.exportFile.visible = true
+          this.alert.exportFile.message = 'File Export Failed... \n' + error.response.data
         })
         .finally(() => {
           this.loading.exportFile = false
@@ -129,11 +174,13 @@ export default {
       }
       axios.get(url, headers)
         .then(response => {
-          // FIXME: needs visual upgrades
-          this.exportResponse = response.data
+          this.alert.exportText.visible = false
+          this.alert.exportText.message = 'qwe'
+          this.exportRawText = response.data
         })
-        .catch(alert => {
-          this.alert.exportTextFail = true
+        .catch(error => {
+          this.alert.exportText.visible = true
+          this.alert.exportText.message = 'Raw Text Export Failed... \n' + error.response.data
         })
         .finally(() => {
           this.loading.exportText = false

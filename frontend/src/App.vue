@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <AppBar
+    <AppBar ref="refAppbar"
       @toggleSidebarON="toggleSidebarON"
       @changedRepoList="updateRepoList"
       @changedCurrentRepo="updateCurrentRepo"
@@ -8,7 +8,9 @@
     <Sidebar ref="refSidebar"/>
 
     <v-main>
-      <router-view v-bind="myProps"/>
+      <router-view ref="refMain" v-bind="myProps"
+        @changedCurrentRepo="refreshCurrentRepo"
+      />
     </v-main>
 
     <Footer/>
@@ -46,6 +48,11 @@ export default {
       // console.log('update CURRENT')
       // console.log(repo)
       this.currentRepo = repo
+    },
+    refreshCurrentRepo (id, name) {
+      // console.log('refresh CURRENT')
+      // console.log(id, name)
+      this.$refs.refAppbar.getRepositories()
     }
   },
   computed: {

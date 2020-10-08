@@ -55,7 +55,7 @@
           @change="updateResults()"
         ></v-checkbox>
       </v-col>
-      <v-col cols="12" md="12">
+      <v-col cols="12" md="12" class="py-0">
         <v-btn block color="primary" @click="goToResource()">
           Open Resource Table
         </v-btn>
@@ -66,101 +66,6 @@
           :results="graphResults"
         />
       </v-col>
-
-      <!-- <v-col cols="12">
-        <v-tabs grow background-color="darken-1 primary"
-          :value="this.activeTab"
-        >
-          <v-tab>Subject</v-tab>
-          <v-tab>Predicate</v-tab>
-          <v-tab>Object</v-tab>
-
-          <v-tab-item>
-            <v-data-table
-              :headers="table.headers"
-              :items="subjectResults"
-              :items-per-page="10"
-              :loading="loading.subject"
-            >
-              <template v-slot:item="props">
-                <tr>
-                  <td>
-                    <b>{{resourceTableURI}}</b>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    <span v-if="props.item[table.headers[1].text].type==='uri'">
-                      <u>{{props.item[table.headers[1].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[1].text].value}}</span>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    <span v-if="props.item[table.headers[2].text].type==='uri'">
-                      <u>{{props.item[table.headers[2].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[2].text].value}}</span>
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-tab-item>
-          <v-tab-item>
-            <v-data-table
-              :headers="table.headers"
-              :items="predicateResults"
-              :items-per-page="10"
-              :loading="loading.predicate"
-            >
-              <template v-slot:item="props">
-                <tr>
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    <span v-if="props.item[table.headers[0].text].type==='uri'">
-                      <u>{{props.item[table.headers[0].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[0].text].value}}</span>
-                  </td>
-                  <td>
-                    <b>{{resourceTableURI}}</b>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[2].text])">
-                    <span v-if="props.item[table.headers[2].text].type==='uri'">
-                      <u>{{props.item[table.headers[2].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[2].text].value}}</span>
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-tab-item>
-          <v-tab-item>
-            <v-data-table
-              :headers="table.headers"
-              :items="objectResults"
-              :items-per-page="10"
-              :loading="loading.object"
-            >
-              <template v-slot:item="props">
-                <tr>
-                  <td @click="cellClicked(props.item[table.headers[0].text])">
-                    <span v-if="props.item[table.headers[0].text].type==='uri'">
-                      <u>{{props.item[table.headers[0].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[0].text].value}}</span>
-                  </td>
-                  <td @click="cellClicked(props.item[table.headers[1].text])">
-                    <span v-if="props.item[table.headers[1].text].type==='uri'">
-                      <u>{{props.item[table.headers[1].text].value}}</u>
-                    </span>
-                    <span v-else>{{props.item[table.headers[1].text].value}}</span>
-                  </td>
-                  <td>
-                    <b>{{resourceTableURI}}</b>
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-tab-item>
-        </v-tabs>
-      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -208,26 +113,26 @@ export default {
     }
   }),
   mounted: async function () {
-    try {
-      this.namespace = this.$route.query.uri.split('#')[0]
-      this.resource = this.$route.query.uri.split('#')[1]
-    } catch {}
-    switch (this.$route.query.position) {
-      case 'subject':
-        this.activeTab = 0
-        break
-      case 'predicate':
-        this.activeTab = 1
-        break
-      case 'object':
-        this.activeTab = 2
-        break
-      default:
-        this.activeTab = 0
-        break
-    }
     this.getNamespaces(this.$session.get('repoID'))
-    this.updateResults()
+    // this.updateResults()
+    // try {
+    //   this.namespace = this.uri.split('#')[0]
+    //   this.resource = this.uri.split('#')[1]
+    // } catch {}
+    // switch (this.$route.query.position) {
+    //   case 'subject':
+    //     this.activeTab = 0
+    //     break
+    //   case 'predicate':
+    //     this.activeTab = 1
+    //     break
+    //   case 'object':
+    //     this.activeTab = 2
+    //     break
+    //   default:
+    //     this.activeTab = 0
+    //     break
+    // }
   },
   computed: {
     $repo: {
@@ -245,19 +150,18 @@ export default {
     uri: function () {
       // this update is making graph update twice. IDK WHY
       this.updateResults()
-      // return this.namespace + '#' + this.resource
-      return this.$route.query.uri
+      return this.$route.query.uri || ''
     },
     resourceTableURI: function () {
       // usar this.uri aqui faz milagres. sei vagamente pk mas...
       if (this.namespaceON) {
         if (this.prefixON) {
-          var namespace = this.$route.query.uri.split('#')[0] + '#'
+          var namespace = this.uri.split('#')[0] + '#'
           var prefix = this.namespaces[namespace] || namespace
-          var resource = this.$route.query.uri.split('#')[1] || ''
+          var resource = this.uri.split('#')[1] || ''
           return prefix + resource
-        } else { return this.$route.query.uri }
-      } else { return this.$route.query.uri.split('#')[1] }
+        } else { return this.uri }
+      } else { return this.uri.split('#')[1] }
     },
     subjectResults: function () {
       var results = []
@@ -326,9 +230,12 @@ export default {
     getNamespaces (repoID) {
       axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
+          var namespacesAux = {}
           response.data.forEach(elem => {
-            this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
+            const prefix = elem.prefix.value + ':'
+            namespacesAux[elem.namespace.value] = prefix
           })
+          this.namespaces = namespacesAux
         })
         .catch(alert => {
           this.namespaces = {}
@@ -343,8 +250,8 @@ export default {
       this.updateResults()
     },
     editCancel () {
-      this.namespace = this.$route.query.uri.split('#')[0]
-      this.resource = this.$route.query.uri.split('#')[1]
+      this.namespace = this.uri.split('#')[0]
+      this.resource = this.uri.split('#')[1]
       this.editing = false
     },
     goToResource (resource) {
@@ -361,16 +268,6 @@ export default {
         this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
         this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON)
         this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-        // Promise.all([
-        //   this.getSubjectResults(this.$repo.id, this.$route.query.uri, this.inferON),
-        //   this.getPredicateResults(this.$repo.id, this.$route.query.uri, this.inferON),
-        //   this.getObjectResults(this.$repo.id, this.$route.query.uri, this.inferON)
-        // ]).then(result => {
-        //   // console.log('requests done')
-        // }).catch(error => {
-        //   console.log('requests failed')
-        //   console.log(error)
-        // })
       }
     },
     async getSubjectResults (repoID, resource, infer) {

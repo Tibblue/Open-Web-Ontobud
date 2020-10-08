@@ -122,6 +122,19 @@
       </v-list-item-icon>
     </v-list-item> -->
 
+    <!-- <img :src="`${publicPath}favicon sources/faviconOntobud1.ico`"> -->
+    <v-list-item @click="openManual()">
+      <v-list-item-icon class="my-3">
+        <v-icon>fas fa-book</v-icon>
+      </v-list-item-icon>
+      <v-list-item-content class="py-2">
+        <v-list-item-title class="title">
+          User Manual&nbsp;
+          <v-icon>mdi-open-in-new</v-icon>
+          (BETA)
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
     <v-list-item @click="goToBackend()">
       <v-list-item-icon class="my-3">
         <v-icon>mdi-api</v-icon>
@@ -203,19 +216,20 @@ export default {
     changeBackendURL
   },
   data: () => ({
+    publicPath: process.env.BASE_URL,
     owo: 'OwO',
     dialog_backendURL: false,
     sidebarVisible: false,
     sidebar_mini: false,
     sidebar_items: [
       // Navigation
-      { text: 'Home (BETA)', icon: 'fas fa-home', link: '/' },
+      { text: 'Home', icon: 'fas fa-home', link: '/' },
       { text: 'Manage Repositories', icon: 'fas fa-boxes', link: '/repositories' },
       { text: 'Manage Repo', icon: 'fas fa-archive', link: '/manage' },
       { text: 'Repository Info', icon: 'fas fa-info-circle', link: '/info' },
       { text: 'SPARQL', icon: 'fas fa-pen', link: '/sparql' },
       { text: 'Resource', icon: 'fas fa-table', link: '/resource' },
-      { text: 'Navigation (BETA)', icon: 'fas fa-project-diagram', link: '/navigation' },
+      { text: 'Navigation', icon: 'fas fa-project-diagram', link: '/navigation' },
       // { text: 'Statistics (TODO)', icon: 'fas fa-chart-pie', link: '/navigation' },
       { text: 'Feedback', icon: 'fas fa-comment-dots', link: '/feedback' }
       // { text: 'Admin (TODO)', icon: 'fas fa-user-shield', link: '/admin'},
@@ -277,6 +291,10 @@ export default {
     goToBackend: function () {
       // window.open("http://epl.di.uminho.pt:8001");
       window.open('http://' + this.$store.state.$backurl.host + ':' + this.$store.state.$backurl.port)
+    },
+    openManual: function () {
+      const publicPath = process.env.BASE_URL
+      window.open(publicPath + 'manual/Open_Web_Ontobud___Manual.pdf')
     },
     swapDarkMode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark

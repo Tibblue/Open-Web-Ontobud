@@ -136,7 +136,7 @@ export default {
       return true
     },
     async repoChange (id, name, reload) {
-      this.$emit('changedCurrentRepo', { id: id, name: name }) // NOTE: isto funcionou
+      // this.$emit('changedCurrentRepo', { id: id, name: name }) // NOTE: not useful right now
       await this.updateState(id, name)
       if (reload) this.$router.go(0)
     },
@@ -163,7 +163,7 @@ export default {
         })
         .catch(alert => {
           // this.alert = error // debug
-          this.$emit('changedCurrentRepo', { id: undefined, name: undefined }) // NOTE: isto funcionou
+          // this.$emit('changedCurrentRepo', { id: undefined, name: undefined }) // NOTE: not useful right now
           this.$emit('changedRepoList', [])
           this.selectedRepo = 'No Repositories available' + alert
         })

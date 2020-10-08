@@ -1,6 +1,13 @@
 <template>
   <div>
     <v-col class="pa-0">
+      <v-row no-gutters justify="center">
+        <v-col cols="12" md="10" lg="8" xl="7">
+          <v-img contain
+            :src="`${publicPath}favicon sources/logoOntobud_big.png`"
+          ></v-img>
+        </v-col>
+      </v-row>
       <v-row dense>
         <v-col cols="12">
           <v-btn block color="primary" @click="repoListExpand=!repoListExpand">
@@ -20,41 +27,6 @@
           v-show="repoListExpand"
         >
           <v-container fluid class="pa-0">
-            <v-dialog
-              v-model="dialogEditRepo"
-              max-width="600px"
-              :retain-focus="false"
-            >
-              <v-card>
-                <v-card-title>
-                  <span class="headline">
-                    {{editing.repoID}}
-                  </span>
-                </v-card-title>
-                <v-card-text>
-                  <v-textarea outlined auto-grow hide-details
-                    v-model="editing.repoName"
-                    rows="6"
-                    row-height="16"
-                    label="Edited Query"
-                  ></v-textarea>
-                </v-card-text>
-                <v-card-actions>
-                  <v-col class="grow">
-                    <v-btn block color="success"
-                      @click="repoEditSave(editing.repoID,editing.repoName);dialogEditRepo=false"
-                    >
-                      Save
-                    </v-btn>
-                  </v-col>
-                  <v-col class="grow">
-                    <v-btn block color="error" @click="dialogEditRepo=false">
-                      Cancel
-                    </v-btn>
-                  </v-col>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
             <v-row dense>
               <v-col :cols="colsSize"
                 v-for="repo in repoList"
@@ -73,21 +45,25 @@
                       </v-col> -->
                     </v-row>
                     <v-row no-gutters align="center" class="flex-nowrap">
+                      <!-- <v-col class="shrink px-1 py-1">
+                        <v-btn fab x-small depressed color="green"
+                          @click="repoChange(getRepoID(repo),getRepoName(repo))"
+                        >
+                          <v-icon>mdi-play</v-icon>
+                        </v-btn>
+                      </v-col> -->
                       <v-col class="shrink px-1 py-1">
                         <v-btn fab x-small depressed color="primary"
-                          disabled
-                          @click="repoChange(repo.query,infer)"
+                          @click="goToQuery(getRepoID(repo),getRepoName(repo))"
                         >
                           <v-icon>mdi-play</v-icon>
                         </v-btn>
                       </v-col>
                       <v-col class="shrink px-1 py-1">
                         <v-btn fab x-small depressed color="primary"
-                          disabled
-                          :loading="loading.repoEditSave"
-                          @click="dialogEditRepo=true;repoEdit(repo.id,repo.query)"
+                          @click="goToRepoInfo(getRepoID(repo),getRepoName(repo))"
                         >
-                          <v-icon>mdi-pencil</v-icon>
+                          <v-icon>fas fa-info</v-icon>
                         </v-btn>
                       </v-col>
                       <v-col class="shrink px-1 py-1">
@@ -123,14 +99,10 @@
           </v-container>
         </v-card>
       </v-expand-transition>
-      <v-alert text dismissible type="error" v-model="alert.repoEditFail">
-        Failed to save repo changes ...
-      </v-alert>
       <v-alert text dismissible type="error" v-model="alert.repoDeleteFail">
         Failed to Delete repo ...
       </v-alert>
     </v-col>
-    <v-divider class="my-2"></v-divider>
   </div>
 </template>
 
@@ -143,19 +115,12 @@ export default {
   // },
   props: ['currentRepo', 'repoList'],
   data: () => ({
+    publicPath: process.env.BASE_URL,
     repoListExpand: true,
-    dialogEditRepo: false,
-    editing: {
-      repoID: '',
-      repoName: ''
-    },
     alert: {
-      repoEditFail: false,
       repoDeleteFail: false
     },
     loading: {
-      repoList: false,
-      repoEditSave: false,
       repoDelete: false
     }
   }),
@@ -228,9 +193,19 @@ export default {
       return true
     },
     async repoChange (id, name) {
-      this.$emit('changedCurrentRepo', { id: id, name: name }) // NOTE: isto funcionou
       await this.updateState(id, name)
+      this.$emit('changedCurrentRepo', id, name)
       this.$router.go(0)
+    },
+    async goToQuery (id, name) {
+      await this.updateState(id, name)
+      this.$emit('changedCurrentRepo', id, name)
+      this.$router.push({ path: 'sparql' })
+    },
+    async goToRepoInfo (id, name) {
+      await this.updateState(id, name)
+      this.$emit('changedCurrentRepo', id, name)
+      this.$router.push({ path: 'info' })
     },
     getRepoName (string) {
       return string.split(' ID:')[0]

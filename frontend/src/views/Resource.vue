@@ -55,7 +55,7 @@
           @change="updateResults()"
         ></v-checkbox>
       </v-col>
-      <v-col cols="12" md="12">
+      <v-col cols="12" md="12" class="py-0">
         <v-btn block color="primary" @click="goToGraph()">
           Open Navigation Graph
         </v-btn>
@@ -154,28 +154,6 @@
           </v-tab-item>
         </v-tabs>
       </v-col>
-
-      <!-- <v-col cols="12">
-        <v-data-table
-          :headers="table.headers"
-          :items="subjectResults"
-          :items-per-page="10"
-        >
-          <template v-slot:item="props">
-            <tr>
-              <td>
-                {{resourceTableURI}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[1].text])">
-                {{props.item[table.headers[1].text]}}
-              </td>
-              <td @click="cellClicked(props.item[table.headers[2].text])">
-                {{props.item[table.headers[2].text]}}
-              </td>
-            </tr>
-          </template>
-        </v-data-table>
-      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -221,10 +199,11 @@ export default {
     }
   }),
   mounted: async function () {
-    try {
-      this.namespace = this.uri.split('#')[0]
-      this.resource = this.uri.split('#')[1]
-    } catch {}
+    this.getNamespaces(this.$session.get('repoID'))
+    // try {
+    //   this.namespace = this.uri.split('#')[0]
+    //   this.resource = this.uri.split('#')[1]
+    // } catch {}
     switch (this.$route.query.position) {
       case 'subject':
         this.activeTab = 0
@@ -239,7 +218,6 @@ export default {
         this.activeTab = 0
         break
     }
-    this.getNamespaces(this.$session.get('repoID'))
   },
   computed: {
     $repo: {
@@ -256,8 +234,7 @@ export default {
     },
     uri: function () {
       this.updateResults()
-      // return this.namespace + '#' + this.resource
-      return this.$route.query.uri
+      return this.$route.query.uri || ''
     },
     resourceTableURI: function () {
       // usar this.uri aqui faz milagres. sei vagamente pk mas...
@@ -329,9 +306,12 @@ export default {
     getNamespaces (repoID) {
       axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces')
         .then(response => {
+          var namespacesAux = {}
           response.data.forEach(elem => {
-            this.namespaces[elem.namespace.value] = elem.prefix.value + ':'
+            const prefix = elem.prefix.value + ':'
+            namespacesAux[elem.namespace.value] = prefix
           })
+          this.namespaces = namespacesAux
         })
         .catch(alert => {
           this.namespaces = {}
