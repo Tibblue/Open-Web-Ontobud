@@ -200,10 +200,10 @@ export default {
   }),
   mounted: async function () {
     this.getNamespaces(this.$session.get('repoID'))
-    // try {
-    //   this.namespace = this.uri.split('#')[0]
-    //   this.resource = this.uri.split('#')[1]
-    // } catch {}
+    try {
+      this.namespace = this.uri.split('#')[0]
+      this.resource = this.uri.split('#')[1]
+    } catch {}
     switch (this.$route.query.position) {
       case 'subject':
         this.activeTab = 0
