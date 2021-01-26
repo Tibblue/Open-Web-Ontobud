@@ -131,7 +131,6 @@
         <v-list-item-title class="title">
           User Manual&nbsp;
           <v-icon>mdi-open-in-new</v-icon>
-          (BETA)
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
