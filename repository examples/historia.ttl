@@ -1,0 +1,81 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix h: <http://www.di.uminho.pt/~jcr/prc2018#> .
+
+h:Curso
+    a rdfs:Class .
+
+h:Estudante
+    a rdfs:Class ;
+    rdfs:subClassOf <h:Pessoa> .
+
+h:Pessoa
+    a rdfs:Class .
+
+h:Professor
+    a rdfs:Class ;
+    rdfs:subClassOf h:Pessoa .
+
+h:designacao
+    a rdf:Property ;
+    rdfs:domain h:Curso ;
+    rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+h:e-lecionado
+    a rdf:Property ;
+    rdfs:domain h:Curso ;
+    rdfs:range h:Professor .
+
+h:eduardo
+    h:idade "21" ;
+    h:linguaEstranjeira [
+        rdf:_1 "Português" ;
+        rdf:_2 "Espanhol" ;
+        rdf:_3 "Inglês" ;
+        a rdf:Bag
+    ] ;
+    h:nome "Eduardo" ;
+    a h:Estudante .
+
+h:horario
+    a rdf:Property ;
+    rdfs:domain h:Curso .
+
+h:idade
+    a rdf:Property ;
+    rdfs:domain h:Pessoa ;
+    rdfs:range <http://www.w3.org/2001/XMLSchema#integer> .
+
+h:linguaEstranjeira
+    a rdf:Property ;
+    rdfs:domain h:Pessoa .
+
+h:local
+    a rdf:Property ;
+    rdfs:domain h:Curso .
+
+h:nacionalidade
+    a rdf:Property ;
+    rdfs:domain h:Pessoa .
+
+h:nome
+    a rdf:Property ;
+    rdfs:domain h:Pessoa ;
+    rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+h:parceiro
+    a rdf:Property ;
+    rdfs:domain h:Estudante ;
+    rdfs:range h:Estudante .
+
+h:temEstudante
+    a rdf:Property ;
+    rdfs:domain h:Curso ;
+    rdfs:range h:Estudante .
+
+<http://www.w3.org/2001/XMLSchema#integer>
+    a rdfs:Datatype .
+
+<http://www.w3.org/2001/XMLSchema#string>
+    a rdfs:Datatype .
+

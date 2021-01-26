@@ -1,0 +1,263 @@
+@prefix : <http://www.di.uminho.pt/prc2020/2020/2/cinema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.di.uminho.pt/prc2020/2020/2/cinema> .
+
+<http://www.di.uminho.pt/prc2020/2020/2/cinema> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#atuou
+:atuou rdf:type owl:ObjectProperty ;
+       owl:inverseOf :temAtor ;
+       rdfs:domain :Pessoa ;
+       rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#escreveu
+:escreveu rdf:type owl:ObjectProperty ;
+          owl:inverseOf :foiEscrito ;
+          rdfs:domain :Pessoa ;
+          rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#foiEscrito
+:foiEscrito rdf:type owl:ObjectProperty ;
+            rdfs:domain :Filme ;
+            rdfs:range :Pessoa .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#produziu
+:produziu rdf:type owl:ObjectProperty ;
+          owl:inverseOf :temProdutor ;
+          rdfs:domain :Pessoa ;
+          rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#realizou
+:realizou rdf:type owl:ObjectProperty ;
+          owl:inverseOf :temRealizador ;
+          rdfs:domain :Pessoa ;
+          rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#representa
+:representa rdf:type owl:ObjectProperty ;
+            owl:inverseOf :éRepresentadoPor ;
+            rdfs:domain :Pessoa ;
+            rdfs:range :Personagem .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#temAtor
+:temAtor rdf:type owl:ObjectProperty ;
+         rdfs:domain :Filme ;
+         rdfs:range :Pessoa .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#temGénero
+:temGénero rdf:type owl:ObjectProperty ;
+           owl:inverseOf :éGéneroDe ;
+           rdfs:domain :Filme ;
+           rdfs:range :Género .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#temLíngua
+:temLíngua rdf:type owl:ObjectProperty ;
+           owl:inverseOf :éLínguaDe ;
+           rdfs:domain :Filme ;
+           rdfs:range :Língua .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#temPaísOrigem
+:temPaísOrigem rdf:type owl:ObjectProperty ;
+               owl:inverseOf :éPaísOrigemDe ;
+               rdfs:domain :Filme ;
+               rdfs:range :País .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#temPersonagem
+:temPersonagem rdf:type owl:ObjectProperty ;
+               owl:inverseOf :éPersonagemDe ;
+               rdfs:domain :Filme ;
+               rdfs:range :Personagem .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#temProdutor
+:temProdutor rdf:type owl:ObjectProperty ;
+             rdfs:domain :Filme ;
+             rdfs:range :Pessoa .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#temRealizador
+:temRealizador rdf:type owl:ObjectProperty ;
+               rdfs:domain :Filme ;
+               rdfs:range :Pessoa .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#éGéneroDe
+:éGéneroDe rdf:type owl:ObjectProperty ;
+           rdfs:domain :Género ;
+           rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#éLínguaDe
+:éLínguaDe rdf:type owl:ObjectProperty ;
+           rdfs:domain :Língua ;
+           rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#éPaísOrigemDe
+:éPaísOrigemDe rdf:type owl:ObjectProperty ;
+               rdfs:domain :País ;
+               rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#éPersonagemDe
+:éPersonagemDe rdf:type owl:ObjectProperty ;
+               rdfs:domain :Personagem ;
+               rdfs:range :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#éRepresentadoPor
+:éRepresentadoPor rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Personagem ;
+                  rdfs:range :Pessoa .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#dataLançamento
+:dataLançamento rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#duração
+:duração rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Filme ;
+         rdfs:range xsd:integer .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#línguaOriginal
+:línguaOriginal rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#nome
+:nome rdf:type owl:DatatypeProperty .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#popularidade
+:popularidade rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Filme ;
+              rdfs:range xsd:decimal .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#resumo
+:resumo rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#sexo
+:sexo rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Pessoa .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#título
+:título rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Filme .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#títuloOriginal
+:títuloOriginal rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Filme .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Ator
+:Ator rdf:type owl:Class ;
+      owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                 [ rdf:type owl:Class ;
+                                                   owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :atuou ;
+                                                                   owl:someValuesFrom :Filme
+                                                                 ]
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :representa ;
+                                                                   owl:someValuesFrom :Personagem
+                                                                 ]
+                                                               )
+                                                 ]
+                                               ) ;
+                            rdf:type owl:Class
+                          ] .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Escritor
+:Escritor rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :escreveu ;
+                                                       owl:someValuesFrom :Filme
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Filme
+:Filme rdf:type owl:Class .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Género
+:Género rdf:type owl:Class .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Língua
+:Língua rdf:type owl:Class .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#País
+:País rdf:type owl:Class .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Personagem
+:Personagem rdf:type owl:Class .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Pessoa
+:Pessoa rdf:type owl:Class .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Produtor
+:Produtor rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :produziu ;
+                                                       owl:someValuesFrom :Filme
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] .
+
+
+###  http://www.di.uminho.pt/prc2020/2020/2/cinema#Realizador
+:Realizador rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :realizou ;
+                                                         owl:someValuesFrom :Filme
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] .
+
