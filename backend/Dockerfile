@@ -31,8 +31,10 @@ RUN npm install
 COPY . /home/app/backend
 
 ### Gen SSH keys
-RUN chmod +x ./auth/genKeys.sh
-RUN ./auth/genKeys.sh
+WORKDIR /home/app/backend/auth
+RUN chmod +x ./genKeys.sh
+RUN ./genKeys.sh
+WORKDIR /home/app/backend
 
 ### Run Node Server
 # CMD npm run start
