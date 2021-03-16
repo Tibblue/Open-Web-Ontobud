@@ -10,12 +10,17 @@
 
 <script>
 import * as d3 from 'd3'
+import Vuex from 'vuex'
+import axios from 'axios'
+const qs = require('querystring')
 
 export default {
   name: 'Graph',
   props: ['elem', 'results'],
   data () {
     return {
+      defaultNamespace: '',
+      defaultNamespaceForQuery: '',
       height: 400,
       width: 800,
       collisionStrength: 0.7,
@@ -24,9 +29,35 @@ export default {
       lineWidth: 10
     }
   },
-  mounted () {
+  mounted: async function () {
+    // await this.getDefaultNamespace(this.$session.get('repoID'))
+
+    // var bool = await this.isIndividual(':c600')
+    // console.log(bool.data)
   },
   methods: {
+    async getDefaultNamespace (repoID) {
+      var response = await axios.get(this.backendURL + '/api/rdf4j/repository/' + repoID + '/namespaces/ /')
+      this.defaultNamespace = response.data
+      this.defaultNamespaceForQuery = 'PREFIX : <' + response.data + '>\n'
+      return this.defaultNamespaceForQuery
+    },
+    async isIndividual (resource) {
+      // ASK query - check if it is a owl:NamedIndividual
+      const gotHash = resource.includes('#')
+      if (gotHash) resource = '<' + resource + '>'
+      const query = this.defaultNamespaceForQuery + 'ASK { ' + resource + ' rdf:type owl:NamedIndividual. }'
+      console.log(query)
+      var repoID = this.$repo.id
+      var url = this.backendURL + '/api/rdf4j/query/' + repoID
+      const config = {
+        headers: {
+          Accept: 'text/boolean',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+      return await axios.post(url, qs.stringify({ query: query, infer: true }), config)
+    },
     drag (simulation) {
       function dragstarted (d) {
         if (!d3.event.active) simulation.alphaTarget(0.3).restart()
@@ -58,6 +89,18 @@ export default {
     }
   },
   computed: {
+    $repo: {
+      get: Vuex.mapState(['$repo']).$repo,
+      set: Vuex.mapMutations(['update$repo']).update$repo
+    },
+    $backurl: {
+      get: Vuex.mapState(['$backurl']).$backurl,
+      set: Vuex.mapMutations(['update_backurl']).update_backurl
+    },
+    backendURL: function () {
+      var backendURL = 'http://' + this.$backurl.host + ':' + this.$backurl.port
+      return backendURL
+    },
     svgContainerCSS () {
       const paddingBottom = (this.svgSize.ratio * 100).toString() + '%'
       return {
@@ -104,6 +147,10 @@ export default {
       var nodes = []
       var nodesAux = {}
       nodesAux[this.elem] = 1
+      // var isIndiv = await this.isIndividual(':c600')
+      // console.log(isIndiv.data)
+      // if (isIndiv) nodesAux[this.elem] = 0
+      // else nodesAux[this.elem] = 1;
 
       this.results.forEach(elem => {
         // FIXME: needs improvements
