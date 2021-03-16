@@ -42,5 +42,5 @@ debugRunBackend:
 	docker run -it --rm --name backend -p 5000:5000 tibblue/tese-backend:dev
 	# docker run -it --rm --name backend -e VUE_APP_RDF4J_PORT=8080 -p 5000:5000 tibblue/tese-backend:dev
 debugRunFrontend:
-	docker run -it --rm --name frontend -p 8000:8000 tibblue/tese-frontend:dev
-	# docker run -it --rm --name frontend -e VUE_APP_RDF4J_PORT=8080 -p 8000:8000 tibblue/tese-frontend:dev
+	docker run -it --rm --name frontend -p 8737:8737 tibblue/tese-frontend:dev
+	# docker run -it --rm --name frontend -e VUE_APP_RDF4J_PORT=8080 -p 8737:8737 tibblue/tese-frontend:dev

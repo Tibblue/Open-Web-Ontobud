@@ -68,10 +68,10 @@ If you need to change ports, simply change the `.env` file variables before runn
 #### Docker
 
 Docker can run all containers individually using:
-* docker run -d --rm -p 8000:8000 tibblue/tese-frontend:latest
-* docker run -d --rm -p 8001:5000 tibblue/tese-backend:latest
-* docker run -d --rm -p 8002:8080 tibblue/tese-rdf4j:latest
-* docker run -d --rm -p 8003:27017 mongo:latest
+* docker run -d --rm -p 8737:8737 tibblue/tese-frontend:latest
+* docker run -d --rm -p 8738:5000 tibblue/tese-backend:latest
+* docker run -d --rm -p 8739:8080 tibblue/tese-rdf4j:latest
+* docker run -d --rm -p 8740:27017 mongo:latest
 
 NOTE: This is not the intended run method, and there can be some errors with connections between containers.
 

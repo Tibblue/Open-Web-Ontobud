@@ -288,7 +288,7 @@ export default {
       this.$router.push(id)
     },
     goToBackend: function () {
-      // window.open("http://epl.di.uminho.pt:8001");
+      // window.open("http://epl.di.uminho.pt:8738");
       window.open('http://' + this.$store.state.$backurl.host + ':' + this.$store.state.$backurl.port)
     },
     openManual: function () {
