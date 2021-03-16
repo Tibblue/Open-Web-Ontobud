@@ -27,12 +27,12 @@ RUN npm install
 # RUN npm ci --only=production
 # RUN npm audit fix
 
+### Copy APP
+COPY . /home/app/backend
+
 ### Gen SSH keys
 RUN chmod +x ./auth/genKeys.sh
 RUN ./auth/genKeys.sh
-
-### Copy APP
-COPY . /home/app/backend
 
 ### Run Node Server
 # CMD npm run start
