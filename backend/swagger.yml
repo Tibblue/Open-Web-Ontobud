@@ -11,7 +11,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: http://epl.di.uminho.pt:8001/api
+  - url: http://epl.di.uminho.pt:8738/api
     description: Main server
   - url: http://localhost:5000/api
     description: Testing server
