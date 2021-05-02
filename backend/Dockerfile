@@ -30,6 +30,12 @@ RUN npm install
 ### Copy APP
 COPY . /home/app/backend
 
+### Gen SSH keys
+WORKDIR /home/app/backend/auth
+RUN chmod +x ./genKeys.sh
+RUN ./genKeys.sh
+WORKDIR /home/app/backend
+
 ### Run Node Server
 # CMD npm run start
 CMD npm start rdf4j:8080 mongo:27017

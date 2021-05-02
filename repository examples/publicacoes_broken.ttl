@@ -1,0 +1,1841 @@
+@prefix : <http://www.di.uminho.pt/jcr/XML/rdf/exercicio##> .
+@prefix ex: <http://www.di.uminho.pt/jcr/XML/rdf/exercicio#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.di.uminho.pt/jcr/XML/rdf/exercicio#> .
+
+<http://www.di.uminho.pt/jcr/XML/rdf/exercicio#> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#data
+ex:data rdf:type owl:AnnotationProperty ;
+        rdfs:domain <ex:Publicacao> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#doi
+ex:doi rdf:type owl:AnnotationProperty ;
+       rdfs:domain <ex:Publicacao> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#titulo
+ex:titulo rdf:type owl:AnnotationProperty ;
+          rdfs:domain <ex:Publicacao> .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#string
+xsd:string rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+ex:eAutorDe rdf:type owl:ObjectProperty ;
+            owl:inverseOf ex:temAutor .
+
+ex:eEditorDe rdf:type owl:ObjectProperty ;
+            owl:inverseOf ex:temEditor .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#temAutor
+ex:temAutor rdf:type owl:ObjectProperty ;
+            rdfs:domain <ex:Publicacao> ;
+            rdfs:range <ex:Pessoa> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#temEditor
+ex:temEditor rdf:type owl:ObjectProperty ;
+             rdfs:domain <ex:Publicacao> ;
+             rdfs:range <ex:Pessoa> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#nome
+ex:nome rdf:type owl:DatatypeProperty ;
+        rdfs:domain <ex:Pessoa> ;
+        rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  ex:Pessoa
+ex:Pessoa rdf:type owl:Class .
+
+
+###  ex:Publicacao
+ex:Publicacao rdf:type owl:Class .
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Article
+ex:Article rdf:type owl:Class ;
+           rdfs:subClassOf ex:Publicacao .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Autor
+ex:Autor rdf:type owl:Class ;
+         rdfs:subClassOf ex:Pessoa .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Editor
+ex:Editor rdf:type owl:Class ;
+          rdfs:subClassOf ex:Pessoa .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#InProceedings
+ex:InProceedings rdf:type owl:Class ;
+                 rdfs:subClassOf ex:Publicacao .
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#MasterThesis
+ex:MasterThesis rdf:type owl:Class ;
+                rdfs:subClassOf ex:Publicacao .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Misc
+ex:Misc rdf:type owl:Class ;
+        rdfs:subClassOf ex:Publicacao .
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#PhdThesis
+ex:PhdThesis rdf:type owl:Class ;
+             rdfs:subClassOf ex:Publicacao .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Proceedings
+ex:Proceedings rdf:type owl:Class ;
+               rdfs:subClassOf ex:Publicacao .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  ex:aab
+<ex:aab> rdf:type owl:NamedIndividual .
+
+
+###  ex:ajp
+<ex:ajp> rdf:type owl:NamedIndividual .
+
+
+###  ex:ar
+<ex:ar> rdf:type owl:NamedIndividual .
+
+
+###  ex:arl
+<ex:arl> rdf:type owl:NamedIndividual .
+
+
+###  ex:as
+<ex:as> rdf:type owl:NamedIndividual .
+
+
+###  ex:cajo
+<ex:cajo> rdf:type owl:NamedIndividual .
+
+
+###  ex:cb
+<ex:cb> rdf:type owl:NamedIndividual .
+
+
+###  ex:des
+<ex:des> rdf:type owl:NamedIndividual .
+
+
+###  ex:fb
+<ex:fb> rdf:type owl:NamedIndividual .
+
+
+###  ex:grl
+<ex:grl> rdf:type owl:NamedIndividual .
+
+
+###  ex:hm
+<ex:hm> rdf:type owl:NamedIndividual .
+
+
+###  ex:hs
+<ex:hs> rdf:type owl:NamedIndividual .
+
+
+###  ex:htm
+<ex:htm> rdf:type owl:NamedIndividual .
+
+
+###  ex:jcr
+<ex:jcr> rdf:type owl:NamedIndividual .
+
+
+###  ex:jg
+<ex:jg> rdf:type owl:NamedIndividual .
+
+
+###  ex:jgr
+<ex:jgr> rdf:type owl:NamedIndividual .
+
+
+###  ex:jj
+<ex:jj> rdf:type owl:NamedIndividual .
+
+
+###  ex:jlf
+<ex:jlf> rdf:type owl:NamedIndividual .
+
+
+###  ex:jls
+<ex:jls> rdf:type owl:NamedIndividual .
+
+
+###  ex:jmf
+<ex:jmf> rdf:type owl:NamedIndividual .
+
+
+###  ex:jv
+<ex:jv> rdf:type owl:NamedIndividual .
+
+
+###  ex:kd
+<ex:kd> rdf:type owl:NamedIndividual .
+
+
+###  ex:lc
+<ex:lc> rdf:type owl:NamedIndividual .
+
+
+###  ex:lcor
+<ex:lcor> rdf:type owl:NamedIndividual .
+
+
+###  ex:lf
+<ex:lf> rdf:type owl:NamedIndividual .
+
+
+###  ex:lmf
+<ex:lmf> rdf:type owl:NamedIndividual .
+
+
+###  ex:mam
+<ex:mam> rdf:type owl:NamedIndividual .
+
+
+###  ex:mcm
+<ex:mcm> rdf:type owl:NamedIndividual .
+
+
+###  ex:mf
+<ex:mf> rdf:type owl:NamedIndividual .
+
+
+###  ex:mhj
+<ex:mhj> rdf:type owl:NamedIndividual .
+
+
+###  ex:migaldo
+<ex:migaldo> rdf:type owl:NamedIndividual .
+
+
+###  ex:mjc
+<ex:mjc> rdf:type owl:NamedIndividual .
+
+
+###  ex:mjpl
+<ex:mjpl> rdf:type owl:NamedIndividual .
+
+
+###  ex:mk
+<ex:mk> rdf:type owl:NamedIndividual .
+
+
+###  ex:mm
+<ex:mm> rdf:type owl:NamedIndividual .
+
+
+###  ex:mom
+<ex:mom> rdf:type owl:NamedIndividual .
+
+
+###  ex:mrh
+<ex:mrh> rdf:type owl:NamedIndividual .
+
+
+###  ex:pgf
+<ex:pgf> rdf:type owl:NamedIndividual .
+
+
+###  ex:pp
+<ex:pp> rdf:type owl:NamedIndividual .
+
+
+###  ex:prh
+<ex:prh> rdf:type owl:NamedIndividual .
+
+
+###  ex:pt
+<ex:pt> rdf:type owl:NamedIndividual .
+
+
+###  ex:ram
+<ex:ram> rdf:type owl:NamedIndividual .
+
+
+###  ex:rc
+<ex:rc> rdf:type owl:NamedIndividual .
+
+
+###  ex:rct
+<ex:rct> rdf:type owl:NamedIndividual .
+
+
+###  ex:rf
+<ex:rf> rdf:type owl:NamedIndividual .
+
+
+###  ex:rpa
+<ex:rpa> rdf:type owl:NamedIndividual .
+
+
+###  ex:vr
+<ex:vr> rdf:type owl:NamedIndividual .
+
+
+###  ex:ws
+<ex:ws> rdf:type owl:NamedIndividual .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Article
+ex:Article rdf:type owl:NamedIndividual ,
+                    <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Autor
+ex:Autor rdf:type owl:NamedIndividual ,
+                  <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#BKRFBR08
+ex:BKRFBR08 rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:aab> ,
+                        <ex:ar> ,
+                        <ex:cb> ,
+                        <ex:jcr> ,
+                        <ex:mf> ,
+                        <ex:mk> ;
+            ex:data "2008" ;
+            ex:doi "http://hdl.handle.net/1822/8239" ;
+            ex:titulo "Distributed Preservation Services: Integrating Planning and Actions" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Editor
+ex:Editor rdf:type owl:NamedIndividual ,
+                   <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FBR05-CAPSI
+ex:FBR05-CAPSI rdf:type owl:NamedIndividual ,
+                        ex:Inproceedings ;
+               ex:temAutor <ex:aab> ,
+                           <ex:jcr> ,
+                           <ex:mf> ;
+               ex:data "2005" ;
+               ex:titulo "Avaliação Automática de Migração em Redes Distribuídas de Conversores" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FBR06-Ariadne
+ex:FBR06-Ariadne rdf:type owl:NamedIndividual ,
+                          ex:Inproceedings ;
+                 ex:temAutor <ex:aab> ,
+                             <ex:jcr> ,
+                             <ex:mf> ;
+                 ex:data "2006" ;
+                 ex:doi "http://hdl.handle.net/1822/5571" ;
+                 ex:titulo "A foundation for automatic digital preservation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FBR06-XATA
+ex:FBR06-XATA rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:aab> ,
+                          <ex:jcr> ,
+                          <ex:mf> ;
+              ex:data "2006" ;
+              ex:doi "http://hdl.handle.net/1822/4457" ;
+              ex:titulo """CRIB : a service oriented architecture for digital preservation
+         outsourcing""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FBR07
+ex:FBR07 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:aab> ,
+                     <ex:jcr> ,
+                     <ex:mf> ;
+         ex:data "2007" ;
+         ex:doi "http://hdl.handle.net/1822/6195" ;
+         ex:titulo "CRiB : preservation services for Digital Repositories" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FBR07-IJDL
+ex:FBR07-IJDL rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:aab> ,
+                          <ex:jcr> ,
+                          <ex:mf> ;
+              ex:data "2007" ;
+              ex:doi " http://hdl.handle.net/1822/6648 " ;
+              ex:titulo "An intelligent decision support system for digital preservation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FCRBCF07
+ex:FCRBCF07 rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:fb> ,
+                        <ex:jcr> ,
+                        <ex:lcor> ,
+                        <ex:lf> ,
+                        <ex:mf> ,
+                        <ex:rc> ;
+            ex:data "2007" ;
+            ex:doi "http://hdl.handle.net/1822/6330" ;
+            ex:titulo "RODA : Repositório de Objectos Digitais Autênticos" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FFR10
+ex:FFR10 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:lmf> ,
+                     <ex:mf> ;
+         ex:data "2010" ;
+         ex:doi "http://hdl.handle.net/1822/10532" ;
+         ex:titulo "DigitArq e o novo módulo de interoperabilidade OAI-PMH" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR04
+ex:FR04 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:jcr> ,
+                    <ex:mf> ;
+        ex:data "2004" ;
+        ex:titulo "Aquisição e Armazenamento de Metainformação no Contexto de um Arquivo" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR04-capsi
+ex:FR04-capsi rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:jcr> ,
+                          <ex:mf> ;
+              ex:data "2004" ;
+              ex:titulo "DigitArq: Creating a Historical Digital Archive" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR04b
+ex:FR04b rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:mf> ;
+         ex:data "2004" ;
+         ex:titulo "DIGITARQ - CREATING AND MANAGING A DIGITAL ARCHIVE" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR09
+ex:FR09 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:jcr> ,
+                    <ex:rf> ;
+        ex:data "2009" ;
+        ex:doi "http://hdl.handle.net/1822/9740" ;
+        ex:titulo "Relational databases digital preservation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR10
+ex:FR10 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:jcr> ,
+                    <ex:rf> ;
+        ex:data "2010" ;
+        ex:doi "http://hdl.handle.net/1822/13702" ;
+        ex:titulo "Significant Properties in the Preservation of Relational Databases" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR11
+ex:FR11 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:jcr> ,
+                    <ex:rf> ;
+        ex:data "2011" ;
+        ex:doi "http://hdl.handle.net/1822/13703" ;
+        ex:titulo "Using Ontologies in Database Preservation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR11b
+ex:FR11b rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:rf> ;
+         ex:data "2011" ;
+         ex:doi "http://hdl.handle.net/1822/13704" ;
+         ex:titulo "Preservation of Relational Databases" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR11c
+ex:FR11c rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:rf> ;
+         ex:data "2011" ;
+         ex:doi "http://hdl.handle.net/1822/16113" ;
+         ex:titulo "Using Ontologies to Abstract Relational Databases Conceptual Model" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR11d
+ex:FR11d rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:rf> ;
+         ex:data "2011" ;
+         ex:doi "http://hdl.handle.net/1822/16019" ;
+         ex:titulo "Relational Databases Conceptual Preservation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FR11e
+ex:FR11e rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:rf> ;
+         ex:data "2011" ;
+         ex:doi "http://hdl.handle.net/1822/15859" ;
+         ex:titulo """New dimension in relational database preservation: raising the abstraction
+         level""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#FRF-XATA
+ex:FRF-XATA rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:jcr> ,
+                        <ex:lmf> ,
+                        <ex:mf> ;
+            ex:data "2008" ;
+            ex:doi "http://hdl.handle.net/1822/7821" ;
+            ex:titulo "Creating a National Federation of Archives using OAI-PMH" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#GARH09
+ex:GARH09 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:prh> ,
+                      <ex:rpa> ;
+          ex:data "2009" ;
+          ex:doi " http://hdl.handle.net/1822/9741 " ;
+          ex:titulo "Topic maps constraint languages : understanding and comparing" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#IGI2013
+ex:IGI2013 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:jcr> ,
+                       <ex:rf> ;
+           ex:data "2013" ;
+           ex:doi "10.4018/978-1-4666-2669-0.ch009" ;
+           ex:titulo """Innovations in XML Applications and Metadata Management: Advancing
+         Technologies""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#InProceedings
+ex:InProceedings rdf:type owl:NamedIndividual ,
+                          <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#JHR00
+ex:JHR00 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:mhj> ,
+                     <ex:prh> ;
+         ex:data "2000" ;
+         ex:titulo "XML and Semantic Validation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#JLRH02
+ex:JLRH02 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:mhj> ,
+                      <ex:prh> ;
+          ex:data "2002" ;
+          ex:titulo "XCSL: XML Constraint Specification Language" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#JLRH02b
+ex:JLRH02b rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:grl> ,
+                       <ex:jcr> ,
+                       <ex:mhj> ,
+                       <ex:prh> ;
+           ex:data "2002" ;
+           ex:titulo "XCSL tutorial" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#JLRH03
+ex:JLRH03 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:mhj> ,
+                      <ex:prh> ;
+          ex:data "2003" ;
+          ex:titulo "XCSL: XML Constraint Specification Language" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#JLRHb02
+ex:JLRHb02 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:grl> ,
+                       <ex:jcr> ,
+                       <ex:mhj> ,
+                       <ex:prh> ;
+           ex:data "2002" ;
+           ex:titulo """Bidirectional Conversion between XML Documents and Relational Data
+         Bases""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#JLRHc02
+ex:JLRHc02 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:grl> ,
+                       <ex:jcr> ,
+                       <ex:mhj> ,
+                       <ex:prh> ;
+           ex:data "2002" ;
+           ex:titulo """Constraint Specification Languages: comparing XCSL, Schematron and
+         XML-Schema""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#JRH03
+ex:JRH03 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:mhj> ,
+                     <ex:prh> ;
+         ex:data "2003" ;
+         ex:titulo """XML Templates for Constraints (XTC), Um Nível de Abstracção para Linguagens de
+         Especificação de Restrições""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LARH07-EPIA
+ex:LARH07-EPIA rdf:type owl:NamedIndividual ,
+                        ex:Inproceedings ;
+               ex:temAutor <ex:grl> ,
+                           <ex:jcr> ,
+                           <ex:prh> ,
+                           <ex:rpa> ;
+               ex:data "2007" ;
+               ex:doi "http://hdl.handle.net/1822/7368" ;
+               ex:titulo "Topic Maps Constraint Languages: understanding and comparing" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LATRH07-CLEI
+ex:LATRH07-CLEI rdf:type owl:NamedIndividual ,
+                         ex:Inproceedings ;
+                ex:temAutor <ex:grl> ,
+                            <ex:jcr> ,
+                            <ex:prh> ,
+                            <ex:rct> ,
+                            <ex:rpa> ;
+                ex:data "2007" ;
+                ex:doi "http://hdl.handle.net/1822/7364" ;
+                ex:titulo """Implementing TMCL: XTche - a topic map schema and constraint specification
+         language""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LGRH07-CLEI
+ex:LGRH07-CLEI rdf:type owl:NamedIndividual ,
+                        ex:Inproceedings ;
+               ex:temAutor <ex:grl> ,
+                           <ex:jcr> ,
+                           <ex:jg> ,
+                           <ex:prh> ;
+               ex:data "2007" ;
+               ex:doi "http://hdl.handle.net/1822/7354" ;
+               ex:titulo "Using Web Services to put Metamorphosis on the Web" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LMMFRH07-TMRA
+ex:LMMFRH07-TMRA rdf:type owl:NamedIndividual ,
+                          ex:Inproceedings ;
+                 ex:temAutor <ex:grl> ,
+                             <ex:htm> ,
+                             <ex:jcr> ,
+                             <ex:mom> ,
+                             <ex:pgf> ,
+                             <ex:prh> ;
+                 ex:data "2007" ;
+                 ex:doi "http://hdl.handle.net/1822/7399" ;
+                 ex:titulo "Comparing Topic Maps Constraint Specification Languages" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LMMVRH08-XATA
+ex:LMMVRH08-XATA rdf:type owl:NamedIndividual ,
+                          ex:Inproceedings ;
+                 ex:temAutor <ex:grl> ,
+                             <ex:hm> ,
+                             <ex:jcr> ,
+                             <ex:jv> ,
+                             <ex:mm> ,
+                             <ex:prh> ;
+                 ex:data "2008" ;
+                 ex:titulo "Generating a Semantic Network for PubMed" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LPRH07-TM
+ex:LPRH07-TM rdf:type owl:NamedIndividual ,
+                      ex:Inproceedings ;
+             ex:temAutor <ex:grl> ,
+                         <ex:jcr> ,
+                         <ex:prh> ,
+                         <ex:rpa> ;
+             ex:data "2007" ;
+             ex:doi "http://hdl.handle.net/1822/6474" ;
+             ex:titulo """Topic Maps Constraint Specification Languages: comparing AsTMa!, OSL, and
+         XTche""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LPRH07-XATA
+ex:LPRH07-XATA rdf:type owl:NamedIndividual ,
+                        ex:Inproceedings ;
+               ex:temAutor <ex:grl> ,
+                           <ex:jcr> ,
+                           <ex:prh> ,
+                           <ex:rpa> ;
+               ex:data "2007" ;
+               ex:doi "http://hdl.handle.net/1822/6482" ;
+               ex:titulo "Navegando na Rede Semântica dos Topic Maps com o Ulisses" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LR04
+ex:LR04 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:cajo> ,
+                    <ex:jcr> ;
+        ex:data "2004" ;
+        ex:titulo "Web Services: Metodologias de Desenvolvimento" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH03
+ex:LRH03 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:grl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "2003" ;
+         ex:titulo "XML Topic Map Builder: Specification and Generation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH03b
+ex:LRH03b rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:prh> ;
+          ex:data "2003" ;
+          ex:titulo "TM-Builder: Um Construtor de Ontologias baseado em Topic Maps" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH03c
+ex:LRH03c rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:prh> ;
+          ex:data "2003" ;
+          ex:titulo """Geração automática de interfaces Web para sistemas de informação:
+         Metamorphosis""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH04
+ex:LRH04 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:grl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "2004" ;
+         ex:titulo """Um Extractor de Topic Maps a partir de Recursos Heterogéneos de
+         Informação""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH04-Clei
+ex:LRH04-Clei rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:grl> ,
+                          <ex:jcr> ,
+                          <ex:prh> ;
+              ex:data "2004" ;
+              ex:titulo "Extração de Topic Maps no Oveia: Especificação e Processamento" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH04-WWS
+ex:LRH04-WWS rdf:type owl:NamedIndividual ,
+                      ex:Inproceedings ;
+             ex:temAutor <ex:grl> ,
+                         <ex:jcr> ,
+                         <ex:prh> ;
+             ex:data "2004" ;
+             ex:titulo """Achieving Semantic Interoperability in Heterogeneous Information Systems with Topic
+         Maps""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH04-XMLw
+ex:LRH04-XMLw rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:grl> ,
+                          <ex:jcr> ,
+                          <ex:prh> ;
+              ex:data "2004" ;
+              ex:titulo "XTche - A Language for Topic Maps Schema and Constraints" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH05
+ex:LRH05 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:grl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "2005" ;
+         ex:titulo """Obtendo Interoperabilidade Semântica em Sistemas Heterogéneos de Informação com
+         Metamorphosis""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH05-CLEI
+ex:LRH05-CLEI rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:grl> ,
+                          <ex:jcr> ,
+                          <ex:prh> ;
+              ex:data "2005" ;
+              ex:titulo "Ulisses: Um Navegador Conceptual para Topic Maps" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH05b
+ex:LRH05b rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:prh> ;
+          ex:data "2005" ;
+          ex:titulo "Constraining XML Topic Maps with XTche" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH06-SBSI06
+ex:LRH06-SBSI06 rdf:type owl:NamedIndividual ,
+                         ex:Inproceedings ;
+                ex:temAutor <ex:grl> ,
+                            <ex:jcr> ,
+                            <ex:prh> ;
+                ex:data "2006" ;
+                ex:doi "http://hdl.handle.net/1822/7359" ;
+                ex:titulo """Metamorphosis: An Environment to Achieve Semantic Interoperability with Topic
+         Maps""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH06-XATA
+ex:LRH06-XATA rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:grl> ,
+                          <ex:jcr> ,
+                          <ex:prh> ;
+              ex:data "2006" ;
+              ex:doi "http://hdl.handle.net/1822/4910" ;
+              ex:titulo "Topic Maps Aplicados ao Sistema de Informação do Museu da Emigração" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH07-SEMINFO
+ex:LRH07-SEMINFO rdf:type owl:NamedIndividual ,
+                          ex:Inproceedings ;
+                 ex:temAutor <ex:grl> ,
+                             <ex:jcr> ,
+                             <ex:prh> ;
+                 ex:data "2007" ;
+                 ex:titulo "Estruturando o conhecimento com a norma ISO 13250 Topic Maps" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRH97
+ex:LRH97 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:arl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "1997" ;
+         ex:titulo "INES, an Environment for Structured Editions of SGML Documents" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LRHGT08
+ex:LRHGT08 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:grl> ,
+                       <ex:jcr> ,
+                       <ex:jg> ,
+                       <ex:prh> ,
+                       <ex:rct> ;
+           ex:data "2008" ;
+           ex:doi "http://hdl.handle.net/1822/8236" ;
+           ex:titulo """A Framework to specify, extract and manage Topic Maps driven by
+         ontologies""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#LSRH04
+ex:LSRH04 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:prh> ,
+                      <ex:ws> ;
+          ex:data "2004" ;
+          ex:titulo "Using the Ontology Paradigm to integrate Information Systems" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#MRH04
+ex:MRH04 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:prh> ,
+                     <ex:ram> ;
+         ex:data "2004" ;
+         ex:titulo "Comparação de Linguagens para descrição de Interfaces baseadas em XML" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#MasterThesis
+ex:MasterThesis rdf:type owl:NamedIndividual ,
+                         <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Misc
+ex:Misc rdf:type owl:NamedIndividual ,
+                 <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Pessoa
+ex:Pessoa rdf:type owl:NamedIndividual ,
+                   <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#PhdThesis
+ex:PhdThesis rdf:type owl:NamedIndividual ,
+                      <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Proceedings
+ex:Proceedings rdf:type owl:NamedIndividual ,
+                        <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Publicacao
+ex:Publicacao rdf:type owl:NamedIndividual ,
+                       <rdfs:Class> .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RAH1998
+ex:RAH1998 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:jcr> ,
+                       <ex:jj> ,
+                       <ex:prh> ;
+           ex:data "1998" ;
+           ex:titulo "Algebraic Specification of Documents" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RAH95
+ex:RAH95 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:jj> ,
+                     <ex:prh> ;
+         ex:data "1995" ;
+         ex:titulo "DAVID, Algebraic Specification of Documents" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RAH96
+ex:RAH96 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:jj> ,
+                     <ex:prh> ;
+         ex:data "1996" ;
+         ex:titulo "Document Semantics: two approaches" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RARH98
+ex:RARH98 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:jcr> ,
+                      <ex:jgr> ,
+                      <ex:jj> ,
+                      <ex:prh> ;
+          ex:data "1999" ;
+          ex:titulo "SGML Documents: Where does quality go?" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RD06-XATA
+ex:RD06-XATA rdf:type owl:NamedIndividual ,
+                      ex:Inproceedings ;
+             ex:temAutor <ex:jcr> ,
+                         <ex:migaldo> ;
+             ex:data "2006" ;
+             ex:doi "http://hdl.handle.net/1822/4576" ;
+             ex:titulo """Especificação e Geração Automática de Navegadores para Redes Semânticas Baseados em
+         Interfaces Web""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RFCFBC06
+ex:RFCFBC06 rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:fb> ,
+                        <ex:jcr> ,
+                        <ex:lcor> ,
+                        <ex:lf> ,
+                        <ex:mf> ,
+                        <ex:rc> ;
+            ex:data "2006" ;
+            ex:doi "http://hdl.handle.net/1822/6420" ;
+            ex:titulo """RODA - Desenvolvimento de uma plataforma tecnológica para suporte de Arquivos
+         Digitais""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RFCFBC07
+ex:RFCFBC07 rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:fb> ,
+                        <ex:jcr> ,
+                        <ex:lcor> ,
+                        <ex:lf> ,
+                        <ex:mf> ,
+                        <ex:rc> ;
+            ex:data "2007" ;
+            ex:doi "http://hdl.handle.net/1822/6224" ;
+            ex:titulo "XML e preservação digital" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RFFC07-EML
+ex:RFFC07-EML rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:jcr> ,
+                          <ex:lf> ,
+                          <ex:mf> ,
+                          <ex:rc> ;
+              ex:data "2007" ;
+              ex:doi "http://hdl.handle.net/1822/7120" ;
+              ex:titulo "Relational database preservation through XML modelling" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RFFCBC08
+ex:RFFCBC08 rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:fb> ,
+                        <ex:jcr> ,
+                        <ex:lc> ,
+                        <ex:lf> ,
+                        <ex:mf> ,
+                        <ex:rc> ;
+            ex:data "2008" ;
+            ex:doi "http://hdl.handle.net/1822/8226" ;
+            ex:titulo "RODA and Crib: A Service-Oriented Digital Repository" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RFFLS06
+ex:RFFLS06 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:as> ,
+                       <ex:jcr> ,
+                       <ex:lmf> ,
+                       <ex:mf> ,
+                       <ex:mjpl> ;
+           ex:data "2006" ;
+           ex:doi "http://hdl.handle.net/1822/6038" ;
+           ex:titulo """Digitarq2 : nova arquitectura aplicacional para gestão de Arquivos
+         Definitivos""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RH2002
+ex:RH2002 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:jcr> ,
+                      <ex:prh> ;
+          ex:data "2002" ;
+          ex:titulo "XML e XSL: da teoria à prática" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RH94
+ex:RH94 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:jcr> ,
+                    <ex:prh> ;
+        ex:data "1995" ;
+        ex:titulo """Uma experiência de utilização da Internet na gestão pedagógica e sua
+         formalização""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RH98
+ex:RH98 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:jcr> ,
+                    <ex:prh> ;
+        ex:data "1998" ;
+        ex:titulo "Qualidade na Publicação Electrónica: como controlá-la?" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RH98b
+ex:RH98b rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "1998" ;
+         ex:titulo "Qualidade na Publicação Electrónica: como controlá-la?" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RH98c
+ex:RH98c rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "1998" ;
+         ex:titulo "Informatics and Archives: a present needed symbiosis" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RH98d
+ex:RH98d rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "1998" ;
+         ex:titulo """Os desafios colocados pela informação estruturada no contexto dos arquivos: o
+         arquivo distrital de Braga""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RH99
+ex:RH99 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:jcr> ,
+                    <ex:jj> ;
+        ex:data "1999" ;
+        ex:titulo "XML::DT - a Perl Down Translation Module" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RHHRAF98
+ex:RHHRAF98 rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:jcr> ,
+                        <ex:jgr> ,
+                        <ex:jj> ,
+                        <ex:jlf> ,
+                        <ex:mrh> ,
+                        <ex:prh> ;
+            ex:data "1998" ;
+            ex:titulo "Adapting Museum Structures for the Web: No Changes Needed!" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RHL04-eLes
+ex:RHL04-eLes rdf:type owl:NamedIndividual ,
+                       ex:Inproceedings ;
+              ex:temAutor <ex:grl> ,
+                          <ex:jcr> ,
+                          <ex:prh> ;
+              ex:data "2004" ;
+              ex:titulo "ADRIAN: Sistema de Suporte à Produção de Conteúdos" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RHLA03
+ex:RHLA03 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:data "2003" ;
+          ex:titulo "XATA2003 - XML: Aplicações e Tecnologias Associadas" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RHb98
+ex:RHb98 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "1998" ;
+         ex:titulo "Beyond DTDs: Constraining Data Content" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RL05
+ex:RL05 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:temAutor <ex:cajo> ,
+                    <ex:jcr> ;
+        ex:data "2005" ;
+        ex:titulo "Web Services: Aplicações Distribuídas sobre Protocolos Internet" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLA08
+ex:RLA08 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:data "2008" ;
+         ex:doi "http://hdl.handle.net/1822/7708" ;
+         ex:titulo """XATA2008 (6ª Conferência Nacional) - XML: Aplicações e Tecnologias
+         Associadas""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLC07
+ex:RLC07 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:data "2007" ;
+         ex:doi "http://hdl.handle.net/1822/6234" ;
+         ex:titulo """XATA2007 (5ª Conferência Nacional) - XML: Aplicações e Tecnologias
+         Associadas""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH03
+ex:RLH03 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:grl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "2003" ;
+         ex:titulo "Ontology driven websites with Topic Maps" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH03b
+ex:RLH03b rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:prh> ;
+          ex:data "2003" ;
+          ex:titulo "Adrian: a platform for E-Learning Content Prodution" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH04
+ex:RLH04 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:grl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "2004" ;
+         ex:titulo "Adrian - E-Learning Content Production (creating online exams)" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH05
+ex:RLH05 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:grl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "2005" ;
+         ex:titulo "Constraining Topic Maps: A TMCL declarative implementation" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH05-revAPSI17
+ex:RLH05-revAPSI17 rdf:type owl:NamedIndividual ,
+                            ex:Inproceedings ;
+                   ex:temAutor <ex:grl> ,
+                               <ex:jcr> ,
+                               <ex:prh> ;
+                   ex:data "2005" ;
+                   ex:titulo """Geração automática de interfaces Web para Sistemas de Informação:
+         Metamorphosis""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH05b
+ex:RLH05b rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:grl> ,
+                      <ex:jcr> ,
+                      <ex:prh> ;
+          ex:data "2005" ;
+          ex:titulo """Metamorphosis - a Topic Maps based Environment to Handle Heterogeneous Information
+         Resources""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH06
+ex:RLH06 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:grl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "2006" ;
+         ex:doi "10.1007/11676904_2" ;
+         ex:titulo "Lecture Notes in Computer Science" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH07-EML
+ex:RLH07-EML rdf:type owl:NamedIndividual ,
+                      ex:Inproceedings ;
+             ex:temAutor <ex:grl> ,
+                         <ex:jcr> ,
+                         <ex:prh> ,
+                         <ex:rpa> ;
+             ex:data "2007" ;
+             ex:doi "http://hdl.handle.net/1822/7330" ;
+             ex:titulo "Topic Maps applied to PubMed" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH2003
+ex:RLH2003 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:grl> ,
+                       <ex:jcr> ,
+                       <ex:prh> ;
+           ex:data "2003" ;
+           ex:titulo """Ontology driven Websites - Metamorphosis: a framework to specify and manage
+         ontology driven websites""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLH98
+ex:RLH98 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:arl> ,
+                     <ex:jcr> ,
+                     <ex:prh> ;
+         ex:data "1998" ;
+         ex:titulo "Generating SGML specific editors: from DTDs to Attribute Grammars" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RLS06
+ex:RLS06 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:data "2006" ;
+         ex:doi "http://hdl.handle.net/1822/4744" ;
+         ex:titulo """XATA2006 (4ª Conferência Nacional) - XML: Aplicações e Tecnologias
+         Associadas""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RQR10
+ex:RQR10 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ,
+                     <ex:mam> ,
+                     <ex:mjc> ;
+         ex:data "2010" ;
+         ex:doi "http://hdl.handle.net/1822/11081" ;
+         ex:titulo """Criação e Aplicação de um modelo baseado em Topic Maps à Documentação
+         Educativa""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RRAH97
+ex:RRAH97 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:jcr> ,
+                      <ex:jgr> ,
+                      <ex:jj> ,
+                      <ex:prh> ;
+          ex:data "1997" ;
+          ex:titulo "SGML Documents: Where Does Quality Go?" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RS04
+ex:RS04 rdf:type owl:NamedIndividual ,
+                 ex:Inproceedings ;
+        ex:data "2004" ;
+        ex:titulo """XATA2004 (1ª Conferência Nacional) - XML: Aplicações e Tecnologias
+         Associadas""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RS2003
+ex:RS2003 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:jcr> ,
+                      <ex:jls> ;
+          ex:data "2003" ;
+          ex:titulo "Electronic Publishing of ADB editions" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RSL05
+ex:RSL05 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:data "2005" ;
+         ex:titulo """XATA2005 (3ª Conferência Nacional) - XML: Aplicações e Tecnologias
+         Associadas""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#RTFR04
+ex:RTFR04 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:jcr> ,
+                      <ex:pt> ,
+                      <ex:rf> ,
+                      <ex:vr> ;
+          ex:data "2004" ;
+          ex:titulo """Gerador de Web Services para cadeias de transformações de documentos
+         XML""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram01
+ex:Ram01 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ;
+         ex:data "2001" ;
+         ex:titulo "Constraining Content: specification and processing" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram03
+ex:Ram03 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ;
+         ex:data "2003" ;
+         ex:titulo "O XML nos curriculae das licenciaturas em informática" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram05
+ex:Ram05 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ;
+         ex:data "2005" ;
+         ex:titulo """Document Composer: uma aplicação XML para extracção de informação de repositórios
+         XML""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram2000
+ex:Ram2000 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:jcr> ;
+           ex:data "2000" ;
+           ex:doi " http://hdl.handle.net/1822/5625" ;
+           ex:titulo "Anotação Estrutural de Documentos e sua Semântica" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram93
+ex:Ram93 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ;
+         ex:data "1993" ;
+         ex:titulo "Um Compilador para o GLiTCH" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram96
+ex:Ram96 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ;
+         ex:data "1996" ;
+         ex:titulo "DSSSL: basic topics" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram98
+ex:Ram98 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ;
+         ex:data "1998" ;
+         ex:titulo """Tutorial: Documentação Estruturada - Será que a minha empresa deve migrar para uma
+         tecnologia baseada em SGML?""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram99
+ex:Ram99 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:jcr> ;
+         ex:data "1999" ;
+         ex:titulo "Recovering Old Paper Historical Documents Through SGML/XML Modelling" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#Ram99b
+ex:Ram99b rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:jcr> ;
+          ex:data "1999" ;
+          ex:titulo """EINE'99 - II Escola de Informática da Sociedade Brasileira de
+         Computação""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#SFRL07
+ex:SFRL07 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:as> ,
+                      <ex:jcr> ,
+                      <ex:lmf> ,
+                      <ex:mjpl> ;
+          ex:data "2007" ;
+          ex:doi "http://hdl.handle.net/1822/6432" ;
+          ex:titulo """Consulta Real em Ambiente Virtual: implementação de uma sala de referência e
+         leitura virtual num arquivo""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#SMR03
+ex:SMR03 rdf:type owl:NamedIndividual ,
+                  ex:Inproceedings ;
+         ex:temAutor <ex:des> ,
+                     <ex:jcr> ,
+                     <ex:mcm> ;
+         ex:data "2003" ;
+         ex:titulo "Xexam: uma linguagem de suporte para exames online (e-learning)" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#SRFP95
+ex:SRFP95 rdf:type owl:NamedIndividual ,
+                   ex:Inproceedings ;
+          ex:temAutor <ex:ajp> ,
+                      <ex:hs> ,
+                      <ex:jcr> ,
+                      <ex:jmf> ;
+          ex:data "1995" ;
+          ex:titulo "A Heterogeneous Computer Vision Architecture: Implementation Issues" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#VECPAR93
+ex:VECPAR93 rdf:type owl:NamedIndividual ,
+                     ex:Inproceedings ;
+            ex:temAutor <ex:ajp> ,
+                        <ex:hs> ,
+                        <ex:jcr> ,
+                        <ex:jmf> ;
+            ex:data "1993" ;
+            ex:titulo "A Heterogeneous Computer Vision Architecture: Implementation Issues" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#aab
+ex:aab rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Ana Alice Baptista" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#ajp
+ex:ajp rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "A. J. Proença" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#ar
+ex:ar rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Andreas Rauber" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#archiving2013
+ex:archiving2013 rdf:type owl:NamedIndividual ,
+                          ex:Inproceedings ;
+                 ex:temAutor <ex:jcr> ,
+                             <ex:lf> ,
+                             <ex:mf> ;
+                 ex:data "2013" ;
+                 ex:doi "http://hdl.handle.net/1822/23978" ;
+                 ex:titulo " Guidelines for legacy repository migration" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#arl
+ex:arl rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "A. R. Lopes" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#as
+ex:as rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "António Sousa" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#bad2012
+ex:bad2012 rdf:type owl:NamedIndividual ,
+                    ex:Inproceedings ;
+           ex:temAutor <ex:jcr> ,
+                       <ex:lf> ,
+                       <ex:mf> ;
+           ex:data "2012" ;
+           ex:doi "http://hdl.handle.net/1822/21611" ;
+           ex:titulo """Boas Práticas na Migração de Repositórios: lições aprendidas com o CALM e o
+         ARQBASE""" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#cajo
+ex:cajo rdf:type owl:NamedIndividual ,
+                 ex:Pessoa ;
+        ex:nome "Carlos J. Feijó Lopes" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#cb
+ex:cb rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Christoph Becker" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#des
+ex:des rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Daniel Edgar Pinto Soares" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#fb
+ex:fb rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Francisco Barbedo" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#grl
+ex:grl rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Giovani Rubert Librelotto" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#guimaramus2012
+ex:guimaramus2012 rdf:type owl:NamedIndividual ,
+                           ex:Inproceedings ;
+                  ex:temAutor <ex:jcr> ;
+                  ex:data "2012" ;
+                  ex:doi "http://hdl.handle.net/1822/21660" ;
+                  ex:titulo " MuseCode: à procura da linearidade na música tonal" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#hm
+ex:hm rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Henrique Machado" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#hs
+ex:hs rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "H. Santos" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#htm
+ex:htm rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "H. T. Machado" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#icadl2012
+ex:icadl2012 rdf:type owl:NamedIndividual ,
+                      ex:Inproceedings ;
+             ex:temAutor <ex:cb> ,
+                         <ex:jcr> ,
+                         <ex:kd> ,
+                         <ex:lf> ,
+                         <ex:mf> ,
+                         <ex:pp> ;
+             ex:data "2012" ;
+             ex:doi "http://hdl.handle.net/1822/21447" ;
+             ex:titulo "Design and architecture of a novel preservation watch system" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#ipres2012
+ex:ipres2012 rdf:type owl:NamedIndividual ,
+                      ex:Inproceedings ;
+             ex:temAutor <ex:cb> ,
+                         <ex:jcr> ,
+                         <ex:kd> ,
+                         <ex:lf> ,
+                         <ex:mf> ,
+                         <ex:pp> ;
+             ex:data "2012" ;
+             ex:doi "http://hdl.handle.net/1822/20666" ;
+             ex:titulo "Preservation watch : what to monitor and how" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jcr
+ex:jcr rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "José Carlos Ramalho" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jg
+ex:jg rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Jonas Gassen" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jgr
+ex:jgr rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "J. G. Rocha" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jj
+ex:jj rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "José João Almeida" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jlf
+ex:jlf rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "J. L. Faria" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jls
+ex:jls rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "José Luis Santos" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jmf
+ex:jmf rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "J. M. Fernandes" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#jv
+ex:jv rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Juliana Vizzotto" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#kd
+ex:kd rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Kresimir Duretec " .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#lcor
+ex:lcor rdf:type owl:NamedIndividual ,
+                 ex:Pessoa ;
+        ex:nome "Luis Corujo" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#lf
+ex:lf rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Luis Faria" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#lmf
+ex:lmf rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Luis Miguel Ferros" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mam
+ex:mam rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Miguel Ángel Marzal Garcia-Quismondo" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mcm
+ex:mcm rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Maria da Conceição Vieira Mota" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mf
+ex:mf rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Miguel Ferreira" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mhj
+ex:mhj rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "M. H. Jacinto" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#migaldo
+ex:migaldo rdf:type owl:NamedIndividual ,
+                    ex:Pessoa ;
+           ex:nome "Luis Miguel Alves Domingues" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mjc
+ex:mjc rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Maria Jesus Colmenero Ruiz" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mjpl
+ex:mjpl rdf:type owl:NamedIndividual ,
+                 ex:Pessoa ;
+        ex:nome "Maria João Pires Lima" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mk
+ex:mk rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Michael Kraxner" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mm
+ex:mm rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Mirkos Martins" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mom
+ex:mom rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "M. O. Martins" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#mrh
+ex:mrh rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "M. R. Henriques" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#pgf
+ex:pgf rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "P. G. D. Ferreira" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#pp
+ex:pp rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Petar Petrov" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#prh
+ex:prh rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Pedro Rangel Henriques" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#pt
+ex:pt rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Pedro Taveira" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#ram
+ex:ram rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Ricardo Martins" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#rc
+ex:rc rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Rui Castro" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#rct
+ex:rct rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Rogério Correa Turchetti" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#rf
+ex:rf rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Ricardo Freitas" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#rpa
+ex:rpa rdf:type owl:NamedIndividual ,
+                ex:Pessoa ;
+       ex:nome "Renato Preigschadt de Azevedo" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#vr
+ex:vr rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Vasco Rocha" .
+
+
+###  http://www.di.uminho.pt/jcr/XML/rdf/exercicio#ws
+ex:ws rdf:type owl:NamedIndividual ,
+               ex:Pessoa ;
+      ex:nome "Weber Souza" .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
